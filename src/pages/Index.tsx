@@ -42,7 +42,7 @@ const Index = () => {
         <nav className="navigation">
           <ul>
             <li><a href="#works">Works</a></li>
-            <li><Link to="/about">About</Link></li>
+            <li><Link to="/about" target="_blank" rel="noopener noreferrer">About</Link></li>
             <li><a href={resumeUrl} target="_blank" rel="noopener noreferrer">Resume</a></li>
           </ul>
         </nav>
@@ -85,7 +85,7 @@ const Index = () => {
                 <li>Primary designer for new Spam Protection features impacting 100M+ users</li>
                 <li>Developed a white-label modular design system allowing one design to work for third-party partners</li>
               </ul>
-              <Link to="/projects/norton" className="read-more">Read More →</Link>
+              <Link to="/projects/norton" target="_blank" rel="noopener noreferrer" className="read-more">Read More →</Link>
             </div>
           </div>
         </div>
@@ -103,7 +103,7 @@ const Index = () => {
                 <li>Collaborated with the visual design and UX lead to implement design strategies</li>
                 <li>Designed and deployed iterative versions of the design system</li>
               </ul>
-              <Link to="/projects/google" className="read-more">Read More →</Link>
+              <Link to="/projects/google" target="_blank" rel="noopener noreferrer" className="read-more">Read More →</Link>
             </div>
           </div>
         </div>
@@ -120,7 +120,7 @@ const Index = () => {
                 <li>UX product designer for Zoho Sheet on mobile devices for iOS and Android</li>
                 <li>Studied and improved the product in close collaboration with data users on mobile platforms</li>
               </ul>
-              <Link to="/projects/zoho" className="read-more">Read More →</Link>
+              <Link to="/projects/zoho" target="_blank" rel="noopener noreferrer" className="read-more">Read More →</Link>
             </div>
           </div>
         </div>
@@ -137,7 +137,7 @@ const Index = () => {
                 <li>Worked on an ecosystem of consumer-facing and operational applications</li>
                 <li>Designed and shipped the primary consumer-facing website, operations, and applications tracking +500 SKUs</li>
               </ul>
-              <Link to="/projects/holachef" className="read-more">Read More →</Link>
+              <Link to="/projects/holachef" target="_blank" rel="noopener noreferrer" className="read-more">Read More →</Link>
             </div>
           </div>
         </div>

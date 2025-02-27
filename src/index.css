@@ -339,6 +339,18 @@
   @apply w-full h-[40vh] sm:h-[50vh] object-cover rounded-lg mb-8;
 }
 
+.project-hero-content {
+  @apply max-w-4xl mx-auto;
+}
+
+.project-meta {
+  @apply flex flex-wrap gap-x-8 gap-y-2 my-4 text-gray-700;
+}
+
+.project-role, .project-timeline {
+  @apply text-base;
+}
+
 .project-content {
   @apply px-8 lg:px-12 max-w-4xl mx-auto mb-16;
 }
@@ -370,7 +382,7 @@
 }
 
 .section-content {
-  @apply mb-6 text-gray-700;
+  @apply mb-6 text-gray-700 leading-relaxed;
 }
 
 .section-image {

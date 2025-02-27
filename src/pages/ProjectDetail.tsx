@@ -7,6 +7,8 @@ interface ProjectData {
   title: string;
   headerImage: string;
   intro: string;
+  role?: string;
+  timeline?: string;
   sections: {
     title?: string;
     content: string;
@@ -20,6 +22,8 @@ const projects: Record<string, ProjectData> = {
     title: "Spam Protection features and design system for Norton 360",
     headerImage: "/lovable-uploads/99e14d1a-62c3-4b1e-99f5-b50205857b23.png",
     intro: "I worked on the design system and spam protection features for Norton 360, creating a flexible and modular system that could be used across multiple products and partners.",
+    role: "Lead Product Designer",
+    timeline: "2022 - 2023",
     sections: [
       {
         title: "Project Overview",
@@ -45,6 +49,8 @@ const projects: Record<string, ProjectData> = {
     title: "Google - Design System for Ad Manager",
     headerImage: "/lovable-uploads/1348148a-34d9-4c36-82f7-528a102a6dd5.png",
     intro: "I worked with the Google Ad Manager team to develop a comprehensive design system that improved usability and maintained visual consistency across the platform.",
+    role: "Design System Specialist",
+    timeline: "2021 - 2022",
     sections: [
       {
         title: "Project Overview",
@@ -70,6 +76,8 @@ const projects: Record<string, ProjectData> = {
     title: "Zoho - Mobile applications for Zoho Sheet",
     headerImage: "/lovable-uploads/e52d6904-806f-4aee-a7c6-6ee1b4fe4a8c.png",
     intro: "I designed the mobile experience for Zoho Sheet, creating intuitive interfaces for complex spreadsheet functionality on iOS and Android devices.",
+    role: "UX Product Designer",
+    timeline: "2020 - 2021",
     sections: [
       {
         title: "Project Overview",
@@ -95,6 +103,8 @@ const projects: Record<string, ProjectData> = {
     title: "Holachef - Ecosystem of applications for a FoodTech startup",
     headerImage: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&h=800",
     intro: "I designed an integrated ecosystem of applications for Holachef, a FoodTech startup, including consumer-facing interfaces and operational tools.",
+    role: "Product Design Lead",
+    timeline: "2019 - 2020",
     sections: [
       {
         title: "Project Overview",
@@ -153,7 +163,7 @@ const ProjectDetail = () => {
         <nav className="navigation">
           <ul>
             <li><Link to="/#works">Works</Link></li>
-            <li><Link to="/about">About</Link></li>
+            <li><Link to="/about" target="_blank" rel="noopener noreferrer">About</Link></li>
             <li><a href={resumeUrl} target="_blank" rel="noopener noreferrer">Resume</a></li>
           </ul>
         </nav>
@@ -162,8 +172,14 @@ const ProjectDetail = () => {
       {/* Project Hero */}
       <div className="project-hero">
         <img src={project.headerImage} alt={project.title} className="project-hero-image" />
-        <h1 className="project-title">{project.title}</h1>
-        <p className="project-intro">{project.intro}</p>
+        <div className="project-hero-content">
+          <h1 className="project-title">{project.title}</h1>
+          <div className="project-meta">
+            {project.role && <div className="project-role"><strong>Role:</strong> {project.role}</div>}
+            {project.timeline && <div className="project-timeline"><strong>Timeline:</strong> {project.timeline}</div>}
+          </div>
+          <p className="project-intro">{project.intro}</p>
+        </div>
       </div>
 
       {/* Project Content */}
