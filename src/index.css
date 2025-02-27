@@ -153,19 +153,30 @@
 
 /* Hero Section */
 .hero-section {
-  @apply min-h-screen flex flex-col justify-center px-8 lg:px-12 pt-20 pb-12 bg-gradient-to-br from-blue-100 via-purple-50 to-pink-100;
-  background-size: 400% 400%;
-  animation: gradientAnimation 15s ease infinite;
+  @apply min-h-screen flex flex-col justify-center px-8 lg:px-12 pt-20 pb-12 relative;
+  /* Background - can be gradient or gif */
+  background: linear-gradient(to bottom right, #e0f2fe, #f5f3ff, #fce7f3);
 }
 
-@keyframes gradientAnimation {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.hero-with-gif-bg {
+  background: url('/path/to/your/gif.gif') center center;
+  background-size: cover;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .hero-content {
-  @apply max-w-3xl animate-fade-in;
+  @apply max-w-3xl animate-fade-in relative z-10;
   animation-delay: 0.3s;
   opacity: 0;
   animation-fill-mode: forwards;
@@ -188,7 +199,7 @@
 }
 
 .scroll-indicator {
-  @apply absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce;
+  @apply absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce z-10;
 }
 
 .scroll-indicator a {
@@ -419,7 +430,26 @@
 
 /* Footer */
 .footer {
-  @apply py-16 px-8 lg:px-12 bg-gradient-to-br from-blue-100 via-purple-50 to-pink-100;
+  @apply py-16 px-8 lg:px-12 relative;
+  /* Background - can be gradient or gif */
+  background: linear-gradient(to bottom right, #e0f2fe, #f5f3ff, #fce7f3);
+}
+
+.footer-with-gif-bg {
+  background: url('/path/to/your/gif.gif') center center;
+  background-size: cover;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .project-footer {
@@ -427,7 +457,7 @@
 }
 
 .footer-content {
-  @apply max-w-xl mx-auto text-center;
+  @apply max-w-xl mx-auto text-center relative z-10;
 }
 
 .footer-title {

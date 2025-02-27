@@ -7,6 +7,16 @@ const Index = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const resumeUrl = "https://drive.google.com/your-resume-link"; // Replace with your actual resume link
 
+  // Configuration for GIF backgrounds
+  // Replace these paths with your actual GIF paths when you have them
+  const heroBackgroundGif = ""; // e.g. "/assets/hero-background.gif"
+  const footerBackgroundGif = ""; // e.g. "/assets/footer-background.gif"
+  
+  // Use hero GIF background if path is provided
+  const heroClassName = `hero-section ${heroBackgroundGif ? "hero-with-gif-bg" : ""}`;
+  // Use footer GIF background if path is provided
+  const footerClassName = `footer ${footerBackgroundGif ? "footer-with-gif-bg" : ""}`;
+
   // Update scroll position
   useEffect(() => {
     const handleScroll = () => {
@@ -49,7 +59,10 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="hero-section">
+      <section 
+        className={heroClassName}
+        style={heroBackgroundGif ? { backgroundImage: `url(${heroBackgroundGif})` } : {}}
+      >
         <div className="hero-content">
           <h2 className="greeting">Hello there <span style={waveStyle}>👋</span></h2>
           <h1 className="intro">
@@ -144,7 +157,10 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="footer">
+      <footer 
+        className={footerClassName}
+        style={footerBackgroundGif ? { backgroundImage: `url(${footerBackgroundGif})` } : {}}
+      >
         <div className="footer-content">
           <h2 className="footer-title">Like what you see??</h2>
           <p className="footer-text">
