@@ -153,7 +153,7 @@ const Index = () => {
               <ul className="project-highlights">
                 <li>Developed a UX/UI concept to enhance WhatsApp's voice messaging experience with AI-powered transcription.</li>
                 <li>Designed a frictionless transcription toggle for improved accessibility and user control.</li>
-                <li>Ensured seamless integration within WhatsApp’s chat interface while maintaining design consistency.</li>
+                <li>Ensured seamless integration within WhatsApp’s chat interface while srctaining design consistency.</li>
                 <li>Refined the user flow to display transcriptions dynamically upon voice note playback.</li>
               </ul>
               <Link to="/projects/whatsapp" target="_blank" rel="noopener noreferrer" className="read-more">Read More →</Link>

@@ -44,7 +44,7 @@ npm run dev
 
 **Use GitHub Codespaces**
 
-- Navigate to the main page of your repository.
+- Navigate to the src page of your repository.
 - Click on the "Code" button (green button) near the top right.
 - Select the "Codespaces" tab.
 - Click on "New codespace" to launch a new Codespace environment.
@@ -64,6 +64,6 @@ This project is built with .
 
 Simply open [Lovable](https://lovable.dev/projects/0a27ecbc-4b6e-486b-a007-ed76213006b1) and click on Share -> Publish.
 
-## I want to use a custom domain - is that possible?
+## I want to use a custom dosrc - is that possible?
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+We don't support custom dosrcs (yet). If you want to deploy your project under your own dosrc then we recommend using Netlify. Visit our docs for more details: [Custom dosrcs](https://docs.lovable.dev/tips-tricks/custom-dosrc/)

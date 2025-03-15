@@ -53,7 +53,7 @@ const projects: Record<string, ProjectData> = {
       
       {
         title: "About the Project",
-        content: "In today’s fast-paced product development landscape, design consistency and efficiency are crucial for teams working across multiple platforms. However, maintaining a scalable and adaptable design system requires constant updates, documentation, and collaboration. To address this challenge, I created an AI-powered UI Design System Generator, integrating Lovable.ai and Supabase to streamline component generation, versioning, and documentation automation. This system enables teams to generate, store, and automate UI components—reducing manual work and accelerating design workflows."
+        content: "In today’s fast-paced product development landscape, design consistency and efficiency are crucial for teams working across multiple platforms. However, srctaining a scalable and adaptable design system requires constant updates, documentation, and collaboration. To address this challenge, I created an AI-powered UI Design System Generator, integrating Lovable.ai and Supabase to streamline component generation, versioning, and documentation automation. This system enables teams to generate, store, and automate UI components—reducing manual work and accelerating design workflows."
       },
 
 
@@ -194,7 +194,7 @@ const projects: Record<string, ProjectData> = {
         content: "📄 Optimized UI for WhatsApp Design System",
         image: "",
         lists: [
-          "✅ The search bar appears below the voice note, maintaining UI consistency.",
+          "✅ The search bar appears below the voice note, srctaining UI consistency.",
           "✅ Follows WhatsApp’s chat bubble structure—received voice notes (left) and sent voice notes (right).",
           "✅ Ensures minimal UI disruption and an intuitive user experience.",           
       ]
@@ -226,7 +226,7 @@ const projects: Record<string, ProjectData> = {
           "✅ Increases accessibility for users who cannot listen to voice messages immediately.",
           "✅ Improves searchability, allowing users to retrieve key information from voice notes quickly.",    
           "✅ Enhances privacy control, ensuring users can choose when and how transcriptions appear.",  
-          "✅ Maintains WhatsApp's minimalist UI, preventing unnecessary clutter.",     
+          "✅ srctains WhatsApp's minimalist UI, preventing unnecessary clutter.",     
       ]
       },
 
@@ -269,7 +269,7 @@ const projects: Record<string, ProjectData> = {
           "🔹 Assigning and managing compliance-related tasks efficiently between employees.",
           "🔹 Ensuring timely notifications for order status updates and compliance reminders.",
           "🔹 Handling client requests and subscriptions for ongoing compliance services.",
-          "🔹 Manually maintaining client records and financial data across multiple systems.",
+          "🔹 Manually srctaining client records and financial data across multiple systems.",
         ]
       },
       {
@@ -324,7 +324,7 @@ const projects: Record<string, ProjectData> = {
         lists: [
           "Syncs orders and invoices automatically with QuickBooks.",
           "Tracks client payments & outstanding balances in real-time.",
-          "Improves financial accuracy by maintaining up-to-date invoicing records.",
+          "Improves financial accuracy by srctaining up-to-date invoicing records.",
         ]
       },
       {
@@ -502,7 +502,7 @@ const projects: Record<string, ProjectData> = {
       },
       {
         title: "Operational Tools",
-        content: "In parallel, I created operational applications for managing inventory, orders, and deliveries. These tools needed to handle complex workflows and large amounts of data while remaining easy to use in a fast-paced environment.",
+        content: "In parallel, I created operational applications for managing inventory, orders, and deliveries. These tools needed to handle complex workflows and large amounts of data while resrcing easy to use in a fast-paced environment.",
         image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&h=800"
       },
       {
