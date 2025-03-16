@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 
 const About = () => {
-  const resumeUrl = "https://drive.google.com/your-resume-link"; // Replace with your actual resume link
+  const resumeUrl = "https://drive.google.com/file/d/1KHnKSXAMYRCiJbvxWgKbeAXlwzDGrFJa/view?usp=drive_link"; // Replace with your actual resume link
 
   return (
     <div className="about-container">
@@ -16,7 +16,7 @@ const About = () => {
           <ul>
             <li><Link to="/#works">Works</Link></li>
             <li><Link to="/about" className="active">About</Link></li>
-            <li><a href={resumeUrl} target="_blank" rel="noopener noreferrer">Resume</a></li>
+            <li><a href="https://drive.google.com/file/d/1KHnKSXAMYRCiJbvxWgKbeAXlwzDGrFJa/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume</a></li>
           </ul>
         </nav>
       </header>
