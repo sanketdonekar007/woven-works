@@ -7,7 +7,7 @@ import React from "react";
 const Index = () => {
   // State to track scroll position for animations
   const [scrollPosition, setScrollPosition] = useState(0);
-  const resumeUrl = "https://drive.google.com/your-resume-link"; // Replace with your actual resume link
+  const resumeUrl = "https://drive.google.com/file/d/1KHnKSXAMYRCiJbvxWgKbeAXlwzDGrFJa/view?usp=drive_link"; // Replace with your actual resume link
 
   // Configuration for GIF backgrounds
   // Replace these paths with your actual GIF paths when you have them

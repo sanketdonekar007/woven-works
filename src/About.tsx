@@ -83,7 +83,7 @@ const About = () => {
       <div className="about-footer min-[1400px]:px-72">
             <h2 className="footer-title">Like what you see??</h2>
             <p className="footer-text">
-              View my <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="resume-link">resume</a>, follow me or contact me below
+              View my <a href="https://drive.google.com/file/d/1KHnKSXAMYRCiJbvxWgKbeAXlwzDGrFJa/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="resume-link">resume</a>, follow me or contact me below
             </p>
             
             <div className="social-links">

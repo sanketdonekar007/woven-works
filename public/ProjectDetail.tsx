@@ -515,7 +515,7 @@ const projects: Record<string, ProjectData> = {
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
-  const resumeUrl = "https://drive.google.com/your-resume-link"; // Replace with your actual resume link
+  const resumeUrl = "https://drive.google.com/file/d/1KHnKSXAMYRCiJbvxWgKbeAXlwzDGrFJa/view?usp=drive_link"; // Replace with your actual resume link
   
   const project = projectId ? projects[projectId] : null;
 
