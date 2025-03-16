@@ -10,6 +10,8 @@ import About from "@/pages/About";
 import ProjectDetail from "@/pages/ProjectDetail";
 import NotFound from "@/pages/NotFound";
 
+
+
 const queryClient = new QueryClient();
 
 const App = () => (
