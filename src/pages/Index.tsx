@@ -58,8 +58,8 @@ const Index = () => {
     <div className="portfolio-container ">
       {/* Header/Navigation */}
       <header className="header">
-        <div className="logo">
-        <Link to="/"><img src="/lovable-uploads/logo.png" alt="SD" /></Link>
+        <div className="logo ">
+        <Link to="/"><img className="w-12" src="/lovable-uploads/logo.png" alt="SD" /></Link>
 
         </div>
         <nav className="navigation">
