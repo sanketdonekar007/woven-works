@@ -561,7 +561,7 @@ const ProjectDetail = () => {
       {/* Header/Navigation */}
       <header className="header project-header ">
         <div className="logo">
-        <Link to="/"><img src="/lovable-uploads/logo.png" alt="SD" /></Link>
+        <Link to="/"><img className="w-12" src="/lovable-uploads/logo.png" alt="SD" /></Link>
 
         </div>
         <nav className="navigation">
