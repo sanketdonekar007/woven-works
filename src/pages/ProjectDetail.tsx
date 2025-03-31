@@ -268,15 +268,15 @@ const projects: Record<string, ProjectData> = {
         heighlight: "",
         content: "vState Filings is a web-based platform that simplifies corporate filings, compliance tracking, and order fulfillment. It enables businesses to efficiently manage entity formation, annual reporting, and other regulatory requirements while ensuring smooth collaboration between clients, employees, and administrators."
       },
-      {
-        title: "The platform is further enhanced with HubSpot and QuickBooks integrations, enabling:",
-        content: "",
-        heighlight: "",
-        lists: [
-          "✔ Seamless CRM management by auto-creating companies and contacts in HubSpot.",
-          "✔ Automated financial tracking by syncing orders and invoices with QuickBooks.",
-        ]
-      },
+      // {
+      //   title: "The platform is further enhanced with HubSpot and QuickBooks integrations, enabling:",
+      //   content: "",
+      //   heighlight: "",
+      //   lists: [
+      //     "✔ Seamless CRM management by auto-creating companies and contacts in HubSpot.",
+      //     "✔ Automated financial tracking by syncing orders and invoices with QuickBooks.",
+      //   ]
+      // },
       {
         title: "🛠️ Problem Statement",
         heighlight: "",
