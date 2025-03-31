@@ -439,6 +439,10 @@ h1.project-title {
   @apply mb-6 text-gray-700 leading-relaxed;
 }
 
+.section-heighlight{
+  @apply mb-6 text-gray-700 p-4 bg-blue-100 leading-relaxed;
+}
+
 .section-lists {
   @apply mb-6 text-gray-700 leading-relaxed;
 }

@@ -20,6 +20,7 @@ interface ProjectData {
   sections: {
     title?: string;
     content: string;
+    heighlight: string;
     image?: string;
     media?: {
       type: "image" | "video";
@@ -52,12 +53,14 @@ const projects: Record<string, ProjectData> = {
     sections: [
       
       {
+        heighlight: "",
         title: "About the Project",
         content: "In today’s fast-paced product development landscape, design consistency and efficiency are crucial for teams working across multiple platforms. However, srctaining a scalable and adaptable design system requires constant updates, documentation, and collaboration. To address this challenge, I created an AI-powered UI Design System Generator, integrating Lovable.ai and Supabase to streamline component generation, versioning, and documentation automation. This system enables teams to generate, store, and automate UI components—reducing manual work and accelerating design workflows."
       },
 
 
       {
+        heighlight: "",
         title: "Component Audit & Standardization",
         content: "",
         lists: [
@@ -85,6 +88,7 @@ const projects: Record<string, ProjectData> = {
       {
         title: "AI-Powered Component Generation (Lovable.ai Integration)",
         content: "",
+        heighlight: "",
         lists: [
           "✅Integrated Lovable.ai to dynamically generate UI components based on predefined rules.",
           "✅Allowed users to input design requirements (e.g., “Generate a responsive card component”).",
@@ -101,6 +105,7 @@ const projects: Record<string, ProjectData> = {
       {
         title: "Storage & Versioning (Supabase)",
         content: "",
+        heighlight: "",
         lists: [
           "✅Implemented Supabase as a backend to store UI components.",
           "✅Enabled real-time updates for design changes across teams.",
@@ -118,6 +123,7 @@ const projects: Record<string, ProjectData> = {
       {
         title: "Testing, Documentation & Collaboration",
         content: "",
+        heighlight: "",
         lists: [
           "✅Conducted usability testing to validate AI-generated components.",
           "✅Gathered feedback from design and development teams for improvements.",
@@ -133,6 +139,7 @@ const projects: Record<string, ProjectData> = {
       {
         title: "Design System Components",
         content: "",
+        heighlight: "",
         lists: [
           "",
            
@@ -162,14 +169,17 @@ const projects: Record<string, ProjectData> = {
     sections: [
       {
         title: "About the Project",
+         heighlight: "📢 A 2024 WhatsApp Usage Survey conducted in multiple countries, including India, found that over 40% of respondents regularly use WhatsApp voice notes for communication, citing convenience and expressiveness as key reasons. 🚀",
         content: "Voice notes are a convenient way for WhatsApp users to communicate, but they present accessibility challenges for users who cannot listen to them immediately. Additionally, users often struggle to find specific information within long voice messages."
       },
       {
         title: "",
+        heighlight: "",
         content: "To solve this, I designed a Quick Voice Note Transcription feature that allows users to generate and search transcriptions of voice messages seamlessly within chat conversations. This feature enhances accessibility, usability, and overall user experience by providing searchable, toggleable transcriptions within the chat interface."
       },
       {
         title: "Key Features",
+        heighlight: "",
         content: "🔍 In-Message Transcription Search",
         image: "",
         lists: [
@@ -180,6 +190,7 @@ const projects: Record<string, ProjectData> = {
       },
       {
         title: "",
+        heighlight: "",
         content: "🎙️ Enable/Disable Transcription",
         image: "",
         lists: [
@@ -191,6 +202,7 @@ const projects: Record<string, ProjectData> = {
 
       {
         title: "",
+        heighlight: "",
         content: "📄 Optimized UI for WhatsApp Design System",
         image: "",
         lists: [
@@ -203,6 +215,7 @@ const projects: Record<string, ProjectData> = {
 
       {
         title: "",
+        heighlight: "",
         content: "🔄 Seamless Integration with WhatsApp Features",
         image: "",
         lists: [
@@ -213,6 +226,7 @@ const projects: Record<string, ProjectData> = {
 
       {
         title: "Working Prototype",
+        heighlight: "",
         content: "",
         image: "/lovable-uploads/whatsapp-gif.gif",
         
@@ -220,6 +234,7 @@ const projects: Record<string, ProjectData> = {
 
       {
         title: "Expected Impact",
+        heighlight: "",
         content: "",
         image: "",
         lists: [
@@ -250,11 +265,13 @@ const projects: Record<string, ProjectData> = {
     sections: [
       {
         title: "📌 Project Overview",
+        heighlight: "",
         content: "vState Filings is a web-based platform that simplifies corporate filings, compliance tracking, and order fulfillment. It enables businesses to efficiently manage entity formation, annual reporting, and other regulatory requirements while ensuring smooth collaboration between clients, employees, and administrators."
       },
       {
         title: "The platform is further enhanced with HubSpot and QuickBooks integrations, enabling:",
         content: "",
+        heighlight: "",
         lists: [
           "✔ Seamless CRM management by auto-creating companies and contacts in HubSpot.",
           "✔ Automated financial tracking by syncing orders and invoices with QuickBooks.",
@@ -264,6 +281,7 @@ const projects: Record<string, ProjectData> = {
         title: "🛠️ Problem Statement",
         content: "Managing compliance filings is a complex and time-sensitive process. Businesses often struggle with:",
         image: "",
+        heighlight: "",
         lists: [
           "🔹 Tracking multiple filing deadlines across different regulatory bodies.",
           "🔹 Assigning and managing compliance-related tasks efficiently between employees.",
@@ -276,6 +294,7 @@ const projects: Record<string, ProjectData> = {
         title: "💡 Solution",
         content: "We designed VState Filings, a centralized compliance management system that:",
         image: "",
+        heighlight: "",
         lists: [
           "✔ Provides an intuitive dashboard to track and manage filings and deadlines.",
           "✔ Offers role-based access control for clients, employees, and business admins.",
@@ -288,6 +307,7 @@ const projects: Record<string, ProjectData> = {
       {
         title: "🎨 UX/UI Design Approach",
         content: "",
+        heighlight: "",
         image: "",
         lists: [
           "✅ Developed an intuitive dashboard with a clear visual hierarchy for compliance tracking.",
@@ -301,6 +321,7 @@ const projects: Record<string, ProjectData> = {
         title: "🚀 Project Features",
         content: "✅ Order & Compliance Management",
         image: "",
+        heighlight: "",
         lists: [
           "Businesses can place, track, and manage compliance orders efficiently.",
           "Orders categorized by status (Pending, In Progress, Completed, etc.).",
@@ -311,6 +332,7 @@ const projects: Record<string, ProjectData> = {
         title: "",
         content: "✅ HubSpot Integration (CRM & Client Management)",
         image: "",
+        heighlight: "",
         lists: [
           "Automatically creates companies & contacts when new orders are placed.",
           "Syncs client details & updates directly to HubSpot CRM.",
@@ -321,6 +343,7 @@ const projects: Record<string, ProjectData> = {
         title: "",
         content: "✅ QuickBooks Integration (Order & Invoice Management)",
         image: "",
+        heighlight: "",
         lists: [
           "Syncs orders and invoices automatically with QuickBooks.",
           "Tracks client payments & outstanding balances in real-time.",
@@ -329,6 +352,7 @@ const projects: Record<string, ProjectData> = {
       },
       {
         title: "",
+        heighlight: "",
         content: "✅ Role-Based Access & User Management",
         image: "",
         lists: [
@@ -338,6 +362,7 @@ const projects: Record<string, ProjectData> = {
       },
       {
         title: "",
+        heighlight: "",
         content: "✅ Automated Notifications & Reminders",
         image: "",
         lists: [
@@ -349,6 +374,7 @@ const projects: Record<string, ProjectData> = {
         title: "",
         content: "✅ Multi-Tenant Supports",
         image: "",
+        heighlight: "",
         lists: [
           "Businesses can manage multiple companies and their compliance filings.",
           "Each company has its own orders, users, and permissions.",
@@ -356,6 +382,7 @@ const projects: Record<string, ProjectData> = {
       },
       {
         title: "",
+        heighlight: "",
         content: "✅ Seamless Integration with Compliance Systems",
         image: "",
         lists: [
@@ -366,6 +393,7 @@ const projects: Record<string, ProjectData> = {
       {
         title: "🔍 Component Audit & Standardization",
         content: "",
+        heighlight: "",
         image: "",
         lists: [
           "✔ Conducted an audit of order management workflows across different filing service providers.",
@@ -377,6 +405,7 @@ const projects: Record<string, ProjectData> = {
       {
         title: "🤖 AI-Powered Compliance Management (Future Scope)",
         content: "",
+        heighlight: "",
         image: "",
         lists: [
           "🚀 Exploring AI-powered automation for compliance filings and deadline predictions.",
@@ -387,6 +416,7 @@ const projects: Record<string, ProjectData> = {
       {
         title: "💾 Storage & Versioning (Database & API Management)",
         content: "",
+        heighlight: "",
         image: "",
         lists: [
           "✔ Implemented structured order storage with real-time tracking.",
@@ -398,6 +428,7 @@ const projects: Record<string, ProjectData> = {
       {
         title: "🛠️ Testing, Documentation & Collaboration",
         content: "",
+        heighlight: "",
         image: "/lovable-uploads/vstate-demo.gif",
         lists: [
           "✔ Conducted usability testing to validate order-tracking UX.",
@@ -423,55 +454,66 @@ const projects: Record<string, ProjectData> = {
     sections: [
       {
         title: "Problem Statement",
+        heighlight: "",
         content: "The problem is that current language learning platforms need to provide a practical and personalized learning experience for users. Many apps rely on a more traditional approach, with limited customization options and a lack of progress tracking. Additionally, many apps need to provide the opportunity for users to practice their language skills with mediums like music, books, web series, or movie, which they consume a greater amount. This leads to users becoming frustrated with their progress and ultimately giving up on their language learning goals. As a result, there is a need for a language learning platform that addresses these issues and provides a personalized, engaging, and effective learning experience."
       },
       {
         title: "Thinking of digital solutions",
+        heighlight: "",
         content: "As a team, we explored various digital solutions to enhance the language-learning experience while making the platform intuitive and engaging. I played a key role in shaping solutions that streamlined the learning process and improved user retention. My involvement included collaborating closely fellow designers to understand user needs, identify pain points, and create an immersive experience. Working alongside brand designers, I helped craft a visually cohesive product that not only aligned with the platform’s goals but also elevated the overall user experience."
       },
       {
         title: "Competitor analysis",
+        heighlight: "",
         content: "The competitive analysis highlights the strengths, advantages, and limitations of major language-learning platforms like Duolingo, Memrise, Babbel, and MosaLingua. Each competitor has a unique value proposition, such as Duolingo’s gamified quizzes, Memrise’s real native speaker interactions, Babbel’s strong grammar integration, and MosaLingua’s flashcard-based learning. While advantages include freemium models, structured programs, and engaging content, key drawbacks include limited lesson depth, restricted language offerings, and a lack of advanced learning options. This analysis helps identify gaps and opportunities to create a more effective and well-rounded language-learning experience.",
         image: "/lovable-uploads/comp-lang.png"
       },
       {
         title: "Quantitative user research",
+        heighlight: "",
         content: "I decided to perform the user survey to gain quantitative data on how users learn a new language and the struggles many share. 38 users participate in my user survey. They were learning a variety of different languages, from German to Spanish, French, and the local languages of India. Here are the important questions from the surveys, you can check all surveys here."
       },
       
       {
        title: "Qualitative user research (Interviews)",
-        content: ""
+        content: "",
+        heighlight: ""
       },
       {
         title: "Empathy Map",
         image: "/lovable-uploads/empathy-lang.png",
         content:"",
+        heighlight: "",
       },
       {
         title: "Information Architecture (IA)",
         content: "Information Architecture (IA) is a crucial aspect of User Experience (UX) design. It involves organizing and structuring the content and information on a website or application in a logical and intuitive way.",
-        image: "/lovable-uploads/ia-lang.png"
+        image: "/lovable-uploads/ia-lang.png",
+        heighlight: ""
       },
       {
         title: "User Journey",
         image: "/lovable-uploads/journey-lang.png",
         content:"",
+        heighlight: "",
       },
       {
         title: "User Flow",
         image: "/lovable-uploads/userflow-lang.png",
         content:"",
+        heighlight: "",
       },
       {
         title: "Onboarding Screens",
         image: "/lovable-uploads/lang-onboarding.gif",
         content:"",
+        heighlight: "",
       },
       {
         title: "Hi-Fi Prototype",
         image: "/lovable-uploads/lang-ui.gif",
         content:"",
+        heighlight: "",
       },
     ]
   },
@@ -493,19 +535,23 @@ const projects: Record<string, ProjectData> = {
     sections: [
       {
         title: "Project Overview",
+        heighlight: "",
         content: "As a designer for Holachef, I was responsible for creating a cohesive ecosystem of applications that supported the company's food delivery service. This included the consumer-facing website, mobile apps, and internal tools for operations management."
       },
       {
         title: "Consumer Interface Design",
+        heighlight: "",
         content: "I designed the primary consumer-facing website and mobile applications, focusing on creating an intuitive and appetizing browsing and ordering experience. The design needed to showcase food items effectively while making the ordering process simple and efficient.",
         image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=1200&h=800"
       },
       {
         title: "Operational Tools",
+        heighlight: "",
         content: "In parallel, I created operational applications for managing inventory, orders, and deliveries. These tools needed to handle complex workflows and large amounts of data while resrcing easy to use in a fast-paced environment.",
         image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&h=800"
       },
       {
+        heighlight: "",
         content: "The completed ecosystem successfully supported Holachef's business model, connecting customers with a wide range of food options while providing the operational backbone needed to fulfill orders efficiently. The system tracked over 500 SKUs and processed thousands of orders daily."
       }
     ]
@@ -620,6 +666,7 @@ const ProjectDetail = () => {
           <div key={index} className="project-section">
             {section.title && <h2 className="section-title">{section.title}</h2>}
             <p className="section-content">{section.content}</p>
+            <p className="section-heighlight">{section.heighlight}</p>
             {/* <ul  className="section-lists ">{section.lists}</ul> */}
 
             {section.links && (
