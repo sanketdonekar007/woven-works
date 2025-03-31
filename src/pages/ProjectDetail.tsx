@@ -515,7 +515,7 @@ const projects: Record<string, ProjectData> = {
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
-  const resumeUrl = "https://drive.google.com/file/d/1KHnKSXAMYRCiJbvxWgKbeAXlwzDGrFJa/view?usp=drive_link"; // Replace with your actual resume link
+  const resumeUrl = "https://drive.google.com/file/d/1p0QgBKIbkBFpyf8r9aY4qmHxXZScjgtb/view?usp=drive_link"; // Replace with your actual resume link
   
   const project = projectId ? projects[projectId] : null;
 
@@ -568,7 +568,7 @@ const ProjectDetail = () => {
           <ul>
             <li><Link to="/#works">Works</Link></li>
             <li><Link to="/about" target="_blank" rel="noopener noreferrer">About</Link></li>
-            <li><a href="https://drive.google.com/file/d/1KHnKSXAMYRCiJbvxWgKbeAXlwzDGrFJa/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume</a></li>
+            <li><a href="https://drive.google.com/file/d/1p0QgBKIbkBFpyf8r9aY4qmHxXZScjgtb/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume</a></li>
           </ul>
         </nav>
       </header>
@@ -675,7 +675,7 @@ const ProjectDetail = () => {
         <div className="footer-content min-[1400px]:px-72">
           <h2 className="footer-title">Like what you see??</h2>
           <p className="footer-text text-left ">
-            View my <a href="https://drive.google.com/file/d/1KHnKSXAMYRCiJbvxWgKbeAXlwzDGrFJa/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="resume-link">resume</a>, get in touch 👋
+            View my <a href="https://drive.google.com/file/d/1p0QgBKIbkBFpyf8r9aY4qmHxXZScjgtb/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="resume-link">resume</a>, get in touch 👋
           </p>
           <div className="social-links">
           <a href="hhttps://dribbble.com/sanket_works" target="_blank" rel="noopener noreferrer" aria-label="Dribbble">

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 
 const About = () => {
-  const resumeUrl = "https://drive.google.com/file/d/1KHnKSXAMYRCiJbvxWgKbeAXlwzDGrFJa/view?usp=drive_link"; // Replace with your actual resume link
+  const resumeUrl = "https://drive.google.com/file/d/1p0QgBKIbkBFpyf8r9aY4qmHxXZScjgtb/view?usp=drive_link"; // Replace with your actual resume link
 
   return (
     <div className="about-container">
@@ -16,7 +16,7 @@ const About = () => {
           <ul>
             <li><Link to="/#works">Works</Link></li>
             <li><Link to="/about" className="active">About</Link></li>
-            <li><a href="https://drive.google.com/file/d/1KHnKSXAMYRCiJbvxWgKbeAXlwzDGrFJa/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume</a></li>
+            <li><a href="https://drive.google.com/file/d/1p0QgBKIbkBFpyf8r9aY4qmHxXZScjgtb/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume</a></li>
           </ul>
         </nav>
       </header>
@@ -83,7 +83,7 @@ const About = () => {
       <div className="about-footer min-[1400px]:px-72">
             <h2 className="footer-title">Like what you see??</h2>
             <p className="footer-text">
-              View my <a href="https://drive.google.com/file/d/1KHnKSXAMYRCiJbvxWgKbeAXlwzDGrFJa/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="resume-link">resume</a>, follow me or contact me below
+              View my <a href="https://drive.google.com/file/d/1p0QgBKIbkBFpyf8r9aY4qmHxXZScjgtb/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="resume-link">resume</a>, follow me or contact me below
             </p>
             
             <div className="social-links">

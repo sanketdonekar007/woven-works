@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Index = () => {
   // State to track scroll position for animations
   const [scrollPosition, setScrollPosition] = useState(0);
-  const resumeUrl = "https://drive.google.com/file/d/1KHnKSXAMYRCiJbvxWgKbeAXlwzDGrFJa/view?usp=drive_link"; // Replace with your actual resume link
+  const resumeUrl = "https://drive.google.com/file/d/1p0QgBKIbkBFpyf8r9aY4qmHxXZScjgtb/view?usp=drive_link"; // Replace with your actual resume link
 
   // Configuration for GIF backgrounds
   // Replace these paths with your actual GIF paths when you have them
@@ -66,7 +66,7 @@ const Index = () => {
           <ul>
             <li><a href="#works">Works</a></li>
             <li><Link to="/about" target="_blank" rel="noopener noreferrer">About</Link></li>
-            <li><a href="https://drive.google.com/file/d/1KHnKSXAMYRCiJbvxWgKbeAXlwzDGrFJa/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume</a></li>
+            <li><a href="https://drive.google.com/file/d/1p0QgBKIbkBFpyf8r9aY4qmHxXZScjgtb/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume</a></li>
           </ul>
         </nav>
       </header>
@@ -204,7 +204,7 @@ const Index = () => {
       >
         <div className="footer-content min-[1400px]:px-72">
           <h2 className="footer-title">Like what you see??</h2>
-          <h2 className="footer-title">View my <a href="https://drive.google.com/file/d/1KHnKSXAMYRCiJbvxWgKbeAXlwzDGrFJa/view?usp=drive_link" target="_blank" rel="Sanket Donekar" className="resume-link">resume</a>, get in touch 👋</h2>
+          <h2 className="footer-title">View my <a href="https://drive.google.com/file/d/1p0QgBKIbkBFpyf8r9aY4qmHxXZScjgtb/view?usp=drive_link" target="_blank" rel="Sanket Donekar" className="resume-link">resume</a>, get in touch 👋</h2>
           {/* <p className="footer-text">
             View my <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="resume-link">resume</a>, get in touch 👋
           </p> */}
