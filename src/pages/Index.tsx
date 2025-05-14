@@ -183,7 +183,7 @@ const Index = () => {
         <div className="project-card">
           <div className="project-content">
             <div className="project-image">
-              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&h=400" alt="Holachef Ecosystem" />
+              <img src="/lovable-uploads/snackhackheader.jpg" alt="Holachef Ecosystem" />
             </div>
             <div className="project-details">
               <h3 className="project-title">Snack Hack - Decode Your Snacks, Instantly</h3>
