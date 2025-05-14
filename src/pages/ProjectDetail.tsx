@@ -518,16 +518,16 @@ const projects: Record<string, ProjectData> = {
     ]
   },
 
-  holachef: {
-    id: "holachef",
-    title: "Holachef - Ecosystem of applications for a FoodTech startup",
-    headerImage: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&h=800",
-    intro: "I designed an integrated ecosystem of applications for Holachef, a FoodTech startup, including consumer-facing interfaces and operational tools.",
-    role: "Product Design Lead",
-    timeline: "2019 - 2020",
+  snackhack: {
+    id: "snackhack",
+    title: "Snack Hack – Decode Your Snacks, Instantly",
+    headerImage: "/lovable-uploads/snackhackheader.jpg",
+    intro: "A smart mobile app that scans food product barcodes and delivers clear, actionable nutritional insights based on user preferences and health goals.",
+    role: "Product Design",
+    timeline: "Feb 2025 - In Progress",
     platforms:"",
     links: [
-      { text: "Project Website", url: "https://example.com" },
+      { text: "NA", url: "" },
       { text: "", url: "" },
       
      
@@ -536,24 +536,80 @@ const projects: Record<string, ProjectData> = {
       {
         title: "Project Overview",
         heighlight: "",
-        content: "As a designer for Holachef, I was responsible for creating a cohesive ecosystem of applications that supported the company's food delivery service. This included the consumer-facing website, mobile apps, and internal tools for operations management."
+        content: "Snack Hack is a nutrition-focused mobile app that empowers users to make informed food choices. By simply scanning a product barcode, users receive ingredient breakdowns, health ratings, and personalized dietary recommendations. Built to promote healthier lifestyles, Snack Hack goes beyond basic label reading by integrating smart filtering, data-driven personalization, and real-time scanning."
       },
       {
-        title: "Consumer Interface Design",
+        title: "🛠️ Problem Statement",
+        content: "In a world of overwhelming food choices, consumers struggle to:",
         heighlight: "",
-        content: "I designed the primary consumer-facing website and mobile applications, focusing on creating an intuitive and appetizing browsing and ordering experience. The design needed to showcase food items effectively while making the ordering process simple and efficient.",
-        image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=1200&h=800"
+        image: "",
+        lists: [
+          "✔ Understand complex nutrition labels and hidden ingredients.",
+          "✔ Identify products that match their dietary needs or restrictions.",
+          "✔ Track consistent patterns in their food consumption.",
+          "✔ Avoid harmful additives, preservatives, or allergens in their diet.",
+        ]
       },
+
       {
-        title: "Operational Tools",
+        title: "💡 Solution",
+        content: "Snack Hack simplifies food decisions with a quick, intuitive scanning experience.",
         heighlight: "",
-        content: "In parallel, I created operational applications for managing inventory, orders, and deliveries. These tools needed to handle complex workflows and large amounts of data while resrcing easy to use in a fast-paced environment.",
-        image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&h=800"
+        image: "/lovable-uploads/snackhack.gif",
+        lists: [
+          "✔ Instantly decodes ingredients and nutrition facts from product barcodes.",
+          "✔ Highlights potentially harmful components (e.g., trans fats, high sugar).",
+          "✔ Provides a personalized health score based on user goals.",
+          "✔ Recommends better alternatives based on dietary preferences.",
+        ]
       },
+
       {
+        title: "🎨 UX/UI Design Approach",
+        content: "",
         heighlight: "",
-        content: "The completed ecosystem successfully supported Holachef's business model, connecting customers with a wide range of food options while providing the operational backbone needed to fulfill orders efficiently. The system tracked over 500 SKUs and processed thousands of orders daily."
-      }
+        image: "",
+        lists: [
+          "✔ Designed an intuitive scanning interface with minimal user effort.",
+          "✔ Created an onboarding flow to understand user health preferences.",
+          "✔ Developed a visual product scorecard for nutrition at-a-glance.",
+          "✔ Ensured smooth interactions for ingredient education and product tracking.",
+          "✔ Integrated visual cues and alerts to flag unhealthy choices.",
+        ]
+      },
+
+      {
+        title: "🚀 Project Features",
+        content: "",
+        heighlight: "",
+        image: "",
+        lists: [
+          "✔ Barcode Scanning: Real-time scan and recognition of packaged food products.",
+          "✔ Breakdown of each ingredient with color-coded health indicators.",
+          "✔ Nutrition scores dynamically calculated based on user profile.",
+          "✔ Users can filter results according to their dietary needs.",
+          "✔ Suggests healthier product alternatives.",
+          "✔ Future roadmap includes recipe tracking, shopping list integration, and third-party wearable sync.",
+        ]
+      },
+
+
+      {
+        title: "📈 Revenue Strategy",
+        content: "",
+        heighlight: "",
+        image: "",
+        lists: [
+          "✔ Freemium Model: Core features are free; advanced recommendations and dietary coaching available in the premium tier.",
+          "✔ Affiliate Links: Earn commissions from partnerships with health-conscious food brands.",
+          "✔ Subscription Plans: Offer ad-free, enriched features via monthly/yearly subscriptions.",
+          "✔ Donations: Option to support development via in-app donations or Patreon.",
+          "✔ Corporate Partnerships: Potential for licensing to gyms, wellness platforms, and dieticians.",
+        ]
+      },
+      
+
+   
     ]
   }
 };
