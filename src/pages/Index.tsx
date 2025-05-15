@@ -179,7 +179,7 @@ const Index = () => {
           </div>
         </div>
 
-        Project 5 
+        
         <div className="project-card">
           <div className="project-content">
             <div className="project-image">
