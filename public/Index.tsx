@@ -180,22 +180,26 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Project 5 */}
-        {/* <div className="project-card">
+         <div className="project-card">
           <div className="project-content">
             <div className="project-image">
-              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&h=400" alt="Holachef Ecosystem" />
+              <img src="/lovable-uploads/snackhackheader.jpg" alt="Holachef Ecosystem" />
             </div>
             <div className="project-details">
-              <h3 className="project-title">Holachef - Ecosystem of applications for a FoodTech startup</h3>
+              <h3 className="project-title">Snack Hack - Decode Your Snacks, Instantly</h3>
               <ul className="project-highlights">
-                <li>Worked on an ecosystem of consumer-facing and operational applications</li>
-                <li>Designed and shipped the primary consumer-facing website, operations, and applications tracking +500 SKUs</li>
+                <li>Instant Barcode Scanning: Quickly analyzes packaged foods and returns results in seconds.</li>
+                <li>Personalized Health Scoring: Adjusts food ratings based on individual dietary needs, restrictions, or goals.</li>
+                <li>Ingredient Transparency: Flags harmful or controversial ingredients like trans fats, high fructose corn syrup, or synthetic additives.</li>
+                <li>Clean UI for Quick Decisions: Minimalist, color-coded product cards simplify comparison shopping.</li>
+
+              
+
               </ul> 
-              <Link to="/projects/holachef" target="_blank" rel="noopener noreferrer" className="read-more">Read More →</Link>
+              <Link to="/projects/snackhack" target="_blank" rel="noopener noreferrer" className="read-more">Read More →</Link>
             </div>
           </div>
-        </div> */}
+        </div> 
       </section>
 
       {/* Footer */}
