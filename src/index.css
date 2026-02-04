@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,7 +8,9 @@
 
 @layer base {
   :root {
+    /* ... existing root variables ... */
     --background: 210 60% 98%;
+    /* ... existing variables ... */
     --foreground: 224 71.4% 4.1%;
     --card: 0 0% 100%;
     --card-foreground: 224 71.4% 4.1%;
@@ -16,6 +18,10 @@
     --popover-foreground: 224 71.4% 4.1%;
     --primary: 263.4 70% 50.4%;
     --primary-foreground: 210 20% 98%;
+
+    /* Animation variables */
+    --animation-duration: 8s;
+
     --secondary: 220 14.3% 95.9%;
     --secondary-foreground: 220.9 39.3% 11%;
     --muted: 220 14.3% 95.9%;
@@ -57,72 +63,111 @@
   * {
     @apply border-border;
   }
-  
+
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
+    font-family: 'Satoshi', sans-serif;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
 }
 
 @layer utilities {
+
   /* Animations */
   @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
   }
-  
+
   @keyframes slideIn {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
-  
+
   @keyframes scaleIn {
-    from { transform: scale(0.95); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
-  
+
   .animate-fade-in {
     animation: fadeIn 0.6s ease-out forwards;
   }
-  
+
   .animate-slide-in {
     animation: slideIn 0.6s ease-out forwards;
   }
-  
+
   .animate-scale-in {
     animation: scaleIn 0.6s ease-out forwards;
   }
-  
+
   /* Hover effects */
   .hover-lift {
     @apply transition-transform duration-300;
   }
-  
+
   .hover-lift:hover {
     transform: translateY(-5px);
   }
-  
+
   /* Interactive link underlines */
   .link-underline {
     @apply relative;
   }
-  
+
   .link-underline::after {
     @apply content-[''] absolute w-full scale-x-0 h-[2px] bottom-0 left-0 bg-primary origin-bottom-right transition-transform duration-300;
   }
-  
+
   .link-underline:hover::after {
     @apply scale-x-100 origin-bottom-left;
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(-50%);
+    }
+
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll var(--animation-duration) linear infinite;
+  }
+
+  /* Pause animation on hover */
+  .animate-scroll:hover {
+    animation-play-state: paused;
   }
 }
 
 /* Layout styles */
 .portfolio-container {
-  @apply min-h-screen ;
+  @apply min-h-screen;
 }
 
 /* Header/Navigation */
@@ -130,7 +175,8 @@
   @apply flex justify-between items-center py-0 px-8 lg:px-12 backdrop-blur-sm bg-white/80 fixed top-0 left-0 w-full z-50;
 }
 
-.about-header, .project-header {
+.about-header,
+.project-header {
   @apply bg-white/90;
 }
 
@@ -147,7 +193,7 @@
 }
 
 .navigation a {
-  @apply text-gray-800 hover:text-primary transition-colors duration-300 no-underline text-xl  ;
+  @apply text-gray-800 hover:text-primary transition-colors duration-300 no-underline text-xl;
 }
 
 .navigation a.active {
@@ -156,7 +202,7 @@
 
 /* Hero Section */
 .hero-section {
-  @apply min-h-screen flex flex-col justify-center px-8 lg:px-12 pt-20 pb-12 relative min-h-screen  items-center justify-center bg-cover bg-center;
+  @apply min-h-screen flex flex-col justify-center px-8 lg:px-12 pt-20 pb-12 relative min-h-screen items-center justify-center bg-cover bg-center;
   /* Background - can be gradient or gif */
   background-image: url('/lovable-uploads/gradient.gif');
 }
@@ -176,20 +222,19 @@
   background-color: rgba(255, 255, 255, 0.7);
   z-index: 0;
   pointer-events: none;
-  
+
 }
 
 .hero-content {
-  @apply max-w-3xl animate-fade-in relative z-10;
+  @apply max-w-[1200px] w-full mx-auto px-6 lg:px-8 animate-fade-in relative z-10;
   animation-delay: 0.3s;
   opacity: 0;
   animation-fill-mode: forwards;
-  max-width: max-content;
 }
 
 .greeting {
-  @apply text-xl md:text-2xl lg:text-4xl font-normal  text-black mb-4;
-    
+  @apply text-xl md:text-2xl lg:text-4xl font-normal text-black mb-4;
+
 }
 
 .intro {
@@ -198,7 +243,7 @@
 }
 
 .name {
-  @apply text-primary  ;
+  @apply text-primary;
 }
 
 .position {
@@ -219,12 +264,11 @@
 }
 
 h1.section-title {
-  @apply   text-3xl
-  font-medium mb-12;
+  @apply text-3xl font-medium mb-12;
 }
 
 .project-card {
-  @apply mb-24 opacity-0 w-full	;
+  @apply mb-24 opacity-0 w-full;
   animation: fadeIn 0.8s ease-out forwards;
 }
 
@@ -245,7 +289,7 @@ h1.section-title {
 }
 
 .project-content {
-  @apply flex flex-col md:flex-row gap-8 md:gap-12 ;
+  @apply flex flex-col md:flex-row gap-8 md:gap-12;
 }
 
 .project-image {
@@ -261,13 +305,11 @@ h1.section-title {
 }
 
 h3.project-title {
-  @apply text-3xl font-medium mb-4 text-black
-  ;
+  @apply text-3xl font-medium mb-4 text-black;
 }
 
 h1.project-title {
-  @apply text-2xl font-bold mb-4 text-black
-  ;
+  @apply text-2xl font-bold mb-4 text-black;
 }
 
 .project-highlights {
@@ -275,8 +317,7 @@ h1.project-title {
 }
 
 .read-more {
-  @apply text-primary hover:text-primary/80 text-base
-   transition-colors duration-300 font-medium;
+  @apply text-primary hover:text-primary/80 text-base transition-colors duration-300 font-medium;
 }
 
 /* About Page */
@@ -285,11 +326,11 @@ h1.project-title {
 }
 
 .about-content {
-  @apply pt-28 lg:px-12 flex flex-col lg:flex-row gap-12 max-w-7xl mx-auto max-[1400px]:px-8;
+  @apply pt-28 lg:px-12 flex flex-col lg:flex-row gap-12 max-w-[1200px] mx-auto max-[1400px]:px-8;
 }
 
 .about-text {
-  @apply lg:w-2/3 ;
+  @apply lg:w-2/3;
 }
 
 .about-photo {
@@ -320,11 +361,13 @@ h1.project-title {
   @apply text-2xl font-bold mt-12 mb-6;
 }
 
-.education-section, .experience-section {
+.education-section,
+.experience-section {
   @apply mb-12;
 }
 
-.education-item, .experience-item {
+.education-item,
+.experience-item {
   @apply mb-6;
 }
 
@@ -337,7 +380,7 @@ h1.project-title {
 }
 
 .about-footer {
-  @apply py-16  px-8 lg:px-12 relative   bg-cover ;
+  @apply py-16 px-8 lg:px-12 relative bg-cover;
   /* Background - can be gradient or gif */
   background-image: url('/lovable-uploads/gradient.gif');
 }
@@ -360,11 +403,11 @@ h1.project-title {
 }
 
 .project-hero {
-  @apply pt-28  mb-16;
+  @apply pt-28 mb-16;
 }
 
 .project-hero-image {
-  @apply w-full   rounded-lg mb-8     ;
+  @apply w-full rounded-lg mb-8;
 }
 
 /* .project-hero-content {
@@ -372,17 +415,16 @@ h1.project-title {
 } */
 
 .project-meta {
-  @apply   gap-x-8 gap-y-8 my-4 text-gray-700 justify-between grid  md:grid-cols-[2fr_1fr]    ;
+  @apply gap-x-8 gap-y-8 my-4 text-gray-700 justify-between grid md:grid-cols-[2fr_1fr];
 }
 
-.project-role, .project-timeline {
-  @apply text-base text-lg text-black
-
-  ;
+.project-role,
+.project-timeline {
+  @apply text-base text-lg text-black;
 }
 
 .project-content {
-  @apply  mb-16;
+  @apply mb-16;
 }
 
 
@@ -439,12 +481,16 @@ h1.project-title {
   @apply mb-6 text-gray-700 leading-relaxed;
 }
 
-.section-heighlight{
+.section-heighlight {
   @apply mb-6 text-gray-700 p-4 bg-blue-100 leading-relaxed;
 }
 
 .section-lists {
-  @apply mb-6 text-gray-700 leading-relaxed;
+  @apply mb-6 text-gray-800 text-lg leading-relaxed space-y-3;
+}
+
+.section-lists li {
+  @apply pl-2;
 }
 
 .section-image {
@@ -456,7 +502,7 @@ h1.project-title {
 }
 
 .more-projects {
-  @apply  mb-16;
+  @apply mb-16;
 }
 
 .more-projects h2 {
@@ -468,12 +514,11 @@ h1.project-title {
 }
 
 .related-project {
-  @apply rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 text-xl
-  ; 
+  @apply rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 text-xl;
 }
 
 .related-project img {
-  @apply w-full h-48 object-cover ;
+  @apply w-full h-48 object-cover;
 }
 
 .related-project h3 {
@@ -482,7 +527,7 @@ h1.project-title {
 
 /* Footer */
 .footer {
-  @apply py-16  px-8 lg:px-12 relative   bg-cover ;
+  @apply py-16 px-8 lg:px-12 relative bg-cover;
   /* Background - can be gradient or gif */
   background-image: url('/lovable-uploads/gradient.gif');
 }
@@ -509,17 +554,15 @@ h1.project-title {
 }
 
 .footer-content {
-  @apply  mx-auto text-center relative z-10;
+  @apply mx-auto text-center relative z-10;
 }
 
 h2.footer-title {
-  @apply text-3xl font-medium mb-4 text-left
-  ;
+  @apply text-3xl font-medium mb-4 text-left;
 }
 
 .footer-text {
-  @apply text-3xl 
-  mb-6;
+  @apply text-3xl mb-6;
 }
 
 .resume-link {
@@ -542,21 +585,23 @@ h2.footer-title {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .project-content {
-    @apply flex-col ;
+    @apply flex-col;
   }
-  
-  .project-image, .project-details {
-    @apply w-full ;
+
+  .project-image,
+  .project-details {
+    @apply w-full;
   }
-  
+
   .about-content {
-    @apply flex-col ;
+    @apply flex-col;
   }
-  
-  .about-text, .about-photo {
-    @apply w-full ;
+
+  .about-text,
+  .about-photo {
+    @apply w-full;
   }
 }
 
 /* Add a soft, smooth font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* Manrope is imported at the top */

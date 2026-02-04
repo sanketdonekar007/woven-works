@@ -8,14 +8,17 @@ interface ProjectData {
   title: string;
   headerImage: string;
   intro: string;
+  subtitle?: string;
   role?: string;
   timeline?: string;
   platforms: string;
-  lists?: string[]; 
+  focus?: string;
+  quote?: string;
+  lists?: string[];
   links: [
     { text: string, url: string },
     { text: string; url: string },
-   
+
   ]
   sections: {
     title?: string;
@@ -26,13 +29,13 @@ interface ProjectData {
       type: "image" | "video";
       url: string;
     };
-    lists?: string[] ;
+    lists?: string[];
     links?: { text: string; url: string }[];
     layout?: "image-left" | "image-right";
-    
+
   }[];
- 
-  
+
+
 }
 
 const projects: Record<string, ProjectData> = {
@@ -47,11 +50,11 @@ const projects: Record<string, ProjectData> = {
     links: [
       { text: "", url: "" },
       { text: "", url: "" },
-     
+
     ],
-    
+
     sections: [
-      
+
       {
         title: "About the Project",
         heighlight: "",
@@ -70,8 +73,8 @@ const projects: Record<string, ProjectData> = {
           "✅Established a set of design tokens (colors, shadows, spacing, typography) to ensure consistency.",
           "✅Created theme variations (light mode, dark mode, accessibility-friendly).",
           "✅Defined usage guidelines for all components to ensure scalability.",
-          "✅Created a component hierarchy to streamline implementation."   
-      ],
+          "✅Created a component hierarchy to streamline implementation."
+        ],
         image: "",
 
 
@@ -96,8 +99,8 @@ const projects: Record<string, ProjectData> = {
           "✅Enabled customization for corner radius, padding, shadows, and states.",
           "✅AI recommended adaptive layouts for web and mobile responsiveness.",
           "✅AI ensured components met WCAG accessibility standards.",
-          "✅Suggested color contrast improvements and alternative text options."   
-      ],
+          "✅Suggested color contrast improvements and alternative text options."
+        ],
         image: ""
       },
 
@@ -112,8 +115,8 @@ const projects: Record<string, ProjectData> = {
           "✅Allowed version tracking of each component update.",
           "✅Built an API that allows developers to retrieve design system components.",
           "✅Ensured seamless synchronization between Figma and development environments.",
-           
-      ],
+
+        ],
         image: ""
       },
 
@@ -131,8 +134,8 @@ const projects: Record<string, ProjectData> = {
           "✅Included usage guidelines, code snippets, and interactive demos.",
           "✅Based on testing feedback, refined AI-generated components.",
           "✅Improved component adaptability for different design systems.",
-           
-      ],
+
+        ],
         image: ""
       },
 
@@ -142,14 +145,14 @@ const projects: Record<string, ProjectData> = {
         heighlight: "",
         lists: [
           "",
-           
-      ],
+
+        ],
         image: "/lovable-uploads/design-system-demo.gif"
       },
-      
+
     ],
 
-   
+
   },
 
 
@@ -164,7 +167,7 @@ const projects: Record<string, ProjectData> = {
     links: [
       { text: "", url: "" },
       { text: "", url: "" },
-      
+
     ],
     sections: [
       {
@@ -185,8 +188,8 @@ const projects: Record<string, ProjectData> = {
         lists: [
           "✅ Transcription search appears only after clicking the play button of a voice note.",
           "✅ Users can search within a specific transcribed voice note.",
-          "✅ Found keywords get highlighted for easy identification.",           
-      ]
+          "✅ Found keywords get highlighted for easy identification.",
+        ]
       },
       {
         title: "",
@@ -196,8 +199,8 @@ const projects: Record<string, ProjectData> = {
         lists: [
           "✅ Users can toggle transcription on or off for individual voice messages.",
           "✅ Option to set default transcription behavior in WhatsApp settings.",
-          "✅ Ensures privacy by allowing users to opt-out of transcriptions.",           
-      ]
+          "✅ Ensures privacy by allowing users to opt-out of transcriptions.",
+        ]
       },
 
       {
@@ -208,8 +211,8 @@ const projects: Record<string, ProjectData> = {
         lists: [
           "✅ The search bar appears below the voice note, srctaining UI consistency.",
           "✅ Follows WhatsApp’s chat bubble structure—received voice notes (left) and sent voice notes (right).",
-          "✅ Ensures minimal UI disruption and an intuitive user experience.",           
-      ]
+          "✅ Ensures minimal UI disruption and an intuitive user experience.",
+        ]
       },
 
 
@@ -220,8 +223,8 @@ const projects: Record<string, ProjectData> = {
         image: "",
         lists: [
           "✅ Works with existing voice note playback controls.",
-          "✅ Supports multiple languages for wider accessibility.",        
-      ]
+          "✅ Supports multiple languages for wider accessibility.",
+        ]
       },
 
       {
@@ -229,7 +232,7 @@ const projects: Record<string, ProjectData> = {
         heighlight: "",
         content: "",
         image: "/lovable-uploads/whatsapp-gif.gif",
-        
+
       },
 
       {
@@ -239,10 +242,10 @@ const projects: Record<string, ProjectData> = {
         image: "",
         lists: [
           "✅ Increases accessibility for users who cannot listen to voice messages immediately.",
-          "✅ Improves searchability, allowing users to retrieve key information from voice notes quickly.",    
-          "✅ Enhances privacy control, ensuring users can choose when and how transcriptions appear.",  
-          "✅ srctains WhatsApp's minimalist UI, preventing unnecessary clutter.",     
-      ]
+          "✅ Improves searchability, allowing users to retrieve key information from voice notes quickly.",
+          "✅ Enhances privacy control, ensuring users can choose when and how transcriptions appear.",
+          "✅ srctains WhatsApp's minimalist UI, preventing unnecessary clutter.",
+        ]
       },
 
     ]
@@ -251,16 +254,19 @@ const projects: Record<string, ProjectData> = {
 
   vstate: {
     id: "vstate",
-    title: "VState Filings – Compliance Management Platform (B2B)",
+    title: "vState — UX Case Study",
+    subtitle: "Compliance & Filing Management Platform (B2B SaaS)",
     headerImage: "/lovable-uploads/filenow2.jpg",
-    intro: "A comprehensive web application designed to streamline compliance and business filing services, ensuring efficiency in order management and regulatory adherence.",
-    role: "Product Designer",
+    intro: "vState is a role-based compliance and filing management platform designed to help service providers manage multi-state filings, deadlines, and client communication with confidence.",
+    role: "Senior UI/UX Designer",
+    focus: "UX Strategy, Information Architecture, User Flows, Design Systems",
+    quote: "Designing for compliance means designing for clarity, trust, and zero margin for error.",
     timeline: "June 2024 - March 2025",
-    platforms: "Web/Mobile",
+    platforms: "Web (B2B SaaS)",
     links: [
       { text: "", url: "" },
       { text: "", url: "" },
-     
+
     ],
     sections: [
       {
@@ -473,17 +479,17 @@ const projects: Record<string, ProjectData> = {
         heighlight: "",
         content: "I decided to perform the user survey to gain quantitative data on how users learn a new language and the struggles many share. 38 users participate in my user survey. They were learning a variety of different languages, from German to Spanish, French, and the local languages of India. Here are the important questions from the surveys, you can check all surveys here."
       },
-      
+
       {
-       title: "Qualitative user research (Interviews)",
-       heighlight: "",
+        title: "Qualitative user research (Interviews)",
+        heighlight: "",
         content: ""
       },
       {
         title: "Empathy Map",
         heighlight: "",
         image: "/lovable-uploads/empathy-lang.png",
-        content:"",
+        content: "",
       },
       {
         title: "Information Architecture (IA)",
@@ -495,25 +501,25 @@ const projects: Record<string, ProjectData> = {
         title: "User Journey",
         heighlight: "",
         image: "/lovable-uploads/journey-lang.png",
-        content:"",
+        content: "",
       },
       {
         title: "User Flow",
         heighlight: "",
         image: "/lovable-uploads/userflow-lang.png",
-        content:"",
+        content: "",
       },
       {
         title: "Onboarding Screens",
         heighlight: "",
         image: "/lovable-uploads/lang-onboarding.gif",
-        content:"",
+        content: "",
       },
       {
         title: "Hi-Fi Prototype",
         heighlight: "",
         image: "/lovable-uploads/lang-ui.gif",
-        content:"",
+        content: "",
       },
     ]
   },
@@ -525,12 +531,12 @@ const projects: Record<string, ProjectData> = {
     intro: "A smart mobile app that scans food product barcodes and delivers clear, actionable nutritional insights based on user preferences and health goals.",
     role: "Product Design",
     timeline: "Feb 2025 - In Progress",
-    platforms:"",
+    platforms: "",
     links: [
       { text: "NA", url: "" },
       { text: "", url: "" },
-      
-     
+
+
     ],
     sections: [
       {
@@ -607,9 +613,9 @@ const projects: Record<string, ProjectData> = {
           "✔ Corporate Partnerships: Potential for licensing to gyms, wellness platforms, and dieticians.",
         ]
       },
-      
 
-   
+
+
     ]
   }
 };
@@ -618,35 +624,35 @@ const projects: Record<string, ProjectData> = {
 const ProjectDetail = () => {
   const { projectId } = useParams();
   const resumeUrl = "https://drive.google.com/file/d/1p0QgBKIbkBFpyf8r9aY4qmHxXZScjgtb/view?usp=drive_link"; // Replace with your actual resume link
-  
+
   const project = projectId ? projects[projectId] : null;
 
 
   const listContainer = document.querySelector(".section-lists") as HTMLUListElement;
 
 
-  
-  
+
+
 
   if (listContainer) {
-    listContainer.innerHTML = projects.lists.map((group) =>   
-          `<ul class="list-disc pl-5 space-y-2 border-b border-gray-300 pb-4">
+    listContainer.innerHTML = projects.lists.map((group) =>
+      `<ul class="list-disc pl-5 space-y-2 border-b border-gray-300 pb-4">
              ${group.map((item) => `<li>${item}</li>`).join("")}
            </ul>`
-      )
+    )
       .join("");
   }
-  
+
   useEffect(() => {
     // Scroll to top when project page loads
     window.scrollTo(0, 0);
-    
+
     // Log error if project doesn't exist
     if (!project && projectId) {
       console.error(`Project with ID ${projectId} not found`);
     }
   }, [projectId, project]);
-  
+
   if (!project) {
     return (
       <div className="error-container">
@@ -657,13 +663,13 @@ const ProjectDetail = () => {
     );
   }
 
-  
+
   return (
     <div className="project-detail-container ">
       {/* Header/Navigation */}
       <header className="header project-header ">
         <div className="logo">
-        <Link to="/"><img className="w-12" src="/lovable-uploads/logo.png" alt="SD" /></Link>
+          <Link to="/"><img className="w-12" src="/lovable-uploads/logo.png" alt="SD" /></Link>
 
         </div>
         <nav className="navigation">
@@ -681,35 +687,38 @@ const ProjectDetail = () => {
         <div className="project-hero-content ">
           <div>
             <div className=" project-meta ">
-            <div className=" w-full">
-            <h1 className="project-title ">{project.title}</h1>
-            <p className="project-intro ">{project.intro}</p>
-            </div>
-           
-          {/* <div className="project-meta ">
+              <div className=" w-full">
+                <h1 className="project-title ">{project.title}</h1>
+                {project.subtitle && <h2 className="project-subtitle text-xl text-gray-400 mt-2">{project.subtitle}</h2>}
+                <p className="project-intro ">{project.intro}</p>
+                {project.quote && <blockquote className="project-quote italic text-lg text-gray-300 my-4 border-l-4 border-blue-500 pl-4">"{project.quote}"</blockquote>}
+              </div>
+
+              {/* <div className="project-meta ">
 
           </div> */}
-          <div className="">
-            {project.role && <div className="project-role"><strong>Role:</strong> {project.role}</div>}
-            {project.timeline && <div className="project-timeline"><strong>Timeline:</strong> {project.timeline}</div>}
-            {project.timeline && <div className="project-timeline"><strong>Platforms:</strong> {project.platforms}</div>}
-            {project.links && project.links.length > 0 && (
-  <div className="project-timeline">
-    <strong>Links:</strong>{" "}
-    {project.links.map((link, index) => (
-      <a
-        key={index}
-        href={link.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-600 hover:text-blue-800 underline ml-2"
-      >
-        {link.text}
-      </a>
-    ))}
-  </div>
-)}
-            </div>
+              <div className="">
+                {project.role && <div className="project-role"><strong>Role:</strong> {project.role}</div>}
+                {project.focus && <div className="project-focus"><strong>Focus:</strong> {project.focus}</div>}
+                {project.timeline && <div className="project-timeline"><strong>Timeline:</strong> {project.timeline}</div>}
+                {project.platforms && <div className="project-timeline"><strong>Platforms:</strong> {project.platforms}</div>}
+                {project.links && project.links.length > 0 && (
+                  <div className="project-timeline">
+                    <strong>Links:</strong>{" "}
+                    {project.links.map((link, index) => (
+                      <a
+                        key={index}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-800 underline ml-2"
+                      >
+                        {link.text}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -717,7 +726,7 @@ const ProjectDetail = () => {
 
       {/* Project Content */}
       <div className="min-[1400px]:px-72 max-[1400px]:px-4">
-        
+
         {project.sections.map((section, index) => (
           <div key={index} className="project-section">
             {section.title && <h2 className="section-title">{section.title}</h2>}
@@ -727,34 +736,34 @@ const ProjectDetail = () => {
             {/* <ul  className="section-lists ">{section.lists}</ul> */}
 
             {section.links && (
-        <div className="section-links ">
-          {section.links.map((link, idx) => (
-            <p key={index}>
-              <a href={link.url} className="text-blue-500 hover:underline">
-                {link.text}
-              </a>
-            </p>
-          ))}
-        </div>
-      )}
-            
-            <ul className="section-lists">
-            {section.lists?.map((item, index) => (
-             <li key={index}>{item}</li>
-             ))}
-            </ul>     
-              {section.image && (
-              <div className="section-image  max-h-[800px] object-fit:contain">
-                <img  className="object-fit:fill max-h-[800px]"  src={section.image} alt={section.title || `Project section ${index + 1}`} />
+              <div className="section-links ">
+                {section.links.map((link, idx) => (
+                  <p key={index}>
+                    <a href={link.url} className="text-blue-500 hover:underline">
+                      {link.text}
+                    </a>
+                  </p>
+                ))}
               </div>
-              
             )}
-         
+
+            <ul className="section-lists">
+              {section.lists?.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+            {section.image && (
+              <div className="section-image  max-h-[800px] object-fit:contain">
+                <img className="object-fit:fill max-h-[800px]" src={section.image} alt={section.title || `Project section ${index + 1}`} />
+              </div>
+
+            )}
+
           </div>
-          
+
         ))}
-      
-       
+
+
       </div>
 
       {/* More Projects */}
@@ -768,7 +777,7 @@ const ProjectDetail = () => {
               <Link to={`/projects/${p.id}`} key={p.id} className="related-project">
                 <img src={p.headerImage} alt={p.title} />
                 <h3>{p.title}</h3>
-                
+
               </Link>
             ))}
         </div>
@@ -782,28 +791,28 @@ const ProjectDetail = () => {
             View my <a href="https://drive.google.com/file/d/1p0QgBKIbkBFpyf8r9aY4qmHxXZScjgtb/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="resume-link">resume</a>, get in touch 👋
           </p>
           <div className="social-links">
-          <a href="hhttps://dribbble.com/sanket_works" target="_blank" rel="noopener noreferrer" aria-label="Dribbble">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 4C14.32 4 16.45 4.95 18.06 6.44C16.87 8.08 15.16 9.34 13.16 10.21C12.34 8.43 11.37 6.74 10.27 5.13C10.82 5.04 11.41 4 12 4ZM7.68 5.72C8.83 7.38 9.86 9.16 10.74 11.04C8.35 11.74 5.76 12.11 3.08 12.11C3.03 12.08 3 12.04 3 12C3 9.28 4.87 6.97 7.68 5.72ZM4.04 14.12C7.14 14.12 10.13 13.69 12.87 12.85C13.14 13.4 13.4 13.95 13.63 14.5C11.91 15.02 10.36 16.15 9.14 17.57C7.83 18.96 6.88 20.68 6.4 22.55C4.96 21.12 4 19.07 4 16.8C4 15.89 4.07 14.99 4.24 14.12H4.04ZM12 20C11.61 20 11.23 19.98 10.86 19.93C11.4 18.35 12.16 16.95 13.32 15.75C14.38 14.66 15.69 13.76 17.21 13.22C17.65 14.89 17.91 16.64 17.98 18.44C16.4 19.43 14.3 20 12 20ZM19.34 16.38C19.25 15.04 19.04 13.74 18.73 12.5C19.96 12.01 21.34 11.77 22.76 11.76C22.91 11.83 22.99 11.91 22.99 12C23 13.94 22.39 15.75 21.35 17.19C20.97 16.87 20.14 16.68 19.34 16.38Z"/>
-                </svg>
-              </a>
-              {/* <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <a href="hhttps://dribbble.com/sanket_works" target="_blank" rel="noopener noreferrer" aria-label="Dribbble">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 4C14.32 4 16.45 4.95 18.06 6.44C16.87 8.08 15.16 9.34 13.16 10.21C12.34 8.43 11.37 6.74 10.27 5.13C10.82 5.04 11.41 4 12 4ZM7.68 5.72C8.83 7.38 9.86 9.16 10.74 11.04C8.35 11.74 5.76 12.11 3.08 12.11C3.03 12.08 3 12.04 3 12C3 9.28 4.87 6.97 7.68 5.72ZM4.04 14.12C7.14 14.12 10.13 13.69 12.87 12.85C13.14 13.4 13.4 13.95 13.63 14.5C11.91 15.02 10.36 16.15 9.14 17.57C7.83 18.96 6.88 20.68 6.4 22.55C4.96 21.12 4 19.07 4 16.8C4 15.89 4.07 14.99 4.24 14.12H4.04ZM12 20C11.61 20 11.23 19.98 10.86 19.93C11.4 18.35 12.16 16.95 13.32 15.75C14.38 14.66 15.69 13.76 17.21 13.22C17.65 14.89 17.91 16.64 17.98 18.44C16.4 19.43 14.3 20 12 20ZM19.34 16.38C19.25 15.04 19.04 13.74 18.73 12.5C19.96 12.01 21.34 11.77 22.76 11.76C22.91 11.83 22.99 11.91 22.99 12C23 13.94 22.39 15.75 21.35 17.19C20.97 16.87 20.14 16.68 19.34 16.38Z" />
+              </svg>
+            </a>
+            {/* <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12 2C14.717 2 15.056 2.01 16.122 2.06C17.187 2.11 17.912 2.277 18.55 2.525C19.21 2.779 19.766 3.123 20.322 3.678C20.8305 4.1779 21.224 4.78259 21.475 5.45C21.722 6.087 21.89 6.813 21.94 7.878C21.987 8.944 22 9.283 22 12C22 14.717 21.99 15.056 21.94 16.122C21.89 17.187 21.722 17.912 21.475 18.55C21.2247 19.2178 20.8311 19.8226 20.322 20.322C19.822 20.8303 19.2173 21.2238 18.55 21.475C17.913 21.722 17.187 21.89 16.122 21.94C15.056 21.987 14.717 22 12 22C9.283 22 8.944 21.99 7.878 21.94C6.813 21.89 6.088 21.722 5.45 21.475C4.78233 21.2245 4.17753 20.8309 3.678 20.322C3.16941 19.8222 2.77593 19.2175 2.525 18.55C2.277 17.913 2.11 17.187 2.06 16.122C2.013 15.056 2 14.717 2 12C2 9.283 2.01 8.944 2.06 7.878C2.11 6.812 2.277 6.088 2.525 5.45C2.77524 4.78218 3.1688 4.17732 3.678 3.678C4.17767 3.16923 4.78243 2.77573 5.45 2.525C6.088 2.277 6.812 2.11 7.878 2.06C8.944 2.013 9.283 2 12 2ZM12 7C10.6739 7 9.40215 7.52678 8.46447 8.46447C7.52678 9.40215 7 10.6739 7 12C7 13.3261 7.52678 14.5979 8.46447 15.5355C9.40215 16.4732 10.6739 17 12 17C13.3261 17 14.5979 16.4732 15.5355 15.5355C16.4732 14.5979 17 13.3261 17 12C17 10.6739 16.4732 9.40215 15.5355 8.46447C14.5979 7.52678 13.3261 7 12 7ZM18.5 6.75C18.5 6.41848 18.3683 6.10054 18.1339 5.86612C17.8995 5.6317 17.5815 5.5 17.25 5.5C16.9185 5.5 16.6005 5.6317 16.3661 5.86612C16.1317 6.10054 16 6.41848 16 6.75C16 7.08152 16.1317 7.39946 16.3661 7.63388C16.6005 7.8683 16.9185 8 17.25 8C17.5815 8 17.8995 7.8683 18.1339 7.63388C18.3683 7.39946 18.5 7.08152 18.5 6.75ZM12 9C12.7956 9 13.5587 9.31607 14.1213 9.87868C14.6839 10.4413 15 11.2044 15 12C15 12.7956 14.6839 13.5587 14.1213 14.1213C13.5587 14.6839 12.7956 15 12 15C11.2044 15 10.4413 14.6839 9.87868 14.1213C9.31607 13.5587 9 12.7956 9 12C9 11.2044 9.31607 10.4413 9.87868 9.87868C10.4413 9.31607 11.2044 9 12 9Z"/>
                 </svg>
               </a> */}
-              <a href="https://www.linkedin.com/in/sanketworks/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19 3H5C3.895 3 3 3.895 3 5V19C3 20.105 3.895 21 5 21H19C20.105 21 21 20.105 21 19V5C21 3.895 20.105 3 19 3ZM9 17H6.477V10H9V17ZM7.694 8.717C6.923 8.717 6.408 8.203 6.408 7.517C6.408 6.831 6.922 6.317 7.779 6.317C8.55 6.317 9.065 6.831 9.065 7.517C9.065 8.203 8.551 8.717 7.694 8.717ZM18 17H15.558V13.174C15.558 11.116 14.313 10.872 14.024 10.872C13.735 10.872 12.791 11.035 12.791 13.174C12.791 13.585 12.791 17 12.791 17H10.395V10H12.791V10.977C13.153 10.407 13.95 10 15.066 10C16.181 10 18 10.977 18 13.174V17Z"/>
-                </svg>
-              </a>
+            <a href="https://www.linkedin.com/in/sanketworks/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 3H5C3.895 3 3 3.895 3 5V19C3 20.105 3.895 21 5 21H19C20.105 21 21 20.105 21 19V5C21 3.895 20.105 3 19 3ZM9 17H6.477V10H9V17ZM7.694 8.717C6.923 8.717 6.408 8.203 6.408 7.517C6.408 6.831 6.922 6.317 7.779 6.317C8.55 6.317 9.065 6.831 9.065 7.517C9.065 8.203 8.551 8.717 7.694 8.717ZM18 17H15.558V13.174C15.558 11.116 14.313 10.872 14.024 10.872C13.735 10.872 12.791 11.035 12.791 13.174C12.791 13.585 12.791 17 12.791 17H10.395V10H12.791V10.977C13.153 10.407 13.95 10 15.066 10C16.181 10 18 10.977 18 13.174V17Z" />
+              </svg>
+            </a>
           </div>
           <p className="copyright">© 2025 Sanket • Made with figma + lovable ❤️</p>
         </div>
       </footer>
     </div>
   );
-  
+
 };
 
 

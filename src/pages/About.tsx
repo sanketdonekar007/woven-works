@@ -1,111 +1,486 @@
-
+import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import TextReveal from "@/components/TextReveal";
+import { Star, Layout, BarChart, Lightbulb, Users, MessageSquare, Clock, ArrowUpRight, Dribbble, Linkedin } from "lucide-react";
+import AnimatedLink from "@/components/AnimatedLink";
 
+const VideoCard = ({
+  src,
+  isMobile,
+  activeVideoSrc,
+  onPlay
+}: {
+  src: string;
+  isMobile: boolean;
+  activeVideoSrc: string | null;
+  onPlay: (src: string | null) => void;
+}) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
-const About = () => {
-  const resumeUrl = "https://drive.google.com/file/d/1p0QgBKIbkBFpyf8r9aY4qmHxXZScjgtb/view?usp=drive_link"; // Replace with your actual resume link
+  const isActive = activeVideoSrc === src;
+
+  useEffect(() => {
+    if (!isMobile || !containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.6 }
+    );
+
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [isMobile]);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    if (videoRef.current) {
+      if (isActive) {
+        videoRef.current.muted = false;
+        videoRef.current.play().catch(() => {
+          // Auto-play might fail if not interacted, but click handler ensures interaction
+        });
+      } else {
+        videoRef.current.pause();
+        videoRef.current.muted = true;
+      }
+    }
+  }, [isActive, isMobile]);
+
+  const handleMobileClick = () => {
+    if (!isMobile) return;
+
+    if (isActive) {
+      onPlay(null); // Pause if clicking active
+    } else {
+      onPlay(src); // Play this one
+    }
+  };
 
   return (
-    <div className="about-container">
+    <div ref={containerRef} className="aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100 group relative" onClick={handleMobileClick}>
+      <video
+        ref={videoRef}
+        src={src}
+        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        loop
+        playsInline
+        muted={isMobile ? !isActive : !isHovered} // Mobile: only unmute if active, Desktop: unmute on hover
+        onMouseEnter={(e) => {
+          if (!isMobile) {
+            setIsHovered(true);
+            e.currentTarget.play();
+          }
+        }}
+        onMouseLeave={(e) => {
+          if (!isMobile) {
+            setIsHovered(false);
+            e.currentTarget.pause();
+          }
+        }}
+      />
+      <div
+        className={`absolute inset-0 bg-black/70 transition-opacity duration-300 pointer-events-none 
+          ${isMobile
+            ? (isInView || isActive ? 'opacity-0' : 'opacity-100')
+            : 'group-hover:opacity-0'
+          }`}
+      />
+    </div>
+  );
+};
+
+const About = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [activeVideoSrc, setActiveVideoSrc] = useState<string | null>(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return (
+    <div className="about-container bg-white min-h-screen font-sans selection:bg-black selection:text-white">
       {/* Header/Navigation */}
-      <header className="header about-header">
-        <div className="logo">
-          <Link to="/"><img className="w-12" src="/lovable-uploads/logo.png" alt="SD" /></Link>
+      <header className="header about-header border-b border-gray-100/50">
+        <div className="w-full max-w-[1200px] mx-auto flex justify-between items-center">
+          <div className="logo">
+            <Link to="/"><img className="w-12" src="/lovable-uploads/logo.png" alt="SD" /></Link>
+          </div>
+          <nav className="navigation">
+            <ul>
+              <li><AnimatedLink href="/#works">Works</AnimatedLink></li>
+              <li><AnimatedLink to="/about" className="active">About</AnimatedLink></li>
+              <li>
+                <AnimatedLink
+                  href="/Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Resume
+                </AnimatedLink>
+              </li>
+            </ul>
+          </nav>
         </div>
-        <nav className="navigation">
-          <ul>
-            <li><Link to="/#works">Works</Link></li>
-            <li><Link to="/about" className="active">About</Link></li>
-            <li><a href="https://drive.google.com/file/d/1p0QgBKIbkBFpyf8r9aY4qmHxXZScjgtb/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume</a></li>
-          </ul>
-        </nav>
       </header>
 
-      {/* About Content */}
-      <div className="about-content">
-        <div className="about-text">
-          <h1 className="about-greeting">Hello again! 👋</h1>
-          
-          <div className="about-bio">
-            <p>I'm Sanket, a Product Designer based in Pune. I hold a Bachelor of Engineering in Information Technology from MIT Pune and a Master of Business Administration in Business Analytics from Pune University. As a product designer, I am passionate about being involved in the entire product lifecycle, from ideation to implementation, ensuring seamless user experiences across digital platforms. My focus lies in designing intuitive interfaces that blend aesthetics, functionality, and technology to solve real-world problems effectively.</p>
-            
-            <p>Beyond my professional work, I have a deep love for music. When I'm not designing, you'll find me singing or playing the guitar, indulging in my creative side.</p>
-            
-            <p className="contact-prompt">Feel free to contact me if you would like to get in touch!</p>
-            
-            <p className="contact-email"><a  href="mailto:sanket.donekar@gmail.com">sanket.donekar@gmail.com</a> | <a href="tel:+918149760321">+91 8149760321</a></p>
-          </div>
-          
-          <div className="education-section">
-            <h2 className="section-heading">Education</h2>
-            
-            <div className="education-item">
-              <h3>Master of Business Administration in Business Analytics, Pune University</h3>
-              <p className="date-range">Sep 2022 - Jun 2024</p>
-            </div>
-            
-            <div className="education-item">
-              <h3>Bachelors of Engineering in Information Technology, MIT Pune</h3>
-              <p className="date-range">June 2016 - May 2019</p>
-            </div>
-          </div>
-          
-          <div className="experience-section">
-            <h2 className="section-heading">Experience</h2>
-            
-            <div className="experience-intro">
-              <p>I have collaborated with teams to develop products for both web and mobile platforms, with a strong focus on creating intuitive and visually engaging user experiences, from conceptualization to final design.</p>
-            </div>
-            
-            <div className="experience-item">
-              <h3>Product Designer, RedBeryl Tech Solutions.</h3>
-              <p className="date-range">Mar 2024 - Present</p>
-            </div>
-            
-            <div className="experience-item">
-              <h3>UI/UX Designer, Esofcode.</h3>
-              <p className="date-range">Mar 2023 - Feb 2024</p>
-            </div>
-            
-            <div className="experience-item">
-              <h3>UI Designer, KnackBe.</h3>
-              <p className="date-range">Jun 2021 - Mar 2023</p>
+      <main className="pt-40 pb-20 px-8 lg:px-12 max-w-[1200px] mx-auto w-full">
+
+        {/* Intro Section - Split Layout */}
+        <section className="mb-20 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          <div className="order-2 lg:order-1">
+            <TextReveal
+              as="h1"
+              text="About me"
+              className="text-4xl md:text-5xl font-bold tracking-tighter mb-8 block text-black"
+              delay={0}
+            />
+            <div className="text-lg text-gray-600 leading-relaxed space-y-6 max-w-xl">
+              <TextReveal
+                as="p"
+                text="I'm Sanket, a UX Designer based in Pune with a background in Engineering and Business Analytics."
+                delay={100}
+              />
+              <TextReveal
+                as="p"
+                text="My background in Information Technology and MBA in Business Analytics gives me a unique perspective on product design. I don't just see pixels; I see systems, business goals, and user needs working in harmony."
+                delay={200}
+              />
+              <TextReveal
+                as="p"
+                text="I specialize in creating visually refined, highly usable interfaces that elevate both product value and user satisfaction. My process blends hands-on collaboration with users, continuous iteration, and a sharp eye for detail."
+                delay={300}
+              />
+              <TextReveal
+                as="p"
+                text="Beyond my professional work, I have a deep love for music. When I'm not designing, you'll find me singing or playing the guitar, indulging in my creative side."
+                delay={400}
+              />
             </div>
           </div>
-          
-          
+
+          <div className="order-1 lg:order-2 flex flex-col justify-end h-full pt-12 lg:pt-32">
+            <TextReveal
+              as="h2"
+              text="I'm driven by curiosity, creativity, and the belief that great design always starts with empathy."
+              className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tighter text-right text-black ml-auto max-w-2xl"
+              delay={200}
+              stagger={20}
+            />
+          </div>
+        </section>
+
+        {/* Photo Gallery */}
+        <section className="mb-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <VideoCard
+            src="/videos/Azzur.mp4"
+            isMobile={isMobile}
+            activeVideoSrc={activeVideoSrc}
+            onPlay={setActiveVideoSrc}
+          />
+          <VideoCard
+            src="/videos/Show.mp4"
+            isMobile={isMobile}
+            activeVideoSrc={activeVideoSrc}
+            onPlay={setActiveVideoSrc}
+          />
+          <VideoCard
+            src="/videos/College.mp4"
+            isMobile={isMobile}
+            activeVideoSrc={activeVideoSrc}
+            onPlay={setActiveVideoSrc}
+          />
+          <VideoCard
+            src="/videos/Song.mov"
+            isMobile={isMobile}
+            activeVideoSrc={activeVideoSrc}
+            onPlay={setActiveVideoSrc}
+          />
+        </section>
+
+        {/* Experience Section */}
+        <section className="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 border-t border-gray-100 pt-20">
+          <div className="lg:col-span-4">
+            <div className="sticky top-32">
+              <TextReveal
+                as="h3"
+                text="My experience"
+                className="text-3xl font-bold tracking-tighter mb-4 block text-black"
+              />
+              <TextReveal
+                as="p"
+                text="A quick look at my path so far, from startups to enterprises, leading design projects that connect real user needs with meaningful business results."
+                className="text-gray-500 leading-relaxed max-w-sm"
+                delay={100}
+              />
+            </div>
+          </div>
+
+          <div className="lg:col-span-8 space-y-12">
+            <div className="group">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                <div className="md:col-span-1 pt-1">
+                  <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white font-bold text-xs">
+                    RB
+                  </div>
+                </div>
+                <div className="md:col-span-11 border-b border-gray-100 pb-12 group-last:border-0">
+                  <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
+                    <div className="md:col-span-7">
+                      <h4 className="text-xl font-bold text-black mb-1">RedBeryl Tech</h4>
+                      <h5 className="text-lg font-medium text-gray-800 mb-4">UX Designer</h5>
+                      <p className="text-gray-600 leading-relaxed text-base">Design and improve the complete user experience for our digital products, focusing on creating interfaces that are easy to use, accessible to everyone, and visually appealing.</p>
+                    </div>
+                    <div className="md:col-span-3 md:text-right">
+                      <span className="text-sm text-gray-500 font-mono">2024 - Present</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="group">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                <div className="md:col-span-1 pt-1">
+                  <div className="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold text-xs">
+                    EC
+                  </div>
+                </div>
+                <div className="md:col-span-11 border-b border-gray-100 pb-12 group-last:border-0">
+                  <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
+                    <div className="md:col-span-7">
+                      <h4 className="text-xl font-bold text-black mb-1">Esofcode</h4>
+                      <h5 className="text-lg font-medium text-gray-800 mb-4">UI/UX Designer</h5>
+                      <p className="text-gray-600 leading-relaxed text-base">Ensure the creation of user-friendly & intuitively understandable interfaces for our users. Conduct research on competitors & industry best practices to optimize readability, comprehension, accessibility & usability.</p>
+                    </div>
+                    <div className="md:col-span-3 md:text-right">
+                      <span className="text-sm text-gray-500 font-mono">2023 - 2024</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="group">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                <div className="md:col-span-1 pt-1">
+                  <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-xs">
+                    KB
+                  </div>
+                </div>
+                <div className="md:col-span-11 border-b border-gray-100 pb-12 group-last:border-0">
+                  <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
+                    <div className="md:col-span-7">
+                      <h4 className="text-xl font-bold text-black mb-1">KnackBe</h4>
+                      <h5 className="text-lg font-medium text-gray-800 mb-4">UI Designer</h5>
+                      <p className="text-gray-600 leading-relaxed text-base">Manage the entire design process, from initial sketches & wireframes to interactive prototypes & polished final designs.</p>
+                    </div>
+                    <div className="md:col-span-3 md:text-right">
+                      <span className="text-sm text-gray-500 font-mono">2021 - 2023</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Education Section */}
+        <section className="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 border-t border-gray-100 pt-20">
+          <div className="lg:col-span-4">
+            <div className="sticky top-32">
+              <TextReveal
+                as="h3"
+                text="My education"
+                className="text-3xl font-bold tracking-tighter mb-4 block text-black"
+              />
+              <TextReveal
+                as="p"
+                text="Formal training that shaped my analytical and design thinking."
+                className="text-gray-500 leading-relaxed max-w-sm"
+                delay={100}
+              />
+            </div>
+          </div>
+
+          <div className="lg:col-span-8 space-y-12">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+              <div className="md:col-span-1 pt-1">
+                <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xs">
+                  PU
+                </div>
+              </div>
+              <div className="md:col-span-11 border-b border-gray-100 pb-12 group-last:border-0">
+                <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
+                  <div className="md:col-span-7">
+                    <h4 className="text-xl font-bold text-black mb-1">Pune University</h4>
+                    <h5 className="text-lg font-medium text-gray-800 mb-4">MBA in Business Analytics</h5>
+                    <p className="text-gray-600 leading-relaxed text-base">Focused on data-driven decision-making and strategic business insights, complementing my design skills with a strong analytical foundation.</p>
+                  </div>
+                  <div className="md:col-span-3 md:text-right">
+                    <span className="text-sm text-gray-500 font-mono">2022 - 2024</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+              <div className="md:col-span-1 pt-1">
+                <div className="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-xs">
+                  MIT
+                </div>
+              </div>
+              <div className="md:col-span-11 border-b border-gray-100 pb-12 group-last:border-0">
+                <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
+                  <div className="md:col-span-7">
+                    <h4 className="text-xl font-bold text-black mb-1">MIT Pune</h4>
+                    <h5 className="text-lg font-medium text-gray-800 mb-4">B.E. in Information Technology</h5>
+                    <p className="text-gray-600 leading-relaxed text-base">Gained a solid understanding of software development, system architecture, and technology principles, providing a technical backbone to my design approach.</p>
+                  </div>
+                  <div className="md:col-span-3 md:text-right">
+                    <span className="text-sm text-gray-500 font-mono">2016 - 2019</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Vision Section - Full Width */}
+        <section className="mb-32 -mx-8 lg:-mx-12 px-8 lg:px-12 py-24 bg-gray-50">
+          <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-12 mb-8 flex justify-end">
+              <span className="text-xs font-bold tracking-widest uppercase text-gray-400">MY VISION OF GREAT DESIGN</span>
+            </div>
+
+            <div className="lg:col-span-4">
+              <TextReveal
+                as="h4"
+                text="Product design is not just pixels or flows, but a shared language between disciplines."
+                className="text-2xl font-semibold leading-tight text-black"
+                delay={0}
+              />
+            </div>
+            <div className="lg:col-span-4">
+              <TextReveal
+                as="h4"
+                text="A strong foundation of reusable systems supports meaningful, human-centered experiences."
+                className="text-2xl font-semibold leading-tight text-black"
+                delay={100}
+              />
+            </div>
+            <div className="lg:col-span-4">
+              <TextReveal
+                as="h4"
+                text="Great product design turns ideas chaos into coherence."
+                className="text-2xl font-semibold leading-tight text-black"
+                delay={200}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Hard Skills Section */}
+        <section className="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          <div className="lg:col-span-4">
+            <TextReveal
+              as="h3"
+              text="What do I specialize as a designer?"
+              className="text-4xl font-bold tracking-tighter mb-8 block text-black leading-tight"
+            />
+            <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-8">HARD SKILLS</span>
+          </div>
+
+          <div className="lg:col-span-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <div className="mb-6"><Star className="w-8 h-8 text-black" strokeWidth={1.5} /></div>
+                <h4 className="text-lg font-bold mb-3">Conversational AI</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">I design human-centered AI experiences by unifying tools and making complex logic feel intuitive.</p>
+              </div>
+              <div>
+                <div className="mb-6"><Layout className="w-8 h-8 text-black" strokeWidth={1.5} /></div>
+                <h4 className="text-lg font-bold mb-3">Design Systems</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">I build robust, token-based systems with clear documentation and accessibility standards.</p>
+              </div>
+              <div>
+                <div className="mb-6"><BarChart className="w-8 h-8 text-black" strokeWidth={1.5} /></div>
+                <h4 className="text-lg font-bold mb-3">Dashboards</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">I craft dashboards that go beyond data display, turning complex metrics into actionable insights.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Soft Skills Section */}
+        <section className="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-20 border-t border-gray-100">
+          <div className="lg:col-span-4">
+            <TextReveal
+              as="h3"
+              text="What are my skills beyond craft & execution?"
+              className="text-4xl font-bold tracking-tighter mb-8 block text-black leading-tight"
+            />
+            <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-8">SOFT SKILLS</span>
+          </div>
+
+          <div className="lg:col-span-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div>
+                <div className="mb-6"><Lightbulb className="w-6 h-6 text-black" strokeWidth={1.5} /></div>
+                <h4 className="text-base font-bold mb-2">Strategy</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">Uncover product vision in ambiguous environments.</p>
+              </div>
+              <div>
+                <div className="mb-6"><Users className="w-6 h-6 text-black" strokeWidth={1.5} /></div>
+                <h4 className="text-base font-bold mb-2">Collaboration</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">Align stakeholders with clarity and respect.</p>
+              </div>
+              <div>
+                <div className="mb-6"><MessageSquare className="w-6 h-6 text-black" strokeWidth={1.5} /></div>
+                <h4 className="text-base font-bold mb-2">Communication</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">Translate technical decisions into user value.</p>
+              </div>
+              <div>
+                <div className="mb-6"><Clock className="w-6 h-6 text-black" strokeWidth={1.5} /></div>
+                <h4 className="text-base font-bold mb-2">Prioritization</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">Smart, timely decisions that keep the team moving.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+      </main>
+
+      {/* Footer */}
+      <footer className="footer" style={{ backgroundImage: "url('/lovable-uploads/gradient.gif')" }}>
+        <div className="footer-content max-w-[1200px] mx-auto px-6 lg:px-8">
+          <div className="mb-4 text-left">
+            <TextReveal text="Like what you see??" className="footer-title text-3xl font-medium" />
+          </div>
+          <h2 className="footer-title">View my <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer" className="resume-link">resume</a>, get in touch 👋</h2>
+          <div className="social-links flex gap-4 mt-4">
+            <a href="https://dribbble.com/sanket_works" target="_blank" rel="noopener noreferrer" aria-label="Dribbble" className="text-gray-600 hover:text-black transition-colors">
+              <Dribbble className="w-6 h-6" />
+            </a>
+            <a href="https://www.linkedin.com/in/sanketworks/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-gray-600 hover:text-blue-600 transition-colors">
+              <Linkedin className="w-6 h-6" />
+            </a>
+          </div>
+          <p className="copyright">© 2025 Sanket • Made with figma + lovable ❤️</p>
         </div>
-        
-        <div className="about-photo">
-          <img src="/lovable-uploads/me.png" alt="Sanket Donekar" />
-        </div>
-      </div>
-      <div className="about-footer min-[1400px]:px-72">
-            <h2 className="footer-title">Like what you see??</h2>
-            <p className="footer-text">
-              View my <a href="https://drive.google.com/file/d/1p0QgBKIbkBFpyf8r9aY4qmHxXZScjgtb/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="resume-link">resume</a>, follow me or contact me below
-            </p>
-            
-            <div className="social-links">
-              <a href="hhttps://dribbble.com/sanket_works" target="_blank" rel="noopener noreferrer" aria-label="Dribbble">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 4C14.32 4 16.45 4.95 18.06 6.44C16.87 8.08 15.16 9.34 13.16 10.21C12.34 8.43 11.37 6.74 10.27 5.13C10.82 5.04 11.41 4 12 4ZM7.68 5.72C8.83 7.38 9.86 9.16 10.74 11.04C8.35 11.74 5.76 12.11 3.08 12.11C3.03 12.08 3 12.04 3 12C3 9.28 4.87 6.97 7.68 5.72ZM4.04 14.12C7.14 14.12 10.13 13.69 12.87 12.85C13.14 13.4 13.4 13.95 13.63 14.5C11.91 15.02 10.36 16.15 9.14 17.57C7.83 18.96 6.88 20.68 6.4 22.55C4.96 21.12 4 19.07 4 16.8C4 15.89 4.07 14.99 4.24 14.12H4.04ZM12 20C11.61 20 11.23 19.98 10.86 19.93C11.4 18.35 12.16 16.95 13.32 15.75C14.38 14.66 15.69 13.76 17.21 13.22C17.65 14.89 17.91 16.64 17.98 18.44C16.4 19.43 14.3 20 12 20ZM19.34 16.38C19.25 15.04 19.04 13.74 18.73 12.5C19.96 12.01 21.34 11.77 22.76 11.76C22.91 11.83 22.99 11.91 22.99 12C23 13.94 22.39 15.75 21.35 17.19C20.97 16.87 20.14 16.68 19.34 16.38Z"/>
-                </svg>
-              </a>
-              {/* <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2C14.717 2 15.056 2.01 16.122 2.06C17.187 2.11 17.912 2.277 18.55 2.525C19.21 2.779 19.766 3.123 20.322 3.678C20.8305 4.1779 21.224 4.78259 21.475 5.45C21.722 6.087 21.89 6.813 21.94 7.878C21.987 8.944 22 9.283 22 12C22 14.717 21.99 15.056 21.94 16.122C21.89 17.187 21.722 17.912 21.475 18.55C21.2247 19.2178 20.8311 19.8226 20.322 20.322C19.822 20.8303 19.2173 21.2238 18.55 21.475C17.913 21.722 17.187 21.89 16.122 21.94C15.056 21.987 14.717 22 12 22C9.283 22 8.944 21.99 7.878 21.94C6.813 21.89 6.088 21.722 5.45 21.475C4.78233 21.2245 4.17753 20.8309 3.678 20.322C3.16941 19.8222 2.77593 19.2175 2.525 18.55C2.277 17.913 2.11 17.187 2.06 16.122C2.013 15.056 2 14.717 2 12C2 9.283 2.01 8.944 2.06 7.878C2.11 6.812 2.277 6.088 2.525 5.45C2.77524 4.78218 3.1688 4.17732 3.678 3.678C4.17767 3.16923 4.78243 2.77573 5.45 2.525C6.088 2.277 6.812 2.11 7.878 2.06C8.944 2.013 9.283 2 12 2ZM12 7C10.6739 7 9.40215 7.52678 8.46447 8.46447C7.52678 9.40215 7 10.6739 7 12C7 13.3261 7.52678 14.5979 8.46447 15.5355C9.40215 16.4732 10.6739 17 12 17C13.3261 17 14.5979 16.4732 15.5355 15.5355C16.4732 14.5979 17 13.3261 17 12C17 10.6739 16.4732 9.40215 15.5355 8.46447C14.5979 7.52678 13.3261 7 12 7ZM18.5 6.75C18.5 6.41848 18.3683 6.10054 18.1339 5.86612C17.8995 5.6317 17.5815 5.5 17.25 5.5C16.9185 5.5 16.6005 5.6317 16.3661 5.86612C16.1317 6.10054 16 6.41848 16 6.75C16 7.08152 16.1317 7.39946 16.3661 7.63388C16.6005 7.8683 16.9185 8 17.25 8C17.5815 8 17.8995 7.8683 18.1339 7.63388C18.3683 7.39946 18.5 7.08152 18.5 6.75ZM12 9C12.7956 9 13.5587 9.31607 14.1213 9.87868C14.6839 10.4413 15 11.2044 15 12C15 12.7956 14.6839 13.5587 14.1213 14.1213C13.5587 14.6839 12.7956 15 12 15C11.2044 15 10.4413 14.6839 9.87868 14.1213C9.31607 13.5587 9 12.7956 9 12C9 11.2044 9.31607 10.4413 9.87868 9.87868C10.4413 9.31607 11.2044 9 12 9Z"/>
-                </svg>
-              </a> */}
-              <a href="https://www.linkedin.com/in/sanketworks/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19 3H5C3.895 3 3 3.895 3 5V19C3 20.105 3.895 21 5 21H19C20.105 21 21 20.105 21 19V5C21 3.895 20.105 3 19 3ZM9 17H6.477V10H9V17ZM7.694 8.717C6.923 8.717 6.408 8.203 6.408 7.517C6.408 6.831 6.922 6.317 7.779 6.317C8.55 6.317 9.065 6.831 9.065 7.517C9.065 8.203 8.551 8.717 7.694 8.717ZM18 17H15.558V13.174C15.558 11.116 14.313 10.872 14.024 10.872C13.735 10.872 12.791 11.035 12.791 13.174C12.791 13.585 12.791 17 12.791 17H10.395V10H12.791V10.977C13.153 10.407 13.95 10 15.066 10C16.181 10 18 10.977 18 13.174V17Z"/>
-                </svg>
-              </a>
-            </div>
-            
-            <a href="mailto:sanket.donekar@gmail.com" className="contact-email-link">sanket.donekar@gmail.com</a>
-          </div>
+      </footer>
     </div>
   );
 };
