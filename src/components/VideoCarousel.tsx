@@ -41,7 +41,11 @@ export const VideoCarousel = ({ videos }: { videos: string[] }) => {
                     </button>
                     <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-2 pointer-events-none">
                         {videos.map((_, idx) => (
-                            <div key={idx} className={`w-2 h-2 rounded-full transition-colors ${idx === currentIndex ? 'bg-blue-500' : 'bg-gray-300'}`} />
+                            <div
+                                key={idx}
+                                className={`w-2 h-2 rounded-full transition-colors ${idx === currentIndex ? '' : 'bg-gray-300'}`}
+                                style={{ backgroundColor: idx === currentIndex ? 'var(--accent-color, #3b82f6)' : undefined }}
+                            />
                         ))}
                     </div>
                 </>

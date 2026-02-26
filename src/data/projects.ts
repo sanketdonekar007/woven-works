@@ -17,7 +17,8 @@ export type BlockType =
     | "learnings"
     | "custom-component"
     | "image"
-    | "user-flow-popup";
+    | "user-flow-popup"
+    | "prototype";
 
 export interface BaseBlock {
     type: BlockType;
@@ -54,6 +55,8 @@ export interface PersonasBlock extends BaseBlock {
         quote: string;
         goals: string[];
         painPoints: string[];
+        image?: string;
+        details?: { label: string; value: string }[];
     }[];
 }
 
@@ -102,7 +105,7 @@ export interface WireframesBlock extends BaseBlock {
 export interface CoreScreensBlock extends BaseBlock {
     type: "core-screens";
     highlight: string;
-    screens: string[];
+    screens: (string | { title: string; image: string })[];
 }
 
 export interface DesignSystemBlock extends BaseBlock {
@@ -130,7 +133,7 @@ export interface LearningsBlock extends BaseBlock {
 
 export interface CustomComponentBlock extends BaseBlock {
     type: "custom-component";
-    componentName: "UserFlow" | "VideoCarousel" | "VStateIA";
+    componentName: "UserFlow" | "VideoCarousel" | "VStateIA" | "HealthScoreExplanation" | "SnackHackIA";
     props?: Record<string, any>;
 }
 
@@ -146,6 +149,13 @@ export interface UserFlowPopupBlock extends BaseBlock {
     highlight: string;
     content: string;
     steps: string[];
+}
+
+export interface PrototypeBlock extends BaseBlock {
+    type: "prototype";
+    url: string;
+    description?: string;
+    height?: string;
 }
 
 export type ProjectBlock =
@@ -166,7 +176,8 @@ export type ProjectBlock =
     | LearningsBlock
     | CustomComponentBlock
     | ImageBlock
-    | UserFlowPopupBlock;
+    | UserFlowPopupBlock
+    | PrototypeBlock;
 
 export interface ProjectData {
     id: string;
@@ -183,6 +194,8 @@ export interface ProjectData {
     duration?: string;
     focus?: string;
     quote?: string;
+    accentColor?: string;
+    themeGradient?: string;
     lists?: string[];
     links: [
         { text: string, url: string },
@@ -231,9 +244,14 @@ export const projects: Record<string, ProjectData> = {
         intro: "An intelligent system to automate UI component creation, documentation, and collaboration",
         role: "Design System Specialist",
         timeline: "October 2024 - December 2024",
+        industry: "AI & Productivity",
+        type: "Enterprise Tooling",
+        duration: "3 months",
         platforms: "Figma | Lovable | Supabase",
+        accentColor: "#4f46e5",
+        themeGradient: "from-[#F5F3FF] to-[#FFFFFF]",
         links: [
-            { text: "", url: "" },
+            { text: "Documentation", url: "" },
             { text: "", url: "" },
         ],
         blocks: [
@@ -351,6 +369,8 @@ export const projects: Record<string, ProjectData> = {
         type: "Conceptual Case Study",
         duration: "2 weeks",
         platforms: "Figma | WhatsApp Design System",
+        accentColor: "#10b981",
+        themeGradient: "from-[#F0FDF4] to-[#FFFFFF]",
         links: [
             { text: "", url: "" },
             { text: "", url: "" },
@@ -443,8 +463,10 @@ export const projects: Record<string, ProjectData> = {
         duration: "3 months",
         budget: "$45,000",
         platforms: "Web (B2B SaaS)",
+        accentColor: "#2563eb",
+        themeGradient: "from-[#EFF6FF] to-[#FFFFFF]",
         links: [
-            { text: "", url: "" },
+            { text: "Figma File", url: "https://www.figma.com/design/bw6YgvKiThQsRMoBAx0BPb/vState-Filings?node-id=1-28373&t=aTJKcqchaOcqjaW9-1" },
             { text: "", url: "" },
         ],
         blocks: [
@@ -667,8 +689,12 @@ export const projects: Record<string, ProjectData> = {
         intro: "Lang-Lang is a conceptual language-learning app designed to provide an engaging and structured way to master new languages. The app integrates AI-driven personalized learning, gamification, and real-world conversational practice to enhance user experience. As a ux designer, I was responsible for crafting an intuitive interface that not only makes learning seamless for users but also streamlines the overall functionality for educators and administrators.",
         role: "UI/UX Designer",
         type: "Conceptual Case Study",
+        industry: "EdTech",
+        duration: "4 months",
         timeline: "Jan 2021 - May 2021",
         platforms: "iOS & Android",
+        accentColor: "#f97316",
+        themeGradient: "from-[#FFF7ED] to-[#FFFFFF]",
         links: [
             { text: "Prototype", url: "https://www.figma.com/proto/8tQQEnCfg5cWwzx6ah1cNL/Lang-Lang-(A-Language-Learning-App)?node-id=109-6377&p=f&t=wR9di3FquUeu0qBb-0&scaling=min-zoom&content-scaling=fixed&page-id=60%3A835&starting-point-node-id=109%3A6377" },
             { text: "Design File", url: "https://www.figma.com/design/8tQQEnCfg5cWwzx6ah1cNL/Lang-Lang-(A-Language-Learning-App)?node-id=60-835&p=f&t=wR9di3FquUeu0qBb-0" },
@@ -744,114 +770,205 @@ export const projects: Record<string, ProjectData> = {
     },
     snackhack: {
         id: "snackhack",
-        title: "Snack Hack – Decode Your Snacks, Instantly",
-        headerImage: "/lovable-uploads/snackhackheader.jpg",
-        intro: "A smart mobile app that scans food product barcodes and delivers clear, actionable nutritional insights based on user preferences and health goals.",
+        title: "SnackHack",
+        subtitle: "Nutritional Insights at Your Fingertips",
+        headerImage: "/lovable-uploads/Snack Hack Hero.png",
+        intro: "SnackHack is a mobile application designed to help users make healthier snacking decisions by instantly analyzing snack products and presenting simplified health insights and smarter alternatives.",
         role: "Product Design",
-        type: "Concept App",
-        timeline: "Feb 2025 - In Progress",
+        industry: "Health & Food",
+        timeline: "Feb 2025 - Progress",
         platforms: "iOS | Android",
+        accentColor: "#FF6B01",
+        themeGradient: "from-[#FFF7ED] to-[#FFFFFF]",
         links: [
-            { text: "NA", url: "" },
+            { text: "Case Study", url: "" },
             { text: "", url: "" },
         ],
         blocks: [
             {
-                type: "rich-text",
-                title: "Project Overview",
-                content: "Snack Hack is a nutrition-focused mobile app that empowers users to make informed food choices. By simply scanning a product barcode, users receive ingredient breakdowns, health ratings, and personalized dietary recommendations. Built to promote healthier lifestyles, Snack Hack goes beyond basic label reading by integrating smart filtering, data-driven personalization, and real-time scanning."
-            },
-            {
                 type: "problem-statement",
-                title: "🛠️ Problem Statement",
-                highlight: "In a world of overwhelming food choices, consumers struggle to understand what they are really eating due to complex labels and hidden ingredients.",
-                content: "Information overload and confusing packaging make it difficult for users to:",
+                title: "The Problem",
+                highlight: "Snack labels are often complex, filled with unfamiliar ingredients and confusing nutritional data. While many users want to eat healthier, they lack quick and reliable information at the moment they're choosing snacks—especially in-store.",
+                content: "Key Challenges:",
                 list: [
-                    "Understand complex nutrition labels and jargon",
-                    "Identify products that match their specific dietary needs",
-                    "Track consistent patterns in their food consumption",
-                    "Avoid harmful additives, preservatives, or allergens"
+                    "Nutritional information is difficult to interpret: Complex data makes it hard to understand what's actually healthy.",
+                    "Marketing claims are misleading: Products often use deceptive language to appear healthier than they are."
                 ]
             },
             {
-                type: "rich-text",
-                title: "💡 The Solution",
-                content: "Snack Hack simplifies food decisions with a quick, intuitive scanning experience that translates complex data into clear, actionable insights."
-            },
-            {
-                type: "image",
-                src: "/lovable-uploads/snackhack.gif",
-                caption: "Snack Hack Scanning & Analysis Flow"
-            },
-            {
-                type: "goals-list",
-                title: "Key Capabilities",
-                goals: [
-                    "Instantly decodes ingredients and nutrition facts",
-                    "Highlights potentially harmful components (e.g., trans fats)",
-                    "Provides a personalized health score based on goals",
-                    "Recommends better alternatives automatically"
+                type: "role-list",
+                title: "Who We're Designing For",
+                highlight: "SnackHack is designed for everyday consumers navigating grocery stores, convenience shops, or online snack purchases.",
+                content: "User Groups:",
+                roles: [
+                    "Health-conscious individuals",
+                    "Busy professionals",
+                    "Fitness focused users",
+                    "Parents & families"
                 ]
             },
             {
-                type: "process-steps",
-                title: "🎨 UX/UI Design Approach",
-                highlight: "The design focuses on reducing cognitive load and providing instant clarity.",
-                content: "Key Design Decisions:",
-                steps: [
-                    "Designed an intuitive zero-friction scanning interface",
-                    "Created a personalized onboarding flow for health goals",
-                    "Developed a visual 'Health Scorecard' for at-a-glance context",
-                    "Ensured interactions focused on education without overwhelming",
-                    "Integrated clear visual cues (Red/Green) for health indicators"
-                ]
-            },
-            {
-                type: "triggers",
-                title: "🚀 Project Features",
-                triggers: [
+                type: "personas",
+                title: "User Persona",
+                personas: [
                     {
-                        category: "📲 Core Functionality",
-                        terms: [
-                            "Real-time Barcode Scanning & Recognition",
-                            "Ingredient breakdown with color-coded alerts",
-                            "Instant Nutrition Scoring"
-                        ]
-                    },
-                    {
-                        category: "👤 Personalization",
-                        terms: [
-                            "Dynamic scoring based on user profile",
-                            "Dietary requirement filtering (Vegan, GF, etc.)",
-                            "Allergen warnings tailored to the user"
-                        ]
-                    },
-                    {
-                        category: "🧠 Intelligence",
-                        terms: [
-                            "Smart alternative product recommendations",
-                            "Historical analysis of consumption patterns",
-                            "Ingredient education tooltips"
-                        ]
-                    },
-                    {
-                        category: "🔮 Future Roadmap",
-                        terms: [
-                            "Recipe tracking integration",
-                            "Smart shopping list generation",
-                            "Wearable device synchronization"
+                        name: "Sarah Patel",
+                        role: "Health-Conscious Shopper",
+                        quote: "I want to eat better, but I don't have time to read every label.",
+                        image: "/lovable-uploads/sarah_patel.jpg",
+                        details: [
+                            { label: "Age", value: "32" },
+                            { label: "Location", value: "Urban" },
+                            { label: "Occupation", value: "Marketing Manager" }
+                        ],
+                        goals: [
+                            "Make healthier choices quickly",
+                            "Avoid hidden sugars and additives",
+                            "Trust product information"
+                        ],
+                        painPoints: [
+                            "Confusing ingredient lists",
+                            "Too much nutritional data",
+                            "Limited time while shopping"
                         ]
                     }
                 ]
             },
             {
-                type: "impact",
-                title: "📈 Revenue Strategy",
+                type: "triggers",
+                title: "Behavioral Triggers",
+                triggers: [
+                    {
+                        category: "Emotional Triggers",
+                        terms: [
+                            "Guilt after unhealthy snacking",
+                            "Anxiety around hidden ingredients",
+                            "Motivation to build healthier habits"
+                        ]
+                    },
+                    {
+                        category: "Cognitive Triggers",
+                        terms: [
+                            "Overload from nutritional information",
+                            "Difficulty comparing products"
+                        ]
+                    },
+                    {
+                        category: "Time vs Effort",
+                        terms: [
+                            "Preference for instant insights",
+                            "Minimal tolerance for complex flows"
+                        ]
+                    },
+                    {
+                        category: "Expectation Triggers",
+                        terms: [
+                            "Fast barcode scanning",
+                            "Simple scoring system"
+                        ]
+                    }
+                ]
+            },
+            {
+                type: "goals-list",
+                title: "UX Goals & Design Principles",
+                goals: [
+                    "Empower through transparency",
+                    "Simplicity over complexity",
+                    "Personalization at scale",
+                    "Instant feedback loop",
+                    "High trust visualization"
+                ]
+            },
+            {
+                type: "custom-component",
+                componentName: "SnackHackIA"
+            },
+            {
+                type: "process-steps",
+                title: "Core User Flow",
+                content: "Designed to support decisions in under 10 seconds.",
+                highlight: "Frictionless path from scan to decision.",
+                steps: [
+                    "Open the app",
+                    "Scan snack barcode",
+                    "View health score",
+                    "Review ingredient breakdown",
+                    "Explore healthier alternatives",
+                    "Save or scan another"
+                ]
+            },
+            {
+                type: "challenges",
+                title: "UX Challenges & Solutions",
+                challenges: [
+                    {
+                        challenge: "Complex nutritional data",
+                        solution: "A single, color-coded health score"
+                    },
+                    {
+                        challenge: "Low trust in scores",
+                        solution: "Transparent ingredient-level explanations"
+                    },
+                    {
+                        challenge: "Decision fatigue",
+                        solution: "Smart alternative recommendations"
+                    }
+                ]
+            },
+            {
+                type: "core-screens",
+                title: "Core Screens",
+                highlight: "A glimpse into the simplified UI.",
+                screens: [
+                    { title: "Onboarding Flow", image: "/lovable-uploads/Onboarding.png" },
+                    { title: "Precision Scanner", image: "/lovable-uploads/Scanning.png" }
+                ]
+            },
+            {
+                type: "prototype",
+                title: "Interactive Prototype",
+                url: "https://www.figma.com/proto/51RadWw4FYsVmTUzUqXshN/Snack-Hack---Choose-Your-Healthy-Snack?node-id=0-1&t=JMkBvm1xVuIl86y2-1",
+                description: "Experience the frictionless flow from scanning a product to making an informed decision."
+            },
+            {
+                type: "custom-component",
+                componentName: "HealthScoreExplanation"
+            },
+            {
+                type: "accessibility",
+                title: "Accessibility & Usability",
                 items: [
-                    "Freemium Model: Core scanning is free",
-                    "Premium Tier: Advanced diet coaching",
-                    "Affiliate: Commissions from healthy brands",
-                    "Partnerships: Licensing to gyms & wellness apps"
+                    "Large touch targets: Easy to tap with precision",
+                    "High-contrast colors: Readable for all users",
+                    "Simple language: Clear, jargon-free communication",
+                    "Clear iconography: Universal visual language",
+                    "One-hand usage: Optimized for mobile convenience"
+                ]
+            },
+            {
+                type: "impact",
+                title: "Impact & Outcomes",
+                items: [
+                    "Faster snack selection",
+                    "Increased nutritional awareness",
+                    "Reduced reliance on guesswork",
+                    "Encouraged healthier eating habits"
+                ]
+            },
+            {
+                type: "learnings",
+                title: "Learnings & Future Enhancements",
+                learnings: [
+                    "Simplicity builds user trust",
+                    "Visual cues outperform text-heavy data",
+                    "Speed is critical in real-world usage"
+                ],
+                future: [
+                    "Personalized health profiles",
+                    "Dietary preference filters",
+                    "AI-based snack recommendations",
+                    "Brand-level comparisons"
                 ]
             }
         ]

@@ -2,104 +2,126 @@ import { RevealOnScroll } from "./RevealOnScroll";
 import { UserFlow } from "./UserFlow";
 import { VideoCarousel } from "./VideoCarousel";
 import { VStateArchitecture } from "./VStateArchitecture";
+import { HealthScoreExplanation } from "./HealthScoreExplanation";
+import { SnackHackIA } from "./SnackHackIA";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { ProjectBlock } from "@/data/projects";
+import { Check } from "lucide-react";
 
-export const BlockRenderer = ({ block }: { block: ProjectBlock }) => {
+export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, accentColor?: string }) => {
+    const titleClass = "text-4xl md:text-5xl font-bold tracking-tighter text-[#0F0F0F] mb-10";
+    const subtitleClass = "text-xs font-bold tracking-[0.2em] text-gray-400 uppercase mb-4 block";
+
     switch (block.type) {
         case "rich-text":
             return (
-                <RevealOnScroll className="max-w-4xl mx-auto text-center">
-                    {block.title && <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">{block.title}</h2>}
-                    <p className="text-xl md:text-2xl text-slate-600 leading-relaxed font-light">{block.content}</p>
+                <RevealOnScroll className="max-w-3xl mx-auto py-12">
+                    {block.title && <h2 className={titleClass}>{block.title}</h2>}
+                    <p className="text-xl md:text-2xl text-gray-600 leading-relaxed font-light">{block.content}</p>
                 </RevealOnScroll>
             );
 
         case "problem-statement":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto">
-                    {block.title && <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">{block.title}</h2>}
-                    <div className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 relative overflow-hidden">
-                        <div className="absolute top-0 left-0 w-2 h-full bg-red-500"></div>
-                        <p className="text-2xl text-slate-700 font-medium mb-10 italic leading-relaxed">"{block.highlight}"</p>
+                <RevealOnScroll className="max-w-5xl mx-auto py-20">
+                    <span className={subtitleClass}>{block.title || "The Challenge"}</span>
+                    {block.highlight && <h2 className={titleClass}>{block.highlight}</h2>}
+                    {block.content && <p className="text-lg text-gray-500 mb-16 leading-relaxed max-w-2xl">{block.content}</p>}
 
-                        <div className="bg-red-50/50 rounded-2xl p-8">
-                            <h3 className="text-sm font-bold text-red-600 mb-6 uppercase tracking-widest flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-red-500"></span>
-                                {block.content}
-                            </h3>
-                            <ul className="grid md:grid-cols-2 gap-6">
-                                {block.list.map((item, i) => (
-                                    <li key={i} className="flex items-start gap-3 text-slate-700">
-                                        <span className="text-red-500 mt-1.5 text-lg">✕</span>
-                                        <span className="text-lg">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                    <div className="space-y-16">
+                        {block.list.map((item, i) => {
+                            const [title, desc] = item.includes(":") ? item.split(": ") : [item, ""];
+                            return (
+                                <div key={i} className="flex gap-8 items-start group">
+                                    <div className="text-6xl font-bold tracking-tighter text-gray-200 group-hover:text-gray-300 transition-colors leading-none border-b border-gray-100 pb-4">
+                                        0{i + 1}
+                                    </div>
+                                    <div className="pt-2">
+                                        <h4 className="text-2xl font-bold text-[#0F0F0F] mb-2">{title}</h4>
+                                        {desc && <p className="text-gray-500 text-lg leading-relaxed max-w-xl">{desc}</p>}
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 </RevealOnScroll>
             );
 
         case "role-list":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto">
-                    {block.title && <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">{block.title}</h2>}
-                    <div className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
-                        <p className="text-xl text-slate-600 mb-10 text-center max-w-3xl mx-auto">{block.highlight}</p>
-                        <h3 className="text-lg font-bold text-slate-900 mb-8 text-center">{block.content}</h3>
-                        <div className="grid md:grid-cols-3 gap-6">
-                            {block.roles.map((item, i) => {
-                                const [role, desc] = item.includes(":") ? item.split(":") : [item, ""];
-                                return (
-                                    <div key={i} className="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:bg-blue-50 hover:border-blue-100 transition-colors duration-300 group text-center">
-                                        <div className="font-bold text-blue-600 mb-3 text-lg group-hover:scale-105 transition-transform">{role}</div>
-                                        {desc && <div className="text-slate-600 leading-relaxed">{desc}</div>}
-                                    </div>
-                                );
-                            })}
-                        </div>
+                <RevealOnScroll className="max-w-5xl mx-auto py-20">
+                    <span className={subtitleClass}>Process & Methodology</span>
+                    {block.title && <h2 className={titleClass}>{block.title}</h2>}
+                    {block.highlight && <p className="text-xl text-gray-600 mb-16 max-w-3xl leading-relaxed">{block.highlight}</p>}
+
+                    <div className="grid md:grid-cols-2 gap-12">
+                        {block.roles.map((item, i) => (
+                            <div key={i} className="border-l border-gray-200 pl-8 py-4 hover:border-gray-900 transition-colors">
+                                <span className="text-sm font-bold text-gray-400 uppercase tracking-widest block mb-2">0{i + 1}</span>
+                                <div className="text-xl font-bold text-gray-800 leading-tight">{item}</div>
+                            </div>
+                        ))}
                     </div>
                 </RevealOnScroll>
             );
 
         case "personas":
             return (
-                <RevealOnScroll className="max-w-7xl mx-auto">
-                    {block.title && <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">{block.title}</h2>}
-                    <div className="grid md:grid-cols-3 gap-8">
+                <RevealOnScroll className="max-w-6xl mx-auto py-20">
+                    <span className={subtitleClass}>{block.title || "User Profile"}</span>
+                    <div className="space-y-32">
                         {block.personas.map((persona, index) => (
-                            <div key={index} className="bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 flex flex-col h-full hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-300 transform hover:-translate-y-2">
-                                <div className="mb-8 pb-8 border-b border-slate-100">
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-2">{persona.name}</h3>
-                                    <div className="text-blue-600 font-medium bg-blue-50 inline-block px-3 py-1 rounded-full text-sm">{persona.role}</div>
-                                </div>
-                                <blockquote className="italic text-slate-600 mb-8 flex-grow text-lg leading-relaxed">"{persona.quote}"</blockquote>
-                                <div className="space-y-8">
-                                    <div>
-                                        <div className="text-xs font-bold text-emerald-600 uppercase tracking-wider mb-4 flex items-center gap-2">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Goals
-                                        </div>
-                                        <ul className="space-y-3">
-                                            {persona.goals.map((g, i) => (
-                                                <li key={i} className="text-slate-700 flex items-start gap-3">
-                                                    <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 shrink-0"></span>
-                                                    {g}
-                                                </li>
-                                            ))}
-                                        </ul>
+                            <div key={index} className="flex flex-col lg:grid lg:grid-cols-[1fr_1.5fr] gap-20">
+                                <div className="space-y-10">
+                                    <div className="aspect-[4/5] rounded-[2rem] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 shadow-xl shadow-gray-200">
+                                        <img
+                                            src={persona.image || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800"}
+                                            alt={persona.name}
+                                            className="w-full h-full object-cover"
+                                        />
                                     </div>
                                     <div>
-                                        <div className="text-xs font-bold text-rose-600 uppercase tracking-wider mb-4 flex items-center gap-2">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span> Pain Points
+                                        <h3 className="text-4xl font-bold tracking-tighter text-[#0F0F0F] mb-2">{persona.name}</h3>
+                                        <p className="text-lg text-gray-500 font-medium">{persona.role}</p>
+                                        {persona.details && (
+                                            <div className="flex flex-wrap gap-x-8 gap-y-2 mt-6">
+                                                {persona.details.map((detail, i) => (
+                                                    <div key={i} className="text-sm">
+                                                        <span className="text-gray-400 mr-2 uppercase tracking-tighter text-[10px] font-bold">{detail.label}</span>
+                                                        <span className="text-gray-800 font-medium">{detail.value}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col justify-center">
+                                    <p className="text-3xl md:text-5xl font-bold tracking-tighter text-gray-800 leading-tight mb-20 text-gray-600">
+                                        "{persona.quote}"
+                                    </p>
+
+                                    <div className="grid md:grid-cols-2 gap-16">
+                                        <div className="space-y-8">
+                                            <h4 className="text-sm font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-4">Goals</h4>
+                                            <ul className="space-y-4">
+                                                {persona.goals.map((g, i) => (
+                                                    <li key={i} className="flex gap-4 text-gray-700 font-medium text-lg leading-relaxed">
+                                                        <span className="text-gray-300">/</span> {g}
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </div>
-                                        <ul className="space-y-3">
-                                            {persona.painPoints.map((p, i) => (
-                                                <li key={i} className="text-slate-700 flex items-start gap-3">
-                                                    <span className="w-1.5 h-1.5 bg-rose-400 rounded-full mt-2 shrink-0"></span>
-                                                    {p}
-                                                </li>
-                                            ))}
-                                        </ul>
+                                        <div className="space-y-8">
+                                            <h4 className="text-sm font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-4">Pain Points</h4>
+                                            <ul className="space-y-4">
+                                                {persona.painPoints.map((p, i) => (
+                                                    <li key={i} className="flex gap-4 text-gray-700 font-medium text-lg leading-relaxed">
+                                                        <span className="text-gray-300">/</span> {p}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -110,17 +132,17 @@ export const BlockRenderer = ({ block }: { block: ProjectBlock }) => {
 
         case "triggers":
             return (
-                <RevealOnScroll className="max-w-7xl mx-auto">
-                    {block.title && <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">{block.title}</h2>}
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <RevealOnScroll className="max-w-5xl mx-auto py-20">
+                    <span className={subtitleClass}>{block.title || "User Dynamics"}</span>
+                    <div className="grid md:grid-cols-2 gap-x-20 gap-y-24">
                         {block.triggers.map((trigger, index) => (
-                            <div key={index} className="bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 hover:shadow-xl transition-shadow duration-300 group">
-                                <h3 className="text-lg font-bold text-slate-900 mb-6 pb-4 border-b-2 border-slate-100 group-hover:border-blue-500 transition-colors">{trigger.category}</h3>
-                                <ul className="space-y-4">
+                            <div key={index} className="space-y-8 animate-in fade-in slide-in-from-bottom duration-700">
+                                <h3 className="text-2xl font-bold tracking-tighter text-[#0F0F0F] border-b border-gray-200 pb-6">{trigger.category}</h3>
+                                <ul className="space-y-6">
                                     {trigger.terms.map((term, i) => (
-                                        <li key={i} className="text-slate-600 leading-relaxed flex items-start gap-3 text-sm">
-                                            <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-1.5 shrink-0"></span>
-                                            {term}
+                                        <li key={i} className="text-gray-500 font-medium text-lg flex items-start gap-3">
+                                            <span className="text-gray-300 mt-1.5">•</span>
+                                            <span>{term}</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -132,15 +154,16 @@ export const BlockRenderer = ({ block }: { block: ProjectBlock }) => {
 
         case "goals-list":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto">
-                    {block.title && <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">{block.title}</h2>}
-                    <div className="grid md:grid-cols-2 gap-6">
+                <RevealOnScroll className="max-w-4xl mx-auto py-20">
+                    <span className={subtitleClass}>{block.title || "Strategic Intent"}</span>
+                    <div className="grid gap-4">
                         {block.goals.map((goal, i) => (
-                            <div key={i} className="bg-white p-6 rounded-2xl flex items-center gap-4 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                                <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 font-bold text-xl shrink-0">
-                                    ✓
-                                </div>
-                                <span className="text-slate-700 font-medium text-lg">{goal}</span>
+                            <div key={i} className="bg-white/50 backdrop-blur-md p-6 rounded-3xl border border-gray-100 shadow-sm flex items-center gap-6 hover:bg-white transition-all">
+                                <div
+                                    className="w-4 h-4 rounded-full flex-shrink-0"
+                                    style={{ backgroundColor: accentColor || '#333' }}
+                                />
+                                <span className="text-xl font-medium text-gray-800 leading-relaxed">{goal}</span>
                             </div>
                         ))}
                     </div>
@@ -149,57 +172,119 @@ export const BlockRenderer = ({ block }: { block: ProjectBlock }) => {
 
         case "info-architecture":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto">
-                    {block.title && <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">{block.title}</h2>}
-                    <div className="bg-white p-10 md:p-14 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 text-center relative">
-                        <div className="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 opacity-50"></div>
-                        <p className="text-xl md:text-2xl text-slate-700 mb-12 max-w-3xl mx-auto font-light leading-relaxed">"{block.highlight}"</p>
-                        <h3 className="text-sm font-bold text-slate-400 mb-8 uppercase tracking-[0.2em]">{block.content}</h3>
-                        <div className="flex flex-wrap justify-center gap-4">
+                <RevealOnScroll className="max-w-5xl mx-auto py-24">
+                    <div className="text-center space-y-12">
+                        <span className={subtitleClass}>Structure & Flow</span>
+                        <p className="text-3xl md:text-5xl font-bold tracking-tighter text-gray-800 leading-tight max-w-4xl mx-auto italic">
+                            "{block.highlight}"
+                        </p>
+                        <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 pt-10">
                             {block.modules.map((module, i) => (
-                                <span key={i} className="px-8 py-4 bg-slate-50 hover:bg-slate-100 rounded-full text-slate-700 font-medium border border-slate-200 transition-colors duration-300">
+                                <div key={i} className="text-lg font-bold text-gray-400 hover:text-[#0F0F0F] transition-colors cursor-default">
                                     {module}
-                                </span>
+                                </div>
                             ))}
                         </div>
                         {block.image && (
-                            <div className="mt-12">
+                            <div className="pt-20">
                                 <Dialog>
                                     <DialogTrigger asChild>
-                                        <button className="text-blue-600 hover:text-blue-800 font-medium border-b border-blue-600 hover:border-blue-800 transition-colors pb-0.5">
-                                            View Visual Architecture Diagram
+                                        <button className="group flex flex-col items-center gap-4 mx-auto">
+                                            <div className="w-1 px-10 border-b border-gray-300 group-hover:border-gray-900 transition-all"></div>
+                                            <span className="text-sm font-bold uppercase tracking-widest text-gray-500 group-hover:text-[#0F0F0F] transition-colors">
+                                                View Architecture Diagram
+                                            </span>
                                         </button>
                                     </DialogTrigger>
-                                    <DialogContent className="max-w-5xl w-full p-0 overflow-hidden bg-transparent border-none shadow-none">
-                                        <img
-                                            src={block.image}
-                                            alt="Information Architecture Diagram"
-                                            className="w-full h-auto rounded-lg shadow-2xl"
-                                        />
+                                    <DialogContent className="max-w-7xl w-[95vw] p-0 border-none bg-white rounded-[2rem] overflow-hidden">
+                                        <img src={block.image} alt="IA Diagram" className="w-full h-auto" />
                                     </DialogContent>
                                 </Dialog>
                             </div>
                         )}
-                        <p className="mt-10 text-slate-400 italic text-sm">This structure reduces noise and improves task focus.</p>
                     </div>
                 </RevealOnScroll>
             );
 
         case "process-steps":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto">
-                    {block.title && <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">{block.title}</h2>}
-                    <div className="bg-white p-10 md:p-14 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
-                        <h3 className="text-2xl font-bold text-slate-900 mb-8 pb-6 border-b border-slate-100">{block.content}</h3>
-                        <div className="space-y-4">
-                            {block.steps.map((flow, i) => (
-                                <div key={i} className="flex gap-6 p-6 bg-slate-50 rounded-2xl hover:bg-white hover:shadow-md transition-all duration-300 border border-transparent hover:border-slate-100">
-                                    <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg shrink-0 shadow-lg shadow-blue-200">{i + 1}</div>
-                                    <span className="text-slate-700 text-lg leading-relaxed pt-1.5">{flow}</span>
+                <RevealOnScroll className="max-w-6xl mx-auto py-24">
+                    <span className={subtitleClass}>The Workflow</span>
+                    {block.title && <h2 className={titleClass}>{block.title}</h2>}
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {block.steps.map((step, i) => (
+                            <div key={i} className="space-y-4 bg-white/50 backdrop-blur-md p-8 rounded-3xl border border-gray-100 shadow-sm hover:bg-white transition-all flex flex-col h-full">
+                                <div className="text-sm font-bold tracking-widest text-gray-400">0{i + 1}</div>
+                                <div className="text-xl font-medium text-gray-800 leading-relaxed pt-2">
+                                    {step}
                                 </div>
-                            ))}
-                        </div>
-                        {block.highlight && <p className="mt-8 text-center text-slate-500 italic">{block.highlight}</p>}
+                            </div>
+                        ))}
+                    </div>
+                </RevealOnScroll>
+            );
+
+        case "challenges":
+            return (
+                <RevealOnScroll className="max-w-5xl mx-auto py-24">
+                    <span className={subtitleClass}>{block.title || "Strategic Solutions"}</span>
+                    <div className="divide-y divide-slate-200">
+                        {block.challenges.map((item, index) => (
+                            <div key={index} className="py-12 grid md:grid-cols-[1fr_1.5fr] gap-12 group">
+                                <div className="space-y-2">
+                                    <div className="text-[10px] font-black uppercase tracking-widest text-gray-300 group-hover:text-rose-400 transition-colors">Challenge</div>
+                                    <div className="text-xl font-bold text-[#0F0F0F]">{item.challenge}</div>
+                                </div>
+                                <div className="space-y-2">
+                                    <div className="text-[10px] font-black uppercase tracking-widest text-gray-300 group-hover:text-emerald-400 transition-colors">Solution</div>
+                                    <div className="text-xl font-medium text-gray-600 leading-relaxed">{item.solution}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </RevealOnScroll>
+            );
+
+        case "core-screens":
+            const imageScreens = block.screens.filter(s => typeof s === 'object') as { title: string, image: string }[];
+            const labelScreens = block.screens.filter(s => typeof s === 'string') as string[];
+
+            return (
+                <RevealOnScroll className="w-full max-w-7xl mx-auto py-32">
+                    <div className="text-center mb-24 max-w-3xl mx-auto">
+                        <span className={subtitleClass}>{block.title || "Final Product"}</span>
+                        {block.highlight && <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-gray-800 leading-tight">{block.highlight}</h2>}
+                    </div>
+
+                    <div className="space-y-48">
+                        {imageScreens.map((screen, i) => (
+                            <RevealOnScroll key={i} delay={i * 100}>
+                                <div className="flex flex-col gap-10">
+                                    <div className="flex items-center gap-6">
+                                        <div className="text-2xl font-bold tracking-tighter text-gray-400">0{i + 1}</div>
+                                        <h3 className="text-3xl md:text-4xl font-bold tracking-tighter text-[#0F0F0F]">{screen.title}</h3>
+                                    </div>
+                                    <div className="rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-2xl shadow-gray-200/60 bg-white group">
+                                        <img
+                                            src={screen.image}
+                                            alt={screen.title}
+                                            className="w-full h-auto block transition-transform duration-[2000ms] group-hover:scale-105"
+                                        />
+                                    </div>
+                                </div>
+                            </RevealOnScroll>
+                        ))}
+
+                        {labelScreens.length > 0 && (
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-16 pt-24 border-t border-gray-200">
+                                {labelScreens.map((screen, i) => (
+                                    <div key={i} className="space-y-4">
+                                        <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest">Detail 0{i + 1}</span>
+                                        <div className="text-xl font-bold text-gray-800 leading-tight">{screen}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </RevealOnScroll>
             );
@@ -207,116 +292,124 @@ export const BlockRenderer = ({ block }: { block: ProjectBlock }) => {
         case "custom-component":
             if (block.componentName === "UserFlow") {
                 return (
-                    <RevealOnScroll className="bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-100 my-16">
+                    <RevealOnScroll className="max-w-7xl mx-auto my-32">
                         <UserFlow />
                     </RevealOnScroll>
                 );
             }
             if (block.componentName === "VideoCarousel" && block.props?.videos) {
                 return (
-                    <RevealOnScroll className="max-w-7xl mx-auto my-16">
+                    <RevealOnScroll className="max-w-7xl mx-auto my-32">
                         <VideoCarousel videos={block.props.videos} />
                     </RevealOnScroll>
                 )
             }
             if (block.componentName === "VStateIA") {
                 return (
-                    <RevealOnScroll className="max-w-7xl mx-auto my-16 overflow-hidden">
-                        {block.title && <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">{block.title}</h2>}
-                        <VStateArchitecture />
+                    <RevealOnScroll className="max-w-7xl mx-auto my-32">
+                        <VStateArchitecture accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "HealthScoreExplanation") {
+                return <HealthScoreExplanation accentColor={accentColor} />;
+            }
+            if (block.componentName === "SnackHackIA") {
+                return (
+                    <RevealOnScroll className="max-w-6xl mx-auto my-32">
+                        <SnackHackIA accentColor={accentColor} />
                     </RevealOnScroll>
                 );
             }
             return null;
 
-        case "challenges":
+        case "image":
             return (
-                <RevealOnScroll className="max-w-7xl mx-auto">
-                    {block.title && <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">{block.title}</h2>}
-                    <div className="grid md:grid-cols-2 gap-8">
-                        {block.challenges.map((item, index) => (
-                            <div key={index} className="bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 overflow-hidden flex flex-col">
-                                <div className="p-8 bg-rose-50 border-b border-rose-100">
-                                    <div className="text-xs font-bold text-rose-600 uppercase tracking-wider mb-2 flex items-center gap-2">
-                                        <span className="w-2 h-0.5 bg-rose-500"></span> Challenge
-                                    </div>
-                                    <div className="text-xl font-bold text-slate-900 leading-snug">{item.challenge}</div>
-                                </div>
-                                <div className="p-8 bg-white flex-grow">
-                                    <div className="text-xs font-bold text-emerald-600 uppercase tracking-wider mb-2 flex items-center gap-2">
-                                        <span className="w-2 h-0.5 bg-emerald-500"></span> Solution
-                                    </div>
-                                    <div className="text-lg text-slate-700 leading-relaxed">{item.solution}</div>
-                                </div>
-                            </div>
-                        ))}
+                <RevealOnScroll className="max-w-5xl mx-auto my-24">
+                    <div className="rounded-[2rem] overflow-hidden shadow-2xl bg-white">
+                        <img src={block.src} alt={block.title || "Project Image"} className="w-full h-auto" />
                     </div>
+                    {block.caption && <div className="mt-6 text-center text-gray-400 italic font-bold tracking-tighter text-lg">{block.caption}</div>}
                 </RevealOnScroll>
             );
 
-        case "wireframes":
+        case "user-flow-popup":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto">
-                    {block.title && <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">{block.title}</h2>}
-                    <div className="bg-slate-900 p-10 md:p-14 rounded-[2.5rem] shadow-2xl text-white relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500 blur-[100px] opacity-20 rounded-full"></div>
-                        <p className="text-xl text-slate-300 mb-10 text-center relative z-10 leading-relaxed">"{block.highlight}"</p>
-                        <div className="space-y-4 relative z-10">
-                            {block.items.map((item, i) => (
-                                <div key={i} className="flex items-center gap-4 bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:bg-white/20 transition-colors">
-                                    <span className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold shrink-0">W</span>
-                                    <span className="text-slate-100 font-medium text-lg">{item}</span>
-                                </div>
-                            ))}
-                        </div>
+                <RevealOnScroll className="max-w-5xl mx-auto py-24">
+                    <span className={subtitleClass}>{block.title || "Functional Mapping"}</span>
+                    <p className="text-3xl md:text-5xl font-bold tracking-tighter text-gray-800 leading-tight max-w-4xl italic mb-20 group cursor-default transition-all hover:text-[#0F0F0F]">
+                        "{block.highlight}"
+                    </p>
+                    <div className="grid md:grid-cols-2 gap-10 mb-20">
+                        {block.steps.map((step, i) => (
+                            <div key={i} className="flex gap-4 items-center text-gray-500 font-medium text-lg">
+                                <span className="text-gray-300">•</span> {step}
+                            </div>
+                        ))}
                     </div>
+                    <Dialog>
+                        <DialogTrigger asChild>
+                            <button className="text-sm font-bold uppercase tracking-[0.2em] text-gray-400 hover:text-[#0F0F0F] transition-colors border-b border-transparent hover:border-gray-900 pb-2">
+                                View User Task Flow Diagram
+                            </button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-7xl w-[95vw] h-[85vh] p-0 border-none bg-white rounded-3xl overflow-hidden shadow-2xl">
+                            <UserFlow />
+                        </DialogContent>
+                    </Dialog>
                 </RevealOnScroll>
             );
 
-        case "core-screens":
+        case "prototype":
             return (
-                <RevealOnScroll className="max-w-7xl mx-auto">
-                    {block.title && <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">{block.title}</h2>}
-                    {block.highlight && <p className="text-center text-slate-600 mb-16 max-w-2xl mx-auto text-xl">{block.highlight}</p>}
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        {block.screens.map((screen, i) => (
-                            <div key={i} className="bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 flex flex-col items-center text-center hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 group aspect-square justify-center">
-                                <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">📱</div>
-                                <h3 className="font-bold text-slate-800 text-lg leading-tight">{screen}</h3>
-                            </div>
-                        ))}
+                <RevealOnScroll className="w-full max-w-7xl mx-auto py-32">
+                    <div className="text-center mb-16 max-w-3xl mx-auto">
+                        <span className={subtitleClass}>{block.title || "Interactive Prototype"}</span>
+                        {block.description && <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-gray-800 leading-tight italic">{block.description}</h2>}
+                    </div>
+
+                    <div className="rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-2xl shadow-gray-200/60 bg-white border border-gray-100 aspect-video md:aspect-[16/10] relative">
+                        <iframe
+                            src={`https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(block.url + '&scaling=contain')}`}
+                            className="absolute inset-0 w-full h-full border-none"
+                            allowFullScreen
+                        />
                     </div>
                 </RevealOnScroll>
             );
 
         case "design-system":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto">
-                    {block.title && <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">{block.title}</h2>}
-                    <div className="bg-white p-10 md:p-14 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
-                        <p className="text-xl text-slate-600 mb-8 max-w-2xl mx-auto text-center">{block.highlight}</p>
-                        <h3 className="font-bold text-slate-400 mb-6 uppercase tracking-wider text-sm text-center">Includes</h3>
-                        <div className="flex flex-wrap gap-4 justify-center">
-                            {block.items.map((item, i) => (
-                                <span key={i} className="px-6 py-3 bg-fuchsia-50 text-fuchsia-700 rounded-xl font-medium border border-fuchsia-100 shadow-sm hover:shadow-md transition-shadow">
-                                    {item}
-                                </span>
-                            ))}
-                        </div>
+                <RevealOnScroll className="max-w-5xl mx-auto py-24">
+                    <span className={subtitleClass}>{block.title || "Design Language"}</span>
+                    <h2 className={titleClass}>{block.highlight}</h2>
+                    <p className="text-xl text-gray-600 mb-12 max-w-3xl">{block.content}</p>
+                    <div className="grid md:grid-cols-2 gap-6">
+                        {block.items.map((item, i) => (
+                            <div key={i} className="flex items-center gap-6 bg-white/50 backdrop-blur-md p-6 rounded-3xl border border-gray-100 shadow-sm hover:bg-white transition-all h-full">
+                                <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: accentColor }} />
+                                <span className="text-xl font-medium text-gray-800 leading-relaxed">{item}</span>
+                            </div>
+                        ))}
                     </div>
                 </RevealOnScroll>
             );
 
         case "accessibility":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto">
-                    {block.title && <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">{block.title}</h2>}
-                    <div className="bg-white p-10 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
-                        <div className="grid md:grid-cols-2 gap-6">
+                <RevealOnScroll className="max-w-5xl mx-auto py-24">
+                    <span className={subtitleClass}>{block.title || "Inclusive Design"}</span>
+                    <div className="grid md:grid-cols-2 gap-12">
+                        <div className="space-y-6">
+                            <h2 className="text-3xl font-bold tracking-tighter text-[#0F0F0F]">Universal accessibility standards were integrated from the start.</h2>
+                        </div>
+                        <div className="space-y-4">
                             {block.items.map((item, i) => (
-                                <div key={i} className="flex items-center gap-4 p-6 bg-teal-50/50 rounded-2xl border border-teal-100 hover:bg-teal-50 transition-colors">
-                                    <span className="text-teal-600 font-bold text-2xl">♿</span>
-                                    <span className="text-slate-700 font-medium text-lg">{item}</span>
+                                <div key={i} className="flex gap-4 items-start">
+                                    <div className="mt-1">
+                                        <Check className="w-5 h-5" style={{ color: accentColor }} />
+                                    </div>
+                                    <span className="text-gray-600 text-lg">{item}</span>
                                 </div>
                             ))}
                         </div>
@@ -326,94 +419,72 @@ export const BlockRenderer = ({ block }: { block: ProjectBlock }) => {
 
         case "impact":
             return (
-                <RevealOnScroll className="max-w-7xl mx-auto">
-                    {block.title && <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">{block.title}</h2>}
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {block.items.map((item, i) => (
-                            <div key={i} className="bg-gradient-to-br from-violet-500 to-purple-600 p-8 rounded-[2rem] shadow-xl shadow-purple-900/20 text-white transform hover:-translate-y-2 transition-transform duration-300 flex flex-col h-full justify-between">
-                                <div className="text-4xl mb-6 bg-white/20 w-16 h-16 rounded-2xl flex items-center justify-center backdrop-blur-sm">🚀</div>
-                                <p className="font-bold text-xl leading-relaxed">{item}</p>
-                            </div>
-                        ))}
+                <RevealOnScroll className="max-w-5xl mx-auto py-24">
+                    <div
+                        className="rounded-[3rem] p-12 md:p-20 text-center space-y-12"
+                        style={{ backgroundColor: accentColor ? `${accentColor}10` : '#f8fafc' }}
+                    >
+                        <span className={subtitleClass}>{block.title || "Outcomes"}</span>
+                        <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-[#0F0F0F]">Measuring Success</h2>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 pt-8 text-center">
+                            {block.items.map((item, i) => (
+                                <div key={i} className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 h-full flex items-center justify-center hover:shadow-md transition-shadow min-h-[160px]">
+                                    <p className="text-xl font-medium text-gray-800 leading-relaxed">{item}</p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </RevealOnScroll>
             );
 
         case "learnings":
             return (
-                <RevealOnScroll className="max-w-7xl mx-auto">
-                    {block.title && <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">{block.title}</h2>}
-                    <div className="grid md:grid-cols-2 gap-8">
-                        <div className="bg-amber-50/80 p-10 rounded-[2.5rem] border border-amber-100">
-                            <h3 className="text-2xl font-bold text-amber-900 mb-8 flex items-center gap-3">
-                                <span className="text-3xl">💡</span> Key Learnings
-                            </h3>
-                            <ul className="space-y-6">
-                                {block.learnings.map((item, i) => (
-                                    <li key={i} className="flex items-start gap-4 text-amber-900/80 text-lg leading-relaxed">
-                                        <span className="mt-2.5 w-2 h-2 rounded-full bg-amber-500 shrink-0"></span>
-                                        <span className="font-medium">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                <RevealOnScroll className="max-w-5xl mx-auto py-24 space-y-24">
+                    <div className="grid md:grid-cols-[1fr_2fr] gap-12">
+                        <div>
+                            <span className={subtitleClass}>Reflections</span>
+                            <h2 className="text-4xl font-bold tracking-tighter text-[#0F0F0F]">{block.title || "Learnings"}</h2>
                         </div>
-
-                        <div className="bg-indigo-50/80 p-10 rounded-[2.5rem] border border-indigo-100">
-                            <h3 className="text-2xl font-bold text-indigo-900 mb-8 flex items-center gap-3">
-                                <span className="text-3xl">🔮</span> Future Scope
-                            </h3>
-                            <ul className="space-y-6">
-                                {block.future.map((item, i) => (
-                                    <li key={i} className="flex items-start gap-4 text-indigo-900/80 text-lg leading-relaxed">
-                                        <span className="mt-2.5 w-2 h-2 rounded-full bg-indigo-500 shrink-0"></span>
-                                        <span className="font-medium">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                </RevealOnScroll>
-            );
-
-        case "image":
-            return (
-                <RevealOnScroll className="max-w-5xl mx-auto my-16">
-                    {block.title && <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">{block.title}</h2>}
-                    <div className="rounded-[2rem] overflow-hidden shadow-2xl border border-slate-100">
-                        <img src={block.src} alt={block.title || "Project Image"} className="w-full h-auto" />
-                        {block.caption && <div className="p-4 bg-slate-50 border-t border-slate-100 text-center text-slate-500 italic">{block.caption}</div>}
-                    </div>
-                </RevealOnScroll>
-            );
-
-        case "user-flow-popup":
-            return (
-                <RevealOnScroll className="max-w-5xl mx-auto">
-                    {block.title && <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">{block.title}</h2>}
-                    <div className="bg-white p-10 md:p-14 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 text-center relative">
-                        <div className="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 opacity-50"></div>
-                        <p className="text-xl md:text-2xl text-slate-700 mb-12 max-w-3xl mx-auto font-light leading-relaxed">"{block.highlight}"</p>
-                        <h3 className="text-sm font-bold text-slate-400 mb-8 uppercase tracking-[0.2em]">{block.content}</h3>
-                        <div className="flex flex-wrap justify-center gap-4">
-                            {block.steps.map((step, i) => (
-                                <span key={i} className="px-8 py-4 bg-slate-50 hover:bg-slate-100 rounded-full text-slate-700 font-medium border border-slate-200 transition-colors duration-300">
-                                    {step}
-                                </span>
+                        <div className="space-y-8">
+                            {block.learnings.map((item, i) => (
+                                <div key={i} className="flex gap-6 group">
+                                    <div className="text-4xl font-bold tracking-tighter text-gray-200 group-hover:text-gray-300 transition-colors">0{i + 1}</div>
+                                    <p className="text-xl text-gray-600 leading-relaxed pt-2">{item}</p>
+                                </div>
                             ))}
                         </div>
-                        <div className="mt-12">
-                            <Dialog>
-                                <DialogTrigger asChild>
-                                    <button className="text-blue-600 hover:text-blue-800 font-medium border-b border-blue-600 hover:border-blue-800 transition-colors pb-0.5">
-                                        View User Task Flow Diagram
-                                    </button>
-                                </DialogTrigger>
-                                <DialogContent className="max-w-5xl w-full max-h-[90vh] overflow-y-auto bg-white border-none shadow-2xl p-0">
-                                    <UserFlow />
-                                </DialogContent>
-                            </Dialog>
+                    </div>
+
+                    <div className="pt-24 border-t border-gray-200">
+                        <div className="grid md:grid-cols-[1fr_2fr] gap-12">
+                            <div>
+                                <span className={subtitleClass}>Roadmap</span>
+                                <h2 className="text-4xl font-bold tracking-tighter text-[#0F0F0F]">Future Scope</h2>
+                            </div>
+                            <div className="grid md:grid-cols-2 gap-6">
+                                {block.future.map((item, i) => (
+                                    <div key={i} className="flex items-center gap-6 bg-white/50 backdrop-blur-md p-6 rounded-3xl border border-gray-100 shadow-sm hover:bg-white transition-all h-full">
+                                        <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: accentColor }} />
+                                        <span className="text-xl font-medium text-gray-800 leading-relaxed">{item}</span>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                        <p className="mt-10 text-slate-400 italic text-sm">Visualizing the complexity to ensure simplicity.</p>
+                    </div>
+                </RevealOnScroll>
+            );
+
+        case "wireframes":
+            return (
+                <RevealOnScroll className="max-w-6xl mx-auto py-24">
+                    <span className={subtitleClass}>{block.title || "Early Concepts"}</span>
+                    <h2 className={titleClass}>{block.highlight}</h2>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+                        {block.items.map((item, i) => (
+                            <div key={i} className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white aspect-[9/16]">
+                                <img src={item} alt={`Wireframe ${i + 1}`} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+                            </div>
+                        ))}
                     </div>
                 </RevealOnScroll>
             );

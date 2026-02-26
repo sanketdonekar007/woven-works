@@ -17,12 +17,12 @@ const AnimatedLink = ({ to, href, children, className = "", target, rel, onClick
         <div className="relative overflow-hidden h-[1.2em] group cursor-pointer px-[2px]">
             <div className="transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full">
                 <span className="block">{children}</span>
-                <span className="block absolute top-full left-0 text-black/50">{children}</span>
+                <span className="block absolute top-full left-0 text-[#0F0F0F]/50">{children}</span>
             </div>
         </div>
     );
 
-    const baseClasses = "inline-block text-xl font-normal text-black no-underline leading-[1.2em]";
+    const baseClasses = "inline-block text-xl font-normal text-[#0F0F0F] no-underline leading-[1.2em]";
     const combinedClasses = `${baseClasses} ${className}`;
 
     if (to) {

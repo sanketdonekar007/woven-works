@@ -73,7 +73,7 @@ const treeData: TreeNode = {
 const NodeCard = ({ label, color }: { label: string, color: string }) => (
     <div className={`
         relative z-10 px-4 py-2 rounded-lg border shadow-sm 
-        font-medium text-xs md:text-sm text-slate-900 text-center whitespace-nowrap 
+        font-medium text-xs md:text-sm text-[#0F0F0F] text-center whitespace-nowrap 
         transition-all hover:scale-105 hover:shadow-md ${color}
     `}>
         {label}
@@ -138,7 +138,7 @@ const TreeLevel = ({ node, isRoot = false }: { node: TreeNode, isRoot?: boolean 
     );
 };
 
-export const VStateArchitecture = () => {
+export const VStateArchitecture = ({ accentColor }: { accentColor?: string }) => {
     return (
         <div className="w-full overflow-x-auto pb-8 pt-4 cursor-grab active:cursor-grabbing">
             <div className="min-w-fit px-4 mx-auto flex justify-center transform origin-top scale-100 md:scale-95 lg:scale-100">

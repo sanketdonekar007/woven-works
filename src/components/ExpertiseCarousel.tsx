@@ -20,7 +20,7 @@ const ExpertiseCarousel = () => {
         <div className="w-full max-w-[1200px] mx-auto overflow-hidden bg-transparent mb-16 px-6 lg:px-8">
             {/* Added padding to match other sections if needed, or keep full width */}
             <div className=' mb-8 px-12 lg:px-12'>
-                <h2 className="text-3xl font-medium text-left text-black">Core strength & Expertise</h2>
+                <h2 className="text-3xl font-medium text-left text-[#0F0F0F]">Core strength & Expertise</h2>
             </div>
             <div className="relative w-full overflow-hidden">
                 {/* Gradient overlays for fade effect at edges */}
