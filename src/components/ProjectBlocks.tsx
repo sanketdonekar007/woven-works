@@ -73,7 +73,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                         {block.personas.map((persona, index) => (
                             <div key={index} className="flex flex-col lg:grid lg:grid-cols-[1fr_1.5fr] gap-20">
                                 <div className="space-y-10">
-                                    <div className="aspect-[4/5] rounded-[2rem] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 shadow-xl shadow-gray-200">
+                                    <div className="aspect-[4/5] w-full max-w-[280px] md:max-w-md lg:max-w-none mx-auto lg:mx-0 rounded-[2rem] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 shadow-xl shadow-gray-100">
                                         <img
                                             src={persona.image || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800"}
                                             alt={persona.name}
@@ -264,7 +264,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                         <div className="text-2xl font-bold tracking-tighter text-gray-400">0{i + 1}</div>
                                         <h3 className="text-3xl md:text-4xl font-bold tracking-tighter text-[#0F0F0F]">{screen.title}</h3>
                                     </div>
-                                    <div className="rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-2xl shadow-gray-200/60 bg-white group">
+                                    <div className="rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-lg shadow-gray-200/50 bg-white group">
                                         <img
                                             src={screen.image}
                                             alt={screen.title}
@@ -327,7 +327,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
             const isUnpaddedMedia = block.src.toLowerCase().endsWith('.gif') || block.src.toLowerCase().endsWith('.mp4');
             return (
                 <RevealOnScroll className="max-w-5xl mx-auto my-24">
-                    <div className={`rounded-[2rem] overflow-hidden shadow-2xl bg-white ${!isUnpaddedMedia ? 'p-8 md:p-12 lg:p-16 border border-gray-100' : ''}`}>
+                    <div className={`rounded-[2rem] overflow-hidden shadow-lg shadow-gray-200/40 bg-white ${!isUnpaddedMedia ? 'p-8 md:p-12 lg:p-16 border border-gray-100' : ''}`}>
                         <img
                             src={block.src}
                             alt={block.title || "Project Image"}
@@ -358,7 +358,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                 View User Task Flow Diagram
                             </button>
                         </DialogTrigger>
-                        <DialogContent className="max-w-7xl w-[95vw] h-[85vh] p-0 border-none bg-white rounded-3xl overflow-hidden shadow-2xl">
+                        <DialogContent className="max-w-7xl w-[95vw] h-[85vh] p-0 border-none bg-white rounded-3xl overflow-hidden shadow-lg shadow-gray-200/50">
                             <UserFlow />
                         </DialogContent>
                     </Dialog>
@@ -373,9 +373,12 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                         {block.description && <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-gray-800 leading-tight italic">{block.description}</h2>}
                     </div>
 
-                    <div className="rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-2xl shadow-gray-200/60 bg-white border border-gray-100 aspect-video md:aspect-[16/10] relative">
+                    <div
+                        className="rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-lg shadow-gray-200/50 bg-white border border-gray-100 relative h-[80vh] md:h-[800px]"
+                        style={block.height ? { height: block.height } : undefined}
+                    >
                         <iframe
-                            src={`https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(block.url + '&scaling=contain')}`}
+                            src={`https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(block.url + '&scaling=scale-down')}`}
                             className="absolute inset-0 w-full h-full border-none"
                             allowFullScreen
                         />

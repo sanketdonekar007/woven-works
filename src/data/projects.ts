@@ -182,6 +182,7 @@ export type ProjectBlock =
 export interface ProjectData {
     id: string;
     title: string;
+    navTitle?: string;
     headerImage: string;
     intro: string;
     subtitle?: string;
@@ -240,6 +241,7 @@ export const projects: Record<string, ProjectData> = {
     designsystem: {
         id: "designsystem",
         title: "AI-Powered UI Design System",
+        navTitle: "AI-Powered UI Design System",
         headerImage: "/lovable-uploads/design-system-header.gif",
         intro: "An intelligent system to automate UI component creation, documentation, and collaboration",
         role: "Design System Specialist",
@@ -363,6 +365,7 @@ export const projects: Record<string, ProjectData> = {
     whatsapp: {
         id: "whatsapp",
         title: "WhatsApp – Quick Voice Note Transcription",
+        navTitle: "WhatsApp – Quick Voice Note Transcription",
         headerImage: "/lovable-uploads/whatsapp-header.jpg",
         intro: "The Quick Voice Note Transcription feature will automatically convert voice messages into text, making conversations easier to follow.",
         role: "UI/UX Designer",
@@ -452,6 +455,7 @@ export const projects: Record<string, ProjectData> = {
     vstate: {
         id: "vstate",
         title: "vState — UX Case Study",
+        navTitle: "VState Filings – Compliance Management Platform",
         subtitle: "Compliance & Filing Management Platform (B2B SaaS)",
         headerImage: "/lovable-uploads/filenow2.jpg",
         intro: "vState is a role-based compliance and filing management platform designed to help service providers manage multi-state filings, deadlines, and client communication with confidence.",
@@ -688,6 +692,7 @@ export const projects: Record<string, ProjectData> = {
     langlang: {
         id: "langlang",
         title: "LangLang - Language learning app concept",
+        navTitle: "Concept - Language learning app",
         headerImage: "/lovable-uploads/langlang-header.png",
         intro: "Lang-Lang is a conceptual language-learning app designed to provide an engaging and structured way to master new languages. The app integrates AI-driven personalized learning, gamification, and real-world conversational practice to enhance user experience. As a ux designer, I was responsible for crafting an intuitive interface that not only makes learning seamless for users but also streamlines the overall functionality for educators and administrators.",
         role: "UI/UX Designer",
@@ -768,12 +773,19 @@ export const projects: Record<string, ProjectData> = {
                 type: "image",
                 title: "Hi-Fi Prototype",
                 src: "/lovable-uploads/lang-ui.gif",
+            },
+            {
+                type: "prototype",
+                title: "Interactive Prototype",
+                url: "https://www.figma.com/proto/fRknjvjk4azBRZy62ZKH4n/LangLang---Language-Learning-App?node-id=1-429&t=js8kOMSiemfLXQxs-1",
+                description: "Explore the interactive prototype of the Language Learning App."
             }
         ]
     },
     snackhack: {
         id: "snackhack",
         title: "SnackHack",
+        navTitle: "Snack Hack - Decode Your Snacks, Instantly",
         subtitle: "Nutritional Insights at Your Fingertips",
         headerImage: "/lovable-uploads/Snack Hack Hero.png",
         intro: "SnackHack is a mobile application designed to help users make healthier snacking decisions by instantly analyzing snack products and presenting simplified health insights and smarter alternatives.",

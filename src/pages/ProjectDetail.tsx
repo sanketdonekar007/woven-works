@@ -42,14 +42,14 @@ const ProjectDetail = () => {
       <nav className="fixed top-0 left-0 w-full z-50 px-8 py-5 flex items-center group bg-white/70 backdrop-blur-md border-b border-gray-100/50 shadow-sm transition-all duration-300">
         <div className="flex-1 flex justify-start">
           <Link to="/" className="flex items-center gap-2 text-[#0F0F0F]">
-            <div className="w-10 h-10 border border-gray-900 rounded-full flex items-center justify-center group-hover:bg-gray-900 group-hover:text-white transition-all duration-500">
+            <div className="w-10 h-10 border border-gray-900 rounded-full flex items-center justify-center group-hover:bg-primary group-hover:border-primary group-hover:text-white transition-all duration-500">
               <ChevronLeft className="w-5 h-5" />
             </div>
-            <span className="font-bold tracking-tight uppercase text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-500">Back</span>
+            <span className="font-bold tracking-tight uppercase text-xs opacity-0 group-hover:opacity-100 group-hover:text-primary transition-opacity duration-500">Back</span>
           </Link>
         </div>
         <div className="flex-1 flex justify-center text-center text-xs font-bold tracking-widest uppercase text-gray-400">
-          Project Case Study
+          {project.navTitle || project.title}
         </div>
         <div className="flex-1 flex justify-end"></div>
       </nav>
