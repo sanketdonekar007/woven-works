@@ -324,10 +324,15 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
             return null;
 
         case "image":
+            const isUnpaddedMedia = block.src.toLowerCase().endsWith('.gif') || block.src.toLowerCase().endsWith('.mp4');
             return (
                 <RevealOnScroll className="max-w-5xl mx-auto my-24">
-                    <div className="rounded-[2rem] overflow-hidden shadow-2xl bg-white p-8 md:p-12 lg:p-16 border border-gray-100">
-                        <img src={block.src} alt={block.title || "Project Image"} className="w-full h-auto rounded-2xl border border-gray-100/50" />
+                    <div className={`rounded-[2rem] overflow-hidden shadow-2xl bg-white ${!isUnpaddedMedia ? 'p-8 md:p-12 lg:p-16 border border-gray-100' : ''}`}>
+                        <img
+                            src={block.src}
+                            alt={block.title || "Project Image"}
+                            className={`w-full h-auto ${!isUnpaddedMedia ? 'rounded-2xl border border-gray-100/50' : ''}`}
+                        />
                     </div>
                     {block.caption && <div className="mt-6 text-center text-gray-400 italic font-bold tracking-tighter text-lg">{block.caption}</div>}
                 </RevealOnScroll>
