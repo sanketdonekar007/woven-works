@@ -500,6 +500,7 @@ export const projects: Record<string, ProjectData> = {
                     {
                         name: "Michael Anderson",
                         role: "Compliance Firm Owner",
+                        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800",
                         quote: "“I need one system that tells me everything is under control.”",
                         goals: ["Zero missed deadlines", "Clear business overview", "Scalable operations"],
                         painPoints: ["Manual tracking", "Tool overload", "Limited real-time visibility"]
@@ -507,6 +508,7 @@ export const projects: Record<string, ProjectData> = {
                     {
                         name: "Emily Rodriguez",
                         role: "Compliance Executive",
+                        image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800",
                         quote: "“I just want clear tasks and documents in one place.”",
                         goals: ["Faster filings", "Clear task ownership", "Minimal errors"],
                         painPoints: ["Context switching", "Missing documents", "Repetitive updates"]
@@ -514,6 +516,7 @@ export const projects: Record<string, ProjectData> = {
                     {
                         name: "David Thompson",
                         role: "Client Admin",
+                        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800",
                         quote: "“I want transparency without chasing updates.”",
                         goals: ["Real-time filing status", "Deadline alerts", "Easy document uploads"],
                         painPoints: ["Unclear progress", "Anxiety around penalties", "Poor communication"]
