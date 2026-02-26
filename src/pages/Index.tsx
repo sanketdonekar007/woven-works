@@ -103,35 +103,28 @@ const Index = () => {
         </div>
 
         {/* Project 1 */}
-        <div className="project-card ">
+        <div className="project-card">
           <div className="project-content">
             <div className="project-image">
-              <img src="/lovable-uploads/Design system.png" alt="Design System" />
+              <img src="/lovable-uploads/langlang.png" alt="LangLang - Language learning app concept" />
             </div>
             <div className="project-details">
-              <TextReveal text="AI-Powered UI Design System" className="project-title text-2xl font-bold mb-4 block" />
+              <TextReveal text="Concept - Language learning app" className="project-title text-2xl font-bold mb-4 block" />
               <div className="project-highlights mb-6 space-y-2 text-gray-700">
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-[#0F0F0F]/60 mt-1 shrink-0" strokeWidth={2} />
-                  <TextReveal text="Designed an AI-driven component library for scalable and consistent UI development." delay={200} />
+                  <TextReveal text="User-centered learning approach with interactive exercises, personalized learning paths, and AI-driven recommendations." delay={200} />
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-[#0F0F0F]/60 mt-1 shrink-0" strokeWidth={2} />
-                  <TextReveal text="Automated 80% of the manual component design process using AI-driven tools." delay={300} />
+                  <TextReveal text="Gamification & engagement strategies." delay={300} />
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-[#0F0F0F]/60 mt-1 shrink-0" strokeWidth={2} />
-                  <TextReveal text="Reduced design-to-development handoff time by 50%." delay={400} />
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-[#0F0F0F]/60 mt-1 shrink-0" strokeWidth={2} />
-                  <TextReveal text="Integrated Lovable.ai and Supabase to create a seamless design-to-development workflow." delay={500} />
+                  <TextReveal text="Practice through voice recognition, and contextual quizzes, making learning immersive and enjoyable." delay={400} />
                 </div>
               </div>
-              <Link to="/projects/designsystem" className="read-more">Read More →</Link>
-              {/* <Link to="" className="read-more disabled-link"  onClick={(e) => e.preventDefault()}  aria-disabled="true">
-  <span className="lock-icon">🔒</span> Read More
-</Link> */}
+              <Link to="/projects/langlang" className="read-more">Read More →</Link>
             </div>
           </div>
         </div>
@@ -231,28 +224,35 @@ const Index = () => {
         </div>
 
         {/* Project 5 */}
-        <div className="project-card">
+        <div className="project-card ">
           <div className="project-content">
             <div className="project-image">
-              <img src="/lovable-uploads/langlang.png" alt="LangLang - Language learning app concept" />
+              <img src="/lovable-uploads/Design system.png" alt="Design System" />
             </div>
             <div className="project-details">
-              <TextReveal text="Concept - Language learning app" className="project-title text-2xl font-bold mb-4 block" />
+              <TextReveal text="AI-Powered UI Design System" className="project-title text-2xl font-bold mb-4 block" />
               <div className="project-highlights mb-6 space-y-2 text-gray-700">
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-[#0F0F0F]/60 mt-1 shrink-0" strokeWidth={2} />
-                  <TextReveal text="User-centered learning approach with interactive exercises, personalized learning paths, and AI-driven recommendations." delay={200} />
+                  <TextReveal text="Designed an AI-driven component library for scalable and consistent UI development." delay={200} />
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-[#0F0F0F]/60 mt-1 shrink-0" strokeWidth={2} />
-                  <TextReveal text="Gamification & engagement strategies." delay={300} />
+                  <TextReveal text="Automated 80% of the manual component design process using AI-driven tools." delay={300} />
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-[#0F0F0F]/60 mt-1 shrink-0" strokeWidth={2} />
-                  <TextReveal text="Practice through voice recognition, and contextual quizzes, making learning immersive and enjoyable." delay={400} />
+                  <TextReveal text="Reduced design-to-development handoff time by 50%." delay={400} />
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-[#0F0F0F]/60 mt-1 shrink-0" strokeWidth={2} />
+                  <TextReveal text="Integrated Lovable.ai and Supabase to create a seamless design-to-development workflow." delay={500} />
                 </div>
               </div>
-              <Link to="/projects/langlang" className="read-more">Read More →</Link>
+              <Link to="/projects/designsystem" className="read-more">Read More →</Link>
+              {/* <Link to="" className="read-more disabled-link"  onClick={(e) => e.preventDefault()}  aria-disabled="true">
+  <span className="lock-icon">🔒</span> Read More
+</Link> */}
             </div>
           </div>
         </div>
