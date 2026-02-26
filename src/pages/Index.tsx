@@ -133,7 +133,7 @@ const Index = () => {
         <div className="project-card">
           <div className="project-content">
             <div className="project-image">
-              <img src="/lovable-uploads/snackhackheader.jpg" alt="SnackHack" />
+              <img src="/lovable-uploads/Snack Hack Hero.png" alt="SnackHack" />
             </div>
             <div className="project-details">
               <TextReveal text="Snack Hack - Decode Your Snacks, Instantly" className="project-title text-2xl font-bold mb-4 block" />
