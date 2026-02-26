@@ -818,7 +818,7 @@ export const projects: Record<string, ProjectData> = {
                         name: "Sarah Patel",
                         role: "Health-Conscious Shopper",
                         quote: "I want to eat better, but I don't have time to read every label.",
-                        image: "/lovable-uploads/sarah_patel.jpg",
+                        image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=800",
                         details: [
                             { label: "Age", value: "32" },
                             { label: "Location", value: "Urban" },
