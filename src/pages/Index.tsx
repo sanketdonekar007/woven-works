@@ -45,18 +45,19 @@ const Index = () => {
       >
         <div className="hero-content max-w-[1200px] mx-auto w-full">
           <div className="greeting flex items-center gap-2 mb-4">
-            <TextReveal text="Hello there" className="text-base md:text-lg lg:text-2xl font-normal text-[#0F0F0F]" />
+            <TextReveal text="Hi! I'm Sanket" className="text-base md:text-lg lg:text-2xl font-normal text-[#0F0F0F]" />
             <span className="text-base md:text-lg lg:text-2xl animate-wave origin-bottom-right inline-block">👋</span>
           </div>
           <div className="intro flex flex-wrap items-center gap-x-2">
-            <div className="flex items-center gap-x-2">
-              <TextReveal text="I'm" />
-              <span className="name opacity-0 animate-fade-in font-medium" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>Sanket,</span>
-            </div>
-            <TextReveal text="a creative ux designer focused on crafting functional and visually stunning experiences." delay={300} />
+            <TextReveal
+              text="A UX Designer with 5+ years of experience in making things easy for people and helping businesses grow."
+              delay={300}
+              highlightWords={["UX", "Designer", "5+", "years"]}
+              highlightClassName="text-primary font-bold"
+            />
           </div>
           <div className="mt-8 mb-12">
-            <TextReveal text="UX Designer @ RedBeryl Tech | Previously @ Esofcode & KnackBe Tech" className="text-gray-700 text-lg md:text-xl font-medium" delay={500} />
+            <TextReveal text="I specialize in B2B SaaS, Enterprise Software and Consumer Apps." className="text-gray-700 text-lg md:text-xl font-medium" delay={500} />
           </div>
           <div className="scale-100 opacity-100">
             <div className="relative w-full overflow-hidden max-w-[100vw] -ml-4">

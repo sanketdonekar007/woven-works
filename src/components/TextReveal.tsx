@@ -9,6 +9,8 @@ interface TextRevealProps {
     stagger?: number; // Delay between words in ms
     threshold?: number; // Intersection threshold
     as?: 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span' | 'div';
+    highlightWords?: string[];
+    highlightClassName?: string;
 }
 
 export const TextReveal = ({
@@ -18,7 +20,9 @@ export const TextReveal = ({
     delay = 0,
     stagger = 30, // 30ms default stagger
     threshold = 0.1,
-    as: Component = 'span'
+    as: Component = 'span',
+    highlightWords,
+    highlightClassName
 }: TextRevealProps) => {
     const [isVisible, setIsVisible] = useState(false);
     const ref = useRef<HTMLElement>(null);
@@ -61,7 +65,8 @@ export const TextReveal = ({
                         className={cn(
                             "inline-block transition-transform duration-700 ease-[cubic-bezier(0.2,0.65,0.3,0.9)] will-change-transform translate-y-[120%]",
                             isVisible && "translate-y-0",
-                            wordClassName
+                            wordClassName,
+                            highlightWords?.includes(word.replace(/[^a-zA-Z0-9+]/g, '')) && highlightClassName
                         )}
                         style={{ transitionDelay: `${delay + (i * stagger)}ms` }}
                     >

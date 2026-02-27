@@ -240,16 +240,17 @@ export interface ProjectData {
 export const projects: Record<string, ProjectData> = {
     designsystem: {
         id: "designsystem",
-        title: "AI-Powered UI Design System",
-        navTitle: "AI-Powered UI Design System",
+        title: "RedBeryl Product Ecosystem",
+        navTitle: "RedBeryl Product Ecosystem",
+        subtitle: "Designing a Modular, AI-Enabled Enterprise Platform",
         headerImage: "/lovable-uploads/design-system-header.gif",
-        intro: "An intelligent system to automate UI component creation, documentation, and collaboration",
-        role: "Design System Specialist",
-        timeline: "October 2024 - December 2024",
-        industry: "AI & Productivity",
+        intro: "Stop building features. Start building systems.",
+        role: "Senior UX Designer (RedBeryl Tech)",
+        timeline: "2022 - Present",
+        industry: "Compliance Platform, HRMS, AI Modules, Cloud Systems",
         type: "Enterprise Tooling",
-        duration: "3 months",
-        platforms: "Figma | Lovable | Supabase",
+        duration: "Ongoing",
+        platforms: "Figma | Cloud Systems",
         accentColor: "#4f46e5",
         themeGradient: "from-[#F5F3FF] to-[#FFFFFF]",
         links: [
@@ -259,105 +260,100 @@ export const projects: Record<string, ProjectData> = {
         blocks: [
             {
                 type: "problem-statement",
-                title: "1️⃣ Problem & Context",
-                highlight: "Maintaining a scalable and adaptable design system requires constant updates, documentation, and collaboration.",
-                content: "In today’s fast-paced product development landscape, design consistency and efficiency are crucial. However, manual processes often lead to:",
+                title: "1️⃣ The Context",
+                highlight: "As RedBeryl expanded into compliance management, HRMS, cloud-native systems, and AI-powered automation, the product ecosystem became increasingly complex.",
+                content: "Multiple user roles (Super Admin, Employee, Client Admin), multi-tenant architecture, and regulatory workflows introduced UX fragmentation risks. Without a structured system approach, feature expansion could easily lead to inconsistent experiences, duplicated components, and scaling inefficiencies.",
                 list: [
-                    "Inconsistencies across different platforms",
-                    "Outdated or missing documentation",
-                    "Slow component handover to developers",
-                    "Duplicate work due to lack of a central source"
+                    "Inconsistent experiences across expanding features",
+                    "Duplicated components and wasted effort",
+                    "Scaling inefficiencies without a structured system approach"
+                ]
+            },
+            {
+                type: "goals-list",
+                title: "2️⃣ The Goal",
+                goals: [
+                    "Supports multi-tenant enterprise architecture",
+                    "Scales across compliance, HRMS, and AI modules",
+                    "Reduces operational friction",
+                    "Enables faster feature deployment",
+                    "Maintains accessibility and governance standards"
                 ]
             },
             {
                 type: "rich-text",
-                title: "2️⃣ The Solution",
-                content: "To address these challenges, I created an AI-powered UI Design System Generator. By integrating Lovable.ai and Supabase, this system streamlines component generation, versioning, and documentation automation, ensuring a single source of truth for both designers and developers."
+                title: "3️⃣ The Strategic Shift: From Screens to Systems",
+                content: "The objective was not just visual consistency — but operational scalability and system intelligence. Instead of designing isolated pages, I restructured the product around modular architecture, reusable UX patterns, structured role-based dashboards, and intelligent workflow orchestration. This shifted RedBeryl from feature-driven design to system-driven product thinking."
             },
             {
                 type: "process-steps",
-                title: "3️⃣ Component Audit & Standardization",
-                content: "Key steps taken to standardize the design system:",
-                highlight: "Establishing a solid foundation for consistency.",
+                title: "4️⃣ Atomic Foundations (Design System Layer)",
+                content: "The Solution: Introduced semantic design tokens aligned with product states (Success, Risk, Compliance, Action). The Win: System-wide updates could be rolled out instantly, ensuring long-term scalability and dark mode readiness.",
+                highlight: "The foundation: Tokens & Standards",
                 steps: [
-                    "Conducted an audit of existing design components across different projects.",
-                    "Identified inconsistencies in spacing, typography, button styles, input fields, and interactions.",
-                    "Categorized common UI elements (buttons, modals, tooltips, input fields, etc.).",
-                    "Established a set of design tokens (colors, shadows, spacing, typography) to ensure consistency.",
-                    "Created theme variations (light mode, dark mode, accessibility-friendly).",
-                    "Defined usage guidelines for all components to ensure scalability.",
-                    "Created a component hierarchy to streamline implementation."
-                ]
-            },
-            {
-                type: "triggers",
-                title: "4️⃣ AI-Powered Generation",
-                triggers: [
-                    {
-                        category: "🤖 Generative Capabilities",
-                        terms: [
-                            "Integrated Lovable.ai to dynamically generate UI components based on predefined rules.",
-                            "Allowed users to input design requirements (e.g., “Generate a responsive card component”).",
-                            "AI suggested the best design patterns based on industry standards."
-                        ]
-                    },
-                    {
-                        category: "🎨 Customization",
-                        terms: [
-                            "Enabled customization for corner radius, padding, shadows, and states.",
-                            "AI recommended adaptive layouts for web and mobile responsiveness."
-                        ]
-                    },
-                    {
-                        category: "♿ Accessibility & Quality",
-                        terms: [
-                            "AI ensured components met WCAG accessibility standards.",
-                            "Suggested color contrast improvements and alternative text options."
-                        ]
-                    }
+                    "Color systems (semantic, not hex-based)",
+                    "Spacing & grid standards",
+                    "Border radius consistency",
+                    "Typography hierarchy",
+                    "Elevation & interaction states"
                 ]
             },
             {
                 type: "process-steps",
-                title: "5️⃣ Storage & Versioning",
-                content: "Leveraging Supabase for backend reliability:",
-                highlight: "Ensuring a single source of truth for all components.",
+                title: "5️⃣ Component Architecture",
+                highlight: "The Components Library",
+                content: "Built a comprehensive Figma component system. The Win: Design-to-development handoff friction reduced significantly. Engineers implemented features using reusable component logic instead of rebuilding patterns.",
                 steps: [
-                    "Implemented Supabase as a backend to store UI components.",
-                    "Enabled real-time updates for design changes across teams.",
-                    "Allowed version tracking of each component update.",
-                    "Built an API that allows developers to retrieve design system components.",
-                    "Ensured seamless synchronization between Figma and development environments."
-                ]
-            },
-            {
-                type: "process-steps",
-                title: "6️⃣ Testing & Documentation",
-                content: "Validating and documenting the system:",
-                highlight: "Bridging the gap between design and development.",
-                steps: [
-                    "Conducted usability testing to validate AI-generated components.",
-                    "Gathered feedback from design and development teams for improvements.",
-                    "Built a documentation site with live component previews.",
-                    "Included usage guidelines, code snippets, and interactive demos.",
-                    "Refined AI-generated components based on testing feedback.",
-                    "Improved component adaptability for different design systems."
+                    "Buttons (state-based variants)",
+                    "Form inputs & validation logic",
+                    "Role-based dashboard layouts",
+                    "Navigation patterns",
+                    "Notification & status components",
+                    "Compliance workflow states"
                 ]
             },
             {
                 type: "image",
-                title: "7️⃣ Design System Demo",
+                title: "🎨 Design System Architecture",
                 src: "/lovable-uploads/design-system-demo.gif",
-                caption: "Animated demo of the design system components in action."
+                caption: "Animated demo of the unified design system components in action."
+            },
+            {
+                type: "role-list",
+                title: "6️⃣ Engineering Collaboration",
+                highlight: "Bridging Design & Engineering",
+                content: "This reduced ambiguity and increased delivery velocity by aligning effectively with engineering.",
+                roles: [
+                    "State documentation (Hover, Active, Disabled, Error)",
+                    "Accessibility specifications (WCAG alignment)",
+                    "Interaction guidelines",
+                    "Component usage documentation"
+                ]
             },
             {
                 type: "impact",
-                title: "8️⃣ Expected Impact",
+                title: "7️⃣ Final Outcomes",
                 items: [
-                    "Reduced manual documentation time by 40%",
-                    "Ensured 100% consistency between design and code",
-                    "Accelerated component creation with AI automation",
-                    "Seamless collaboration via Supabase backend"
+                    "35–40% faster feature rollout cycles",
+                    "Reduced component duplication across modules",
+                    "Scalable multi-tenant UX structure",
+                    "Improved compliance deadline tracking",
+                    "AI-assisted task completion efficiency gains",
+                    "Stronger cross-team collaboration"
+                ]
+            },
+            {
+                type: "learnings",
+                title: "8️⃣ The Bigger Picture",
+                learnings: [
+                    "From Product to Platform: RedBeryl evolved from feature-based tools to structured enterprise systems, to an intelligent, modular ecosystem.",
+                    "The UX strategy ensured the platform can expand without requiring UX redesign from scratch."
+                ],
+                future: [
+                    "New jurisdictions",
+                    "New AI capabilities",
+                    "New enterprise clients",
+                    "Increased entity scale"
                 ]
             }
         ],
