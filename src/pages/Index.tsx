@@ -45,8 +45,8 @@ const Index = () => {
       >
         <div className="hero-content max-w-[1200px] mx-auto w-full">
           <div className="greeting flex items-center gap-2 mb-4">
-            <TextReveal text="Hi! I'm Sanket" className="text-base md:text-lg lg:text-2xl font-normal text-[#0F0F0F]" />
             <span className="text-base md:text-lg lg:text-2xl animate-wave origin-bottom-right inline-block">👋</span>
+            <TextReveal text="Hi! I'm Sanket," className="text-base md:text-lg lg:text-2xl font-normal text-[#0F0F0F]" />
           </div>
           <div className="intro flex flex-wrap items-center gap-x-2">
             <TextReveal
