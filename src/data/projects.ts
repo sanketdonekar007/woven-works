@@ -197,6 +197,7 @@ export interface ProjectData {
     quote?: string;
     accentColor?: string;
     themeGradient?: string;
+    clientWebsite?: string;
     lists?: string[];
     links: [
         { text: string, url: string },
@@ -260,9 +261,9 @@ export const projects: Record<string, ProjectData> = {
         blocks: [
             {
                 type: "problem-statement",
-                title: "1️⃣ The Context",
-                highlight: "As RedBeryl expanded into compliance management, HRMS, cloud-native systems, and AI-powered automation, the product ecosystem became increasingly complex.",
-                content: "Multiple user roles (Super Admin, Employee, Client Admin), multi-tenant architecture, and regulatory workflows introduced UX fragmentation risks. Without a structured system approach, feature expansion could easily lead to inconsistent experiences, duplicated components, and scaling inefficiencies.",
+                title: "The Context",
+                highlight: "RedBeryl was growing fast. As we added compliance tools, HRMS features, and AI automation, the ecosystem started getting complicated.",
+                content: "We were dealing with multiple users—Super Admins, standard employees, and client admins—across a multi-tenant setup. The risk? Fragmented user experiences and a lot of duplicated effort. We realized that without a central design language, shipping new features would soon mean shipping inconsistent layouts, slowing everything down.",
                 list: [
                     "Inconsistent experiences across expanding features",
                     "Duplicated components and wasted effort",
@@ -271,7 +272,7 @@ export const projects: Record<string, ProjectData> = {
             },
             {
                 type: "goals-list",
-                title: "2️⃣ The Goal",
+                title: "The Goal",
                 goals: [
                     "Supports multi-tenant enterprise architecture",
                     "Scales across compliance, HRMS, and AI modules",
@@ -282,12 +283,12 @@ export const projects: Record<string, ProjectData> = {
             },
             {
                 type: "rich-text",
-                title: "3️⃣ The Strategic Shift: From Screens to Systems",
-                content: "The objective was not just visual consistency — but operational scalability and system intelligence. Instead of designing isolated pages, I restructured the product around modular architecture, reusable UX patterns, structured role-based dashboards, and intelligent workflow orchestration. This shifted RedBeryl from feature-driven design to system-driven product thinking."
+                title: "The Strategic Shift: From Screens to Systems",
+                content: "The goal wasn't just to make things look pretty; it was to build a system that made designing and developing faster. Instead of creating pages in isolation, I advocated for a modular approach. By breaking down the interface into reusable patterns and structured dashboards, we completely shifted RedBeryl's mindset from 'building features' to 'building a product ecosystem.'"
             },
             {
                 type: "process-steps",
-                title: "4️⃣ Atomic Foundations (Design System Layer)",
+                title: "Atomic Foundations (Design System Layer)",
                 content: "The Solution: Introduced semantic design tokens aligned with product states (Success, Risk, Compliance, Action). The Win: System-wide updates could be rolled out instantly, ensuring long-term scalability and dark mode readiness.",
                 highlight: "The foundation: Tokens & Standards",
                 steps: [
@@ -300,7 +301,7 @@ export const projects: Record<string, ProjectData> = {
             },
             {
                 type: "process-steps",
-                title: "5️⃣ Component Architecture",
+                title: "Component Architecture",
                 highlight: "The Components Library",
                 content: "Built a comprehensive Figma component system. The Win: Design-to-development handoff friction reduced significantly. Engineers implemented features using reusable component logic instead of rebuilding patterns.",
                 steps: [
@@ -320,7 +321,7 @@ export const projects: Record<string, ProjectData> = {
             },
             {
                 type: "role-list",
-                title: "6️⃣ Engineering Collaboration",
+                title: "Engineering Collaboration",
                 highlight: "Bridging Design & Engineering",
                 content: "This reduced ambiguity and increased delivery velocity by aligning effectively with engineering.",
                 roles: [
@@ -332,7 +333,7 @@ export const projects: Record<string, ProjectData> = {
             },
             {
                 type: "impact",
-                title: "7️⃣ Final Outcomes",
+                title: "Final Outcomes",
                 items: [
                     "35–40% faster feature rollout cycles",
                     "Reduced component duplication across modules",
@@ -344,7 +345,7 @@ export const projects: Record<string, ProjectData> = {
             },
             {
                 type: "learnings",
-                title: "8️⃣ The Bigger Picture",
+                title: "The Bigger Picture",
                 learnings: [
                     "From Product to Platform: RedBeryl evolved from feature-based tools to structured enterprise systems, to an intelligent, modular ecosystem.",
                     "The UX strategy ensured the platform can expand without requiring UX redesign from scratch."
@@ -377,9 +378,9 @@ export const projects: Record<string, ProjectData> = {
         blocks: [
             {
                 type: "problem-statement",
-                title: "1️⃣ Problem & Context",
-                highlight: "📢 A 2024 WhatsApp Usage Survey conducted in multiple countries, including India, found that over 40% of respondents regularly use WhatsApp voice notes for communication, citing convenience and expressiveness as key reasons. 🚀",
-                content: "Voice notes are a convenient way for WhatsApp users to communicate, but they present accessibility challenges for users who cannot listen to them immediately. Additionally, users often struggle to find specific information within long voice messages.",
+                title: "Problem & Context",
+                highlight: "Voice notes are incredibly popular—in fact, a recent survey showed over 40% of WhatsApp users rely on them heavily for quick, expressive communication.",
+                content: "But there's a catch: they aren't always accessible. Maybe you're in a quiet office, or maybe you're hard of hearing. On top of that, trying to find one specific detail buried in a 3-minute audio clip is frustrating. Voice notes are great for the sender, but not always for the receiver.",
                 list: [
                     "Accessibility challenges for hearing-impaired users",
                     "Inability to listen to audio in public or quiet spaces",
@@ -389,12 +390,12 @@ export const projects: Record<string, ProjectData> = {
             },
             {
                 type: "rich-text",
-                title: "2️⃣ The Solution",
-                content: "To solve this, I designed a Quick Voice Note Transcription feature that allows users to generate and search transcriptions of voice messages seamlessly within chat conversations. This feature enhances accessibility, usability, and overall user experience by providing searchable, toggleable transcriptions within the chat interface."
+                title: "The Solution",
+                content: "My solution was straightforward: an integrated voice note transcription feature. I wanted users to effortlessly convert audio to text and even search those transcriptions right inside the chat. The idea was to keep the familiar WhatsApp feel while drastically improving accessibility and convenience."
             },
             {
                 type: "triggers",
-                title: "3️⃣ Key Features",
+                title: "Key Features",
                 triggers: [
                     {
                         category: "🔍 In-Message Transcription Search",
@@ -432,13 +433,13 @@ export const projects: Record<string, ProjectData> = {
             },
             {
                 type: "image",
-                title: "4️⃣ Working Prototype",
+                title: "Working Prototype",
                 src: "/lovable-uploads/whatsapp-gif.gif",
                 caption: "Interactive prototype demonstrating the transcription and search flow"
             },
             {
                 type: "impact",
-                title: "5️⃣ Expected Impact",
+                title: "Expected Impact",
                 items: [
                     "Increases accessibility for users who cannot listen to voice messages",
                     "Improves searchability for quick information retrieval",
@@ -454,7 +455,7 @@ export const projects: Record<string, ProjectData> = {
         navTitle: "VState Filings – Compliance Management Platform",
         subtitle: "Compliance & Filing Management Platform (B2B SaaS)",
         headerImage: "/lovable-uploads/filenow2.jpg",
-        intro: "vState is a role-based compliance and filing management platform designed to help service providers manage multi-state filings, deadlines, and client communication with confidence.",
+        intro: "vState is a compliance platform designed to help service providers juggle multi-state filings, strict deadlines, and client communication without the usual chaos.",
         role: "Senior UI/UX Designer",
         focus: "UX Strategy, Information Architecture, User Flows, Design Systems",
         quote: "Designing for compliance means designing for clarity, trust, and zero margin for error.",
@@ -463,6 +464,7 @@ export const projects: Record<string, ProjectData> = {
         duration: "3 months",
         budget: "$45,000",
         platforms: "Web (B2B SaaS)",
+        clientWebsite: "https://vstatefilings.com/",
         accentColor: "#2563eb",
         themeGradient: "from-[#EFF6FF] to-[#FFFFFF]",
         links: [
@@ -472,30 +474,45 @@ export const projects: Record<string, ProjectData> = {
         blocks: [
             {
                 type: "problem-statement",
-                title: "2️⃣ Problem Statement",
-                highlight: "Compliance service providers manage hundreds of filings across clients, states, and regulatory timelines. Most teams rely on spreadsheets, emails, and disconnected tools—leading to missed deadlines, poor visibility, and constant stress.",
-                content: "Key Challenges:",
+                title: "Context & Problem Definition",
+                highlight: "Compliance workflows were originally managed using spreadsheets, emails, and fragmented tools. This resulted in missed deadlines, a lack of visibility, redundant data entry, and poor collaboration between clients and internal teams.",
+                content: "vState Filings was conceived to solve these core pain points by centralizing compliance and filing operations into a unified platform. Our goal was to alleviate both the business pains of scaling operations and the user pains of high cognitive load.",
                 list: [
-                    "Tracking multiple state-specific compliance deadlines",
-                    "Switching between clients and companies efficiently",
-                    "Managing document-heavy workflows",
-                    "Keeping clients informed without manual follow-ups",
+                    "Business Pain: Inefficient scaling, high error rates, and difficulty managing multi-state legal requirements systematically.",
+                    "User Pain: Constant context switching between clients, missing real-time visibility, and anxiety over missed compliance penalties.",
+                    "Impact Goal: Create a centralized system to ensure zero missed deadlines, automate repetitive tracking, and improve cross-role collaboration."
                 ]
             },
             {
                 type: "role-list",
-                title: "3️⃣ Business & User Context",
-                highlight: "vState is used by US-based compliance service providers working with SMBs and enterprises. The platform supports multiple roles, each with distinct responsibilities and expectations.",
+                title: "Business Context & Target Users",
+                highlight: "Early on, it was clear we needed a unified system that presented distinct, actionable views for different user roles to prevent data overload.",
                 content: "Primary User Roles:",
                 roles: [
-                    "Super Admin: Business owners managing clients, teams, and revenue",
-                    "Employee: Compliance executives executing filings",
-                    "Client Admin: Business owners tracking their compliance status",
+                    "Super Admin: Business owners managing clients, teams, billing, and holistic risk.",
+                    "Employee: Compliance executives executing filings and managing daily action items.",
+                    "Client Admin: Business owners external to the business tracking their own compliance status."
+                ]
+            },
+            {
+                type: "rich-text",
+                title: "Research Methodology",
+                content: "To bridge the gap between business goals and user needs, we conducted generative research. This involved heuristic evaluations of the company's legacy spreadsheet workflows, as well as direct interviews with working compliance executives to uncover the daily friction impeding their work."
+            },
+            {
+                type: "process-steps",
+                title: "Key Insights",
+                highlight: "Translating frustrations into actionable design targets.",
+                content: "Our research crystallized into three major areas of friction:",
+                steps: [
+                    "Deadline Anxiety: Users struggled to track moving deadlines across states with highly volatile regulations, leading to compliance anxiety.",
+                    "Redundant Labor: Clients were frequently frustrated by having to manually enter the same company data across multiple emails and disparate tools.",
+                    "Poor Prioritization: Employees had no unified system to prioritize urgent filings over routine ones, artificially capping their daily output."
                 ]
             },
             {
                 type: "personas",
-                title: "4️⃣ User Personas",
+                title: "User Personas",
                 personas: [
                     {
                         name: "Michael Anderson",
@@ -524,48 +541,24 @@ export const projects: Record<string, ProjectData> = {
                 ]
             },
             {
-                type: "triggers",
-                title: "5️⃣ Behavioral Triggers",
-                triggers: [
-                    {
-                        category: "Emotional Triggers",
-                        terms: ["Fear of penalties and missed deadlines", "Stress caused by regulatory complexity", "Relief when compliance is clearly “completed”"]
-                    },
-                    {
-                        category: "Cognitive Triggers",
-                        terms: ["Need for accuracy and validation", "Trust built through audit trails and history", "Clear ownership and accountability"]
-                    },
-                    {
-                        category: "Time vs Effort Triggers",
-                        terms: ["Preference for automation over manual entry", "Reuse of previous data and documents", "Fast client switching"]
-                    },
-                    {
-                        category: "Expectation Triggers",
-                        terms: ["Real-time status updates", "Proactive notifications", "Secure, enterprise-grade behavior"]
-                    }
-                ]
-            },
-            {
                 type: "goals-list",
-                title: "6️⃣ UX Goals & Design Principles",
+                title: "UX Strategy & Principles",
                 goals: [
-                    "Reduce compliance anxiety",
-                    "Improve visibility and trust",
-                    "Minimize cognitive load",
-                    "Enable scalability without complexity",
-                    "Design around status-driven workflows"
+                    "Prioritize workflows by urgency: Surface immediate risks immediately.",
+                    "Automate data persistence: Eliminate manual data re-entry across forms.",
+                    "Role-tailored interfaces: Show users only what they need to act on.",
+                    "Provide state predictability: Clear feedback loops on external submissions."
                 ]
             },
             {
                 type: "info-architecture",
-                title: "7️⃣ Information Architecture",
-                highlight: "The platform uses role-based information architecture to ensure users only see what matters to them.",
+                title: "Information Architecture",
+                highlight: "Structuring the navigation to drastically reduce context switching and align with mental models.",
                 content: "Key Modules:",
                 modules: [
                     "Dashboard",
                     "Clients & Companies",
                     "Orders & Filings",
-                    "Compliance Calendar",
                     "Notifications",
                     "Billing & Settings"
                 ],
@@ -573,54 +566,50 @@ export const projects: Record<string, ProjectData> = {
             },
             {
                 type: "user-flow-popup",
-                title: "8️⃣ User Task Flows",
-                highlight: "Each flow was optimized to reduce steps, prevent errors, and maintain clarity.",
-                content: "Core Flows Designed:",
+                title: "User Task Flows",
+                highlight: "We optimized multi-user task flows to prevent data siloes and to handle document hand-offs seamlessly.",
+                content: "Core Flows Mapped:",
                 steps: [
-                    "Authentication & Onboarding",
-                    "Role-based Dashboard Access",
-                    "Client & Company Management",
-                    "Order Creation & Filing",
-                    "Compliance Tracking",
-                    "Notifications & Billing"
+                    "Authentication & Role Gateway",
+                    "Role-based Action Dashboards",
+                    "Global Client & Company Indexing",
+                    "Order Creation & Automated Filing Prep",
+                    "Centralized Compliance Tracking Map",
+                    "Automated Event-Triggered Notifications"
                 ]
             },
-
             {
                 type: "challenges",
-                title: "9️⃣ Key UX Challenges & Solutions",
+                title: "UX Moments & Feature Deep Dives",
                 challenges: [
                     {
-                        challenge: "Tracking Multiple Deadlines",
-                        solution: "Centralized compliance calendar with alerts"
+                        challenge: "The Compliance Dashboard (Goal: Unified deadline visibility)",
+                        solution: "Problem: Users lacked visibility over tasks spread across states. Solution: Designed status cards, trend charts, and state-specific urgency filters. Benefit: Clients and executives get instant clarity on urgent tasks."
                     },
                     {
-                        challenge: "Client Context Switching",
-                        solution: "Persistent client list with quick switch"
+                        challenge: "Role-Based Workspaces (Goal: Reduce cognitive load)",
+                        solution: "Problem: Employees were overwhelmed seeing all global organizational data. Solution: Tailored the workspace to surface only action-items relevant to the logged-in user's assigned orders."
                     },
                     {
-                        challenge: "Manual Follow-Ups",
-                        solution: "Automated notifications and status updates"
+                        challenge: "Automated Data Persistence (Goal: Eliminate redundant entry)",
+                        solution: "Problem: Clients had to enter identical company registration data multiple times. Solution: Created central Data Profiles that auto-populate state filing forms."
                     },
                     {
-                        challenge: "Filing Errors",
-                        solution: "Step-based workflows with validation"
+                        challenge: "Centralized Communication (Goal: Maintain context)",
+                        solution: "Problem: Compliance documents were lost in disparate email threads. Solution: Integrated contextual messaging directly within the Order view for seamless retrieval."
                     }
                 ]
             },
-
             {
                 type: "core-screens",
-                title: "10️⃣ Core Screens",
-                highlight: "Each screen is designed to support fast decision-making and high trust.",
+                title: "Key Screens & Annotations",
+                highlight: "Mapping the strategic requirements precisely to interface elements.",
                 screens: [
-                    "Login & Authentication",
-                    "Super Admin Dashboard",
-                    "Client Profile",
-                    "Order Creation",
-                    "Compliance Calendar",
-                    "Notifications",
-                    "Roles & Permissions"
+                    { title: "Login & Authentication", image: "Fast onboarding with contextual role hints" },
+                    { title: "Super Admin Dashboard", image: "High-level metric visualization" },
+                    { title: "Client Profile", image: "Aggregated document vaults" },
+                    { title: "Order Creation", image: "Guided, step-by-step progressive disclosure forms" },
+                    { title: "Notifications", image: "Actionable, embedded linking" }
                 ]
             },
             {
@@ -633,56 +622,45 @@ export const projects: Record<string, ProjectData> = {
             {
                 type: "image",
                 src: "/lovable-uploads/vstate-demo.gif",
-                caption: "Full Platform Walkthrough"
+                caption: "Full Platform Flow Demonstration"
             },
             {
                 type: "design-system",
-                title: "11️⃣ Design System",
-                highlight: "A scalable design system ensures consistency across the platform. This system supports rapid feature expansion.",
+                title: "Design System & Foundation",
+                highlight: "Establishing a unified language to scale features gracefully over the long term.",
                 content: "Includes:",
                 items: [
-                    "Color tokens for statuses",
-                    "Typography hierarchy",
-                    "Button & input components",
-                    "Tables and badges",
-                    "Notification patterns"
-                ]
-            },
-            {
-                type: "accessibility",
-                title: "12️⃣ Accessibility & Usability",
-                items: [
-                    "High-contrast UI for data-heavy screens",
-                    "Clear error and success states",
-                    "Readable tables and forms",
-                    "Predictable navigation patterns"
+                    "Color tokens for precise status mapping",
+                    "Typography hierarchy for data-dense tables",
+                    "Reusable form and validation patterns",
+                    "Standardized feedback and notification banners"
                 ]
             },
             {
                 type: "impact",
-                title: "13️⃣ Impact & Outcomes",
+                title: "UX Success Metrics",
                 items: [
-                    "Improved visibility across compliance workflows",
-                    "Reduced manual follow-ups",
-                    "Faster task completion for employees",
-                    "Increased client confidence and trust"
+                    "Reduced manual task dependency, as observed through qualitative pilot sessions.",
+                    "Improved operational confidence; employees could complete multi-state filing tasks significantly faster without checking external spreadsheets.",
+                    "Usability testing showed reduced confusion in the centralized navigation structure.",
+                    "Internal feedback indicated a vastly improved onboarding speed for new compliance employees."
                 ]
             },
             {
                 type: "learnings",
-                title: "14️⃣ Learnings & Future Scope",
+                title: "Learnings & Future Opportunities",
                 learnings: [
-                    "Compliance UX must prioritize clarity over creativity",
-                    "Status and feedback are critical trust signals",
-                    "Automation dramatically reduces cognitive load"
+                    "What Worked: Implementing role-based views was an immediate win, isolating necessary workflows and shedding cognitive overhead.",
+                    "What Didn't: We initially underestimated edge cases in complex multi-state entity variations; upcoming sprints will prioritize expanding these dynamic form validations.",
+                    "Process Takeaway: Integrating with state APIs required us to refine our data-model significantly earlier in the UX flow than initially planned, shifting how we structure our research phase."
                 ],
                 future: [
-                    "AI-powered compliance insights",
-                    "Predictive deadline risk alerts",
-                    "Deeper accounting and CRM integrations"
+                    "AI-assisted compliance issue predictions.",
+                    "Smart deadline forecasting based on historical processing times.",
+                    "Intelligent task prioritization modules for critical filings.",
+                    "Chatbot support flows for complex legal compliance exceptions."
                 ]
-            },
-
+            }
         ],
     },
     langlang: {
@@ -690,7 +668,7 @@ export const projects: Record<string, ProjectData> = {
         title: "LangLang - Language learning app concept",
         navTitle: "Concept - Language learning app",
         headerImage: "/lovable-uploads/langlang-header.png",
-        intro: "Lang-Lang is a conceptual language-learning app designed to provide an engaging and structured way to master new languages. The app integrates AI-driven personalized learning, gamification, and real-world conversational practice to enhance user experience. As a ux designer, I was responsible for crafting an intuitive interface that not only makes learning seamless for users but also streamlines the overall functionality for educators and administrators.",
+        intro: "Lang-Lang is an app concept I designed to make picking up a new language feel less like a chore and more like a game. It blends personalized learning paths with practical conversational practice. As the lead UX designer on this concept, my goal was to craft an interface that felt completely natural to a beginner while still offering the depth needed for fluid learning.",
         role: "UI/UX Designer",
         type: "Conceptual Case Study",
         industry: "EdTech",
@@ -707,8 +685,8 @@ export const projects: Record<string, ProjectData> = {
             {
                 type: "problem-statement",
                 title: "Problem Statement",
-                highlight: "Users become frustrated with their progress and ultimately give up on their language learning goals due to a lack of engaging, real-world practice mediums.",
-                content: "Current language learning platforms often fail to provide a practical and personalized experience. Many rely on traditional methods that lack versatility and engagement.",
+                highlight: "Learning a language is exciting at first, but drop-off rates are huge. A lack of real-world context and repetitive exercises often leads to frustration.",
+                content: "Most existing platforms treat language like a textbook rather than a living skill. They can feel rigid and one-size-fits-all, failing to keep modern learners engaged over the long haul.",
                 list: [
                     "Limited customization options for learners",
                     "Lack of effective progress tracking",
@@ -719,12 +697,12 @@ export const projects: Record<string, ProjectData> = {
             {
                 type: "rich-text",
                 title: "Thinking of digital solutions",
-                content: "As a team, we explored various digital solutions to enhance the language-learning experience while making the platform intuitive and engaging. I played a key role in shaping solutions that streamlined the learning process and improved user retention. My involvement included collaborating closely fellow designers to understand user needs, identify pain points, and create an immersive experience. Working alongside brand designers, I helped craft a visually cohesive product that not only aligned with the platform’s goals but also elevated the overall user experience."
+                content: "We looked at several ways to make language acquisition stick. I led the charge on defining solutions to boost user retention, diving deep into where users currently drop off. Working closely with researchers and brand designers, I helped translate our core findings into a visually cohesive and immersive app experience that users actually wanted to return to daily."
             },
             {
                 type: "rich-text",
                 title: "Competitor Analysis",
-                content: "The competitive analysis highlights the strengths, advantages, and limitations of major language-learning platforms like Duolingo, Memrise, Babbel, and MosaLingua. Each competitor has a unique value proposition, such as Duolingo’s gamified quizzes, Memrise’s real native speaker interactions, Babbel’s strong grammar integration, and MosaLingua’s flashcard-based learning. While advantages include freemium models, structured programs, and engaging content, key drawbacks include limited lesson depth, restricted language offerings, and a lack of advanced learning options. This analysis helps identify gaps and opportunities to create a more effective and well-rounded language-learning experience."
+                content: "Before wireframing, I dug into the giants: Duolingo, Memrise, Babbel, and MosaLingua. Each has a distinct flavor—Duolingo owns gamification, Memrise focuses on native speakers, and Babbel leans into grammar structure. But they all share common gaps, like a sudden steep learning curve or limited depth for intermediate speakers. Mapping out their strengths and weaknesses gave me a clear blueprint of opportunities for LangLang."
             },
             {
                 type: "image",
@@ -734,7 +712,7 @@ export const projects: Record<string, ProjectData> = {
             {
                 type: "rich-text",
                 title: "Quantitative User Research",
-                content: "I decided to perform the user survey to gain quantitative data on how users learn a new language and the struggles many share. 38 users participate in my user survey. They were learning a variety of different languages, from German to Spanish, French, and the local languages of India."
+                content: "To validate these assumptions, I ran a survey to see exactly where people were struggling. I got responses from 38 participants who were actively trying to learn everything from German and Spanish to various regional languages in India. Hearing their firsthand frustrations shaped our core user flows."
             },
             {
                 type: "image",
@@ -784,7 +762,7 @@ export const projects: Record<string, ProjectData> = {
         navTitle: "Snack Hack - Decode Your Snacks, Instantly",
         subtitle: "Nutritional Insights at Your Fingertips",
         headerImage: "/lovable-uploads/Snack Hack Hero.png",
-        intro: "SnackHack is a mobile application designed to help users make healthier snacking decisions by instantly analyzing snack products and presenting simplified health insights and smarter alternatives.",
+        intro: "Ever stood in an aisle staring at a nutrition label and felt totally lost? SnackHack is a mobile app designed to bridge that gap. It analyzes snack products on the spot, offering instant, easy-to-read health insights and suggesting better alternatives.",
         role: "Product Design",
         industry: "Health & Food",
         timeline: "Feb 2025 - Progress",
@@ -799,7 +777,7 @@ export const projects: Record<string, ProjectData> = {
             {
                 type: "problem-statement",
                 title: "The Problem",
-                highlight: "Snack labels are often complex, filled with unfamiliar ingredients and confusing nutritional data. While many users want to eat healthier, they lack quick and reliable information at the moment they're choosing snacks—especially in-store.",
+                highlight: "Nutrition labels are notoriously hard to decipher. They're packed with chemical names and convoluted serving sizes. Most of us want to snack healthier, but we simply don't have the time or background to properly evaluate a product while standing in the grocery store aisle.",
                 content: "Key Challenges:",
                 list: [
                     "Nutritional information is difficult to interpret: Complex data makes it hard to understand what's actually healthy.",

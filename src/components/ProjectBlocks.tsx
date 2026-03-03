@@ -358,7 +358,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                 View User Task Flow Diagram
                             </button>
                         </DialogTrigger>
-                        <DialogContent className="max-w-7xl w-[95vw] h-[85vh] p-0 border-none bg-white rounded-3xl overflow-hidden shadow-lg shadow-gray-200/50">
+                        <DialogContent className="max-w-7xl w-[95vw] h-[85vh] p-0 border-none bg-white rounded-3xl overflow-y-auto shadow-lg shadow-gray-200/50">
                             <UserFlow />
                         </DialogContent>
                     </Dialog>

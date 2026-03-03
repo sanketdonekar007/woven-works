@@ -7,13 +7,15 @@ interface RevealOnScrollProps {
   className?: string;
   delay?: number; // Delay in ms
   threshold?: number; // Intersection threshold (0 to 1)
+  id?: string;
 }
 
 export const RevealOnScroll = ({
   children,
   className,
   delay = 0,
-  threshold = 0.1
+  threshold = 0.1,
+  id
 }: RevealOnScrollProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -44,6 +46,7 @@ export const RevealOnScroll = ({
   return (
     <div
       ref={ref}
+      id={id}
       className={cn(
         "transition-all duration-700 ease-out transform",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",

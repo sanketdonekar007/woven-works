@@ -145,18 +145,6 @@ export const UserFlow = () => {
 
                 <FlowStep
                     number="5️⃣"
-                    title="Compliance Tracking Flow"
-                    content="Dashboard → Compliance Calendar → Upcoming Deadlines"
-                >
-                    <FlowNode
-                        type="action"
-                        label="Compliance Detail View"
-                        subtext="Upload Required Docs → Mark as Filed → Notify Client → Archive Compliance."
-                    />
-                </FlowStep>
-
-                <FlowStep
-                    number="6️⃣"
                     title="Notifications & Communication Flow"
                     content="Trigger Events: Order Created, Query Raised, Payment Approved / Rejected, Filing Completed, Subscription Renewal"
                 >
@@ -167,7 +155,7 @@ export const UserFlow = () => {
                 </FlowStep>
 
                 <FlowStep
-                    number="7️⃣"
+                    number="6️⃣"
                     title="Billing & Subscription Flow"
                     content="Dashboard → Billing"
                 >
@@ -178,7 +166,7 @@ export const UserFlow = () => {
                 </FlowStep>
 
                 <FlowStep
-                    number="8️⃣"
+                    number="7️⃣"
                     title="Settings & Access Control Flow"
                     content="Dashboard → Settings"
                 >
@@ -189,7 +177,7 @@ export const UserFlow = () => {
                 </FlowStep>
 
                 <FlowStep
-                    number="9️⃣"
+                    number="8️⃣"
                     title="Logout / Session Flow"
                     content="User Menu → Logout"
                     isLast={true}

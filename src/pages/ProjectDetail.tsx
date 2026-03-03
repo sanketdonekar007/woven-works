@@ -1,6 +1,6 @@
 
 import { useParams, Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { RevealOnScroll } from "../components/RevealOnScroll";
 import { projects } from "@/data/projects";
 import { BlockRenderer } from "@/components/ProjectBlocks";
@@ -10,12 +10,37 @@ const ProjectDetail = () => {
   const { projectId } = useParams();
   const project = projectId ? projects[projectId] : null;
 
+  const [activeSection, setActiveSection] = useState<number>(0);
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     if (!project && projectId) {
       console.error(`Project with ID ${projectId} not found`);
     }
   }, [projectId, project]);
+
+  useEffect(() => {
+    if (!project) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number(entry.target.getAttribute('data-index'));
+            setActiveSection(index);
+          }
+        });
+      },
+      { rootMargin: '-20% 0px -60% 0px' }
+    );
+
+    sectionRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, [project]);
 
   if (!project) {
     return (
@@ -89,7 +114,7 @@ const ProjectDetail = () => {
         </RevealOnScroll>
 
         {/* METADATA GRID */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-x-12 gap-y-16 mb-40 border-t border-gray-200 pt-20">
+        <div className="flex flex-wrap justify-center gap-x-12 md:gap-x-20 gap-y-16 mb-40 border-t border-gray-200 pt-20">
           {project.industry && (
             <div className="space-y-3">
               <div className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">Industry</div>
@@ -114,6 +139,20 @@ const ProjectDetail = () => {
               <div className="text-lg font-bold text-[#0F0F0F]">{project.platforms}</div>
             </div>
           )}
+          {project.clientWebsite && (
+            <div className="space-y-3">
+              <div className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">Client Website</div>
+              <a
+                href={project.clientWebsite}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg font-bold text-[#0F0F0F] flex items-center gap-2 group/link hover:text-blue-600 transition-colors"
+              >
+                {project.clientWebsite.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
+                <ExternalLink className="w-4 h-4 transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
+              </a>
+            </div>
+          )}
           {project.links && project.links[0]?.url && (
             <div className="space-y-3">
               <div className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">Resources</div>
@@ -132,10 +171,47 @@ const ProjectDetail = () => {
 
         {/* CONTENT BLOCKS */}
         {project.blocks && project.blocks.length > 0 && (
-          <div className="space-y-40 pb-40">
-            {project.blocks.map((block, index) => (
-              <BlockRenderer key={index} block={block} accentColor={project.accentColor} />
-            ))}
+          <div className="flex relative gap-12 lg:gap-24">
+            {/* Sidebar Navigation */}
+            <div className="hidden lg:block w-72 flex-shrink-0">
+              <div className="sticky top-40 flex flex-col gap-4">
+                {project.blocks.map((block, index) => {
+                  const isActive = activeSection === index;
+                  return (
+                    <div
+                      key={index}
+                      onClick={() => {
+                        sectionRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      }}
+                      className={`flex items-center gap-4 cursor-pointer group transition-all duration-500 py-1 ${isActive ? 'opacity-100 translate-x-2' : 'opacity-40 hover:opacity-70 hover:translate-x-1'
+                        }`}
+                    >
+                      <div className={`w-1.5 h-1.5 rounded-full transition-all duration-500 flex-shrink-0 ${isActive ? 'bg-[#0F0F0F] scale-[1.75]' : 'bg-transparent group-hover:bg-gray-400'
+                        }`} />
+                      <span className={`text-xs font-bold uppercase transition-all duration-500 leading-tight ${isActive ? 'text-[#0F0F0F] tracking-[0.15em]' : 'text-gray-500 tracking-[0.1em]'
+                        }`}>
+                        {block.title || `Section ${index + 1}`}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Blocks Content */}
+            <div className="flex-1 space-y-40 pb-40 max-w-5xl">
+              {project.blocks.map((block, index) => (
+                <div
+                  key={index}
+                  id={`section-${index}`}
+                  data-index={index}
+                  ref={(el) => (sectionRefs.current[index] = el)}
+                  className="scroll-mt-32"
+                >
+                  <BlockRenderer block={block} accentColor={project.accentColor} />
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
