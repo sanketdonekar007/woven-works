@@ -175,26 +175,37 @@ const ProjectDetail = () => {
             {/* Sidebar Navigation */}
             <div className="hidden lg:block w-72 flex-shrink-0">
               <div className="sticky top-40 flex flex-col gap-4">
-                {project.blocks.map((block, index) => {
-                  const isActive = activeSection === index;
-                  return (
-                    <div
-                      key={index}
-                      onClick={() => {
-                        sectionRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                      }}
-                      className={`flex items-center gap-4 cursor-pointer group transition-all duration-500 py-1 ${isActive ? 'opacity-100 translate-x-2' : 'opacity-40 hover:opacity-70 hover:translate-x-1'
-                        }`}
-                    >
-                      <div className={`w-1.5 h-1.5 rounded-full transition-all duration-500 flex-shrink-0 ${isActive ? 'bg-[#0F0F0F] scale-[1.75]' : 'bg-transparent group-hover:bg-gray-400'
-                        }`} />
-                      <span className={`text-xs font-bold uppercase transition-all duration-500 leading-tight ${isActive ? 'text-[#0F0F0F] tracking-[0.15em]' : 'text-gray-500 tracking-[0.1em]'
-                        }`}>
-                        {block.title || `Section ${index + 1}`}
-                      </span>
-                    </div>
-                  );
-                })}
+                {(() => {
+                  let lastTitledIndex = 0;
+                  const activeTitledIndex = project.blocks.reduce((acc, block, idx) => {
+                    if (block.title) lastTitledIndex = idx;
+                    if (idx === activeSection) return lastTitledIndex;
+                    return acc;
+                  }, 0);
+
+                  return project.blocks.map((block, index) => {
+                    if (!block.title) return null;
+
+                    const isActive = activeTitledIndex === index;
+                    return (
+                      <div
+                        key={index}
+                        onClick={() => {
+                          sectionRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }}
+                        className={`flex items-center gap-4 cursor-pointer group transition-all duration-500 py-1 ${isActive ? 'opacity-100 translate-x-2' : 'opacity-40 hover:opacity-70 hover:translate-x-1'
+                          }`}
+                      >
+                        <div className={`w-1.5 h-1.5 rounded-full transition-all duration-500 flex-shrink-0 ${isActive ? 'bg-[#0F0F0F] scale-[1.75]' : 'bg-transparent group-hover:bg-gray-400'
+                          }`} />
+                        <span className={`text-xs font-bold uppercase transition-all duration-500 leading-tight ${isActive ? 'text-[#0F0F0F] tracking-[0.15em]' : 'text-gray-500 tracking-[0.1em]'
+                          }`}>
+                          {block.title}
+                        </span>
+                      </div>
+                    );
+                  });
+                })()}
               </div>
             </div>
 

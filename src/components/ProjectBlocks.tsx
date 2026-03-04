@@ -264,12 +264,23 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                         <div className="text-2xl font-bold tracking-tighter text-gray-400">0{i + 1}</div>
                                         <h3 className="text-3xl md:text-4xl font-bold tracking-tighter text-[#0F0F0F]">{screen.title}</h3>
                                     </div>
-                                    <div className="rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-lg shadow-gray-200/50 bg-white group">
-                                        <img
-                                            src={screen.image}
-                                            alt={screen.title}
-                                            className="w-full h-auto block transition-transform duration-[2000ms] group-hover:scale-105"
-                                        />
+                                    <div className="rounded-[1.5rem] md:rounded-[2.5rem] p-4 md:p-6 lg:p-8 overflow-hidden shadow-lg shadow-gray-200/50 bg-white group border border-gray-100">
+                                        {screen.image.endsWith('.mp4') ? (
+                                            <video
+                                                src={screen.image}
+                                                autoPlay
+                                                muted
+                                                loop
+                                                playsInline
+                                                className="w-full h-auto block rounded-xl md:rounded-2xl transition-transform duration-[2000ms] group-hover:scale-105"
+                                            />
+                                        ) : (
+                                            <img
+                                                src={screen.image}
+                                                alt={screen.title}
+                                                className="w-full h-auto block rounded-xl md:rounded-2xl transition-transform duration-[2000ms] group-hover:scale-105"
+                                            />
+                                        )}
                                     </div>
                                 </div>
                             </RevealOnScroll>
@@ -324,14 +335,13 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
             return null;
 
         case "image":
-            const isUnpaddedMedia = block.src.toLowerCase().endsWith('.gif') || block.src.toLowerCase().endsWith('.mp4');
             return (
                 <RevealOnScroll className="max-w-5xl mx-auto my-24">
-                    <div className={`rounded-[2rem] overflow-hidden shadow-lg shadow-gray-200/40 bg-white ${!isUnpaddedMedia ? 'p-8 md:p-12 lg:p-16 border border-gray-100' : ''}`}>
+                    <div className="rounded-[1.5rem] md:rounded-[2rem] p-4 md:p-8 lg:p-12 overflow-hidden shadow-lg shadow-gray-200/40 bg-white border border-gray-100">
                         <img
                             src={block.src}
                             alt={block.title || "Project Image"}
-                            className={`w-full h-auto ${!isUnpaddedMedia ? 'rounded-2xl border border-gray-100/50' : ''}`}
+                            className="w-full h-auto rounded-xl border border-gray-100/50"
                         />
                     </div>
                     {block.caption && <div className="mt-6 text-center text-gray-400 italic font-bold tracking-tighter text-lg">{block.caption}</div>}
@@ -374,7 +384,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     </div>
 
                     <div
-                        className="rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-lg shadow-gray-200/50 bg-white border border-gray-100 relative h-[80vh] md:h-[800px]"
+                        className="rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-lg shadow-gray-200/50 bg-white border border-gray-100 relative h-[80vh] md:h-[800px]"
                         style={block.height ? { height: block.height } : undefined}
                     >
                         <iframe

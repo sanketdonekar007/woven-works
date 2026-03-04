@@ -605,19 +605,11 @@ export const projects: Record<string, ProjectData> = {
                 title: "Key Screens & Annotations",
                 highlight: "Mapping the strategic requirements precisely to interface elements.",
                 screens: [
-                    { title: "Login & Authentication", image: "Fast onboarding with contextual role hints" },
-                    { title: "Super Admin Dashboard", image: "High-level metric visualization" },
-                    { title: "Client Profile", image: "Aggregated document vaults" },
-                    { title: "Order Creation", image: "Guided, step-by-step progressive disclosure forms" },
-                    { title: "Notifications", image: "Actionable, embedded linking" }
+                    { title: "Login & Authentication (Fast onboarding with contextual role hints)", image: "/lovable-uploads/Sign Up.png" },
+                    { title: "Super Admin Dashboard (High-level metric visualization)", image: "/lovable-uploads/Super Admin.png" },
+                    { title: "Client Profile (Aggregated document vaults)", image: "/lovable-uploads/Companies.png" },
+                    { title: "Order Creation (Guided, step-by-step progressive disclosure forms)", image: "/lovable-uploads/order-process.mp4" }
                 ]
-            },
-            {
-                type: "custom-component",
-                componentName: "VideoCarousel",
-                props: {
-                    videos: ["/lovable-uploads/order-process.mp4"]
-                }
             },
             {
                 type: "image",
