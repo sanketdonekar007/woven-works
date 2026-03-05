@@ -189,11 +189,8 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                             <div className="pt-20">
                                 <Dialog>
                                     <DialogTrigger asChild>
-                                        <button className="group flex flex-col items-center gap-4 mx-auto">
-                                            <div className="w-1 px-10 border-b border-gray-300 group-hover:border-gray-900 transition-all"></div>
-                                            <span className="text-sm font-bold uppercase tracking-widest text-gray-500 group-hover:text-[#0F0F0F] transition-colors">
-                                                View Architecture Diagram
-                                            </span>
+                                        <button className="flex items-center gap-3 px-8 py-4 bg-[#0F0F0F] hover:bg-black text-white rounded-full transition-all hover:scale-105 active:scale-95 font-bold text-sm tracking-widest uppercase shadow-xl shadow-gray-200/50 mx-auto">
+                                            View Architecture Diagram
                                         </button>
                                     </DialogTrigger>
                                     <DialogContent className="max-w-7xl w-[95vw] p-0 border-none bg-white rounded-[2rem] overflow-hidden">
@@ -362,16 +359,18 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                             </div>
                         ))}
                     </div>
-                    <Dialog>
-                        <DialogTrigger asChild>
-                            <button className="text-sm font-bold uppercase tracking-[0.2em] text-gray-400 hover:text-[#0F0F0F] transition-colors border-b border-transparent hover:border-gray-900 pb-2">
-                                View User Task Flow Diagram
-                            </button>
-                        </DialogTrigger>
-                        <DialogContent className="max-w-7xl w-[95vw] h-[85vh] p-0 border-none bg-white rounded-3xl overflow-y-auto shadow-lg shadow-gray-200/50">
-                            <UserFlow />
-                        </DialogContent>
-                    </Dialog>
+                    <div className="flex justify-center w-full mt-10">
+                        <Dialog>
+                            <DialogTrigger asChild>
+                                <button className="flex items-center gap-3 px-8 py-4 bg-[#0F0F0F] hover:bg-black text-white rounded-full transition-all hover:scale-105 active:scale-95 font-bold text-sm tracking-widest uppercase shadow-xl shadow-gray-200/50">
+                                    View User Task Flow Diagram
+                                </button>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-7xl w-[95vw] h-[85vh] p-0 border-none bg-white rounded-3xl overflow-y-auto shadow-lg shadow-gray-200/50">
+                                <UserFlow />
+                            </DialogContent>
+                        </Dialog>
+                    </div>
                 </RevealOnScroll>
             );
 
