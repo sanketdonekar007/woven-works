@@ -20,7 +20,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Satoshi', 'sans-serif'],
+        sans: ['"Inter Tight"', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

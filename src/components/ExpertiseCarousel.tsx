@@ -20,7 +20,7 @@ const ExpertiseCarousel = () => {
         <div className="w-full max-w-[1200px] mx-auto overflow-hidden bg-transparent mb-16 px-6 lg:px-8">
             {/* Added padding to match other sections if needed, or keep full width */}
             <div className=' mb-8 px-12 lg:px-12'>
-                <h2 className="text-3xl font-medium text-left text-[#0F0F0F]">Core strength & Expertise</h2>
+                <h2 className="text-3xl font-medium text-left text-foreground">Core strength & Expertise</h2>
             </div>
             <div className="relative w-full overflow-hidden">
                 {/* Gradient overlays for fade effect at edges */}
@@ -31,7 +31,7 @@ const ExpertiseCarousel = () => {
                     {carouselItems.map((item, index) => (
                         <div
                             key={`${item}-${index}`}
-                            className="inline-block px-6 py-3 ml-4 bg-[#EEF2FF] text-gray-800 rounded-full text-lg font-medium whitespace-nowrap"
+                            className="inline-block px-6 py-3 ml-4 bg-[#EEF2FF] text-foreground rounded-full text-lg font-medium whitespace-nowrap"
                         >
                             {item}
                         </div>

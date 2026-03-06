@@ -63,7 +63,7 @@ const VideoCard = ({
   };
 
   return (
-    <div ref={containerRef} className="aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100 group relative" onClick={handleMobileClick}>
+    <div ref={containerRef} className="aspect-[4/3] rounded-2xl overflow-hidden bg-muted group relative" onClick={handleMobileClick}>
       <video
         ref={videoRef}
         src={src}
@@ -110,12 +110,12 @@ const About = () => {
   }, []);
 
   return (
-    <div className="about-container bg-white min-h-screen font-sans selection:bg-black selection:text-white">
+    <div className="about-container bg-background min-h-screen font-sans selection:bg-black selection:text-white">
       {/* Header/Navigation */}
-      <header className="header about-header border-b border-gray-100/50">
+      <header className="header about-header border-b border-border">
         <div className="w-full max-w-[1200px] mx-auto flex justify-between items-center">
           <div className="logo">
-            <Link to="/"><img className="w-12" src="/lovable-uploads/logo.png" alt="SD" /></Link>
+            <Link to="/"><div className="logo-image" aria-label="SD" /></Link>
           </div>
           <nav className="navigation">
             <ul>
@@ -143,10 +143,10 @@ const About = () => {
             <TextReveal
               as="h1"
               text="About me"
-              className="text-4xl md:text-5xl font-bold tracking-tighter mb-8 block text-[#0F0F0F]"
+              className="text-4xl md:text-5xl font-bold tracking-tighter mb-8 block text-foreground"
               delay={0}
             />
-            <div className="text-lg text-gray-600 leading-relaxed space-y-6 max-w-xl">
+            <div className="text-lg text-muted-foreground leading-relaxed space-y-6 max-w-xl">
               <TextReveal
                 as="p"
                 text="I'm Sanket, a UX Designer based in Pune with a background in Engineering and Business Analytics."
@@ -174,7 +174,7 @@ const About = () => {
             <TextReveal
               as="h2"
               text="I'm driven by curiosity, creativity, and the belief that great design always starts with empathy."
-              className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tighter text-right text-[#0F0F0F] ml-auto max-w-2xl"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tighter text-right text-foreground ml-auto max-w-2xl"
               delay={200}
               stagger={20}
             />
@@ -210,18 +210,18 @@ const About = () => {
         </section>
 
         {/* Experience Section */}
-        <section className="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 border-t border-gray-100 pt-20">
+        <section className="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 border-t border-border pt-20">
           <div className="lg:col-span-4">
             <div className="sticky top-32">
               <TextReveal
                 as="h3"
                 text="My experience"
-                className="text-3xl font-bold tracking-tighter mb-4 block text-[#0F0F0F]"
+                className="text-3xl font-bold tracking-tighter mb-4 block text-foreground"
               />
               <TextReveal
                 as="p"
                 text="A quick look at my path so far, from startups to enterprises, leading design projects that connect real user needs with meaningful business results."
-                className="text-gray-500 leading-relaxed max-w-sm"
+                className="text-muted-foreground leading-relaxed max-w-sm"
                 delay={100}
               />
             </div>
@@ -235,15 +235,15 @@ const About = () => {
                     RB
                   </div>
                 </div>
-                <div className="md:col-span-11 border-b border-gray-100 pb-12 group-last:border-0">
+                <div className="md:col-span-11 border-b border-border pb-12 group-last:border-0">
                   <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
                     <div className="md:col-span-7">
-                      <h4 className="text-xl font-bold text-[#0F0F0F] mb-1">RedBeryl Tech</h4>
-                      <h5 className="text-lg font-medium text-gray-800 mb-4">UX Designer</h5>
-                      <p className="text-gray-600 leading-relaxed text-base">Design and improve the complete user experience for our digital products, focusing on creating interfaces that are easy to use, accessible to everyone, and visually appealing.</p>
+                      <h4 className="text-xl font-bold text-foreground mb-1">RedBeryl Tech</h4>
+                      <h5 className="text-lg font-medium text-foreground mb-4">UX Designer</h5>
+                      <p className="text-muted-foreground leading-relaxed text-base">Design and improve the complete user experience for our digital products, focusing on creating interfaces that are easy to use, accessible to everyone, and visually appealing.</p>
                     </div>
                     <div className="md:col-span-3 md:text-right">
-                      <span className="text-sm text-gray-500 font-mono">2024 - Present</span>
+                      <span className="text-sm text-muted-foreground font-mono">2024 - Present</span>
                     </div>
                   </div>
                 </div>
@@ -257,15 +257,15 @@ const About = () => {
                     EC
                   </div>
                 </div>
-                <div className="md:col-span-11 border-b border-gray-100 pb-12 group-last:border-0">
+                <div className="md:col-span-11 border-b border-border pb-12 group-last:border-0">
                   <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
                     <div className="md:col-span-7">
-                      <h4 className="text-xl font-bold text-[#0F0F0F] mb-1">Esofcode</h4>
-                      <h5 className="text-lg font-medium text-gray-800 mb-4">UI/UX Designer</h5>
-                      <p className="text-gray-600 leading-relaxed text-base">Ensure the creation of user-friendly & intuitively understandable interfaces for our users. Conduct research on competitors & industry best practices to optimize readability, comprehension, accessibility & usability.</p>
+                      <h4 className="text-xl font-bold text-foreground mb-1">Esofcode</h4>
+                      <h5 className="text-lg font-medium text-foreground mb-4">UI/UX Designer</h5>
+                      <p className="text-muted-foreground leading-relaxed text-base">Ensure the creation of user-friendly & intuitively understandable interfaces for our users. Conduct research on competitors & industry best practices to optimize readability, comprehension, accessibility & usability.</p>
                     </div>
                     <div className="md:col-span-3 md:text-right">
-                      <span className="text-sm text-gray-500 font-mono">2023 - 2024</span>
+                      <span className="text-sm text-muted-foreground font-mono">2023 - 2024</span>
                     </div>
                   </div>
                 </div>
@@ -279,15 +279,15 @@ const About = () => {
                     KB
                   </div>
                 </div>
-                <div className="md:col-span-11 border-b border-gray-100 pb-12 group-last:border-0">
+                <div className="md:col-span-11 border-b border-border pb-12 group-last:border-0">
                   <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
                     <div className="md:col-span-7">
-                      <h4 className="text-xl font-bold text-[#0F0F0F] mb-1">KnackBe</h4>
-                      <h5 className="text-lg font-medium text-gray-800 mb-4">UI Designer</h5>
-                      <p className="text-gray-600 leading-relaxed text-base">Manage the entire design process, from initial sketches & wireframes to interactive prototypes & polished final designs.</p>
+                      <h4 className="text-xl font-bold text-foreground mb-1">KnackBe</h4>
+                      <h5 className="text-lg font-medium text-foreground mb-4">UI Designer</h5>
+                      <p className="text-muted-foreground leading-relaxed text-base">Manage the entire design process, from initial sketches & wireframes to interactive prototypes & polished final designs.</p>
                     </div>
                     <div className="md:col-span-3 md:text-right">
-                      <span className="text-sm text-gray-500 font-mono">2021 - 2023</span>
+                      <span className="text-sm text-muted-foreground font-mono">2021 - 2023</span>
                     </div>
                   </div>
                 </div>
@@ -297,18 +297,18 @@ const About = () => {
         </section>
 
         {/* Education Section */}
-        <section className="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 border-t border-gray-100 pt-20">
+        <section className="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 border-t border-border pt-20">
           <div className="lg:col-span-4">
             <div className="sticky top-32">
               <TextReveal
                 as="h3"
                 text="My education"
-                className="text-3xl font-bold tracking-tighter mb-4 block text-[#0F0F0F]"
+                className="text-3xl font-bold tracking-tighter mb-4 block text-foreground"
               />
               <TextReveal
                 as="p"
                 text="Formal training that shaped my analytical and design thinking."
-                className="text-gray-500 leading-relaxed max-w-sm"
+                className="text-muted-foreground leading-relaxed max-w-sm"
                 delay={100}
               />
             </div>
@@ -321,15 +321,15 @@ const About = () => {
                   PU
                 </div>
               </div>
-              <div className="md:col-span-11 border-b border-gray-100 pb-12 group-last:border-0">
+              <div className="md:col-span-11 border-b border-border pb-12 group-last:border-0">
                 <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
                   <div className="md:col-span-7">
-                    <h4 className="text-xl font-bold text-[#0F0F0F] mb-1">Pune University</h4>
-                    <h5 className="text-lg font-medium text-gray-800 mb-4">MBA in Business Analytics</h5>
-                    <p className="text-gray-600 leading-relaxed text-base">Focused on data-driven decision-making and strategic business insights, complementing my design skills with a strong analytical foundation.</p>
+                    <h4 className="text-xl font-bold text-foreground mb-1">Pune University</h4>
+                    <h5 className="text-lg font-medium text-foreground mb-4">MBA in Business Analytics</h5>
+                    <p className="text-muted-foreground leading-relaxed text-base">Focused on data-driven decision-making and strategic business insights, complementing my design skills with a strong analytical foundation.</p>
                   </div>
                   <div className="md:col-span-3 md:text-right">
-                    <span className="text-sm text-gray-500 font-mono">2022 - 2024</span>
+                    <span className="text-sm text-muted-foreground font-mono">2022 - 2024</span>
                   </div>
                 </div>
               </div>
@@ -341,15 +341,15 @@ const About = () => {
                   MIT
                 </div>
               </div>
-              <div className="md:col-span-11 border-b border-gray-100 pb-12 group-last:border-0">
+              <div className="md:col-span-11 border-b border-border pb-12 group-last:border-0">
                 <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
                   <div className="md:col-span-7">
-                    <h4 className="text-xl font-bold text-[#0F0F0F] mb-1">MIT Pune</h4>
-                    <h5 className="text-lg font-medium text-gray-800 mb-4">B.E. in Information Technology</h5>
-                    <p className="text-gray-600 leading-relaxed text-base">Gained a solid understanding of software development, system architecture, and technology principles, providing a technical backbone to my design approach.</p>
+                    <h4 className="text-xl font-bold text-foreground mb-1">MIT Pune</h4>
+                    <h5 className="text-lg font-medium text-foreground mb-4">B.E. in Information Technology</h5>
+                    <p className="text-muted-foreground leading-relaxed text-base">Gained a solid understanding of software development, system architecture, and technology principles, providing a technical backbone to my design approach.</p>
                   </div>
                   <div className="md:col-span-3 md:text-right">
-                    <span className="text-sm text-gray-500 font-mono">2016 - 2019</span>
+                    <span className="text-sm text-muted-foreground font-mono">2016 - 2019</span>
                   </div>
                 </div>
               </div>
@@ -358,17 +358,17 @@ const About = () => {
         </section>
 
         {/* Vision Section - Full Width */}
-        <section className="mb-32 -mx-8 lg:-mx-12 px-8 lg:px-12 py-24 bg-gray-50">
+        <section className="mb-32 -mx-8 lg:-mx-12 px-8 lg:px-12 py-24 bg-muted">
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-12 mb-8 flex justify-end">
-              <span className="text-xs font-bold tracking-widest uppercase text-gray-400">MY VISION OF GREAT DESIGN</span>
+              <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground">MY VISION OF GREAT DESIGN</span>
             </div>
 
             <div className="lg:col-span-4">
               <TextReveal
                 as="h4"
                 text="Product design is not just pixels or flows, but a shared language between disciplines."
-                className="text-2xl font-semibold leading-tight text-[#0F0F0F]"
+                className="text-2xl font-semibold leading-tight text-foreground"
                 delay={0}
               />
             </div>
@@ -376,7 +376,7 @@ const About = () => {
               <TextReveal
                 as="h4"
                 text="A strong foundation of reusable systems supports meaningful, human-centered experiences."
-                className="text-2xl font-semibold leading-tight text-[#0F0F0F]"
+                className="text-2xl font-semibold leading-tight text-foreground"
                 delay={100}
               />
             </div>
@@ -384,7 +384,7 @@ const About = () => {
               <TextReveal
                 as="h4"
                 text="Great product design turns ideas chaos into coherence."
-                className="text-2xl font-semibold leading-tight text-[#0F0F0F]"
+                className="text-2xl font-semibold leading-tight text-foreground"
                 delay={200}
               />
             </div>
@@ -397,64 +397,64 @@ const About = () => {
             <TextReveal
               as="h3"
               text="What do I specialize as a designer?"
-              className="text-4xl font-bold tracking-tighter mb-8 block text-[#0F0F0F] leading-tight"
+              className="text-4xl font-bold tracking-tighter mb-8 block text-foreground leading-tight"
             />
-            <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-8">HARD SKILLS</span>
+            <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground block mb-8">HARD SKILLS</span>
           </div>
 
           <div className="lg:col-span-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <div className="mb-6"><Star className="w-8 h-8 text-[#0F0F0F]" strokeWidth={1.5} /></div>
+                <div className="mb-6"><Star className="w-8 h-8 text-foreground" strokeWidth={1.5} /></div>
                 <h4 className="text-lg font-bold mb-3">Conversational AI</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">I design human-centered AI experiences by unifying tools and making complex logic feel intuitive.</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">I design human-centered AI experiences by unifying tools and making complex logic feel intuitive.</p>
               </div>
               <div>
-                <div className="mb-6"><Layout className="w-8 h-8 text-[#0F0F0F]" strokeWidth={1.5} /></div>
+                <div className="mb-6"><Layout className="w-8 h-8 text-foreground" strokeWidth={1.5} /></div>
                 <h4 className="text-lg font-bold mb-3">Design Systems</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">I build robust, token-based systems with clear documentation and accessibility standards.</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">I build robust, token-based systems with clear documentation and accessibility standards.</p>
               </div>
               <div>
-                <div className="mb-6"><BarChart className="w-8 h-8 text-[#0F0F0F]" strokeWidth={1.5} /></div>
+                <div className="mb-6"><BarChart className="w-8 h-8 text-foreground" strokeWidth={1.5} /></div>
                 <h4 className="text-lg font-bold mb-3">Dashboards</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">I craft dashboards that go beyond data display, turning complex metrics into actionable insights.</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">I craft dashboards that go beyond data display, turning complex metrics into actionable insights.</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Soft Skills Section */}
-        <section className="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-20 border-t border-gray-100">
+        <section className="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-20 border-t border-border">
           <div className="lg:col-span-4">
             <TextReveal
               as="h3"
               text="What are my skills beyond craft & execution?"
-              className="text-4xl font-bold tracking-tighter mb-8 block text-[#0F0F0F] leading-tight"
+              className="text-4xl font-bold tracking-tighter mb-8 block text-foreground leading-tight"
             />
-            <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-8">SOFT SKILLS</span>
+            <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground block mb-8">SOFT SKILLS</span>
           </div>
 
           <div className="lg:col-span-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div>
-                <div className="mb-6"><Lightbulb className="w-6 h-6 text-[#0F0F0F]" strokeWidth={1.5} /></div>
+                <div className="mb-6"><Lightbulb className="w-6 h-6 text-foreground" strokeWidth={1.5} /></div>
                 <h4 className="text-base font-bold mb-2">Strategy</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">Uncover product vision in ambiguous environments.</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">Uncover product vision in ambiguous environments.</p>
               </div>
               <div>
-                <div className="mb-6"><Users className="w-6 h-6 text-[#0F0F0F]" strokeWidth={1.5} /></div>
+                <div className="mb-6"><Users className="w-6 h-6 text-foreground" strokeWidth={1.5} /></div>
                 <h4 className="text-base font-bold mb-2">Collaboration</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">Align stakeholders with clarity and respect.</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">Align stakeholders with clarity and respect.</p>
               </div>
               <div>
-                <div className="mb-6"><MessageSquare className="w-6 h-6 text-[#0F0F0F]" strokeWidth={1.5} /></div>
+                <div className="mb-6"><MessageSquare className="w-6 h-6 text-foreground" strokeWidth={1.5} /></div>
                 <h4 className="text-base font-bold mb-2">Communication</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">Translate technical decisions into user value.</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">Translate technical decisions into user value.</p>
               </div>
               <div>
-                <div className="mb-6"><Clock className="w-6 h-6 text-[#0F0F0F]" strokeWidth={1.5} /></div>
+                <div className="mb-6"><Clock className="w-6 h-6 text-foreground" strokeWidth={1.5} /></div>
                 <h4 className="text-base font-bold mb-2">Prioritization</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">Smart, timely decisions that keep the team moving.</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">Smart, timely decisions that keep the team moving.</p>
               </div>
             </div>
           </div>
@@ -471,10 +471,10 @@ const About = () => {
           </div>
           <h2 className="footer-title">View my <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer" className="resume-link">resume</a>, get in touch 👋</h2>
           <div className="social-links flex gap-4 mt-4">
-            <a href="https://dribbble.com/sanket_works" target="_blank" rel="noopener noreferrer" aria-label="Dribbble" className="text-gray-600 hover:text-[#0F0F0F] transition-colors">
+            <a href="https://dribbble.com/sanket_works" target="_blank" rel="noopener noreferrer" aria-label="Dribbble" className="text-muted-foreground hover:text-foreground transition-colors">
               <Dribbble className="w-6 h-6" />
             </a>
-            <a href="https://www.linkedin.com/in/sanketworks/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-gray-600 hover:text-blue-600 transition-colors">
+            <a href="https://www.linkedin.com/in/sanketworks/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-muted-foreground hover:text-blue-600 transition-colors">
               <Linkedin className="w-6 h-6" />
             </a>
           </div>

@@ -1,4 +1,4 @@
-@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lustria&display=swap');
 @tailwind base;
 @tailwind components;
@@ -10,18 +10,21 @@
 @layer base {
   :root {
     /* ... existing root variables ... */
-    --background: 210 60% 98%;
+    --background: 217 60% 98%;
+    /* #F5F8FD */
     /* ... existing variables ... */
-    --foreground: 224 71.4% 4.1%;
+    --foreground: 240 10% 3%;
+    /* #060608 */
     --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
+    --card-foreground: 240 10% 4%;
     --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
-    --primary: 263.4 70% 50.4%;
-    --primary-foreground: 210 20% 98%;
+    --popover-foreground: 240 10% 4%;
+    --primary: 33 100% 65%;
+    /* #FFAD4A */
+    --primary-foreground: 0 0% 100%;
 
     /* Animation variables */
-    --animation-duration: 40s;
+    --animation-duration: 20s;
 
     --secondary: 220 14.3% 95.9%;
     --secondary-foreground: 220.9 39.3% 11%;
@@ -33,30 +36,30 @@
     --destructive-foreground: 210 20% 98%;
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 262.1 83.3% 57.8%;
+    --ring: 33 100% 65%;
     --radius: 1rem;
   }
 
   .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 263.4 70% 50.4%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
+    --background: 0 0% 0%;
+    --foreground: 240 8% 76%;
+    --card: 0 0% 0%;
+    --card-foreground: 240 8% 76%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 33 100% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 240 8% 76%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 240 8% 76%;
+    --accent: 0 0% 10%;
+    --accent-foreground: 240 8% 76%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 263.4 70% 50.4%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 33 100% 65%;
   }
 }
 
@@ -67,7 +70,7 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Satoshi', sans-serif;
+    font-family: 'Inter Tight', sans-serif;
   }
 
   html {
@@ -177,20 +180,39 @@
 
 /* Header/Navigation */
 .header {
-  @apply flex justify-between items-center py-0 px-8 lg:px-12 backdrop-blur-sm bg-white/80 fixed top-0 left-0 w-full z-50;
+  @apply flex justify-between items-center py-0 px-8 lg:px-12 backdrop-blur-sm bg-background/80 fixed top-0 left-0 w-full z-50;
 }
 
 .about-header,
 .project-header {
-  @apply bg-white/90;
+  @apply bg-background/90;
 }
 
 .logo {
-  @apply text-3xl font-bold text-primary;
+  @apply text-3xl font-bold;
+}
+
+.logo-image {
+  width: 3rem;
+  height: 3rem;
+  background-color: hsl(var(--primary));
+  mask-image: url('/lovable-uploads/logo.png');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-image: url('/lovable-uploads/logo.png');
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  transition: background-color 0.3s ease;
+}
+
+.dark .logo-image {
+  background-color: hsl(var(--foreground));
 }
 
 .logo a {
-  @apply no-underline text-primary hover:text-primary/80 transition-colors duration-300;
+  @apply no-underline transition-colors duration-300;
 }
 
 .navigation ul {
@@ -198,18 +220,15 @@
 }
 
 .navigation a {
-  @apply text-gray-800 hover:text-primary transition-colors duration-300 no-underline text-xl;
+  @apply text-foreground hover:text-primary transition-colors duration-300 no-underline text-xl;
 }
 
 .navigation a.active {
   @apply text-primary;
 }
 
-/* Hero Section */
 .hero-section {
-  @apply min-h-screen flex flex-col justify-center px-8 lg:px-12 pt-20 pb-12 relative min-h-screen items-center justify-center bg-cover bg-center;
-  /* Background - can be gradient or gif */
-  background-image: url('/lovable-uploads/gradient.gif');
+  @apply min-h-screen flex flex-col justify-center px-0 pt-24 pb-12 relative items-center bg-cover bg-center;
 }
 
 .hero-with-gif-bg {
@@ -224,7 +243,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: hsl(var(--background) / 0.7);
   z-index: 0;
   pointer-events: none;
 
@@ -238,7 +257,7 @@
 }
 
 .greeting {
-  @apply text-base md:text-lg lg:text-2xl font-normal text-[#0F0F0F] mb-4;
+  @apply text-base md:text-lg lg:text-2xl font-normal text-foreground mb-4;
 }
 
 .intro {
@@ -247,7 +266,15 @@
 }
 
 .name {
-  @apply text-primary font-bold;
+  @apply text-primary font-medium;
+}
+
+.hero-profile-container {
+  @apply w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-primary rounded-2xl flex items-center justify-center shrink-0 overflow-hidden shadow-lg;
+}
+
+.hero-profile-container img {
+  @apply w-full h-full object-cover;
 }
 
 .position {
@@ -272,7 +299,7 @@ h1.section-title {
 }
 
 .project-card {
-  @apply mb-24 opacity-0 w-full;
+  @apply h-full flex flex-col opacity-0 w-full bg-card text-card-foreground p-6 md:p-8 rounded-[40px] shadow-sm hover:shadow-md transition-shadow duration-300;
   animation: fadeIn 0.8s ease-out forwards;
 }
 
@@ -293,27 +320,27 @@ h1.section-title {
 }
 
 .project-content {
-  @apply flex flex-col md:flex-row gap-8 md:gap-12;
+  @apply flex flex-col gap-6 h-full flex-grow;
 }
 
 .project-image {
-  @apply w-full md:w-1/2 rounded-lg overflow-hidden;
+  @apply w-full rounded-[30px] overflow-hidden aspect-[4/3];
 }
 
 .project-image img {
-  @apply w-full h-auto object-cover transition-transform duration-700 hover:scale-105;
+  @apply w-full h-full object-cover transition-transform duration-700 hover:scale-105;
 }
 
 .project-details {
-  @apply w-full md:w-1/2 flex flex-col justify-center;
+  @apply w-full flex flex-col flex-grow justify-start;
 }
 
 h3.project-title {
-  @apply text-3xl font-medium mb-4 text-[#0F0F0F];
+  @apply text-3xl font-medium mb-4 text-foreground;
 }
 
 h1.project-title {
-  @apply text-2xl font-bold mb-4 text-[#0F0F0F];
+  @apply text-2xl font-medium mb-4 text-foreground;
 }
 
 .project-highlights {
@@ -326,7 +353,7 @@ h1.project-title {
 
 /* About Page */
 .about-container {
-  @apply min-h-screen bg-white;
+  @apply min-h-screen bg-background text-foreground;
 }
 
 .about-content {
@@ -350,7 +377,7 @@ h1.project-title {
 }
 
 .about-bio {
-  @apply mb-12 space-y-4 text-gray-700;
+  @apply mb-12 space-y-4 text-muted-foreground;
 }
 
 .contact-prompt {
@@ -376,11 +403,11 @@ h1.project-title {
 }
 
 .date-range {
-  @apply text-gray-600 text-sm mt-1;
+  @apply text-muted-foreground text-sm mt-1;
 }
 
 .experience-intro {
-  @apply mb-8 text-gray-700;
+  @apply mb-8 text-muted-foreground;
 }
 
 .about-footer {
@@ -394,7 +421,7 @@ h1.project-title {
 }
 
 .social-links a {
-  @apply text-gray-700 hover:text-primary transition-colors duration-300;
+  @apply text-muted-foreground hover:text-primary transition-colors duration-300;
 }
 
 .contact-email-link {
@@ -403,7 +430,7 @@ h1.project-title {
 
 /* Project Detail Page */
 .project-detail-container {
-  @apply min-h-screen bg-white;
+  @apply min-h-screen bg-background text-foreground;
 }
 
 .project-hero {
@@ -419,12 +446,12 @@ h1.project-title {
 } */
 
 .project-meta {
-  @apply gap-x-8 gap-y-8 my-4 text-gray-700 justify-between grid md:grid-cols-[2fr_1fr];
+  @apply gap-x-8 gap-y-8 my-4 text-muted-foreground justify-between grid md:grid-cols-[2fr_1fr];
 }
 
 .project-role,
 .project-timeline {
-  @apply text-base text-lg text-[#0F0F0F];
+  @apply text-base text-lg text-foreground;
 }
 
 .project-content {
@@ -490,7 +517,7 @@ h1.project-title {
 }
 
 .section-lists {
-  @apply mb-6 text-gray-800 text-lg leading-relaxed space-y-3;
+  @apply mb-6 text-foreground text-lg leading-relaxed space-y-3;
 }
 
 .section-lists li {
@@ -526,14 +553,12 @@ h1.project-title {
 }
 
 .related-project h3 {
-  @apply p-4 text-gray-800 font-medium;
+  @apply p-4 text-foreground font-medium;
 }
 
 /* Footer */
 .footer {
-  @apply py-16 px-8 lg:px-12 relative bg-cover;
-  /* Background - can be gradient or gif */
-  background-image: url('/lovable-uploads/gradient.gif');
+  @apply py-24 px-8 lg:px-12 relative bg-cover;
 }
 
 .footer-with-gif-bg {
@@ -548,7 +573,7 @@ h1.project-title {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: hsl(var(--background) / 0.7);
   z-index: 0;
   pointer-events: none;
 }
@@ -574,7 +599,7 @@ h2.footer-title {
 }
 
 .copyright {
-  @apply text-gray-600 text-base mt-8 text-left;
+  @apply text-muted-foreground text-base mt-8 text-left;
 }
 
 /* Error Page */

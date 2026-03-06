@@ -6,7 +6,7 @@ export const SnackHackIA = ({ accentColor }: { accentColor?: string }) => {
     return (
         <div className="max-w-6xl mx-auto py-20 px-4">
             <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-[#0F0F0F] mb-6">Information Architecture</h2>
+                <h2 className="text-4xl font-bold text-foreground mb-6">Information Architecture</h2>
                 <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
                     SnackHack follows a lightweight, mobile-first structure designed for fast access with minimal navigation.
                 </p>

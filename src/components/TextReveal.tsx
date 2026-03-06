@@ -59,7 +59,7 @@ export const TextReveal = ({
             {words.map((word, i) => (
                 <span
                     key={`${word}-${i}`}
-                    className="inline-block overflow-hidden align-bottom mr-[0.25em] last:mr-0 leading-[1.2] pb-[0.1em]"
+                    className="inline-block overflow-hidden align-bottom pr-[0.1em] mr-[0.25em] last:mr-0 leading-[1.2] pb-[0.2em]"
                 >
                     <span
                         className={cn(

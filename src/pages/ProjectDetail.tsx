@@ -44,10 +44,10 @@ const ProjectDetail = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center text-center px-8 bg-[#F6F3EF]">
-        <h1 className="text-4xl font-bold tracking-tighter text-[#0F0F0F] mb-4">Project Not Found</h1>
-        <p className="text-gray-500 mb-8">Sorry, the project you're looking for doesn't exist.</p>
-        <Link to="/" className="text-[#0F0F0F] font-bold border-b-2 border-gray-900 pb-1">Back to Home</Link>
+      <div className="min-h-screen flex flex-col items-center justify-center text-center px-8 bg-background">
+        <h1 className="text-4xl font-bold tracking-tighter text-foreground mb-4">Project Not Found</h1>
+        <p className="text-muted-foreground mb-8">Sorry, the project you're looking for doesn't exist.</p>
+        <Link to="/" className="text-foreground font-bold border-b-2 border-foreground pb-1">Back to Home</Link>
       </div>
     );
   }
@@ -56,24 +56,23 @@ const ProjectDetail = () => {
 
   return (
     <div
-      className="project-detail-container transition-colors duration-700 min-h-screen"
+      className="project-detail-container transition-colors duration-700 min-h-screen bg-background text-foreground"
       style={{
-        background: isSnackHack ? '#FFF9F5' : '#FFFFFF',
         //@ts-ignore
         '--accent-color': project.accentColor || '#3b82f6'
       }}
     >
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full z-50 px-8 py-5 flex items-center group bg-white/70 backdrop-blur-md border-b border-gray-100/50 shadow-sm transition-all duration-300">
+      <nav className="fixed top-0 left-0 w-full z-50 px-8 py-5 flex items-center group bg-background/80 backdrop-blur-md border-b border-border shadow-sm transition-all duration-300">
         <div className="flex-1 flex justify-start">
-          <Link to="/" className="flex items-center gap-2 text-[#0F0F0F]">
-            <div className="w-10 h-10 border border-gray-900 rounded-full flex items-center justify-center group-hover:bg-primary group-hover:border-primary group-hover:text-white transition-all duration-500">
+          <Link to="/" className="flex items-center gap-2 text-foreground">
+            <div className="w-10 h-10 border border-foreground rounded-full flex items-center justify-center group-hover:bg-primary group-hover:border-primary group-hover:text-primary-foreground transition-all duration-500">
               <ChevronLeft className="w-5 h-5" />
             </div>
             <span className="font-bold tracking-tight uppercase text-xs opacity-0 group-hover:opacity-100 group-hover:text-primary transition-opacity duration-500">Back</span>
           </Link>
         </div>
-        <div className="flex-1 flex justify-center text-center text-xs font-bold tracking-widest uppercase text-gray-400">
+        <div className="flex-1 flex justify-center text-center text-xs font-bold tracking-widest uppercase text-muted-foreground">
           {project.navTitle || project.title}
         </div>
         <div className="flex-1 flex justify-end"></div>
@@ -83,20 +82,20 @@ const ProjectDetail = () => {
         {/* Project Hero Title */}
         <div className="mb-24">
           <RevealOnScroll>
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-[#0F0F0F] mb-12 tracking-tighter">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground mb-12 tracking-tighter">
               {project.title}
             </h1>
           </RevealOnScroll>
 
           <RevealOnScroll delay={100}>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-16">
-              <p className="text-xl md:text-2xl text-gray-600 max-w-4xl leading-relaxed">
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl leading-relaxed">
                 {project.intro}
               </p>
 
-              <div className="flex flex-col gap-3 min-w-[200px] border-l border-gray-200 pl-8 pb-2">
-                <div className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase">Role</div>
-                <div className="text-xl font-bold text-[#0F0F0F]">{project.role}</div>
+              <div className="flex flex-col gap-3 min-w-[200px] border-l border-border pl-8 pb-2">
+                <div className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground uppercase">Role</div>
+                <div className="text-xl font-bold text-foreground">{project.role}</div>
               </div>
             </div>
           </RevealOnScroll>
@@ -104,7 +103,7 @@ const ProjectDetail = () => {
 
         {/* HERO IMAGE */}
         <RevealOnScroll delay={200}>
-          <div className={`rounded-[2rem] md:rounded-[3.5rem] overflow-hidden shadow-2xl shadow-gray-200/50 mb-32 group ${isSnackHack ? 'p-5 bg-white/50 w-fit mx-auto' : 'bg-gray-100 aspect-[16/9] w-full'}`}>
+          <div className={`rounded-[2rem] md:rounded-[3.5rem] overflow-hidden shadow-2xl dark:shadow-none mb-32 group ${isSnackHack ? 'p-5 bg-background w-fit mx-auto' : 'bg-muted aspect-[16/9] w-full'}`}>
             <img
               src={project.headerImage}
               alt={project.title}
@@ -114,39 +113,39 @@ const ProjectDetail = () => {
         </RevealOnScroll>
 
         {/* METADATA GRID */}
-        <div className="flex flex-wrap justify-center gap-x-12 md:gap-x-20 gap-y-16 mb-40 border-t border-gray-200 pt-20">
+        <div className="flex flex-wrap justify-center gap-x-12 md:gap-x-20 gap-y-16 mb-40 border-t border-border pt-20">
           {project.industry && (
             <div className="space-y-3">
-              <div className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">Industry</div>
-              <div className="text-lg font-bold text-[#0F0F0F]">{project.industry}</div>
+              <div className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">Industry</div>
+              <div className="text-lg font-bold text-foreground">{project.industry}</div>
             </div>
           )}
           {project.duration && (
             <div className="space-y-3">
-              <div className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">Duration</div>
-              <div className="text-lg font-bold text-[#0F0F0F]">{project.duration || project.timeline}</div>
+              <div className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">Duration</div>
+              <div className="text-lg font-bold text-foreground">{project.duration || project.timeline}</div>
             </div>
           )}
           {project.type && (
             <div className="space-y-3">
-              <div className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">Type</div>
-              <div className="text-lg font-bold text-[#0F0F0F]">{project.type}</div>
+              <div className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">Type</div>
+              <div className="text-lg font-bold text-foreground">{project.type}</div>
             </div>
           )}
           {project.platforms && (
             <div className="space-y-3">
-              <div className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">Platform</div>
-              <div className="text-lg font-bold text-[#0F0F0F]">{project.platforms}</div>
+              <div className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">Platform</div>
+              <div className="text-lg font-bold text-foreground">{project.platforms}</div>
             </div>
           )}
           {project.clientWebsite && (
             <div className="space-y-3">
-              <div className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">Client Website</div>
+              <div className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">Client Website</div>
               <a
                 href={project.clientWebsite}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-lg font-bold text-[#0F0F0F] flex items-center gap-2 group/link hover:text-blue-600 transition-colors"
+                className="text-lg font-bold text-foreground flex items-center gap-2 group/link hover:text-blue-600 transition-colors"
               >
                 {project.clientWebsite.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
                 <ExternalLink className="w-4 h-4 transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
@@ -155,12 +154,12 @@ const ProjectDetail = () => {
           )}
           {project.links && project.links[0]?.url && (
             <div className="space-y-3">
-              <div className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">Resources</div>
+              <div className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">Resources</div>
               <a
                 href={project.links[0].url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-lg font-bold text-[#0F0F0F] flex items-center gap-2 group/link"
+                className="text-lg font-bold text-foreground flex items-center gap-2 group/link"
               >
                 {project.links[0].text}
                 <ExternalLink className="w-4 h-4 transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
@@ -196,9 +195,9 @@ const ProjectDetail = () => {
                         className={`flex items-center gap-4 cursor-pointer group transition-all duration-500 py-1 ${isActive ? 'opacity-100 translate-x-2' : 'opacity-40 hover:opacity-70 hover:translate-x-1'
                           }`}
                       >
-                        <div className={`w-1.5 h-1.5 rounded-full transition-all duration-500 flex-shrink-0 ${isActive ? 'bg-[#0F0F0F] scale-[1.75]' : 'bg-transparent group-hover:bg-gray-400'
+                        <div className={`w-1.5 h-1.5 rounded-full transition-all duration-500 flex-shrink-0 ${isActive ? 'bg-foreground scale-[1.75]' : 'bg-transparent group-hover:bg-gray-400'
                           }`} />
-                        <span className={`text-xs font-bold uppercase transition-all duration-500 leading-tight ${isActive ? 'text-[#0F0F0F] tracking-[0.15em]' : 'text-gray-500 tracking-[0.1em]'
+                        <span className={`text-xs font-bold uppercase transition-all duration-500 leading-tight ${isActive ? 'text-foreground tracking-[0.15em]' : 'text-muted-foreground tracking-[0.1em]'
                           }`}>
                           {block.title}
                         </span>
@@ -232,8 +231,8 @@ const ProjectDetail = () => {
             {project.sections.map((section, index) => (
               <RevealOnScroll key={index} delay={index * 100}>
                 <div className="space-y-8">
-                  <h2 className="text-4xl font-bold tracking-tighter text-[#0F0F0F]">{section.title}</h2>
-                  <p className="text-xl text-gray-600 leading-relaxed leading-relaxed">{section.content}</p>
+                  <h2 className="text-4xl font-bold tracking-tighter text-foreground">{section.title}</h2>
+                  <p className="text-xl text-muted-foreground leading-relaxed leading-relaxed">{section.content}</p>
                 </div>
               </RevealOnScroll>
             ))}
@@ -246,17 +245,17 @@ const ProjectDetail = () => {
         <div className="footer-content max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="mb-4 text-left">
             <RevealOnScroll>
-              <h2 className="text-3xl font-medium text-[#0F0F0F]">Like what you see??</h2>
+              <h2 className="text-3xl font-medium text-foreground">Like what you see??</h2>
             </RevealOnScroll>
           </div>
           <h2 className="footer-title">
             View my <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer" className="resume-link">resume</a>, get in touch 👋
           </h2>
           <div className="social-links flex gap-4 mt-4">
-            <a href="https://dribbble.com/sanket_works" target="_blank" rel="noopener noreferrer" aria-label="Dribbble" className="text-gray-600 hover:text-black transition-colors">
+            <a href="https://dribbble.com/sanket_works" target="_blank" rel="noopener noreferrer" aria-label="Dribbble" className="text-muted-foreground hover:text-black transition-colors">
               <Dribbble className="w-6 h-6" />
             </a>
-            <a href="https://www.linkedin.com/in/sanketworks/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-gray-600 hover:text-blue-600 transition-colors">
+            <a href="https://www.linkedin.com/in/sanketworks/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-muted-foreground hover:text-blue-600 transition-colors">
               <Linkedin className="w-6 h-6" />
             </a>
           </div>

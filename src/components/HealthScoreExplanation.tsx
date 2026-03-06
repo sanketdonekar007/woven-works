@@ -33,7 +33,7 @@ export const HealthScoreExplanation = ({ accentColor }: { accentColor?: string }
 
     return (
         <div className="max-w-5xl mx-auto py-16 px-4">
-            <h2 className="text-3xl font-bold text-[#0F0F0F] mb-12 text-center">Health Score Explanation</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-12 text-center">Health Score Explanation</h2>
 
             <div className="grid md:grid-cols-2 gap-12 items-start">
                 {/* Left Side: Calculations */}

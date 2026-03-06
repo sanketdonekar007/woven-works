@@ -17,7 +17,7 @@ const FlowStep = ({ number, title, content, children, isLast }: { number: string
         <div className="flex-grow pt-1">
             <RevealOnScroll key={number}>
                 <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">{title.replace(/^[0-9]+️⃣/, '').trim()}</h3>
-                {content && <div className="text-gray-600 mb-4 whitespace-pre-wrap leading-relaxed">{content}</div>}
+                {content && <div className="text-muted-foreground mb-4 whitespace-pre-wrap leading-relaxed">{content}</div>}
 
                 {children && (
                     <div className="space-y-4 mt-4">
@@ -42,9 +42,9 @@ const FlowNode = ({ label, subtext, type = 'default' }: { label: string, subtext
     };
 
     return (
-        <div className={`${getStyles()} p-4 rounded-r-lg shadow-sm border border-gray-100 border-l-0`}>
-            <div className="font-semibold text-gray-800">{label}</div>
-            {subtext && <div className="text-sm text-gray-600 mt-1 leading-relaxed">{subtext}</div>}
+        <div className={`${getStyles()} p-4 rounded-r-lg shadow-sm border border-border border-l-0`}>
+            <div className="font-semibold text-foreground">{label}</div>
+            {subtext && <div className="text-sm text-muted-foreground mt-1 leading-relaxed">{subtext}</div>}
         </div>
     );
 };
@@ -55,7 +55,7 @@ export const UserFlow = () => {
             <div className="mb-16 text-center">
                 <span className="text-blue-600 font-semibold tracking-wider text-sm uppercase">Process Architecture</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-3 mb-6">User Task Flow</h2>
-                <p className="text-gray-600 max-w-2xl mx-auto">
+                <p className="text-muted-foreground max-w-2xl mx-auto">
                     A comprehensive breakdown of valid user journeys, ensuring seamless navigation, efficient task execution, and clear role-based interactions across the platform.
                 </p>
             </div>
@@ -119,7 +119,7 @@ export const UserFlow = () => {
                     content="Client / Employee Dashboard → Create New Order"
                 >
                     <div className="flex flex-col gap-4">
-                        <div className="flex items-center gap-2 text-sm font-medium text-gray-500 uppercase tracking-widest">
+                        <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground uppercase tracking-widest">
                             <div className="h-px bg-gray-300 flex-grow"></div>
                             <span>Creation</span>
                             <div className="h-px bg-gray-300 flex-grow"></div>
@@ -128,14 +128,14 @@ export const UserFlow = () => {
                             label="Order Creation Journey"
                             subtext="Select Company → Select Service Category → Choose Filing Type → Upload Documents → Review Order Summary → Payment (Pay Now / Pay Later) → Order Created."
                         />
-                        <div className="flex items-center gap-2 text-sm font-medium text-gray-500 uppercase tracking-widest mt-2">
+                        <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground uppercase tracking-widest mt-2">
                             <div className="h-px bg-gray-300 flex-grow"></div>
                             <span>Order Status Flow</span>
                             <div className="h-px bg-gray-300 flex-grow"></div>
                         </div>
                         <div className="flex flex-wrap gap-2 justify-center">
                             {['New', 'In Progress', 'Query Raised', 'Under Review', 'Completed', 'Delivered'].map((status, i) => (
-                                <span key={i} className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200">
+                                <span key={i} className="px-3 py-1 bg-muted text-gray-700 rounded-full text-sm font-medium border border-border">
                                     {status}
                                 </span>
                             ))}

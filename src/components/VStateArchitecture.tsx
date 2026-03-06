@@ -73,7 +73,7 @@ const treeData: TreeNode = {
 const NodeCard = ({ label, color }: { label: string, color: string }) => (
     <div className={`
         relative z-10 px-4 py-2 rounded-lg border shadow-sm 
-        font-medium text-xs md:text-sm text-[#0F0F0F] text-center whitespace-nowrap 
+        font-medium text-xs md:text-sm text-foreground text-center whitespace-nowrap 
         transition-all hover:scale-105 hover:shadow-md ${color}
     `}>
         {label}

@@ -657,8 +657,8 @@ export const projects: Record<string, ProjectData> = {
     },
     langlang: {
         id: "langlang",
-        title: "LangLang - Language learning app concept",
-        navTitle: "Concept - Language learning app",
+        title: "LangLang-Language Learning App",
+        navTitle: "LangLang-Language Learning App",
         headerImage: "/lovable-uploads/langlang-header.png",
         intro: "Lang-Lang is an app concept I designed to make picking up a new language feel less like a chore and more like a game. It blends personalized learning paths with practical conversational practice. As the lead UX designer on this concept, my goal was to craft an interface that felt completely natural to a beginner while still offering the depth needed for fluid learning.",
         role: "UI/UX Designer",
