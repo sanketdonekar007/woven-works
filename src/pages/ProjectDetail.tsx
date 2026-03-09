@@ -45,7 +45,7 @@ const ProjectDetail = () => {
   if (!project) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center text-center px-8 bg-background">
-        <h1 className="text-4xl font-bold tracking-tighter text-foreground mb-4">Project Not Found</h1>
+        <h1 className="text-4xl font-bold tracking-tight leading-[1.1] text-foreground mb-4">Project Not Found</h1>
         <p className="text-muted-foreground mb-8">Sorry, the project you're looking for doesn't exist.</p>
         <Link to="/" className="text-foreground font-bold border-b-2 border-foreground pb-1">Back to Home</Link>
       </div>
@@ -231,7 +231,7 @@ const ProjectDetail = () => {
             {project.sections.map((section, index) => (
               <RevealOnScroll key={index} delay={index * 100}>
                 <div className="space-y-8">
-                  <h2 className="text-4xl font-bold tracking-tighter text-foreground">{section.title}</h2>
+                  <h2 className="text-4xl font-bold tracking-tight leading-[1.1] text-foreground">{section.title}</h2>
                   <p className="text-xl text-muted-foreground leading-relaxed leading-relaxed">{section.content}</p>
                 </div>
               </RevealOnScroll>

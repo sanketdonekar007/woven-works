@@ -143,7 +143,7 @@ const About = () => {
             <TextReveal
               as="h1"
               text="About me"
-              className="text-4xl md:text-5xl font-bold tracking-tighter mb-8 block text-foreground"
+              className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] mb-8 block text-foreground"
               delay={0}
             />
             <div className="text-lg text-muted-foreground leading-relaxed space-y-6 max-w-xl">
@@ -174,7 +174,7 @@ const About = () => {
             <TextReveal
               as="h2"
               text="I'm driven by curiosity, creativity, and the belief that great design always starts with empathy."
-              className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tighter text-right text-foreground ml-auto max-w-2xl"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight text-right text-foreground ml-auto max-w-2xl"
               delay={200}
               stagger={20}
             />
@@ -216,7 +216,7 @@ const About = () => {
               <TextReveal
                 as="h3"
                 text="My experience"
-                className="text-3xl font-bold tracking-tighter mb-4 block text-foreground"
+                className="text-3xl font-bold tracking-tight leading-[1.1] mb-4 block text-foreground"
               />
               <TextReveal
                 as="p"
@@ -303,7 +303,7 @@ const About = () => {
               <TextReveal
                 as="h3"
                 text="My education"
-                className="text-3xl font-bold tracking-tighter mb-4 block text-foreground"
+                className="text-3xl font-bold tracking-tight leading-[1.1] mb-4 block text-foreground"
               />
               <TextReveal
                 as="p"
@@ -397,7 +397,7 @@ const About = () => {
             <TextReveal
               as="h3"
               text="What do I specialize as a designer?"
-              className="text-4xl font-bold tracking-tighter mb-8 block text-foreground leading-tight"
+              className="text-4xl font-bold tracking-tight mb-8 block text-foreground leading-[1.1]"
             />
             <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground block mb-8">HARD SKILLS</span>
           </div>
@@ -429,7 +429,7 @@ const About = () => {
             <TextReveal
               as="h3"
               text="What are my skills beyond craft & execution?"
-              className="text-4xl font-bold tracking-tighter mb-8 block text-foreground leading-tight"
+              className="text-4xl font-bold tracking-tight mb-8 block text-foreground leading-[1.1]"
             />
             <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground block mb-8">SOFT SKILLS</span>
           </div>

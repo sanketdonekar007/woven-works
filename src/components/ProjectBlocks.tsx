@@ -33,7 +33,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                             const [title, desc] = item.includes(":") ? item.split(": ") : [item, ""];
                             return (
                                 <div key={i} className="flex gap-8 items-start group">
-                                    <div className="text-6xl font-bold tracking-tighter text-gray-200 group-hover:text-gray-300 transition-colors leading-none border-b border-border pb-4">
+                                    <div className="text-6xl font-bold tracking-tight text-gray-200 group-hover:text-gray-300 transition-colors leading-none border-b border-border pb-4">
                                         0{i + 1}
                                     </div>
                                     <div className="pt-2">
@@ -81,7 +81,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                         />
                                     </div>
                                     <div>
-                                        <h3 className="text-4xl font-bold tracking-tighter text-foreground mb-2">{persona.name}</h3>
+                                        <h3 className="text-4xl font-bold tracking-tight leading-[1.1] text-foreground mb-2">{persona.name}</h3>
                                         <p className="text-lg text-muted-foreground font-medium">{persona.role}</p>
                                         {persona.details && (
                                             <div className="flex flex-wrap gap-x-8 gap-y-2 mt-6">
@@ -97,7 +97,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                 </div>
 
                                 <div className="flex flex-col justify-center">
-                                    <p className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground leading-tight mb-20 text-muted-foreground">
+                                    <p className="text-3xl md:text-5xl font-bold tracking-tight leading-[1.1] text-foreground mb-20 text-muted-foreground">
                                         "{persona.quote}"
                                     </p>
 
@@ -177,7 +177,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                 <RevealOnScroll className="max-w-5xl mx-auto py-24">
                     <div className="text-center space-y-12">
                         <span className={subtitleClass}>Structure & Flow</span>
-                        <p className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground leading-tight max-w-4xl mx-auto italic">
+                        <p className="text-3xl md:text-5xl font-bold tracking-tight leading-[1.1] text-foreground max-w-4xl mx-auto italic">
                             "{block.highlight}"
                         </p>
                         <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 pt-10">
@@ -252,7 +252,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                 <RevealOnScroll className="w-full max-w-7xl mx-auto py-32">
                     <div className="text-center mb-24 max-w-3xl mx-auto">
                         <span className={subtitleClass}>{block.title || "Final Product"}</span>
-                        {block.highlight && <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground leading-tight">{block.highlight}</h2>}
+                        {block.highlight && <h2 className="text-3xl md:text-5xl font-bold tracking-tight leading-[1.1] text-foreground">{block.highlight}</h2>}
                     </div>
 
                     <div className="space-y-48">
@@ -261,7 +261,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                 <div className="flex flex-col gap-10">
                                     <div className="flex items-center gap-6">
                                         <div className="text-2xl font-bold tracking-tighter text-muted-foreground">0{i + 1}</div>
-                                        <h3 className="text-3xl md:text-4xl font-bold tracking-tighter text-foreground">{screen.title}</h3>
+                                        <h3 className="text-3xl md:text-4xl font-bold tracking-tight leading-[1.1] text-foreground">{screen.title}</h3>
                                     </div>
                                     <div className="rounded-[1.5rem] md:rounded-[2.5rem] p-4 md:p-6 lg:p-8 overflow-hidden shadow-sm bg-card group border border-border">
                                         {screen.image.endsWith('.mp4') ? (
@@ -351,7 +351,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
             return (
                 <RevealOnScroll className="max-w-5xl mx-auto py-24">
                     <span className={subtitleClass}>{block.title || "Functional Mapping"}</span>
-                    <p className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground leading-tight max-w-4xl italic mb-20 group cursor-default transition-all hover:text-foreground">
+                    <p className="text-3xl md:text-5xl font-bold tracking-tight leading-[1.1] text-foreground max-w-4xl italic mb-20 group cursor-default transition-all hover:text-foreground">
                         "{block.highlight}"
                     </p>
                     <div className="grid md:grid-cols-2 gap-10 mb-20">
@@ -381,7 +381,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                 <RevealOnScroll className="w-full max-w-7xl mx-auto py-32">
                     <div className="text-center mb-16 max-w-3xl mx-auto">
                         <span className={subtitleClass}>{block.title || "Interactive Prototype"}</span>
-                        {block.description && <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-foreground leading-tight italic">{block.description}</h2>}
+                        {block.description && <h2 className="text-3xl md:text-4xl font-bold tracking-tight leading-[1.1] text-foreground italic">{block.description}</h2>}
                     </div>
 
                     <div
@@ -420,7 +420,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     <span className={subtitleClass}>{block.title || "Inclusive Design"}</span>
                     <div className="grid md:grid-cols-2 gap-12">
                         <div className="space-y-6">
-                            <h2 className="text-3xl font-bold tracking-tighter text-foreground">Universal accessibility standards were integrated from the start.</h2>
+                            <h2 className="text-3xl font-bold tracking-tight leading-[1.1] text-foreground">Universal accessibility standards were integrated from the start.</h2>
                         </div>
                         <div className="space-y-4">
                             {block.items.map((item, i) => (
@@ -443,7 +443,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                         className="rounded-[3rem] p-12 md:p-20 text-center space-y-12 bg-card border border-border"
                     >
                         <span className={subtitleClass}>{block.title || "Outcomes"}</span>
-                        <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-foreground">Measuring Success</h2>
+                        <h2 className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1] text-foreground">Measuring Success</h2>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 pt-8 text-center">
                             {block.items.map((item, i) => (
                                 <div key={i} className="bg-background p-8 rounded-3xl shadow-sm border border-border h-full flex items-center justify-center hover:shadow-md transition-shadow min-h-[160px]">
@@ -461,7 +461,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     <div className="grid md:grid-cols-[1fr_2fr] gap-12">
                         <div>
                             <span className={subtitleClass}>Reflections</span>
-                            <h2 className="text-4xl font-bold tracking-tighter text-foreground">{block.title || "Learnings"}</h2>
+                            <h2 className="text-4xl font-bold tracking-tight leading-[1.1] text-foreground">{block.title || "Learnings"}</h2>
                         </div>
                         <div className="space-y-8">
                             {block.learnings.map((item, i) => (
@@ -477,7 +477,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                         <div className="grid md:grid-cols-[1fr_2fr] gap-12">
                             <div>
                                 <span className={subtitleClass}>Roadmap</span>
-                                <h2 className="text-4xl font-bold tracking-tighter text-foreground">Future Scope</h2>
+                                <h2 className="text-4xl font-bold tracking-tight leading-[1.1] text-foreground">Future Scope</h2>
                             </div>
                             <div className="grid md:grid-cols-2 gap-6">
                                 {block.future.map((item, i) => (
