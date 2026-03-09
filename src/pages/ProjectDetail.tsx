@@ -82,7 +82,7 @@ const ProjectDetail = () => {
         {/* Project Hero Title */}
         <div className="mb-24">
           <RevealOnScroll>
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground mb-12 tracking-tighter">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground mb-12 tracking-tight leading-[1.1]">
               {project.title}
             </h1>
           </RevealOnScroll>

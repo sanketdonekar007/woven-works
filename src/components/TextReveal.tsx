@@ -53,13 +53,13 @@ export const TextReveal = ({
     return (
         <Component
             ref={ref as any}
-            className={cn("inline-block", className)}
+            className={cn("block", className)}
             aria-label={text}
         >
             {words.map((word, i) => (
                 <span
                     key={`${word}-${i}`}
-                    className="inline-block overflow-hidden align-bottom pr-[0.1em] mr-[0.25em] last:mr-0 leading-[1.2] pb-[0.2em]"
+                    className="inline-block overflow-hidden align-bottom pr-[0.1em] mr-[0.25em] last:mr-0 pb-[0.15em]"
                 >
                     <span
                         className={cn(

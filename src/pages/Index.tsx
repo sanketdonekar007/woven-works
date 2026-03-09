@@ -73,11 +73,11 @@ const Index = () => {
               </h2>
             </div>
           </div>
-          <div className="intro max-w-5xl mb-10">
+          <div className="intro w-full mb-10">
             <TextReveal
               text="A UX Designer making things easy for people and helping businesses grow."
               delay={300}
-              className="text-5xl md:text-7xl lg:text-[88px] leading-[1.05] tracking-tighter font-medium text-foreground"
+              className="text-5xl md:text-7xl lg:text-[88px] leading-[1.05] tracking-tight font-medium text-foreground"
               highlightWords={["UX", "Designer"]}
               highlightClassName="text-primary"
             />

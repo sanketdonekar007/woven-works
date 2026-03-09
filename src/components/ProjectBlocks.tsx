@@ -6,10 +6,10 @@ import { HealthScoreExplanation } from "./HealthScoreExplanation";
 import { SnackHackIA } from "./SnackHackIA";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { ProjectBlock } from "@/data/projects";
-import { Check } from "lucide-react";
+import { Check, CheckCircle2, AlertCircle, ArrowRight } from "lucide-react";
 
 export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, accentColor?: string }) => {
-    const titleClass = "text-4xl md:text-5xl font-bold tracking-tighter text-foreground mb-10";
+    const titleClass = "text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] text-foreground mb-10";
     const subtitleClass = "text-xs font-bold tracking-[0.2em] text-muted-foreground uppercase mb-4 block";
 
     switch (block.type) {
@@ -73,7 +73,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                         {block.personas.map((persona, index) => (
                             <div key={index} className="flex flex-col lg:grid lg:grid-cols-[1fr_1.5fr] gap-20">
                                 <div className="space-y-10">
-                                    <div className="aspect-[4/5] w-full max-w-[280px] md:max-w-md lg:max-w-none mx-auto lg:mx-0 rounded-[2rem] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 shadow-xl shadow-gray-100">
+                                    <div className="aspect-[4/5] w-full max-w-[280px] md:max-w-md lg:max-w-none mx-auto lg:mx-0 rounded-[2rem] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 shadow-[0_24px_64px_-8px_rgba(0,0,0,0.22),0_4px_16px_-2px_rgba(0,0,0,0.10)]">
                                         <img
                                             src={persona.image || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800"}
                                             alt={persona.name}
@@ -106,8 +106,9 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                             <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-widest border-b border-border pb-4">Goals</h4>
                                             <ul className="space-y-4">
                                                 {persona.goals.map((g, i) => (
-                                                    <li key={i} className="flex gap-4 text-gray-700 font-medium text-lg leading-relaxed">
-                                                        <span className="text-gray-300">/</span> {g}
+                                                    <li key={i} className="flex gap-3 items-start text-foreground font-medium text-lg leading-relaxed">
+                                                        <CheckCircle2 className="w-5 h-5 mt-0.5 shrink-0 text-emerald-500" />
+                                                        <span>{g}</span>
                                                     </li>
                                                 ))}
                                             </ul>
@@ -116,8 +117,9 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                             <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-widest border-b border-border pb-4">Pain Points</h4>
                                             <ul className="space-y-4">
                                                 {persona.painPoints.map((p, i) => (
-                                                    <li key={i} className="flex gap-4 text-gray-700 font-medium text-lg leading-relaxed">
-                                                        <span className="text-gray-300">/</span> {p}
+                                                    <li key={i} className="flex gap-3 items-start text-foreground font-medium text-lg leading-relaxed">
+                                                        <AlertCircle className="w-5 h-5 mt-0.5 shrink-0 text-amber-500" />
+                                                        <span>{p}</span>
                                                     </li>
                                                 ))}
                                             </ul>
@@ -141,7 +143,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                 <ul className="space-y-6">
                                     {trigger.terms.map((term, i) => (
                                         <li key={i} className="text-muted-foreground font-medium text-lg flex items-start gap-3">
-                                            <span className="text-gray-300 mt-1.5">•</span>
+                                            <ArrowRight className="w-4 h-4 mt-1 shrink-0 text-muted-foreground/50" />
                                             <span>{term}</span>
                                         </li>
                                     ))}
@@ -158,7 +160,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     <span className={subtitleClass}>{block.title || "Strategic Intent"}</span>
                     <div className="grid gap-4">
                         {block.goals.map((goal, i) => (
-                            <div key={i} className="bg-white/50 backdrop-blur-md p-6 rounded-3xl border border-border shadow-sm flex items-center gap-6 hover:bg-white transition-all">
+                            <div key={i} className="bg-card/50 backdrop-blur-md p-6 rounded-3xl border border-border shadow-sm flex items-center gap-6 hover:bg-card transition-all">
                                 <div
                                     className="w-4 h-4 rounded-full flex-shrink-0"
                                     style={{ backgroundColor: accentColor || '#333' }}
@@ -189,7 +191,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                             <div className="pt-20">
                                 <Dialog>
                                     <DialogTrigger asChild>
-                                        <button className="flex items-center gap-3 px-8 py-4 bg-foreground hover:bg-black text-white rounded-full transition-all hover:scale-105 active:scale-95 font-bold text-sm tracking-widest uppercase shadow-xl shadow-gray-200/50 mx-auto">
+                                        <button className="flex items-center gap-3 px-8 py-4 bg-foreground hover:bg-black text-white rounded-full transition-all hover:scale-105 active:scale-95 font-bold text-sm tracking-widest uppercase shadow-[0_8px_32px_-4px_rgba(0,0,0,0.35),0_2px_8px_-1px_rgba(0,0,0,0.20)] mx-auto">
                                             View Architecture Diagram
                                         </button>
                                     </DialogTrigger>
@@ -210,7 +212,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     {block.title && <h2 className={titleClass}>{block.title}</h2>}
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {block.steps.map((step, i) => (
-                            <div key={i} className="space-y-4 bg-white/50 backdrop-blur-md p-8 rounded-3xl border border-border shadow-sm hover:bg-white transition-all flex flex-col h-full">
+                            <div key={i} className="space-y-4 bg-card/50 backdrop-blur-md p-8 rounded-3xl border border-border shadow-sm hover:bg-card transition-all flex flex-col h-full">
                                 <div className="text-sm font-bold tracking-widest text-muted-foreground">0{i + 1}</div>
                                 <div className="text-xl font-medium text-foreground leading-relaxed pt-2">
                                     {step}
@@ -261,7 +263,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                         <div className="text-2xl font-bold tracking-tighter text-muted-foreground">0{i + 1}</div>
                                         <h3 className="text-3xl md:text-4xl font-bold tracking-tighter text-foreground">{screen.title}</h3>
                                     </div>
-                                    <div className="rounded-[1.5rem] md:rounded-[2.5rem] p-4 md:p-6 lg:p-8 overflow-hidden shadow-lg shadow-gray-200/50 bg-white group border border-border">
+                                    <div className="rounded-[1.5rem] md:rounded-[2.5rem] p-4 md:p-6 lg:p-8 overflow-hidden shadow-sm bg-card group border border-border">
                                         {screen.image.endsWith('.mp4') ? (
                                             <video
                                                 src={screen.image}
@@ -334,7 +336,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
         case "image":
             return (
                 <RevealOnScroll className="max-w-5xl mx-auto my-24">
-                    <div className="rounded-[1.5rem] md:rounded-[2rem] p-4 md:p-8 lg:p-12 overflow-hidden shadow-lg shadow-gray-200/40 bg-white border border-border">
+                    <div className="rounded-[1.5rem] md:rounded-[2rem] p-4 md:p-8 lg:p-12 overflow-hidden shadow-sm bg-card border border-border">
                         <img
                             src={block.src}
                             alt={block.title || "Project Image"}
@@ -354,15 +356,15 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     </p>
                     <div className="grid md:grid-cols-2 gap-10 mb-20">
                         {block.steps.map((step, i) => (
-                            <div key={i} className="flex gap-4 items-center text-muted-foreground font-medium text-lg">
-                                <span className="text-gray-300">•</span> {step}
+                            <div key={i} className="flex gap-3 items-center text-muted-foreground font-medium text-lg">
+                                <ArrowRight className="w-4 h-4 shrink-0 text-muted-foreground/50" /> {step}
                             </div>
                         ))}
                     </div>
                     <div className="flex justify-center w-full mt-10">
                         <Dialog>
                             <DialogTrigger asChild>
-                                <button className="flex items-center gap-3 px-8 py-4 bg-foreground hover:bg-black text-white rounded-full transition-all hover:scale-105 active:scale-95 font-bold text-sm tracking-widest uppercase shadow-xl shadow-gray-200/50">
+                                <button className="flex items-center gap-3 px-8 py-4 bg-foreground hover:bg-black text-white rounded-full transition-all hover:scale-105 active:scale-95 font-bold text-sm tracking-widest uppercase shadow-[0_8px_32px_-4px_rgba(0,0,0,0.35),0_2px_8px_-1px_rgba(0,0,0,0.20)]">
                                     View User Task Flow Diagram
                                 </button>
                             </DialogTrigger>
@@ -383,7 +385,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     </div>
 
                     <div
-                        className="rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-lg shadow-gray-200/50 bg-white border border-border relative h-[80vh] md:h-[800px]"
+                        className="rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-sm bg-card border border-border relative h-[80vh] md:h-[800px]"
                         style={block.height ? { height: block.height } : undefined}
                     >
                         <iframe
@@ -403,7 +405,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     <p className="text-xl text-muted-foreground mb-12 max-w-3xl">{block.content}</p>
                     <div className="grid md:grid-cols-2 gap-6">
                         {block.items.map((item, i) => (
-                            <div key={i} className="flex items-center gap-6 bg-white/50 backdrop-blur-md p-6 rounded-3xl border border-border shadow-sm hover:bg-white transition-all h-full">
+                            <div key={i} className="flex items-center gap-6 bg-card/50 backdrop-blur-md p-6 rounded-3xl border border-border shadow-sm hover:bg-card transition-all h-full">
                                 <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: accentColor }} />
                                 <span className="text-xl font-medium text-foreground leading-relaxed">{item}</span>
                             </div>
@@ -438,14 +440,13 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
             return (
                 <RevealOnScroll className="max-w-5xl mx-auto py-24">
                     <div
-                        className="rounded-[3rem] p-12 md:p-20 text-center space-y-12"
-                        style={{ backgroundColor: accentColor ? `${accentColor}10` : '#f8fafc' }}
+                        className="rounded-[3rem] p-12 md:p-20 text-center space-y-12 bg-card border border-border"
                     >
                         <span className={subtitleClass}>{block.title || "Outcomes"}</span>
                         <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-foreground">Measuring Success</h2>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 pt-8 text-center">
                             {block.items.map((item, i) => (
-                                <div key={i} className="bg-white p-8 rounded-3xl shadow-sm border border-border h-full flex items-center justify-center hover:shadow-md transition-shadow min-h-[160px]">
+                                <div key={i} className="bg-background p-8 rounded-3xl shadow-sm border border-border h-full flex items-center justify-center hover:shadow-md transition-shadow min-h-[160px]">
                                     <p className="text-xl font-medium text-foreground leading-relaxed">{item}</p>
                                 </div>
                             ))}
@@ -480,7 +481,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                             </div>
                             <div className="grid md:grid-cols-2 gap-6">
                                 {block.future.map((item, i) => (
-                                    <div key={i} className="flex items-center gap-6 bg-white/50 backdrop-blur-md p-6 rounded-3xl border border-border shadow-sm hover:bg-white transition-all h-full">
+                                    <div key={i} className="flex items-center gap-6 bg-card/50 backdrop-blur-md p-6 rounded-3xl border border-border shadow-sm hover:bg-card transition-all h-full">
                                         <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: accentColor }} />
                                         <span className="text-xl font-medium text-foreground leading-relaxed">{item}</span>
                                     </div>
@@ -498,7 +499,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     <h2 className={titleClass}>{block.highlight}</h2>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
                         {block.items.map((item, i) => (
-                            <div key={i} className="rounded-3xl overflow-hidden shadow-xl border border-border bg-white aspect-[9/16]">
+                            <div key={i} className="rounded-3xl overflow-hidden shadow-sm border border-border bg-card aspect-[9/16]">
                                 <img src={item} alt={`Wireframe ${i + 1}`} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
                             </div>
                         ))}
