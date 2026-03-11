@@ -209,18 +209,42 @@ const ProjectDetail = () => {
             </div>
 
             {/* Blocks Content */}
-            <div className="flex-1 space-y-40 pb-40 max-w-5xl">
-              {project.blocks.map((block, index) => (
-                <div
-                  key={index}
-                  id={`section-${index}`}
-                  data-index={index}
-                  ref={(el) => (sectionRefs.current[index] = el)}
-                  className="scroll-mt-32"
-                >
-                  <BlockRenderer block={block} accentColor={project.accentColor} />
-                </div>
-              ))}
+            <div className="flex-1 pb-40 max-w-5xl pt-4">
+              {project.blocks.map((block, index) => {
+                const getDynamicMargin = () => {
+                  if (index === 0) return '';
+                  const isVstate = project.id?.includes('vstate');
+                  const isNewSection = !!block.title;
+
+                  if (isVstate) {
+                    return isNewSection ? 'mt-24 md:mt-32' : 'mt-8 md:mt-12';
+                  }
+
+                  // Smart spacing for other case studies where viewport needs larger gaps
+                  if (isNewSection) {
+                    return 'mt-32 md:mt-48'; // Substantial gap for entirely new sections
+                  }
+
+                  // For consecutive blocks without a title, gap depends on content type
+                  if (['image', 'prototype', 'wireframes', 'user-flow-popup'].includes(block.type)) {
+                    return 'mt-16 md:mt-24'; // Medium-large gap for distinct visual blocks
+                  }
+
+                  return 'mt-10 md:mt-16'; // Standard moderately tight gap for text/list elements
+                };
+
+                return (
+                  <div
+                    key={index}
+                    id={`section-${index}`}
+                    data-index={index}
+                    ref={(el) => (sectionRefs.current[index] = el)}
+                    className={`scroll-mt-32 ${getDynamicMargin()}`}
+                  >
+                    <BlockRenderer block={block} accentColor={project.accentColor} />
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}

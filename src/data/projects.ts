@@ -978,9 +978,8 @@ export const projects: Record<string, ProjectData> = {
         intro: "Compliance service providers deal with a lot. Filing deadlines across multiple states, document requests from clients, and team coordination that happens mostly on email and spreadsheets. This project was about building a platform that brings all of that into one place so teams can focus on the actual work.",
         role: "Senior UX Designer",
         focus: "UX Strategy, Service Design, Workflow Optimization, Design Systems",
-        type: "Client Project · B2B SaaS",
         industry: "B2B Compliance · Enterprise",
-        duration: "9 months",
+        duration: "2 months",
         timeline: "June 2024 – March 2025",
         platforms: "Web (B2B SaaS)",
         clientWebsite: "https://vstatefilings.com/",
@@ -1006,15 +1005,9 @@ export const projects: Record<string, ProjectData> = {
             },
             // ── Users & Service Ecosystem ────────────────────────────────────
             {
-                type: "role-list",
+                type: "rich-text",
                 title: "Users & Service Ecosystem",
-                highlight: "Three types of users needed the platform to work completely differently for each of them.",
-                content: "Who uses the platform:",
-                roles: [
-                    "Super Admin: Runs the compliance firm. Needs a clear view of all clients, teams, and filing deadlines without opening multiple tools.",
-                    "Compliance Executive: Does the actual filing work. Needs task lists, document access and clear instructions without having to chase information.",
-                    "Client Admin: Business owner or admin on the client side. Needs to track what is happening with their filings and upload documents when asked."
-                ]
+                content: "",
             },
             {
                 type: "custom-component",
@@ -1094,7 +1087,7 @@ export const projects: Record<string, ProjectData> = {
                     {
                         name: "David Thompson",
                         role: "Client Admin",
-                        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800",
+                        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800",
                         quote: "\"I want transparency without chasing updates.\"",
                         goals: ["Real-time filing status", "Deadline alerts", "Easy document uploads"],
                         painPoints: ["Unclear progress", "Anxiety around penalties", "Poor communication"]

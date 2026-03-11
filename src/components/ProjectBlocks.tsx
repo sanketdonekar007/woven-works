@@ -25,15 +25,15 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
     switch (block.type) {
         case "rich-text":
             return (
-                <RevealOnScroll className="w-full py-12">
+                <RevealOnScroll className="w-full">
                     {block.title && <h2 className={titleClass}>{block.title}</h2>}
-                    <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light max-w-3xl">{block.content}</p>
+                    {block.content && <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light max-w-3xl">{block.content}</p>}
                 </RevealOnScroll>
             );
 
         case "problem-statement":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto py-20">
+                <RevealOnScroll className="max-w-5xl mx-auto">
                     <span className={subtitleClass}>{block.title || "The Challenge"}</span>
                     {block.highlight && <h2 className={titleClass}>{block.highlight}</h2>}
                     {block.content && <p className="text-lg text-muted-foreground mb-16 leading-relaxed max-w-2xl">{block.content}</p>}
@@ -59,7 +59,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
 
         case "role-list":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto py-20">
+                <RevealOnScroll className="max-w-5xl mx-auto">
                     <span className={subtitleClass}>Process & Methodology</span>
                     {block.title && <h2 className={titleClass}>{block.title}</h2>}
                     {block.highlight && <p className="text-xl text-muted-foreground mb-16 max-w-3xl leading-relaxed">{block.highlight}</p>}
@@ -77,7 +77,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
 
         case "personas":
             return (
-                <RevealOnScroll className="max-w-6xl mx-auto py-20">
+                <RevealOnScroll className="max-w-6xl mx-auto">
                     <span className={subtitleClass}>{block.title || "User Profile"}</span>
                     <div className="space-y-32">
                         {block.personas.map((persona, index) => (
@@ -144,7 +144,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
 
         case "triggers":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto py-20">
+                <RevealOnScroll className="max-w-5xl mx-auto">
                     <span className={subtitleClass}>{block.title || "User Dynamics"}</span>
                     <div className="grid md:grid-cols-2 gap-x-20 gap-y-24">
                         {block.triggers.map((trigger, index) => (
@@ -166,7 +166,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
 
         case "goals-list":
             return (
-                <RevealOnScroll className="max-w-4xl mx-auto py-20">
+                <RevealOnScroll className="max-w-4xl mx-auto">
                     <span className={subtitleClass}>{block.title || "Strategic Intent"}</span>
                     <div className="grid gap-4">
                         {block.goals.map((goal, i) => (
@@ -184,7 +184,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
 
         case "info-architecture":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto py-24">
+                <RevealOnScroll className="max-w-5xl mx-auto">
                     <div className="text-center space-y-12">
                         <span className={subtitleClass}>Structure & Flow</span>
                         <p className="text-3xl md:text-5xl font-bold tracking-tight leading-[1.1] text-foreground max-w-4xl mx-auto italic">
@@ -217,7 +217,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
 
         case "process-steps":
             return (
-                <RevealOnScroll className="max-w-6xl mx-auto py-24">
+                <RevealOnScroll className="max-w-6xl mx-auto">
                     <span className={subtitleClass}>The Workflow</span>
                     {block.title && <h2 className={titleClass}>{block.title}</h2>}
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -235,7 +235,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
 
         case "challenges":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto py-24">
+                <RevealOnScroll className="max-w-5xl mx-auto">
                     <span className={subtitleClass}>{block.title || "Strategic Solutions"}</span>
                     <div className="divide-y divide-slate-200">
                         {block.challenges.map((item, index) => (
@@ -401,7 +401,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
 
         case "image":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto my-24">
+                <RevealOnScroll className="max-w-5xl mx-auto">
                     {block.title && <h2 className={titleClass}>{block.title}</h2>}
                     <div className="rounded-[1.5rem] md:rounded-[2rem] p-4 md:p-8 lg:p-12 overflow-hidden shadow-sm bg-card border border-border">
                         {block.src.endsWith('.mp4') ? (
@@ -427,7 +427,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
 
         case "user-flow-popup":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto py-24">
+                <RevealOnScroll className="max-w-5xl mx-auto">
                     <span className={subtitleClass}>{block.title || "Functional Mapping"}</span>
                     <p className="text-3xl md:text-5xl font-bold tracking-tight leading-[1.1] text-foreground max-w-4xl italic mb-20 group cursor-default transition-all hover:text-foreground">
                         "{block.highlight}"
@@ -456,7 +456,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
 
         case "prototype":
             return (
-                <RevealOnScroll className="w-full max-w-7xl mx-auto py-32">
+                <RevealOnScroll className="w-full max-w-7xl mx-auto">
                     <div className="text-center mb-16 max-w-3xl mx-auto">
                         <span className={subtitleClass}>{block.title || "Interactive Prototype"}</span>
                         {block.description && <h2 className="text-3xl md:text-4xl font-bold tracking-tight leading-[1.1] text-foreground italic">{block.description}</h2>}
@@ -477,7 +477,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
 
         case "design-system":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto py-24">
+                <RevealOnScroll className="max-w-5xl mx-auto">
                     <span className={subtitleClass}>{block.title || "Design Language"}</span>
                     <h2 className={titleClass}>{block.highlight}</h2>
                     <p className="text-xl text-muted-foreground mb-12 max-w-3xl">{block.content}</p>
@@ -494,7 +494,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
 
         case "accessibility":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto py-24">
+                <RevealOnScroll className="max-w-5xl mx-auto">
                     <span className={subtitleClass}>{block.title || "Inclusive Design"}</span>
                     <div className="grid md:grid-cols-2 gap-12">
                         <div className="space-y-6">
@@ -516,7 +516,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
 
         case "impact":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto py-24">
+                <RevealOnScroll className="max-w-5xl mx-auto">
                     <div
                         className="rounded-[3rem] p-12 md:p-20 text-center space-y-12 bg-card border border-border"
                     >
@@ -535,7 +535,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
 
         case "learnings":
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto py-24 space-y-24">
+                <RevealOnScroll className="max-w-5xl mx-auto space-y-24">
                     <div className="grid md:grid-cols-[1fr_2fr] gap-12">
                         <div>
                             <span className={subtitleClass}>Reflections</span>
@@ -572,7 +572,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
 
         case "wireframes":
             return (
-                <RevealOnScroll className="max-w-6xl mx-auto py-24">
+                <RevealOnScroll className="max-w-6xl mx-auto">
                     <span className={subtitleClass}>{block.title || "Early Concepts"}</span>
                     <h2 className={titleClass}>{block.highlight}</h2>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
@@ -613,7 +613,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
             const iconNode = assetIconComponents[block.assetType] || <ImageIcon size={40} className="text-muted-foreground/40" />;
             const label = assetLabels[block.assetType] || "Asset Required";
             return (
-                <RevealOnScroll className="max-w-5xl mx-auto my-12">
+                <RevealOnScroll className="max-w-5xl mx-auto">
                     {block.title && <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] text-foreground mb-8">{block.title}</h2>}
                     <div className="rounded-2xl border-2 border-dashed border-border bg-muted/20 p-8 md:p-12 flex flex-col items-center text-center gap-5">
                         <div>{iconNode}</div>
