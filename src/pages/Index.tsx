@@ -132,8 +132,14 @@ const Index = () => {
               <div className="project-details">
                 <TextReveal text="LangLang-Language Learning App" className="project-title text-3xl md:text-4xl font-medium mb-4 tracking-tight text-foreground block" />
                 <p className="text-foreground/60 text-lg font-normal mb-10">A user-centered approach to language learning featuring interactive exercises and AI-driven recommendations.</p>
-                <Link to="/projects/langlang" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-8 py-4 text-sm font-medium hover:opacity-90 transition-opacity self-start mt-auto">
-                  View Process <ArrowUpRight className="w-4 h-4" />
+                <Link to="/projects/langlang" className="inline-flex items-center gap-2 bg-foreground dark:bg-transparent text-background dark:text-foreground border border-transparent dark:border-foreground rounded-full px-8 py-4 text-sm font-medium transition-all self-start mt-auto group/btn">
+                  <span className="relative overflow-hidden h-[1.2em] block">
+                    <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover/btn:-translate-y-full">
+                      <span className="block">View Process</span>
+                      <span className="block absolute top-full left-0 opacity-50">View Process</span>
+                    </span>
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                 </Link>
               </div>
             </div>
@@ -149,8 +155,14 @@ const Index = () => {
                 <TextReveal text="Snack Hack - Decode Your Snacks, Instantly" className="project-title text-3xl md:text-4xl font-medium mb-4 tracking-tight text-foreground block" />
                 <p className="text-foreground/60 text-lg font-normal mb-10">Instant barcode scanning to quickly analyze packaged foods and get personalized health scores.</p>
                 <PasswordProtectedProject to="/projects/snackhack">
-                  <div className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-8 py-4 text-sm font-medium hover:opacity-90 transition-opacity self-start mt-auto">
-                    View Process <ArrowUpRight className="w-4 h-4" />
+                  <div className="inline-flex items-center gap-2 bg-foreground dark:bg-transparent text-background dark:text-foreground border border-transparent dark:border-foreground rounded-full px-8 py-4 text-sm font-medium transition-all self-start mt-auto group/btn">
+                    <span className="relative overflow-hidden h-[1.2em] block">
+                      <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover/btn:-translate-y-full">
+                        <span className="block">🔒 View Process</span>
+                        <span className="block absolute top-full left-0 opacity-50">🔒 View Process</span>
+                      </span>
+                    </span>
+                    <ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                   </div>
                 </PasswordProtectedProject>
               </div>
@@ -158,7 +170,7 @@ const Index = () => {
           </div>
 
           {/* Project 3 */}
-          <div className="project-card">
+          {/* <div className="project-card">
             <div className="project-content">
               <div className="project-image">
                 <img src="/lovable-uploads/filenow1.jpg" alt="VState Filings – Compliance Management Platform (B2B)" />
@@ -167,14 +179,43 @@ const Index = () => {
                 <TextReveal text="VState Filings – Compliance Management Platform" className="project-title text-3xl md:text-4xl font-medium mb-4 tracking-tight text-foreground block" />
                 <p className="text-foreground/60 text-lg font-normal mb-10">A full-fledged web application developed to streamline compliance and filing services for businesses.</p>
                 <PasswordProtectedProject to="/projects/vstate">
-                  <div className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-8 py-4 text-sm font-medium hover:opacity-90 transition-opacity self-start mt-auto">
-                    View Process <ArrowUpRight className="w-4 h-4" />
+                  <div className="inline-flex items-center gap-2 bg-foreground dark:bg-transparent text-background dark:text-foreground border border-transparent dark:border-foreground rounded-full px-8 py-4 text-sm font-medium transition-all self-start mt-auto group/btn">
+                    <span className="relative overflow-hidden h-[1.2em] block">
+                      <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover/btn:-translate-y-full">
+                        <span className="block">🔒 View Process</span>
+                        <span className="block absolute top-full left-0 opacity-50">🔒 View Process</span>
+                      </span>
+                    </span>
+                    <ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                  </div>
+                </PasswordProtectedProject>
+              </div>
+            </div>
+          </div> */}
+
+          {/* Project 3b — vState Compliance Case Study (Service Design variant) */}
+          <div className="project-card">
+            <div className="project-content">
+              <div className="project-image">
+                <img src="/lovable-uploads/filenow3.jpg" alt="vState — Compliance Workflow Platform UX Case Study" />
+              </div>
+              <div className="project-details">
+                <TextReveal text="vState — Compliance Workflow Platform" className="project-title text-3xl md:text-4xl font-medium mb-4 tracking-tight text-foreground block" />
+                <p className="text-foreground/60 text-lg font-normal mb-10">A service design case study covering research, system thinking, workflow design, and UX strategy for a B2B compliance SaaS.</p>
+                <PasswordProtectedProject to="/projects/vstatecompliance">
+                  <div className="inline-flex items-center gap-2 bg-foreground dark:bg-transparent text-background dark:text-foreground border border-transparent dark:border-foreground rounded-full px-8 py-4 text-sm font-medium transition-all self-start mt-auto group/btn">
+                    <span className="relative overflow-hidden h-[1.2em] block">
+                      <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover/btn:-translate-y-full">
+                        <span className="block">🔒 View Case Study</span>
+                        <span className="block absolute top-full left-0 opacity-50">🔒 View Case Study</span>
+                      </span>
+                    </span>
+                    <ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                   </div>
                 </PasswordProtectedProject>
               </div>
             </div>
           </div>
-
 
           {/* Project 4 */}
           <div className="project-card">
@@ -185,8 +226,14 @@ const Index = () => {
               <div className="project-details">
                 <TextReveal text="WhatsApp – Quick Voice Note Transcription" className="project-title text-3xl md:text-4xl font-medium mb-4 tracking-tight text-foreground block" />
                 <p className="text-foreground/60 text-lg font-normal mb-10">A UX/UI concept designed to enhance WhatsApp's voice messaging experience with AI-powered transcription.</p>
-                <Link to="/projects/whatsapp" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-8 py-4 text-sm font-medium hover:opacity-90 transition-opacity self-start mt-auto">
-                  View Process <ArrowUpRight className="w-4 h-4" />
+                <Link to="/projects/whatsapp" className="inline-flex items-center gap-2 bg-foreground dark:bg-transparent text-background dark:text-foreground border border-transparent dark:border-foreground rounded-full px-8 py-4 text-sm font-medium transition-all self-start mt-auto group/btn">
+                  <span className="relative overflow-hidden h-[1.2em] block">
+                    <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover/btn:-translate-y-full">
+                      <span className="block">View Process</span>
+                      <span className="block absolute top-full left-0 opacity-50">View Process</span>
+                    </span>
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                 </Link>
               </div>
             </div>
@@ -201,8 +248,14 @@ const Index = () => {
               <div className="project-details">
                 <TextReveal text="AI-Powered UI Design System" className="project-title text-3xl md:text-4xl font-medium mb-4 tracking-tight text-foreground block" />
                 <p className="text-foreground/60 text-lg font-normal mb-10">An AI-driven component library created for highly scalable and consistent UI development automation.</p>
-                <Link to="/projects/designsystem" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-8 py-4 text-sm font-medium hover:opacity-90 transition-opacity self-start mt-auto">
-                  View Process <ArrowUpRight className="w-4 h-4" />
+                <Link to="/projects/designsystem" className="inline-flex items-center gap-2 bg-foreground dark:bg-transparent text-background dark:text-foreground border border-transparent dark:border-foreground rounded-full px-8 py-4 text-sm font-medium transition-all self-start mt-auto group/btn">
+                  <span className="relative overflow-hidden h-[1.2em] block">
+                    <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover/btn:-translate-y-full">
+                      <span className="block">View Process</span>
+                      <span className="block absolute top-full left-0 opacity-50">View Process</span>
+                    </span>
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                 </Link>
                 {/* <Link to="" className="read-more disabled-link"  onClick={(e) => e.preventDefault()}  aria-disabled="true">
   <span className="lock-icon">🔒</span> Read More

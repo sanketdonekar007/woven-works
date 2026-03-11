@@ -4,9 +4,19 @@ import { VideoCarousel } from "./VideoCarousel";
 import { VStateArchitecture } from "./VStateArchitecture";
 import { HealthScoreExplanation } from "./HealthScoreExplanation";
 import { SnackHackIA } from "./SnackHackIA";
+import {
+    VStateServiceEcosystem,
+    VStateBeforeWorkflow,
+    VStateAfterWorkflow,
+    VStatePainPoints,
+    VStateNotificationSystem,
+    VStateServiceBlueprint,
+    VStateResearchInsights,
+    VStateDesignSystemGrid,
+} from "./VStateCompliance";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { ProjectBlock } from "@/data/projects";
-import { Check, CheckCircle2, AlertCircle, ArrowRight } from "lucide-react";
+import { Check, CheckCircle2, AlertCircle, ArrowRight, ImageIcon, Film, GitBranch, Layers } from "lucide-react";
 
 export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, accentColor?: string }) => {
     const titleClass = "text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] text-foreground mb-10";
@@ -15,9 +25,9 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
     switch (block.type) {
         case "rich-text":
             return (
-                <RevealOnScroll className="max-w-3xl mx-auto py-12">
+                <RevealOnScroll className="w-full py-12">
                     {block.title && <h2 className={titleClass}>{block.title}</h2>}
-                    <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">{block.content}</p>
+                    <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light max-w-3xl">{block.content}</p>
                 </RevealOnScroll>
             );
 
@@ -98,7 +108,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
 
                                 <div className="flex flex-col justify-center">
                                     <p className="text-3xl md:text-5xl font-bold tracking-tight leading-[1.1] text-foreground mb-20 text-muted-foreground">
-                                        "{persona.quote}"
+                                        {persona.quote}
                                     </p>
 
                                     <div className="grid md:grid-cols-2 gap-16">
@@ -331,17 +341,85 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     </RevealOnScroll>
                 );
             }
+            if (block.componentName === "VStateServiceEcosystem") {
+                return (
+                    <RevealOnScroll className="w-full my-10">
+                        <VStateServiceEcosystem accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "VStateBeforeWorkflow") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <VStateBeforeWorkflow accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "VStateAfterWorkflow") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <VStateAfterWorkflow accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "VStatePainPoints") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <VStatePainPoints accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "VStateNotificationSystem") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <VStateNotificationSystem accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "VStateServiceBlueprint") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <VStateServiceBlueprint accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "VStateResearchInsights") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <VStateResearchInsights accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "VStateDesignSystemGrid") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <VStateDesignSystemGrid accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
             return null;
 
         case "image":
             return (
                 <RevealOnScroll className="max-w-5xl mx-auto my-24">
+                    {block.title && <h2 className={titleClass}>{block.title}</h2>}
                     <div className="rounded-[1.5rem] md:rounded-[2rem] p-4 md:p-8 lg:p-12 overflow-hidden shadow-sm bg-card border border-border">
-                        <img
-                            src={block.src}
-                            alt={block.title || "Project Image"}
-                            className="w-full h-auto rounded-xl"
-                        />
+                        {block.src.endsWith('.mp4') ? (
+                            <video
+                                src={block.src}
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                className="w-full h-auto block rounded-xl"
+                            />
+                        ) : (
+                            <img
+                                src={block.src}
+                                alt={block.title || "Project Image"}
+                                className="w-full h-auto rounded-xl"
+                            />
+                        )}
                     </div>
                     {block.caption && <div className="mt-6 text-center text-muted-foreground italic font-bold tracking-tighter text-lg">{block.caption}</div>}
                 </RevealOnScroll>
@@ -393,8 +471,8 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                             className="absolute inset-0 w-full h-full border-none"
                             allowFullScreen
                         />
-                    </div>
-                </RevealOnScroll>
+                    </div >
+                </RevealOnScroll >
             );
 
         case "design-system":
@@ -506,6 +584,54 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     </div>
                 </RevealOnScroll>
             );
+
+        case "asset-placeholder": {
+            const assetIcons: Record<string, string> = {
+                "screen-design": "🖥️",
+                "flow-diagram": "🔄",
+                "architecture-diagram": "🏗️",
+                "wireframe": "📐",
+                "photo": "📷",
+                "data-chart": "📊",
+                "custom-diagram": "✏️",
+            };
+            const assetLabels: Record<string, string> = {
+                "screen-design": "Screen Design Required",
+                "flow-diagram": "Flow Diagram Required",
+                "architecture-diagram": "Architecture Diagram Required",
+                "wireframe": "Wireframe Required",
+                "photo": "Photo / Image Required",
+                "data-chart": "Data Chart Required",
+                "custom-diagram": "Custom Diagram Required",
+            };
+            const assetIconComponents: Record<string, React.ReactNode> = {
+                "screen-design": <ImageIcon size={40} className="text-muted-foreground/40" />,
+                "flow-diagram": <GitBranch size={40} className="text-muted-foreground/40" />,
+                "video": <Film size={40} className="text-muted-foreground/40" />,
+                "diagram": <Layers size={40} className="text-muted-foreground/40" />,
+            };
+            const iconNode = assetIconComponents[block.assetType] || <ImageIcon size={40} className="text-muted-foreground/40" />;
+            const label = assetLabels[block.assetType] || "Asset Required";
+            return (
+                <RevealOnScroll className="max-w-5xl mx-auto my-12">
+                    {block.title && <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] text-foreground mb-8">{block.title}</h2>}
+                    <div className="rounded-2xl border-2 border-dashed border-border bg-muted/20 p-8 md:p-12 flex flex-col items-center text-center gap-5">
+                        <div>{iconNode}</div>
+                        <div
+                            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold tracking-wide"
+                            style={{ color: accentColor, background: `${accentColor}12`, border: `1px solid ${accentColor}30` }}
+                        >
+                            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ backgroundColor: accentColor }} />
+                            {label}
+                        </div>
+                        <p className="text-lg font-medium text-foreground max-w-lg">{block.description}</p>
+                        {block.note && (
+                            <p className="text-sm text-muted-foreground italic max-w-md border-t border-border pt-4 mt-1">{block.note}</p>
+                        )}
+                    </div>
+                </RevealOnScroll>
+            );
+        }
 
         default:
             return null;

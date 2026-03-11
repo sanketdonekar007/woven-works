@@ -18,7 +18,8 @@ export type BlockType =
     | "custom-component"
     | "image"
     | "user-flow-popup"
-    | "prototype";
+    | "prototype"
+    | "asset-placeholder";
 
 export interface BaseBlock {
     type: BlockType;
@@ -133,7 +134,7 @@ export interface LearningsBlock extends BaseBlock {
 
 export interface CustomComponentBlock extends BaseBlock {
     type: "custom-component";
-    componentName: "UserFlow" | "VideoCarousel" | "VStateIA" | "HealthScoreExplanation" | "SnackHackIA";
+    componentName: "UserFlow" | "VideoCarousel" | "VStateIA" | "HealthScoreExplanation" | "SnackHackIA" | "VStateServiceEcosystem" | "VStateBeforeWorkflow" | "VStateAfterWorkflow" | "VStatePainPoints" | "VStateNotificationSystem" | "VStateServiceBlueprint" | "VStateResearchInsights" | "VStateDesignSystemGrid";
     props?: Record<string, any>;
 }
 
@@ -158,6 +159,15 @@ export interface PrototypeBlock extends BaseBlock {
     height?: string;
 }
 
+export interface AssetPlaceholderBlock extends BaseBlock {
+    type: "asset-placeholder";
+    assetType: "screen-design" | "flow-diagram" | "architecture-diagram" | "wireframe" | "photo" | "data-chart" | "custom-diagram";
+    description: string;
+    note?: string;
+    /** If code-built, this is the componentName to render instead */
+    codeBuilt?: string;
+}
+
 export type ProjectBlock =
     | RichTextBlock
     | ProblemStatementBlock
@@ -177,7 +187,8 @@ export type ProjectBlock =
     | CustomComponentBlock
     | ImageBlock
     | UserFlowPopupBlock
-    | PrototypeBlock;
+    | PrototypeBlock
+    | AssetPlaceholderBlock;
 
 export interface ProjectData {
     id: string;
@@ -520,7 +531,7 @@ export const projects: Record<string, ProjectData> = {
                         name: "Michael Anderson",
                         role: "Compliance Firm Owner",
                         image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800",
-                        quote: "“I need one system that tells me everything is under control.”",
+                        quote: "\"I need one system that tells me everything is under control.\"",
                         goals: ["Zero missed deadlines", "Clear business overview", "Scalable operations"],
                         painPoints: ["Manual tracking", "Tool overload", "Limited real-time visibility"]
                     },
@@ -528,7 +539,7 @@ export const projects: Record<string, ProjectData> = {
                         name: "Emily Rodriguez",
                         role: "Compliance Executive",
                         image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800",
-                        quote: "“I just want clear tasks and documents in one place.”",
+                        quote: "\"I just want clear tasks and documents in one place.\"",
                         goals: ["Faster filings", "Clear task ownership", "Minimal errors"],
                         painPoints: ["Context switching", "Missing documents", "Repetitive updates"]
                     },
@@ -536,7 +547,7 @@ export const projects: Record<string, ProjectData> = {
                         name: "David Thompson",
                         role: "Client Admin",
                         image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800",
-                        quote: "“I want transparency without chasing updates.”",
+                        quote: "\"I want transparency without chasing updates.\"",
                         goals: ["Real-time filing status", "Deadline alerts", "Easy document uploads"],
                         painPoints: ["Unclear progress", "Anxiety around penalties", "Poor communication"]
                     }
@@ -799,7 +810,7 @@ export const projects: Record<string, ProjectData> = {
                     {
                         name: "Sarah Patel",
                         role: "Health-Conscious Shopper",
-                        quote: "I want to eat better, but I don't have time to read every label.",
+                        quote: "\"I want to eat better, but I don't have time to read every label.\"",
                         image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=800",
                         details: [
                             { label: "Age", value: "32" },
@@ -954,6 +965,220 @@ export const projects: Record<string, ProjectData> = {
                     "Dietary preference filters",
                     "AI-based snack recommendations",
                     "Brand-level comparisons"
+                ]
+            }
+        ]
+    },
+    vstatecompliance: {
+        id: "vstatecompliance",
+        title: "vState — Compliance Workflow Platform",
+        navTitle: "vState — Compliance Workflow Platform",
+        subtitle: "Designing a centralized compliance management system for service providers handling multi-state regulatory filings.",
+        headerImage: "/lovable-uploads/filenow2.jpg",
+        intro: "Compliance service providers deal with a lot. Filing deadlines across multiple states, document requests from clients, and team coordination that happens mostly on email and spreadsheets. This project was about building a platform that brings all of that into one place so teams can focus on the actual work.",
+        role: "Senior UX Designer",
+        focus: "UX Strategy, Service Design, Workflow Optimization, Design Systems",
+        type: "Client Project · B2B SaaS",
+        industry: "B2B Compliance · Enterprise",
+        duration: "9 months",
+        timeline: "June 2024 – March 2025",
+        platforms: "Web (B2B SaaS)",
+        clientWebsite: "https://vstatefilings.com/",
+        accentColor: "#2563eb",
+        themeGradient: "from-[#EFF6FF] to-[#FFFFFF]",
+        links: [
+            { text: "Figma File", url: "https://www.figma.com/design/bw6YgvKiThQsRMoBAx0BPb/vState-Filings?node-id=1-28373&t=aTJKcqchaOcqjaW9-1" },
+            { text: "", url: "" },
+        ],
+        blocks: [
+            // ── Problem Context ──────────────────────────────────────────────
+            {
+                type: "problem-statement",
+                title: "Problem Context",
+                highlight: "Most compliance teams were juggling spreadsheets, email threads and separate tools to manage what was essentially one workflow.",
+                content: "Compliance service providers handle many filings at the same time across different states and clients. The problem is that most of this work happens in disconnected tools. Spreadsheets for tracking, email for communication and document collection. This creates a situation where things fall through the cracks easily.",
+                list: [
+                    "No single place to see all active filings and their statuses",
+                    "Teams had to switch between tools to work on the same client",
+                    "Documents were requested by email and tracked manually",
+                    "Clients kept following up because they had no visibility into progress"
+                ]
+            },
+            // ── Users & Service Ecosystem ────────────────────────────────────
+            {
+                type: "role-list",
+                title: "Users & Service Ecosystem",
+                highlight: "Three types of users needed the platform to work completely differently for each of them.",
+                content: "Who uses the platform:",
+                roles: [
+                    "Super Admin: Runs the compliance firm. Needs a clear view of all clients, teams, and filing deadlines without opening multiple tools.",
+                    "Compliance Executive: Does the actual filing work. Needs task lists, document access and clear instructions without having to chase information.",
+                    "Client Admin: Business owner or admin on the client side. Needs to track what is happening with their filings and upload documents when asked."
+                ]
+            },
+            {
+                type: "custom-component",
+                componentName: "VStateServiceEcosystem",
+            },
+            // ── User Research Insights ───────────────────────────────────────
+            {
+                type: "rich-text",
+                title: "User Research Insights",
+                content: "Research was done through stakeholder interviews and workflow observation sessions with compliance professionals. The focus was on understanding how they currently work and what creates the most stress and wasted effort in their day."
+            },
+            {
+                type: "custom-component",
+                componentName: "VStateResearchInsights",
+            },
+            // ── Current Workflow (Before vState) ────────────────────────────
+            {
+                type: "rich-text",
+                title: "Current Workflow (Before vState)",
+                content: "Before the platform, compliance teams had no structured process. A client would send an email, someone would log it in a spreadsheet, documents would go back and forth over email, and status updates were given only when someone asked. Everything depended on individual memory and effort."
+            },
+            {
+                type: "custom-component",
+                componentName: "VStateBeforeWorkflow",
+            },
+            // ── Pain Point Analysis ──────────────────────────────────────────
+            {
+                type: "rich-text",
+                title: "Pain Point Analysis",
+                content: "We mapped each observable problem back to its root cause. This helped us understand what we were actually solving versus just treating symptoms. Three core problems kept appearing across all research sessions."
+            },
+            {
+                type: "custom-component",
+                componentName: "VStatePainPoints",
+            },
+            // ── Future Workflow (After vState) ───────────────────────────────
+            {
+                type: "rich-text",
+                title: "Future Workflow (After vState)",
+                content: "With vState, the entire compliance process runs inside one system. A client creates an order, the platform breaks it into tasks, the compliance team works through guided steps, documents go into one central place and notifications reach everyone automatically at each stage."
+            },
+            {
+                type: "custom-component",
+                componentName: "VStateAfterWorkflow",
+            },
+            // ── Notification System ──────────────────────────────────────────
+            {
+                type: "rich-text",
+                title: "Automated Compliance Monitoring & Notification System",
+                content: "Instead of relying on manual compliance calendars, the platform uses event-driven triggers that monitor regulatory workflows. As the UX designer, the notification logic and message content were researched and defined based on user expectations and workflow needs. Notifications follow a structured format: what happened, why it happened, and what action is required."
+            },
+            {
+                type: "custom-component",
+                componentName: "VStateNotificationSystem",
+            },
+            // ── User Personas ────────────────────────────────────────────────
+            {
+                type: "personas",
+                title: "User Personas",
+                personas: [
+                    {
+                        name: "Michael Anderson",
+                        role: "Super Admin — Compliance Firm Owner",
+                        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800",
+                        quote: "\"I need one system that tells me everything is under control.\"",
+                        goals: ["Zero missed deadlines", "Clear business overview", "Scalable operations"],
+                        painPoints: ["Manual tracking", "Tool overload", "Limited real-time visibility"]
+                    },
+                    {
+                        name: "Emily Rodriguez",
+                        role: "Compliance Executive",
+                        image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800",
+                        quote: "\"I just want clear tasks and documents in one place.\"",
+                        goals: ["Faster filings", "Clear task ownership", "Minimal errors"],
+                        painPoints: ["Context switching", "Missing documents", "Repetitive status updates"]
+                    },
+                    {
+                        name: "David Thompson",
+                        role: "Client Admin",
+                        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800",
+                        quote: "\"I want transparency without chasing updates.\"",
+                        goals: ["Real-time filing status", "Deadline alerts", "Easy document uploads"],
+                        painPoints: ["Unclear progress", "Anxiety around penalties", "Poor communication"]
+                    }
+                ]
+            },
+            // ── Service Blueprint ────────────────────────────────────────────
+            {
+                type: "rich-text",
+                title: "Service Blueprint",
+                content: "The service blueprint maps what the user sees and does on the front, what the product interface handles, what the backend does to make it work, and what external tools plug into the system. Each layer connects to the one above to show how the full service actually runs."
+            },
+            {
+                type: "custom-component",
+                componentName: "VStateServiceBlueprint",
+            },
+            // ── Key UX Solutions (Core Screens) ─────────────────────────────
+            {
+                type: "core-screens",
+                title: "Key UX Solutions",
+                highlight: "Annotated screens showing how each feature solves a specific user problem.",
+                screens: [
+                    { title: "Sign-up & Role-Based Access — Context-aware onboarding with role routing", image: "/lovable-uploads/Sign Up.png" },
+                    { title: "Super Admin Dashboard — Centralized visibility across all filings and deadlines", image: "/lovable-uploads/Super Admin Deadilines.mp4" },
+                    { title: "Client Profile & Document Vault — Aggregated client data with structured document storage", image: "/lovable-uploads/Companies.png" },
+                    { title: "Order Creation — Guided step-by-step filing process that reduces errors", image: "/lovable-uploads/order-process.mp4" }
+                ]
+            },
+            // ── Asset Placeholders: Missing screens ──────────────────────────
+            {
+                type: "image",
+                title: "Notification Center",
+                src: "/lovable-uploads/Notification.png",
+                caption: "Notification Center — compliance alerts organized by trigger type (deadline, document, status), with structured context on what happened, why it happened, and the required action."
+            },
+            {
+                type: "image",
+                title: "Compliance Map View",
+                src: "/lovable-uploads/Compliance Map View.mp4",
+                caption: "Multi-state compliance map — a geographic visualization showing filing statuses across all registered states per client entity, allowing executives to spot at-risk jurisdictions at a glance."
+            },
+            // ── Platform Demo ────────────────────────────────────────────────
+            {
+                type: "image",
+                src: "/lovable-uploads/vstate-demo.gif",
+                caption: "Full Platform Flow — Demonstrating the end-to-end compliance workflow"
+            },
+            // ── Design System ────────────────────────────────────────────────
+            {
+                type: "rich-text",
+                title: "Design System",
+                content: "A shared design system was built to keep the product consistent as it grows. It covers how status is shown in colour, how data-heavy tables are structured, how error messages appear in forms, how notifications look and how navigation is laid out across different screen types."
+            },
+            {
+                type: "custom-component",
+                componentName: "VStateDesignSystemGrid",
+            },
+            // ── Expected Impact ──────────────────────────────────────────────
+            {
+                type: "impact",
+                title: "Expected Impact",
+                items: [
+                    "Centralized visibility across all compliance workflows and deadlines",
+                    "Reduced manual follow-up communication between teams and clients",
+                    "Faster filing preparation for compliance executives",
+                    "Improved client trust through transparent, real-time status updates",
+                    "Automated notifications eliminate missed deadlines and reduce stress",
+                    "Structured document management removes repeated document requests"
+                ]
+            },
+            // ── Key Learnings ────────────────────────────────────────────────
+            {
+                type: "learnings",
+                title: "Key Learnings",
+                learnings: [
+                    "Compliance UX must prioritize clarity over creativity — users need predictability and trust above all.",
+                    "Automation reduces operational stress for compliance teams significantly; guided workflows prevented errors without slowing people down.",
+                    "Visibility and transparency significantly increase client trust — making progress observable was the single highest-impact design decision."
+                ],
+                future: [
+                    "AI-assisted compliance risk predictions",
+                    "Smart deadline forecasting based on historical data",
+                    "Intelligent task prioritization for critical filings",
+                    "Chatbot support for complex legal compliance exceptions"
                 ]
             }
         ]
