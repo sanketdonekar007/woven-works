@@ -181,7 +181,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Photo Gallery */}
+        {/* Photo Gallery
         <section className="mb-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <VideoCard
             src="/videos/Azzur.mp4"
@@ -208,6 +208,7 @@ const About = () => {
             onPlay={setActiveVideoSrc}
           />
         </section>
+        */}
 
         {/* Experience Section */}
         <section className="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 border-t border-border pt-20">
