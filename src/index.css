@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lustria&display=swap');
 @tailwind base;
 @tailwind components;
@@ -70,7 +70,11 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter Tight', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Archivo', sans-serif;
   }
 
   html {
@@ -299,7 +303,7 @@ h1.section-title {
 }
 
 .project-card {
-  @apply h-full flex flex-col opacity-0 w-full bg-card text-card-foreground p-6 md:p-8 rounded-[40px] shadow-sm hover:shadow-md transition-shadow duration-300;
+  @apply h-full flex flex-col opacity-0 w-full bg-card text-card-foreground p-6 md:p-8 rounded-[40px] shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer;
   animation: fadeIn 0.8s ease-out forwards;
 }
 

@@ -20,7 +20,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"Inter Tight"', 'sans-serif'],
+        sans: ['"Space Grotesk"', 'sans-serif'],
+        heading: ['"Archivo"', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -95,6 +96,14 @@ export default {
           "60%": { transform: "rotate(0deg)" },
           "100%": { transform: "rotate(0deg)" },
         },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-100%)" },
+        },
+        "marquee-reverse": {
+          from: { transform: "translateX(-100%)" },
+          to: { transform: "translateX(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -103,6 +112,10 @@ export default {
         "gradient-flow": "gradientFlow 15s ease infinite",
         "float": "float 6s ease-in-out infinite",
         "wave": "wave 2.5s ease-in-out infinite",
+        "scroll": "marquee 40s linear infinite",
+        "scroll-reverse": "marquee-reverse 40s linear infinite",
+        "marquee": "marquee 40s linear infinite",
+        "marquee-reverse": "marquee-reverse 40s linear infinite",
       },
     },
   },

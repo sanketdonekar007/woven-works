@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import TextReveal from "@/components/TextReveal";
 import { Star, Layout, BarChart, Lightbulb, Users, MessageSquare, Clock, ArrowUpRight, Dribbble, Linkedin } from "lucide-react";
 import AnimatedLink from "@/components/AnimatedLink";
+import MarqueeStack from "@/components/MarqueeStack";
 
 const VideoCard = ({
   src,
@@ -143,7 +144,7 @@ const About = () => {
             <TextReveal
               as="h1"
               text="About me"
-              className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] mb-8 block text-foreground"
+              className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] mb-8 block text-foreground font-heading"
               delay={0}
             />
             <div className="text-lg text-muted-foreground leading-relaxed space-y-6 max-w-xl">
@@ -174,7 +175,7 @@ const About = () => {
             <TextReveal
               as="h2"
               text="I'm driven by curiosity, creativity, and the belief that great design always starts with empathy."
-              className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight text-right text-foreground ml-auto max-w-2xl"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight text-right text-foreground ml-auto max-w-2xl font-heading"
               delay={200}
               stagger={20}
             />
@@ -217,7 +218,7 @@ const About = () => {
               <TextReveal
                 as="h3"
                 text="My experience"
-                className="text-3xl font-bold tracking-tight leading-[1.1] mb-4 block text-foreground"
+                className="text-3xl font-bold tracking-tight leading-[1.1] mb-4 block text-foreground font-heading"
               />
               <TextReveal
                 as="p"
@@ -304,7 +305,7 @@ const About = () => {
               <TextReveal
                 as="h3"
                 text="My education"
-                className="text-3xl font-bold tracking-tight leading-[1.1] mb-4 block text-foreground"
+                className="text-3xl font-bold tracking-tight leading-[1.1] mb-4 block text-foreground font-heading"
               />
               <TextReveal
                 as="p"
@@ -398,7 +399,7 @@ const About = () => {
             <TextReveal
               as="h3"
               text="What do I specialize as a designer?"
-              className="text-4xl font-bold tracking-tight mb-8 block text-foreground leading-[1.1]"
+              className="text-4xl font-bold tracking-tight mb-8 block text-foreground leading-[1.1] font-heading"
             />
             <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground block mb-8">HARD SKILLS</span>
           </div>
@@ -430,7 +431,7 @@ const About = () => {
             <TextReveal
               as="h3"
               text="What are my skills beyond craft & execution?"
-              className="text-4xl font-bold tracking-tight mb-8 block text-foreground leading-[1.1]"
+              className="text-4xl font-bold tracking-tight mb-8 block text-foreground leading-[1.1] font-heading"
             />
             <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground block mb-8">SOFT SKILLS</span>
           </div>
@@ -461,6 +462,10 @@ const About = () => {
           </div>
         </section>
 
+        {/* Toolkit Marquee Section */}
+        <section className="mt-8 mb-24 overflow-hidden">
+          <MarqueeStack />
+        </section>
 
       </main>
 
@@ -468,9 +473,9 @@ const About = () => {
       <footer className="footer" style={{ backgroundImage: "url('/lovable-uploads/gradient.gif')" }}>
         <div className="footer-content max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="mb-4 text-left">
-            <TextReveal text="Like what you see??" className="footer-title text-3xl font-medium" />
+            <TextReveal text="Like what you see??" className="footer-title text-3xl font-medium font-heading" />
           </div>
-          <h2 className="footer-title">View my <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer" className="resume-link">resume</a>, get in touch 👋</h2>
+          <h2 className="footer-title font-heading">View my <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer" className="resume-link">resume</a>, get in touch 👋</h2>
           <div className="social-links flex gap-4 mt-4">
             <a href="https://dribbble.com/sanket_works" target="_blank" rel="noopener noreferrer" aria-label="Dribbble" className="text-muted-foreground hover:text-foreground transition-colors">
               <Dribbble className="w-6 h-6" />
