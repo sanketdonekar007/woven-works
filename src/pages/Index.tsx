@@ -135,7 +135,7 @@ const Index = () => {
         <div className="flex flex-col gap-12 md:gap-24 w-full relative pb-12">
           {/* Project 1 */}
           <div className="w-full sticky top-24 z-10">
-            <div className="group relative w-full flex flex-col md:flex-row gap-8 lg:gap-12 items-center p-6 md:p-8 lg:p-10 bg-card dark:bg-[#1A1A1A] border border-border/50 dark:border-white/5 rounded-[40px] hover:shadow-xl transition-all duration-500 overflow-hidden cursor-pointer">
+            <div className="group relative w-full flex flex-col md:flex-row gap-8 lg:gap-12 items-center p-6 md:p-8 lg:p-10 bg-card dark:bg-[#1A1A1A] border border-border/50 dark:border-white/5 rounded-[40px] hover:shadow-xl transition-all duration-500 overflow-hidden">
               
               <div className="w-full md:w-1/2 lg:w-[55%] h-full shrink-0 order-1">
                 <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-[450px] rounded-[30px] overflow-hidden bg-muted/20">
@@ -182,7 +182,7 @@ const Index = () => {
 
           {/* Project 2 */}
           <div className="w-full sticky top-32 z-20">
-            <div className="group relative w-full flex flex-col md:flex-row gap-8 lg:gap-12 items-center p-6 md:p-8 lg:p-10 bg-card dark:bg-[#1A1A1A] border border-border/50 dark:border-white/5 rounded-[40px] hover:shadow-xl transition-all duration-500 overflow-hidden cursor-pointer">
+            <div className="group relative w-full flex flex-col md:flex-row gap-8 lg:gap-12 items-center p-6 md:p-8 lg:p-10 bg-card dark:bg-[#1A1A1A] border border-border/50 dark:border-white/5 rounded-[40px] hover:shadow-xl transition-all duration-500 overflow-hidden">
               
               <div className="w-full md:w-1/2 lg:w-[55%] h-full shrink-0 order-1">
                 <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-[450px] rounded-[30px] overflow-hidden bg-muted/20">
@@ -231,7 +231,7 @@ const Index = () => {
 
           {/* Project 3b */}
           <div className="w-full sticky top-40 z-30">
-            <div className="group relative w-full flex flex-col md:flex-row gap-8 lg:gap-12 items-center p-6 md:p-8 lg:p-10 bg-card dark:bg-[#1A1A1A] border border-border/50 dark:border-white/5 rounded-[40px] hover:shadow-xl transition-all duration-500 overflow-hidden cursor-pointer">
+            <div className="group relative w-full flex flex-col md:flex-row gap-8 lg:gap-12 items-center p-6 md:p-8 lg:p-10 bg-card dark:bg-[#1A1A1A] border border-border/50 dark:border-white/5 rounded-[40px] hover:shadow-xl transition-all duration-500 overflow-hidden">
               
               <div className="w-full md:w-1/2 lg:w-[55%] h-full shrink-0 order-1">
                 <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-[450px] rounded-[30px] overflow-hidden bg-muted/20">
@@ -280,7 +280,7 @@ const Index = () => {
 
           {/* Project 4 */}
           <div className="w-full sticky top-48 z-40">
-            <div className="group relative w-full flex flex-col md:flex-row gap-8 lg:gap-12 items-center p-6 md:p-8 lg:p-10 bg-card dark:bg-[#1A1A1A] border border-border/50 dark:border-white/5 rounded-[40px] hover:shadow-xl transition-all duration-500 overflow-hidden cursor-pointer">
+            <div className="group relative w-full flex flex-col md:flex-row gap-8 lg:gap-12 items-center p-6 md:p-8 lg:p-10 bg-card dark:bg-[#1A1A1A] border border-border/50 dark:border-white/5 rounded-[40px] hover:shadow-xl transition-all duration-500 overflow-hidden">
               
               <div className="w-full md:w-1/2 lg:w-[55%] h-full shrink-0 order-1">
                 <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-[450px] rounded-[30px] overflow-hidden bg-muted/20">
@@ -327,7 +327,7 @@ const Index = () => {
 
           {/* Project 5 */}
           <div className="w-full sticky top-56 z-50">
-            <div className="group relative w-full flex flex-col md:flex-row gap-8 lg:gap-12 items-center p-6 md:p-8 lg:p-10 bg-card dark:bg-[#1A1A1A] border border-border/50 dark:border-white/5 rounded-[40px] hover:shadow-xl transition-all duration-500 overflow-hidden cursor-pointer">
+            <div className="group relative w-full flex flex-col md:flex-row gap-8 lg:gap-12 items-center p-6 md:p-8 lg:p-10 bg-card dark:bg-[#1A1A1A] border border-border/50 dark:border-white/5 rounded-[40px] hover:shadow-xl transition-all duration-500 overflow-hidden">
               
               <div className="w-full md:w-1/2 lg:w-[55%] h-full shrink-0 order-1">
                 <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-[450px] rounded-[30px] overflow-hidden bg-muted/20">
