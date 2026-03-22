@@ -7,7 +7,7 @@ import TextReveal from "@/components/TextReveal";
 import { Dribbble, Linkedin, Check, ArrowUpRight, Moon, Sun } from "lucide-react";
 import AnimatedLink from "@/components/AnimatedLink";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
-import { PasswordProtectedProject } from "@/components/PasswordProtectedProject";
+
 
 
 const Index = () => {
@@ -214,17 +214,15 @@ const Index = () => {
                    </div>
                 </div>
 
-                <PasswordProtectedProject to="/projects/snackhack">
-                  <div className="inline-flex items-center gap-2 bg-foreground dark:bg-transparent text-background dark:text-foreground border border-transparent dark:border-foreground rounded-full px-8 py-4 text-sm font-medium transition-all self-start group/btn">
-                    <span className="relative overflow-hidden h-[1.2em] block">
-                      <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover/btn:-translate-y-full">
-                        <span className="block">🔒 View Process</span>
-                        <span className="block absolute top-full left-0 opacity-50">🔒 View Process</span>
-                      </span>
+                <Link to="/projects/snackhack" className="inline-flex items-center gap-2 bg-foreground dark:bg-transparent text-background dark:text-foreground border border-transparent dark:border-foreground rounded-full px-8 py-4 text-sm font-medium transition-all self-start group/btn">
+                  <span className="relative overflow-hidden h-[1.2em] block">
+                    <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover/btn:-translate-y-full">
+                      <span className="block">View Process</span>
+                      <span className="block absolute top-full left-0 opacity-50">View Process</span>
                     </span>
-                    <ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                  </div>
-                </PasswordProtectedProject>
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                </Link>
               </div>
             </div>
           </div>
@@ -263,17 +261,15 @@ const Index = () => {
                    </div>
                 </div>
 
-                <PasswordProtectedProject to="/projects/vstatecompliance">
-                  <div className="inline-flex items-center gap-2 bg-foreground dark:bg-transparent text-background dark:text-foreground border border-transparent dark:border-foreground rounded-full px-8 py-4 text-sm font-medium transition-all self-start group/btn">
-                    <span className="relative overflow-hidden h-[1.2em] block">
-                      <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover/btn:-translate-y-full">
-                        <span className="block">🔒 View Case Study</span>
-                        <span className="block absolute top-full left-0 opacity-50">🔒 View Case Study</span>
-                      </span>
+                <Link to="/projects/vstatecompliance" className="inline-flex items-center gap-2 bg-foreground dark:bg-transparent text-background dark:text-foreground border border-transparent dark:border-foreground rounded-full px-8 py-4 text-sm font-medium transition-all self-start group/btn">
+                  <span className="relative overflow-hidden h-[1.2em] block">
+                    <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover/btn:-translate-y-full">
+                      <span className="block">View Case Study</span>
+                      <span className="block absolute top-full left-0 opacity-50">View Case Study</span>
                     </span>
-                    <ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                  </div>
-                </PasswordProtectedProject>
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                </Link>
               </div>
             </div>
           </div>
