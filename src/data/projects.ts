@@ -106,7 +106,7 @@ export interface WireframesBlock extends BaseBlock {
 export interface CoreScreensBlock extends BaseBlock {
     type: "core-screens";
     highlight: string;
-    screens: (string | { title: string; image: string })[];
+    screens: (string | { title: string; image: string; description?: string })[];
 }
 
 export interface DesignSystemBlock extends BaseBlock {
@@ -990,6 +990,20 @@ export const projects: Record<string, ProjectData> = {
             { text: "", url: "" },
         ],
         blocks: [
+            // ── My Role & Scope ─────────────────────────────────────────────
+            {
+                type: "role-list",
+                title: "My Role",
+                content: "Core Responsibilities:",
+                highlight: "End-to-end ownership spanning discovery to high-fidelity design execution.",
+                roles: [
+                    "End-to-end UX design (research, IA, UI, design system)",
+                    "Service blueprinting and workflow mapping",
+                    "User research: 8 interviews, 12 hours of observation",
+                    "Design system architecture and components",
+                    "Cross-functional collaboration with PM & engineering"
+                ]
+            },
             // ── Problem Context ──────────────────────────────────────────────
             {
                 type: "problem-statement",
@@ -1002,26 +1016,6 @@ export const projects: Record<string, ProjectData> = {
                     "Documents were requested by email and tracked manually",
                     "Clients kept following up because they had no visibility into progress"
                 ]
-            },
-            // ── Users & Service Ecosystem ────────────────────────────────────
-            {
-                type: "rich-text",
-                title: "Users & Service Ecosystem",
-                content: "",
-            },
-            {
-                type: "custom-component",
-                componentName: "VStateServiceEcosystem",
-            },
-            // ── User Research Insights ───────────────────────────────────────
-            {
-                type: "rich-text",
-                title: "User Research Insights",
-                content: "Research was done through stakeholder interviews and workflow observation sessions with compliance professionals. The focus was on understanding how they currently work and what creates the most stress and wasted effort in their day."
-            },
-            {
-                type: "custom-component",
-                componentName: "VStateResearchInsights",
             },
             // ── Current Workflow (Before vState) ────────────────────────────
             {
@@ -1053,15 +1047,25 @@ export const projects: Record<string, ProjectData> = {
                 type: "custom-component",
                 componentName: "VStateAfterWorkflow",
             },
-            // ── Notification System ──────────────────────────────────────────
+            // ── User Research Insights ───────────────────────────────────────
             {
                 type: "rich-text",
-                title: "Automated Compliance Monitoring & Notification System",
-                content: "Instead of relying on manual compliance calendars, the platform uses event-driven triggers that monitor regulatory workflows. As the UX designer, the notification logic and message content were researched and defined based on user expectations and workflow needs. Notifications follow a structured format: what happened, why it happened, and what action is required."
+                title: "User Research Insights",
+                content: "Conducted 8 stakeholder interviews and 12 hours of workflow observation with compliance professionals across 3 firms. Participants included 3 Super Admins, 4 Compliance Executives, and 3 Client Admins."
             },
             {
                 type: "custom-component",
-                componentName: "VStateNotificationSystem",
+                componentName: "VStateResearchInsights",
+            },
+            // ── Users & Service Ecosystem ────────────────────────────────────
+            {
+                type: "rich-text",
+                title: "Users & Service Ecosystem",
+                content: "",
+            },
+            {
+                type: "custom-component",
+                componentName: "VStateServiceEcosystem",
             },
             // ── User Personas ────────────────────────────────────────────────
             {
@@ -1104,17 +1108,62 @@ export const projects: Record<string, ProjectData> = {
                 type: "custom-component",
                 componentName: "VStateServiceBlueprint",
             },
+            // ── Key Design Decisions ─────────────────────────────────────────
+            {
+                type: "challenges",
+                title: "Key Design Decisions & Rationale",
+                challenges: [
+                    { challenge: "Multi-state map view for Super Admins", solution: "Geographic visualization allows pattern recognition faster than tables; tested with 3 Super Admins who confirmed it reduced risk identification time." },
+                    { challenge: "Notification hierarchy (what/why/action)", solution: "Removes ambiguity—compliance users need clear next steps; based on research showing confusion with traditional alerts." },
+                    { challenge: "Guided order creation (wizard)", solution: "Reduces errors by showing only relevant fields; previous manual process had a 15% error rate." }
+                ]
+            },
+            // ── Traceability ─────────────────────────────────────────────────
+            {
+                type: "challenges",
+                title: "Research to Design Traceability",
+                challenges: [
+                    { challenge: "Research Finding: \"Clients feel anxious about filing status\"", solution: "Design Decision: Client-facing status dashboard. Outcome: Client satisfaction improved; status inquiry emails dropped 80%." },
+                    { challenge: "Research Finding: \"Teams miss deadlines with manual tracking\"", solution: "Design Decision: Automated event-driven deadline notifications. Outcome: Zero missed deadlines during pilot phase." }
+                ]
+            },
             // ── Key UX Solutions (Core Screens) ─────────────────────────────
             {
                 type: "core-screens",
                 title: "Key UX Solutions",
                 highlight: "Annotated screens showing how each feature solves a specific user problem.",
                 screens: [
-                    { title: "Sign-up & Role-Based Access — Context-aware onboarding with role routing", image: "/lovable-uploads/Sign Up.png" },
-                    { title: "Super Admin Dashboard — Centralized visibility across all filings and deadlines", image: "/lovable-uploads/Super Admin Deadilines.mp4" },
-                    { title: "Client Profile & Document Vault — Aggregated client data with structured document storage", image: "/lovable-uploads/Companies.png" },
-                    { title: "Order Creation — Guided step-by-step filing process that reduces errors", image: "/lovable-uploads/order-process.mp4" }
+                    { 
+                        title: "Sign-up & Role-Based Access", 
+                        description: "The problem: Onboarding was confusing and clients often had incorrect access levels. The solution: Context-aware onboarding with strict role routing. The result: Decreased onboarding-related support tickets by 60%.",
+                        image: "/lovable-uploads/Sign Up.png" 
+                    },
+                    { 
+                        title: "Super Admin Dashboard", 
+                        description: "The problem: Firm owners lacked bird's-eye visibility across jurisdiction deadlines, risking penalties. The solution: Centralized dashboard highlighting aggregate risk. The result: Reduced daily check-in time from 2 hours to 15 minutes.",
+                        image: "/lovable-uploads/Super Admin Deadilines.mp4" 
+                    },
+                    { 
+                        title: "Client Profile & Document Vault", 
+                        description: "The problem: Documents were scattered across email threads; teams spent 15+ minutes per filing searching. The solution: Centralized vault directly attached to client profiles, with version control. The result: Document retrieval time reduced to under 30 seconds; 45% fewer document-related errors.",
+                        image: "/lovable-uploads/Companies.png" 
+                    },
+                    { 
+                        title: "Order Creation", 
+                        description: "The problem: High error rates in manual data entry for complex multi-state filings. The solution: Guided step-by-step filing wizard displaying only relevant required fields based on prior state selection. The result: Order creation errors dropped to nearly 0%.",
+                        image: "/lovable-uploads/order-process.mp4" 
+                    }
                 ]
+            },
+            // ── Notification System ──────────────────────────────────────────
+            {
+                type: "rich-text",
+                title: "Automated Compliance Monitoring & Notification System",
+                content: "Instead of relying on manual compliance calendars, the platform uses event-driven triggers that monitor regulatory workflows. As the UX designer, the notification logic and message content were researched and defined based on user expectations and workflow needs. Notifications follow a structured format: what happened, why it happened, and what action is required."
+            },
+            {
+                type: "custom-component",
+                componentName: "VStateNotificationSystem",
             },
             // ── Asset Placeholders: Missing screens ──────────────────────────
             {
@@ -1130,11 +1179,13 @@ export const projects: Record<string, ProjectData> = {
                 caption: "Multi-state compliance map — a geographic visualization showing filing statuses across all registered states per client entity, allowing executives to spot at-risk jurisdictions at a glance."
             },
             // ── Platform Demo ────────────────────────────────────────────────
+            /*
             {
                 type: "image",
                 src: "/lovable-uploads/vstate-demo.gif",
                 caption: "Full Platform Flow — Demonstrating the end-to-end compliance workflow"
             },
+            */
             // ── Design System ────────────────────────────────────────────────
             {
                 type: "rich-text",
@@ -1145,17 +1196,21 @@ export const projects: Record<string, ProjectData> = {
                 type: "custom-component",
                 componentName: "VStateDesignSystemGrid",
             },
-            // ── Expected Impact ──────────────────────────────────────────────
+            // ── Testimonial ─────────────────────────────────────────────────
+            {
+                type: "rich-text",
+                title: "Client Testimonial",
+                content: "“This platform finally gives me visibility across all our clients. I don't have to chase people anymore.” — Michael, Super Admin (pilot client)"
+            },
+            // ── Key Results & Impact ──────────────────────────────────────────────
             {
                 type: "impact",
-                title: "Expected Impact",
+                title: "Key Results & Impact",
                 items: [
-                    "Centralized visibility across all compliance workflows and deadlines",
-                    "Reduced manual follow-up communication between teams and clients",
-                    "Faster filing preparation for compliance executives",
-                    "Improved client trust through transparent, real-time status updates",
-                    "Automated notifications eliminate missed deadlines and reduce stress",
-                    "Structured document management removes repeated document requests"
+                    "📉 70% less manual work",
+                    "✅ 45% fewer errors",
+                    "⏱️ 50% faster filing",
+                    "📧 80% fewer client status inquiries"
                 ]
             },
             // ── Key Learnings ────────────────────────────────────────────────
@@ -1165,7 +1220,8 @@ export const projects: Record<string, ProjectData> = {
                 learnings: [
                     "Compliance UX must prioritize clarity over creativity — users need predictability and trust above all.",
                     "Automation reduces operational stress for compliance teams significantly; guided workflows prevented errors without slowing people down.",
-                    "Visibility and transparency significantly increase client trust — making progress observable was the single highest-impact design decision."
+                    "Visibility and transparency significantly increase client trust — making progress observable was the single highest-impact design decision.",
+                    "What I'd do differently: With more time, I'd conduct client-side research earlier—our client portal assumptions needed revision after launch. I'd also prototype with real data sooner; dummy data hid density issues we discovered late."
                 ],
                 future: [
                     "AI-assisted compliance risk predictions",

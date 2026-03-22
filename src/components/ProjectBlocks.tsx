@@ -255,7 +255,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
             );
 
         case "core-screens":
-            const imageScreens = block.screens.filter(s => typeof s === 'object') as { title: string, image: string }[];
+            const imageScreens = block.screens.filter(s => typeof s === 'object') as { title: string, image: string, description?: string }[];
             const labelScreens = block.screens.filter(s => typeof s === 'string') as string[];
 
             return (
@@ -269,9 +269,12 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                         {imageScreens.map((screen, i) => (
                             <RevealOnScroll key={i} delay={i * 100}>
                                 <div className="flex flex-col gap-10">
-                                    <div className="flex items-center gap-6">
-                                        <div className="text-2xl font-bold tracking-tighter text-muted-foreground">0{i + 1}</div>
-                                        <h3 className="text-3xl md:text-4xl font-bold tracking-tight leading-[1.1] text-foreground">{screen.title}</h3>
+                                    <div className="flex items-start gap-6">
+                                        <div className="text-2xl font-bold tracking-tighter text-muted-foreground mt-1.5">0{i + 1}</div>
+                                        <div className="flex flex-col">
+                                            <h3 className="text-3xl md:text-4xl font-bold tracking-tight leading-[1.1] text-foreground">{screen.title}</h3>
+                                            {screen.description && <p className="text-lg text-muted-foreground mt-2 leading-relaxed max-w-3xl">{screen.description}</p>}
+                                        </div>
                                     </div>
                                     <div className="rounded-[1.5rem] md:rounded-[2.5rem] p-4 md:p-6 lg:p-8 overflow-hidden shadow-sm bg-card group border border-border">
                                         {screen.image.endsWith('.mp4') ? (

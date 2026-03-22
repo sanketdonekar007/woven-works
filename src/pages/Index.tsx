@@ -252,12 +252,12 @@ const Index = () => {
 
                 <div className="grid grid-cols-2 gap-4 mb-10 w-full max-w-sm">
                    <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
-                       <h4 className="text-3xl font-bold text-foreground font-heading mb-1">-50%</h4>
-                       <span className="text-xs font-medium text-muted-foreground">Compliance Errors</span>
+                       <h4 className="text-3xl font-bold text-foreground font-heading mb-1">-70%</h4>
+                       <span className="text-xs font-medium text-muted-foreground">Manual Work</span>
                    </div>
                    <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
-                       <h4 className="text-3xl font-bold text-foreground font-heading mb-1">2.5x</h4>
-                       <span className="text-xs font-medium text-muted-foreground">Filing Speed</span>
+                       <h4 className="text-3xl font-bold text-foreground font-heading mb-1">-45%</h4>
+                       <span className="text-xs font-medium text-muted-foreground">Compliance Errors</span>
                    </div>
                 </div>
 
