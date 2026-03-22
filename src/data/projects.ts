@@ -806,19 +806,6 @@ export const projects: Record<string, ProjectData> = {
                     "Marketing claims are misleading: Products often use deceptive language to appear healthier than they are."
                 ]
             },
-            // ── Who We're Designing For ────────────────────────────────────────
-            {
-                type: "role-list",
-                title: "Who We're Designing For",
-                highlight: "SnackHack is designed for everyday consumers navigating grocery stores, convenience shops, or online snack purchases.",
-                content: "User Groups:",
-                roles: [
-                    "Health-conscious individuals",
-                    "Busy professionals",
-                    "Fitness focused users",
-                    "Parents & families"
-                ]
-            },
             // ── User Research ─────────────────────────────────────────────────
             {
                 type: "rich-text",
@@ -921,33 +908,27 @@ export const projects: Record<string, ProjectData> = {
                     "Save or scan another"
                 ]
             },
-            // ── UX Challenges & Solutions ────────────────────────────────────
+            // ── UX Challenges & Design Decisions (merged) ─────────────────────
             {
                 type: "challenges",
-                title: "UX Challenges & Solutions",
+                title: "UX Challenges & Design Decisions",
                 challenges: [
                     {
-                        challenge: "Complex nutritional data",
-                        solution: "A single, color-coded health score — users in testing were overwhelmed by 5+ metrics; they wanted one clear answer. Task completion improved by 40% in the second round."
+                        challenge: "Challenge: Complex nutritional data overwhelmed users",
+                        solution: "Decision: A single, color-coded health score. Users in testing were overwhelmed by 5+ metrics and wanted one clear answer. Outcome: Task completion improved by 40% in the second usability round."
                     },
                     {
-                        challenge: "Low trust in scores",
-                        solution: "Transparent ingredient-level explanations with visual badges — 85% of users correctly interpreted the score without reading the full explanation."
+                        challenge: "Challenge: Low trust in automated health scores",
+                        solution: "Decision: Transparent ingredient-level breakdown with visual badges (sugar, additives). 85% of users correctly interpreted the score without needing to read the full explanation."
                     },
                     {
-                        challenge: "Decision fatigue",
-                        solution: "Smart alternative recommendations — users asked 'what should I buy instead?' Competitors only told them what was bad. 42% of prototype testers clicked an alternative recommendation."
+                        challenge: "Challenge: Decision fatigue — users didn't know what to buy instead",
+                        solution: "Decision: Smart alternative recommendations panel. Competitors only flagged harmful products; we added a direct better alternative. 42% of prototype testers clicked it."
+                    },
+                    {
+                        challenge: "Challenge: Users ignored long text descriptions during scanning",
+                        solution: "Decision: Simple iconography + 2-word labels. Icons + short labels scored 85% correct interpretation without reading the explanation text."
                     }
-                ]
-            },
-            // ── Key Design Decisions ───────────────────────────────────────────
-            {
-                type: "challenges",
-                title: "Key Design Decisions & Rationale",
-                challenges: [
-                    { challenge: "Single color-coded health score", solution: "Users in testing were overwhelmed by 5+ metrics and wanted one clear answer. Task completion time improved by 40% in the second usability round." },
-                    { challenge: "Alternative recommendations panel", solution: "User interviews revealed the top frustration was not knowing what to buy instead. Competitors only flagged harmful products — we added a direct 'better alternative' — 42% clicked it in prototype testing." },
-                    { challenge: "Simple iconography + 2-word labels", solution: "Testing showed users ignored long descriptions. Icons + short labels scored 85% correct interpretation without needing to read the explanation text." }
                 ]
             },
             // ── Research to Design Traceability ──────────────────────────────────
