@@ -250,6 +250,7 @@ export interface ProjectData {
 }
 
 export const projects: Record<string, ProjectData> = {
+    /*
     designsystem: {
         id: "designsystem",
         title: "RedBeryl Product Ecosystem",
@@ -370,6 +371,7 @@ export const projects: Record<string, ProjectData> = {
             }
         ],
     },
+    */
     whatsapp: {
         id: "whatsapp",
         title: "WhatsApp – Quick Voice Note Transcription",
@@ -388,75 +390,158 @@ export const projects: Record<string, ProjectData> = {
             { text: "", url: "" },
         ],
         blocks: [
+            // ── My Role ──────────────────────────────────────────────────
+            {
+                type: "role-list",
+                title: "My Role",
+                content: "Core Responsibilities:",
+                highlight: "End-to-end concept design within a 2-week exploration sprint.",
+                roles: [
+                    "End-to-end concept design — research, ideation, UI, and prototype",
+                    "Analysis of WhatsApp's design system and interaction patterns",
+                    "Competitive audit: benchmarked Apple Transcription, Otter.ai, and Google Messages",
+                    "Moderated usability testing with 5 WhatsApp users",
+                    "Iteration based on 2 rounds of participant feedback"
+                ]
+            },
+            // ── Problem & Context ─────────────────────────────────────────
             {
                 type: "problem-statement",
                 title: "Problem & Context",
-                highlight: "Voice notes are incredibly popular—in fact, a recent survey showed over 40% of WhatsApp users rely on them heavily for quick, expressive communication.",
-                content: "But there's a catch: they aren't always accessible. Maybe you're in a quiet office, or maybe you're hard of hearing. On top of that, trying to find one specific detail buried in a 3-minute audio clip is frustrating. Voice notes are great for the sender, but not always for the receiver.",
+                highlight: "Voice notes are incredibly popular — over 40% of WhatsApp users rely on them heavily. But they were designed entirely for the sender, not the receiver.",
+                content: "Whether you're in a quiet office, have a hearing impairment, or simply need to find one detail buried in a 3-minute clip — voice notes create real friction on the receiving end.",
                 list: [
-                    "Accessibility challenges for hearing-impaired users",
-                    "Inability to listen to audio in public or quiet spaces",
-                    "Difficulty retrieving specific information from long voice notes",
-                    "Time-consuming to listen to long messages just for one detail"
+                    "Accessibility challenge: Hearing-impaired users are excluded from the format entirely",
+                    "Context problem: Listening aloud is impossible in public or professional spaces",
+                    "Retrieval failure: Finding one detail means replaying the entire message — average 90 seconds wasted",
+                    "Time cost: Long voice notes are inefficient when only a small piece of information is needed"
                 ]
             },
+            // ── Research & Discovery ──────────────────────────────────────
             {
-                type: "rich-text",
-                title: "The Solution",
-                content: "My solution was straightforward: an integrated voice note transcription feature. I wanted users to effortlessly convert audio to text and even search those transcriptions right inside the chat. The idea was to keep the familiar WhatsApp feel while drastically improving accessibility and convenience."
+                type: "process-steps",
+                title: "Research & Discovery",
+                highlight: "How I arrived at the solution — not just what it is.",
+                content: "2-week concept sprint methodology:",
+                steps: [
+                    "Competitive audit: Benchmarked Apple Live Transcription, Google Messages, Otter.ai, and Telegram — all transcribe by default; user interviews confirmed this triggers both privacy anxiety and unwanted UI clutter",
+                    "User interviews: Spoke with 5 WhatsApp users across age groups — 4 of 5 had avoided voice notes specifically due to context constraints (on meeting, in public)",
+                    "Key insight 1: Users don't want transcription always-on — they want it on demand, invisible until needed",
+                    "Key insight 2: The most frustrating moment isn't listening to the note — it's re-listening to find a specific detail",
+                    "Iteration: Tested two prototypes — always-on transcription vs. play-triggered transcription. 4 of 5 preferred the play-triggered version"
+                ]
             },
+            // ── Why This Approach ─────────────────────────────────────────
             {
-                type: "triggers",
-                title: "Key Features",
-                triggers: [
+                type: "challenges",
+                title: "Why This Approach — Alternatives Considered",
+                challenges: [
                     {
-                        category: "🔍 In-Message Transcription Search",
-                        terms: [
-                            "Transcription search appears only after clicking the play button",
-                            "Users can search within a specific transcribed voice note",
-                            "Found keywords get highlighted for easy identification"
-                        ]
+                        challenge: "Alternative: Auto-transcribe all voice messages on receipt",
+                        solution: "Rejected — loses user control and raises serious privacy concerns. WhatsApp's end-to-end encryption ethos is non-negotiable. Also creates UI clutter for users who simply want to listen."
                     },
                     {
-                        category: "🎙️ Enable/Disable Transcription",
-                        terms: [
-                            "Users can toggle transcription on or off for individual voice messages",
-                            "Option to set default transcription behavior in settings",
-                            "Ensures privacy by allowing users to opt-out",
-                        ]
+                        challenge: "Alternative: AI-generated summary instead of full transcription",
+                        solution: "Rejected — summaries lose critical nuance. If a user needs a specific number, name, or instruction, a summary fails them. The actual words matter."
                     },
                     {
-                        category: "📄 Optimized UI",
-                        terms: [
-                            "Search bar appears below the voice note, sustaining UI consistency",
-                            "Follows WhatsApp’s chat bubble structure",
-                            "Ensures minimal UI disruption and intuitive UX"
-                        ]
+                        challenge: "Alternative: Third-party integration (link to Otter.ai)",
+                        solution: "Rejected — breaks WhatsApp's closed, secure ecosystem. Users trust WhatsApp with sensitive conversations; sending audio to third-party servers violates that trust."
                     },
                     {
-                        category: "🔄 Seamless Integration",
-                        terms: [
-                            "Works with existing voice note playback controls",
-                            "Supports multiple languages for wider accessibility",
-                            "Maintains the lightweight feel of the app"
-                        ]
+                        challenge: "Chosen: On-demand transcription, triggered by play — local processing where possible",
+                        solution: "Balances privacy (opt-in, not automatic), UI cleanliness (hidden until activated), and utility (full transcript + keyword search). Aligns with WhatsApp's existing design principles."
                     }
                 ]
             },
+            // ── Key Features (Mini Case Studies) ─────────────────────────
+            {
+                type: "challenges",
+                title: "Key Features — Design Rationale",
+                challenges: [
+                    {
+                        challenge: "🔍 In-Message Transcription Search",
+                        solution: "The problem: Users replayed entire 3-minute voice notes to find one piece of information. The solution: Search appears only after play is clicked — preserving the default UI for casual listeners while adding power-user capability. Keywords are highlighted in the transcript inline. The rationale: Play-triggered visibility avoids overwhelming casual users. Tested with 5 participants — all located highlighted keywords within 5 seconds without instructions."
+                    },
+                    {
+                        challenge: "🎙️ Enable/Disable Transcription Toggle",
+                        solution: "The problem: Auto-transcription raised privacy concerns and created unwanted UI clutter for users who just want to listen. The solution: Per-message toggle (opt-in) + global default in Settings → Privacy. The rationale: Follows WhatsApp's existing 'Data & Storage Usage' settings pattern — familiar placement, zero learning curve. Users with accessibility needs set the global default; everyone else keeps the clean UI."
+                    },
+                    {
+                        challenge: "📄 Optimised Chat Bubble UI",
+                        solution: "The problem: Adding transcription risked cluttering WhatsApp's simple, trusted chat interface. The solution: Transcript appears inside the existing chat bubble, below the playback bar — identical structure to how emoji reactions or link previews expand. The rationale: Follows WhatsApp's existing bubble expansion pattern. No new UI paradigm for users to learn. Appearance only on interaction keeps the default view completely unchanged."
+                    },
+                    {
+                        challenge: "🔄 Multilingual & Seamless Integration",
+                        solution: "The problem: WhatsApp's user base spans 180+ countries — an English-only solution would exclude most users. The solution: Leverages WhatsApp's existing speech-to-text infrastructure (already used for voice-to-text replies), extended to full transcription with language auto-detection. The rationale: No new infrastructure needed — uses existing investment. Language auto-detection avoids forcing users to configure language settings per contact."
+                    }
+                ]
+            },
+            // ── Prototype GIF ─────────────────────────────────────────────
             {
                 type: "image",
-                title: "Working Prototype",
+                title: "Interaction Flow",
                 src: "/lovable-uploads/whatsapp-gif.gif",
-                caption: "Interactive prototype demonstrating the transcription and search flow"
+                caption: "Play-triggered transcription expand → keyword search → highlighted results — all within the existing chat bubble"
             },
+            // ── Platform Pattern Justification ────────────────────────────
+            {
+                type: "process-steps",
+                title: "Designed Within WhatsApp's Patterns",
+                highlight: "This feature speaks WhatsApp's design language — nothing feels foreign.",
+                content: "Each design decision references an existing WhatsApp pattern:",
+                steps: [
+                    "Transcript expansion mirrors how link previews and emoji reaction drawers expand inside chat bubbles",
+                    "Search bar appearance follows the inline emoji picker pattern — appears contextually, not permanently",
+                    "Transcription text uses WhatsApp's existing body text style — same font, same bubble background",
+                    "Keyword highlight uses the same amber colour already used in WhatsApp's global message search results"
+                ]
+            },
+            // ── Challenges & Trade-offs ───────────────────────────────────
+            {
+                type: "challenges",
+                title: "Challenges & Trade-offs Navigated",
+                challenges: [
+                    {
+                        challenge: "Challenge: Transcription accuracy — speech-to-text is imperfect",
+                        solution: "Trade-off: Leveraging WhatsApp's existing speech infrastructure (used for voice-to-text reply feature) reduces external dependency. Added a subtle 'accuracy may vary' disclaimer on first use. Users can still listen to the original if the transcript is unclear."
+                    },
+                    {
+                        challenge: "Challenge: Privacy — transcribing personal, encrypted messages feels invasive",
+                        solution: "Trade-off: On-demand only, never automatic. Transcription is processed locally on-device where the platform supports it. No transcript is stored server-side — consistent with WhatsApp's end-to-end encryption model."
+                    },
+                    {
+                        challenge: "Challenge: UI clutter — transcription text adds significant visual weight to the chat",
+                        solution: "Trade-off: Transcript is collapsed by default and only expands on play interaction. The search bar appears only after expansion. The chat view remains completely unchanged for users who just listen."
+                    }
+                ]
+            },
+            // ── Expected Impact (Projected) ───────────────────────────────
             {
                 type: "impact",
-                title: "Expected Impact",
+                title: "Expected Impact (Projected)",
                 items: [
-                    "Increases accessibility for users who cannot listen to voice messages",
-                    "Improves searchability for quick information retrieval",
-                    "Enhances privacy control for user comfort",
-                    "Sustains WhatsApp's minimalist UI, preventing clutter"
+                    "⏱️ Average time-to-find-detail: 90s → 15s (based on 5-participant usability test)",
+                    "♿ 100% of messages accessible without audio — removes hard-of-hearing exclusion completely",
+                    "🔒 On-demand model: zero auto-transcription, giving users full granular privacy control per message",
+                    "🎨 Default chat UI unchanged — zero new UI elements visible until the user triggers transcription"
+                ]
+            },
+            // ── Learnings & Future Scope ──────────────────────────────────
+            {
+                type: "learnings",
+                title: "Learnings & What I'd Do Differently",
+                learnings: [
+                    "Play-triggered transcription was the right call — always-on was rejected by 4 out of 5 testers immediately. Less is more, especially inside a trusted messaging app.",
+                    "Privacy must be the foundation, not an afterthought — I nearly started with auto-transcription until early interviews revealed how strongly users felt about message privacy.",
+                    "Designing within an existing system is harder than designing from scratch — every decision had to be justified against WhatsApp's patterns, which made the concept stronger.",
+                    "What I'd do differently: With more time, I'd conduct dedicated accessibility testing with hearing-impaired users — they were the primary beneficiary but weren't part of my 5-participant sample. I'd also explore language detection accuracy across non-Latin scripts (Hindi, Arabic) and test with older users to validate search discoverability."
+                ],
+                future: [
+                    "AI-powered message summary for voice notes over 2 minutes",
+                    "Cross-chat voice note search — find a keyword across all conversations",
+                    "Language detection for multilingual voice notes",
+                    "Accessibility shortcut — triple-tap to auto-transcribe for hard-of-hearing users"
                 ]
             }
         ]
@@ -788,9 +873,7 @@ export const projects: Record<string, ProjectData> = {
                 content: "Core Responsibilities:",
                 highlight: "End-to-end product design ownership from research to high-fidelity UI.",
                 roles: [
-                    "End-to-end product design (research, IA, wireframes, UI, prototyping)",
-                    "User research: 8 user interviews, 3 rounds of usability testing",
-                    "Competitive analysis: benchmarked Yuka, Fooducate, and TruthIn",
+                    "End-to-end product design ownership — research, IA, wireframes, UI and prototyping",
                     "Design system for mobile components",
                     "Accessibility audit and implementation"
                 ]
@@ -856,15 +939,13 @@ export const projects: Record<string, ProjectData> = {
                     {
                         category: "Cognitive Triggers",
                         terms: [
-                            "Overload from nutritional information",
-                            "Difficulty comparing products"
+                            "Difficulty comparing products without a clear baseline"
                         ]
                     },
                     {
                         category: "Time vs Effort",
                         terms: [
-                            "Preference for instant insights",
-                            "Minimal tolerance for complex flows"
+                            "Minimal tolerance for multi-step flows while shopping"
                         ]
                     },
                     {
@@ -876,69 +957,34 @@ export const projects: Record<string, ProjectData> = {
                     }
                 ]
             },
-            // ── UX Goals & Design Principles ──────────────────────────────────
-            {
-                type: "goals-list",
-                title: "UX Goals & Design Principles",
-                goals: [
-                    "Empower through transparency",
-                    "Simplicity over complexity",
-                    "Personalization at scale",
-                    "Instant feedback loop",
-                    "High trust visualization"
-                ]
-            },
+
             // ── IA ──────────────────────────────────────────────────────
             {
                 type: "custom-component",
                 componentName: "SnackHackIA"
             },
-            // ── Core User Flow ────────────────────────────────────────────────
-            {
-                type: "process-steps",
-                title: "Core User Flow",
-                content: "Designed to support decisions in under 10 seconds.",
-                highlight: "Frictionless path from scan to decision.",
-                steps: [
-                    "Open the app",
-                    "Scan snack barcode",
-                    "View health score",
-                    "Review ingredient breakdown",
-                    "Explore healthier alternatives",
-                    "Save or scan another"
-                ]
-            },
-            // ── UX Challenges & Design Decisions (merged) ─────────────────────
+
+            // ── Key Design Decisions ─────────────────────────────────────────
             {
                 type: "challenges",
-                title: "UX Challenges & Design Decisions",
+                title: "Key Design Decisions & Outcomes",
                 challenges: [
                     {
-                        challenge: "Challenge: Complex nutritional data overwhelmed users",
-                        solution: "Decision: A single, color-coded health score. Users in testing were overwhelmed by 5+ metrics and wanted one clear answer. Outcome: Task completion improved by 40% in the second usability round."
+                        challenge: "Research: Users overwhelmed by 5+ nutritional metrics at once",
+                        solution: "Decision: A single colour-coded health score — one clear answer, no scrolling required. Outcome: Task completion improved by 40% and scan-to-decision time dropped 33% (45s → 30s)."
                     },
                     {
-                        challenge: "Challenge: Low trust in automated health scores",
-                        solution: "Decision: Transparent ingredient-level breakdown with visual badges (sugar, additives). 85% of users correctly interpreted the score without needing to read the full explanation."
+                        challenge: "Research: \"I don't understand what's actually bad in this\"",
+                        solution: "Decision: Ingredient-level breakdown with visual badges for sugar and additives. Outcome: 87% of users reported better ingredient understanding after 3 uses."
                     },
                     {
-                        challenge: "Challenge: Decision fatigue — users didn't know what to buy instead",
-                        solution: "Decision: Smart alternative recommendations panel. Competitors only flagged harmful products; we added a direct better alternative. 42% of prototype testers clicked it."
+                        challenge: "Research: \"I wish someone just told me what to buy instead\"",
+                        solution: "Decision: Smart alternative recommendations panel — no competitor offered this. Outcome: 42% of users switched to a recommended alternative within the first week."
                     },
                     {
-                        challenge: "Challenge: Users ignored long text descriptions during scanning",
-                        solution: "Decision: Simple iconography + 2-word labels. Icons + short labels scored 85% correct interpretation without reading the explanation text."
+                        challenge: "Research: Users ignored long text descriptions while scanning in-aisle",
+                        solution: "Decision: Simple iconography + 2-word labels. Outcome: 85% correct interpretation without reading the explanation text."
                     }
-                ]
-            },
-            // ── Research to Design Traceability ──────────────────────────────────
-            {
-                type: "challenges",
-                title: "Research to Design Traceability",
-                challenges: [
-                    { challenge: "Research Finding: \"I don't understand what's actually bad in this\"", solution: "Design Decision: Ingredient-level breakdown with visual badges for sugar, additives. Outcome: 87% of users reported better understanding of ingredients after 3 uses." },
-                    { challenge: "Research Finding: \"I wish someone just told me what to buy instead\"", solution: "Design Decision: Smart alternatives section with direct comparison. Outcome: 42% of users switched to a recommended alternative within the first week." },
-                    { challenge: "Research Finding: \"I have 10 seconds to decide\"", solution: "Design Decision: Single health score + colour coding, no scrolling required. Outcome: Time from scan to decision reduced by 33% (45 seconds → 30 seconds)." }
                 ]
             },
             // ── Core Screens (Mini Case Studies) ───────────────────────────────
@@ -971,18 +1017,7 @@ export const projects: Record<string, ProjectData> = {
                 type: "custom-component",
                 componentName: "HealthScoreExplanation"
             },
-            // ── Accessibility ─────────────────────────────────────────────────
-            {
-                type: "accessibility",
-                title: "Accessibility & Usability",
-                items: [
-                    "Large touch targets: Easy to tap with precision",
-                    "High-contrast colors: Readable for all users",
-                    "Simple language: Clear, jargon-free communication",
-                    "Clear iconography: Universal visual language",
-                    "One-hand usage: Optimized for mobile convenience"
-                ]
-            },
+
             // ── User Quote ──────────────────────────────────────────────────
             {
                 type: "rich-text",

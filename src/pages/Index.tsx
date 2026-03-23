@@ -128,50 +128,50 @@ const Index = () => {
 
       {/* Works Section */}
       <section id="works" className="works-section max-w-[1200px] mx-auto px-6 lg:px-8">
-        <div className="px-6 mb-16">
+        <div className="px-6 mb-8 md:mb-0 md:sticky md:top-16 z-[5] md:bg-background md:pt-6 md:pb-8">
           <TextReveal text="Selected Works" className="section-title text-5xl md:text-6xl font-medium tracking-tight font-heading" />
         </div>
 
-        <div className="flex flex-col gap-12 md:gap-24 w-full relative pb-12">
+        <div className="flex flex-col gap-12 md:gap-24 w-full relative pb-12 md:pb-[240px]">
           {/* Project 1 */}
-          <div className="w-full md:sticky md:top-24 z-10">
+          <div className="w-full md:sticky md:top-[200px] z-10">
             <div className="group relative w-full flex flex-col md:flex-row gap-8 lg:gap-12 items-center p-6 md:p-8 lg:p-10 bg-card dark:bg-[#1A1A1A] border border-border/50 dark:border-white/5 rounded-[40px] hover:shadow-xl transition-all duration-500 overflow-hidden">
-              
+
               <div className="w-full md:w-1/2 lg:w-[55%] h-full shrink-0 order-1">
                 <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-[450px] rounded-[30px] overflow-hidden bg-muted/20">
-                  <img src="/lovable-uploads/langlang.png" alt="LangLang-Language Learning App" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                  <img src="/lovable-uploads/filenow3.jpg" alt="vState — Compliance Workflow Platform UX Case Study" className="w-full h-full object-cover top mb transition-transform duration-700 group-hover:scale-[1.03]" />
                 </div>
               </div>
 
               <div className="w-full md:w-1/2 lg:w-[45%] flex flex-col justify-center order-2">
                 <div className="flex gap-3 mb-6 flex-wrap">
-                   <span className="px-4 py-1.5 opacity-80 bg-foreground text-background text-xs font-bold tracking-widest uppercase rounded-full">EdTech</span>
-                   <span className="px-4 py-1.5 bg-muted dark:bg-white/5 border border-border dark:border-white/10 text-foreground dark:text-muted-foreground text-xs font-bold tracking-widest uppercase rounded-full">Mobile App</span>
+                  <span className="px-4 py-1.5 opacity-80 bg-foreground text-background text-xs font-bold tracking-widest uppercase rounded-full">B2B SaaS</span>
+                  <span className="px-4 py-1.5 bg-muted dark:bg-white/5 border border-border dark:border-white/10 text-foreground dark:text-muted-foreground text-xs font-bold tracking-widest uppercase rounded-full">Compliance</span>
                 </div>
-                
+
                 <h3 className="project-title text-3xl md:text-4xl lg:text-5xl font-medium mb-6 tracking-tight text-foreground font-heading">
-                  LangLang-Language Learning App
+                  vState — Workflow Platform
                 </h3>
                 <p className="text-foreground/70 text-lg md:text-xl font-normal mb-8 leading-relaxed">
-                  A user-centered approach to language learning featuring interactive exercises and AI-driven recommendations.
+                  A service design case study covering research, workflow design, and UX strategy for a B2B compliance SaaS.
                 </p>
 
                 <div className="grid grid-cols-2 gap-4 mb-10 w-full max-w-sm">
-                   <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
-                       <h4 className="text-3xl font-bold text-foreground font-heading mb-1">+40%</h4>
-                       <span className="text-xs font-medium text-muted-foreground">User Engagement</span>
-                   </div>
-                   <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
-                       <h4 className="text-3xl font-bold text-foreground font-heading mb-1">3x</h4>
-                       <span className="text-xs font-medium text-muted-foreground">Faster Onboarding</span>
-                   </div>
+                  <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
+                    <h4 className="text-3xl font-bold text-foreground font-heading mb-1">-70%</h4>
+                    <span className="text-xs font-medium text-muted-foreground">Manual Work</span>
+                  </div>
+                  <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
+                    <h4 className="text-3xl font-bold text-foreground font-heading mb-1">-45%</h4>
+                    <span className="text-xs font-medium text-muted-foreground">Compliance Errors</span>
+                  </div>
                 </div>
 
-                <Link to="/projects/langlang" className="inline-flex items-center gap-2 bg-foreground dark:bg-transparent text-background dark:text-foreground border border-transparent dark:border-foreground rounded-full px-8 py-4 text-sm font-medium transition-all self-start group/btn">
+                <Link to="/projects/vstatecompliance" className="inline-flex items-center gap-2 bg-foreground dark:bg-transparent text-background dark:text-foreground border border-transparent dark:border-foreground rounded-full px-8 py-4 text-sm font-medium transition-all self-start group/btn">
                   <span className="relative overflow-hidden h-[1.2em] block">
                     <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover/btn:-translate-y-full">
-                      <span className="block">View Process</span>
-                      <span className="block absolute top-full left-0 opacity-50">View Process</span>
+                      <span className="block">View Case Study</span>
+                      <span className="block absolute top-full left-0 opacity-50">View Case Study</span>
                     </span>
                   </span>
                   <ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
@@ -181,9 +181,9 @@ const Index = () => {
           </div>
 
           {/* Project 2 */}
-          <div className="w-full md:sticky md:top-32 z-20">
+          <div className="w-full md:sticky md:top-[208px] z-20">
             <div className="group relative w-full flex flex-col md:flex-row gap-8 lg:gap-12 items-center p-6 md:p-8 lg:p-10 bg-card dark:bg-[#1A1A1A] border border-border/50 dark:border-white/5 rounded-[40px] hover:shadow-xl transition-all duration-500 overflow-hidden">
-              
+
               <div className="w-full md:w-1/2 lg:w-[55%] h-full shrink-0 order-1">
                 <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-[450px] rounded-[30px] overflow-hidden bg-muted/20">
                   <img src="/lovable-uploads/Snack Hack Hero.png" alt="SnackHack" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
@@ -192,10 +192,10 @@ const Index = () => {
 
               <div className="w-full md:w-1/2 lg:w-[45%] flex flex-col justify-center order-2">
                 <div className="flex gap-3 mb-6 flex-wrap">
-                   <span className="px-4 py-1.5 opacity-80 bg-foreground text-background text-xs font-bold tracking-widest uppercase rounded-full">HealthTech</span>
-                   <span className="px-4 py-1.5 bg-muted dark:bg-white/5 border border-border dark:border-white/10 text-foreground dark:text-muted-foreground text-xs font-bold tracking-widest uppercase rounded-full">Scanner Core</span>
+                  <span className="px-4 py-1.5 opacity-80 bg-foreground text-background text-xs font-bold tracking-widest uppercase rounded-full">HealthTech</span>
+                  <span className="px-4 py-1.5 bg-muted dark:bg-white/5 border border-border dark:border-white/10 text-foreground dark:text-muted-foreground text-xs font-bold tracking-widest uppercase rounded-full">Scanner Core</span>
                 </div>
-                
+
                 <h3 className="project-title text-3xl md:text-4xl lg:text-5xl font-medium mb-6 tracking-tight text-foreground font-heading">
                   Snack Hack - Decode Your Snacks
                 </h3>
@@ -204,14 +204,14 @@ const Index = () => {
                 </p>
 
                 <div className="grid grid-cols-2 gap-4 mb-10 w-full max-w-sm">
-                   <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
-                       <h4 className="text-3xl font-bold text-foreground font-heading mb-1">4.8</h4>
-                       <span className="text-xs font-medium text-muted-foreground">Average App Rating</span>
-                   </div>
-                   <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
-                       <h4 className="text-3xl font-bold text-foreground font-heading mb-1">10k+</h4>
-                       <span className="text-xs font-medium text-muted-foreground">Scans Processed</span>
-                   </div>
+                  <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
+                    <h4 className="text-3xl font-bold text-foreground font-heading mb-1">4.8</h4>
+                    <span className="text-xs font-medium text-muted-foreground">Average App Rating</span>
+                  </div>
+                  <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
+                    <h4 className="text-3xl font-bold text-foreground font-heading mb-1">10k+</h4>
+                    <span className="text-xs font-medium text-muted-foreground">Scans Processed</span>
+                  </div>
                 </div>
 
                 <Link to="/projects/snackhack" className="inline-flex items-center gap-2 bg-foreground dark:bg-transparent text-background dark:text-foreground border border-transparent dark:border-foreground rounded-full px-8 py-4 text-sm font-medium transition-all self-start group/btn">
@@ -228,44 +228,44 @@ const Index = () => {
           </div>
 
           {/* Project 3b */}
-          <div className="w-full md:sticky md:top-40 z-30">
+          <div className="w-full md:sticky md:top-[216px] z-30">
             <div className="group relative w-full flex flex-col md:flex-row gap-8 lg:gap-12 items-center p-6 md:p-8 lg:p-10 bg-card dark:bg-[#1A1A1A] border border-border/50 dark:border-white/5 rounded-[40px] hover:shadow-xl transition-all duration-500 overflow-hidden">
-              
+
               <div className="w-full md:w-1/2 lg:w-[55%] h-full shrink-0 order-1">
                 <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-[450px] rounded-[30px] overflow-hidden bg-muted/20">
-                  <img src="/lovable-uploads/filenow3.jpg" alt="vState — Compliance Workflow Platform UX Case Study" className="w-full h-full object-cover top mb transition-transform duration-700 group-hover:scale-[1.03]" />
+                  <img src="/lovable-uploads/langlang.png" alt="LangLang-Language Learning App" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
                 </div>
               </div>
 
               <div className="w-full md:w-1/2 lg:w-[45%] flex flex-col justify-center order-2">
                 <div className="flex gap-3 mb-6 flex-wrap">
-                   <span className="px-4 py-1.5 opacity-80 bg-foreground text-background text-xs font-bold tracking-widest uppercase rounded-full">B2B SaaS</span>
-                   <span className="px-4 py-1.5 bg-muted dark:bg-white/5 border border-border dark:border-white/10 text-foreground dark:text-muted-foreground text-xs font-bold tracking-widest uppercase rounded-full">Compliance</span>
+                  <span className="px-4 py-1.5 opacity-80 bg-foreground text-background text-xs font-bold tracking-widest uppercase rounded-full">EdTech</span>
+                  <span className="px-4 py-1.5 bg-muted dark:bg-white/5 border border-border dark:border-white/10 text-foreground dark:text-muted-foreground text-xs font-bold tracking-widest uppercase rounded-full">Mobile App</span>
                 </div>
-                
+
                 <h3 className="project-title text-3xl md:text-4xl lg:text-5xl font-medium mb-6 tracking-tight text-foreground font-heading">
-                  vState — Workflow Platform
+                  LangLang-Language Learning App
                 </h3>
                 <p className="text-foreground/70 text-lg md:text-xl font-normal mb-8 leading-relaxed">
-                  A service design case study covering research, workflow design, and UX strategy for a B2B compliance SaaS.
+                  A user-centered approach to language learning featuring interactive exercises and AI-driven recommendations.
                 </p>
 
                 <div className="grid grid-cols-2 gap-4 mb-10 w-full max-w-sm">
-                   <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
-                       <h4 className="text-3xl font-bold text-foreground font-heading mb-1">-70%</h4>
-                       <span className="text-xs font-medium text-muted-foreground">Manual Work</span>
-                   </div>
-                   <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
-                       <h4 className="text-3xl font-bold text-foreground font-heading mb-1">-45%</h4>
-                       <span className="text-xs font-medium text-muted-foreground">Compliance Errors</span>
-                   </div>
+                  <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
+                    <h4 className="text-3xl font-bold text-foreground font-heading mb-1">+40%</h4>
+                    <span className="text-xs font-medium text-muted-foreground">User Engagement</span>
+                  </div>
+                  <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
+                    <h4 className="text-3xl font-bold text-foreground font-heading mb-1">3x</h4>
+                    <span className="text-xs font-medium text-muted-foreground">Faster Onboarding</span>
+                  </div>
                 </div>
 
-                <Link to="/projects/vstatecompliance" className="inline-flex items-center gap-2 bg-foreground dark:bg-transparent text-background dark:text-foreground border border-transparent dark:border-foreground rounded-full px-8 py-4 text-sm font-medium transition-all self-start group/btn">
+                <Link to="/projects/langlang" className="inline-flex items-center gap-2 bg-foreground dark:bg-transparent text-background dark:text-foreground border border-transparent dark:border-foreground rounded-full px-8 py-4 text-sm font-medium transition-all self-start group/btn">
                   <span className="relative overflow-hidden h-[1.2em] block">
                     <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover/btn:-translate-y-full">
-                      <span className="block">View Case Study</span>
-                      <span className="block absolute top-full left-0 opacity-50">View Case Study</span>
+                      <span className="block">View Process</span>
+                      <span className="block absolute top-full left-0 opacity-50">View Process</span>
                     </span>
                   </span>
                   <ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
@@ -275,9 +275,9 @@ const Index = () => {
           </div>
 
           {/* Project 4 */}
-          <div className="w-full md:sticky md:top-48 z-40">
+          <div className="w-full md:sticky md:top-[224px] z-40">
             <div className="group relative w-full flex flex-col md:flex-row gap-8 lg:gap-12 items-center p-6 md:p-8 lg:p-10 bg-card dark:bg-[#1A1A1A] border border-border/50 dark:border-white/5 rounded-[40px] hover:shadow-xl transition-all duration-500 overflow-hidden">
-              
+
               <div className="w-full md:w-1/2 lg:w-[55%] h-full shrink-0 order-1">
                 <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-[450px] rounded-[30px] overflow-hidden bg-muted/20">
                   <img src="/lovable-uploads/whatsapp-feature.jpg" alt="WhatsApp – Quick Voice Note Transcription" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
@@ -286,10 +286,10 @@ const Index = () => {
 
               <div className="w-full md:w-1/2 lg:w-[45%] flex flex-col justify-center order-2">
                 <div className="flex gap-3 mb-6 flex-wrap">
-                   <span className="px-4 py-1.5 opacity-80 bg-foreground text-background text-xs font-bold tracking-widest uppercase rounded-full">Concept</span>
-                   <span className="px-4 py-1.5 bg-muted dark:bg-white/5 border border-border dark:border-white/10 text-foreground dark:text-muted-foreground text-xs font-bold tracking-widest uppercase rounded-full">Social UX</span>
+                  <span className="px-4 py-1.5 opacity-80 bg-foreground text-background text-xs font-bold tracking-widest uppercase rounded-full">Concept</span>
+                  <span className="px-4 py-1.5 bg-muted dark:bg-white/5 border border-border dark:border-white/10 text-foreground dark:text-muted-foreground text-xs font-bold tracking-widest uppercase rounded-full">Social UX</span>
                 </div>
-                
+
                 <h3 className="project-title text-3xl md:text-4xl lg:text-5xl font-medium mb-6 tracking-tight text-foreground font-heading">
                   WhatsApp – Voice NLP
                 </h3>
@@ -298,14 +298,14 @@ const Index = () => {
                 </p>
 
                 <div className="grid grid-cols-2 gap-4 mb-10 w-full max-w-sm">
-                   <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
-                       <h4 className="text-3xl font-bold text-foreground font-heading mb-1">1 Tap</h4>
-                       <span className="text-xs font-medium text-muted-foreground">Voice to Text</span>
-                   </div>
-                   <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
-                       <h4 className="text-3xl font-bold text-foreground font-heading mb-1">98%</h4>
-                       <span className="text-xs font-medium text-muted-foreground">NLP Integrity</span>
-                   </div>
+                  <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
+                    <h4 className="text-3xl font-bold text-foreground font-heading mb-1">1 Tap</h4>
+                    <span className="text-xs font-medium text-muted-foreground">Voice to Text</span>
+                  </div>
+                  <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
+                    <h4 className="text-3xl font-bold text-foreground font-heading mb-1">98%</h4>
+                    <span className="text-xs font-medium text-muted-foreground">NLP Integrity</span>
+                  </div>
                 </div>
 
                 <Link to="/projects/whatsapp" className="inline-flex items-center gap-2 bg-foreground dark:bg-transparent text-background dark:text-foreground border border-transparent dark:border-foreground rounded-full px-8 py-4 text-sm font-medium transition-all self-start group/btn">
@@ -321,10 +321,11 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Project 5 */}
-          <div className="w-full md:sticky md:top-56 z-50">
+          {/* Project 5 - Hidden for now */}
+          {/* 
+          <div className="w-full md:sticky md:top-[232px] z-50">
             <div className="group relative w-full flex flex-col md:flex-row gap-8 lg:gap-12 items-center p-6 md:p-8 lg:p-10 bg-card dark:bg-[#1A1A1A] border border-border/50 dark:border-white/5 rounded-[40px] hover:shadow-xl transition-all duration-500 overflow-hidden">
-              
+
               <div className="w-full md:w-1/2 lg:w-[55%] h-full shrink-0 order-1">
                 <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-[450px] rounded-[30px] overflow-hidden bg-muted/20">
                   <img src="/lovable-uploads/Design system.png" alt="Design System" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
@@ -333,10 +334,10 @@ const Index = () => {
 
               <div className="w-full md:w-1/2 lg:w-[45%] flex flex-col justify-center order-2">
                 <div className="flex gap-3 mb-6 flex-wrap">
-                   <span className="px-4 py-1.5 opacity-80 bg-foreground text-background text-xs font-bold tracking-widest uppercase rounded-full">System</span>
-                   <span className="px-4 py-1.5 bg-muted dark:bg-white/5 border border-border dark:border-white/10 text-foreground dark:text-muted-foreground text-xs font-bold tracking-widest uppercase rounded-full">Automation</span>
+                  <span className="px-4 py-1.5 opacity-80 bg-foreground text-background text-xs font-bold tracking-widest uppercase rounded-full">System</span>
+                  <span className="px-4 py-1.5 bg-muted dark:bg-white/5 border border-border dark:border-white/10 text-foreground dark:text-muted-foreground text-xs font-bold tracking-widest uppercase rounded-full">Automation</span>
                 </div>
-                
+
                 <h3 className="project-title text-3xl md:text-4xl lg:text-5xl font-medium mb-6 tracking-tight text-foreground font-heading">
                   AI-Powered UI System
                 </h3>
@@ -345,14 +346,14 @@ const Index = () => {
                 </p>
 
                 <div className="grid grid-cols-2 gap-4 mb-10 w-full max-w-sm">
-                   <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
-                       <h4 className="text-3xl font-bold text-foreground font-heading mb-1">200+</h4>
-                       <span className="text-xs font-medium text-muted-foreground">Tokens Configured</span>
-                   </div>
-                   <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
-                       <h4 className="text-3xl font-bold text-foreground font-heading mb-1">20hrs</h4>
-                       <span className="text-xs font-medium text-muted-foreground">Saved Per Week</span>
-                   </div>
+                  <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
+                    <h4 className="text-3xl font-bold text-foreground font-heading mb-1">200+</h4>
+                    <span className="text-xs font-medium text-muted-foreground">Tokens Configured</span>
+                  </div>
+                  <div className="bg-muted/40 dark:bg-white/5 border border-border/40 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-center">
+                    <h4 className="text-3xl font-bold text-foreground font-heading mb-1">20hrs</h4>
+                    <span className="text-xs font-medium text-muted-foreground">Saved Per Week</span>
+                  </div>
                 </div>
 
                 <Link to="/projects/designsystem" className="inline-flex items-center gap-2 bg-foreground dark:bg-transparent text-background dark:text-foreground border border-transparent dark:border-foreground rounded-full px-8 py-4 text-sm font-medium transition-all self-start group/btn">
@@ -367,6 +368,7 @@ const Index = () => {
               </div>
             </div>
           </div>
+          */}
         </div>
       </section>
 
