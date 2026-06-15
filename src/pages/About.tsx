@@ -1,119 +1,195 @@
-import { useRef, useState, useEffect } from "react";
+
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import TextReveal from "@/components/TextReveal";
-import { Star, Layout, BarChart, Lightbulb, Users, MessageSquare, Clock, ArrowUpRight, Dribbble, Linkedin } from "lucide-react";
 import AnimatedLink from "@/components/AnimatedLink";
-import MarqueeStack from "@/components/MarqueeStack";
+import { MusicPlayer } from "@/components/MusicPlayer";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
-const VideoCard = ({
-  src,
-  isMobile,
-  activeVideoSrc,
-  onPlay
-}: {
-  src: string;
-  isMobile: boolean;
-  activeVideoSrc: string | null;
-  onPlay: (src: string | null) => void;
-}) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isInView, setIsInView] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const isActive = activeVideoSrc === src;
-
+/* ── Scroll-reveal ───────────────────────────────────────── */
+function useReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
   useEffect(() => {
-    if (!isMobile || !containerRef.current) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
-      },
-      { threshold: 0.6 }
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
     );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return { ref, visible };
+}
 
-    observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, [isMobile]);
-
-  useEffect(() => {
-    if (!isMobile) return;
-
-    if (videoRef.current) {
-      if (isActive) {
-        videoRef.current.muted = false;
-        videoRef.current.play().catch(() => {
-          // Auto-play might fail if not interacted, but click handler ensures interaction
-        });
-      } else {
-        videoRef.current.pause();
-        videoRef.current.muted = true;
-      }
-    }
-  }, [isActive, isMobile]);
-
-  const handleMobileClick = () => {
-    if (!isMobile) return;
-
-    if (isActive) {
-      onPlay(null); // Pause if clicking active
-    } else {
-      onPlay(src); // Play this one
-    }
-  };
-
+function Reveal({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  const { ref, visible } = useReveal();
   return (
-    <div ref={containerRef} className="aspect-[4/3] rounded-2xl overflow-hidden bg-muted group relative" onClick={handleMobileClick}>
-      <video
-        ref={videoRef}
-        src={src}
-        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        loop
-        playsInline
-        muted={isMobile ? !isActive : !isHovered} // Mobile: only unmute if active, Desktop: unmute on hover
-        onMouseEnter={(e) => {
-          if (!isMobile) {
-            setIsHovered(true);
-            e.currentTarget.play();
-          }
-        }}
-        onMouseLeave={(e) => {
-          if (!isMobile) {
-            setIsHovered(false);
-            e.currentTarget.pause();
-          }
-        }}
-      />
-      <div
-        className={`absolute inset-0 bg-black/70 transition-opacity duration-300 pointer-events-none 
-          ${isMobile
-            ? (isInView || isActive ? 'opacity-0' : 'opacity-100')
-            : 'group-hover:opacity-0'
-          }`}
-      />
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0px)" : "translateY(28px)",
+        transition:
+          "opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1)",
+        transitionDelay: `${delay}ms`,
+      }}
+    >
+      {children}
     </div>
   );
-};
+}
 
+/* ── Data ───────────────────────────────────────────────── */
+const experience = [
+  {
+    date: "Mar '24 – Present",
+    company: "RedBeryl Tech",
+    role: "Senior UX Designer",
+    bullets: [
+      "Enterprise supply chain SaaS — cut shipment creation from 45 min to 8 min across 5 stakeholder teams.",
+      "Multi-tenant compliance SaaS — 70% less manual work, 45% fewer errors, 50% faster filing.",
+      "US HealthTech scanner — reduced scan-to-decision time by 33%.",
+      "US EdTech tutor marketplace — improved match accuracy by 55% in usability testing.",
+      "3 atomic design systems — 70% team efficiency gain, 50% less developer rework.",
+    ],
+  },
+  {
+    date: "Mar '23 – Feb '24",
+    company: "Esoftcode",
+    role: "UI/UX Designer",
+    bullets: [
+      "B2B CRM — reusable component library across 8 modules, reduced inconsistency and accelerated delivery.",
+      "Ran competitive analysis, usability testing & interviews to validate design decisions.",
+      "End-to-end design-to-dev handoff across responsive web products.",
+    ],
+  },
+  {
+    date: "Jul '21 – Mar '23",
+    company: "KnackBe Tech",
+    role: "UI Designer",
+    bullets: [
+      "FMCG e-commerce app — restructured IA and visual hierarchy, improved navigation and discoverability.",
+      "Brand identity, landing pages, and paid campaigns across Google, Facebook, and Instagram.",
+    ],
+  },
+];
+
+const education = [
+  {
+    num: "01",
+    icon: (
+      <svg className="w-5 h-5 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+      </svg>
+    ),
+    degree: "MBA, Business Analytics",
+    institution: "Pune University",
+    detail: "2022 – 2024",
+  },
+  {
+    num: "02",
+    icon: (
+      <svg className="w-5 h-5 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+      </svg>
+    ),
+    degree: "B.E., Information Technology",
+    institution: "MIT Pune",
+    detail: "2016 – 2019",
+  },
+];
+
+const skills = [
+  "Design Systems", "Agentic AI Design", "Service Blueprinting", "Journey Mapping",
+  "UX Research", "Usability Testing", "Prototyping", "Accessibility (WCAG)",
+  "AI Workflows", "Agile / Scrum", "HTML/CSS/JS", "Information Architecture",
+  "High-Fidelity UI", "Interaction Design", "Dev Handoff", "Design Management",
+];
+
+const tools = [
+  { name: "Figma",     category: "Product design",        img: "https://api.iconify.design/logos/figma.svg" },
+  { name: "Framer",    category: "Web design",            img: "https://api.iconify.design/logos/framer.svg" },
+  { name: "Miro",      category: "Whiteboarding",         img: "https://api.iconify.design/logos/miro.svg" },
+  { name: "Adobe CC",  category: "Creative suite",        img: "https://api.iconify.design/logos/adobe.svg" },
+  { name: "Claude",    category: "AI research & writing", img: "https://api.iconify.design/simple-icons/anthropic.svg" },
+  { name: "Cursor",    category: "AI code editor",        img: "https://api.iconify.design/devicon/cursor.svg" },
+  { name: "Gemini",    category: "Storyboarding & Media",  img: "https://api.iconify.design/logos/google-gemini.svg" },
+  { name: "ChatGPT",   category: "AI workflows",          img: "https://api.iconify.design/logos/openai-icon.svg" },
+  { name: "VS Code",   category: "HTML/CSS/JS",           img: "https://api.iconify.design/logos/visual-studio-code.svg" },
+  { name: "Notion",    category: "Documentation",         img: "https://api.iconify.design/logos/notion-icon.svg" },
+  { name: "Jira",      category: "Agile / Scrum",         img: "https://api.iconify.design/logos/jira.svg" },
+  { name: "Zapier",    category: "Automation",            img: "https://api.iconify.design/logos/zapier-icon.svg" },
+];
+
+/* ── Heights for the photo collage ─────────────────────── */
+/* ── Photo carousel slides ───────────────────────────────── */
+const collagePhotos = [
+  { src: "/lovable-uploads/cricket.png", alt: "Sanket playing cricket" },
+  { src: "/lovable-uploads/image-200.png", alt: "Sanket Donekar" },
+  { src: "/lovable-uploads/Finch.JPG",   alt: "Sanket Donekar" },
+  { src: "/lovable-uploads/figma-design.png", alt: "Figma design work" },
+];
+
+const roles = ["UX Designer ✦", "Cricket Player", "Performer", "Gamer"];
+
+/* ── Page ───────────────────────────────────────────────── */
 const About = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const [activeVideoSrc, setActiveVideoSrc] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [sliding, setSliding] = useState(false);
+  const [heroApi, setHeroApi] = useState<CarouselApi>();
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+    document.documentElement.classList.add("dark");
+  }, []);
 
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+  useEffect(() => {
+    if (!heroApi) return;
+    const interval = setInterval(() => {
+      heroApi.scrollNext();
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [heroApi]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSliding(true);
+      setTimeout(() => {
+        setRoleIndex((i) => (i + 1) % roles.length);
+        setSliding(false);
+      }, 480);
+    }, 2400);
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="about-container bg-background min-h-screen font-sans selection:bg-black selection:text-white">
-      {/* Header/Navigation */}
-      <header className="header about-header border-b border-border">
+    <div className="bg-black min-h-screen text-white font-vietnam">
+
+      <MusicPlayer />
+
+      {/* ── Nav ─────────────────────────────────────── */}
+      <header className={`header${scrolled ? " scrolled" : ""}`}>
         <div className="w-full max-w-[1200px] mx-auto flex justify-between items-center">
           <div className="logo">
             <Link to="/"><div className="logo-image" aria-label="SD" /></Link>
@@ -121,372 +197,284 @@ const About = () => {
           <nav className="navigation">
             <ul>
               <li><AnimatedLink href="/#works">Works</AnimatedLink></li>
-              <li><AnimatedLink to="/about" className="active">About</AnimatedLink></li>
-              <li>
-                <AnimatedLink
-                  href="/Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Resume
-                </AnimatedLink>
-              </li>
+              <li><AnimatedLink to="/about" className="active">About Me</AnimatedLink></li>
+              <li><AnimatedLink href="/Sanket Donekar Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</AnimatedLink></li>
             </ul>
           </nav>
         </div>
       </header>
 
-      <main className="pt-40 pb-20 px-8 lg:px-12 max-w-[1200px] mx-auto w-full">
+      {/* ── Hero (Collage + Name) ────────────────────── */}
+      <div className="relative w-full overflow-hidden">
 
-        {/* Intro Section - Split Layout */}
-        <section className="mb-20 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-          <div className="order-2 lg:order-1">
-            <TextReveal
-              as="h1"
-              text="About me"
-              className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] mb-8 block text-foreground font-heading"
-              delay={0}
-            />
-            <div className="text-lg text-muted-foreground leading-relaxed space-y-6 max-w-xl">
-              <TextReveal
-                as="p"
-                text="I'm Sanket, a UX Designer based in Pune with a background in Engineering and Business Analytics."
-                delay={100}
-              />
-              <TextReveal
-                as="p"
-                text="My background in Information Technology and MBA in Business Analytics gives me a unique perspective on product design. I don't just see pixels; I see systems, business goals, and user needs working in harmony."
-                delay={200}
-              />
-              <TextReveal
-                as="p"
-                text="I specialize in creating visually refined, highly usable interfaces that elevate both product value and user satisfaction. My process blends hands-on collaboration with users, continuous iteration, and a sharp eye for detail."
-                delay={300}
-              />
-              <TextReveal
-                as="p"
-                text="Beyond my professional work, I have a deep love for music. When I'm not designing, you'll find me singing or playing the guitar, indulging in my creative side."
-                delay={400}
-              />
-            </div>
-          </div>
-
-          <div className="order-1 lg:order-2 flex flex-col justify-end h-full pt-12 lg:pt-32">
-            <TextReveal
-              as="h2"
-              text="I'm driven by curiosity, creativity, and the belief that great design always starts with empathy."
-              className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight text-right text-foreground ml-auto max-w-2xl font-heading"
-              delay={200}
-              stagger={20}
-            />
-          </div>
-        </section>
-
-        {/* Photo Gallery
-        <section className="mb-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <VideoCard
-            src="/videos/Azzur.mp4"
-            isMobile={isMobile}
-            activeVideoSrc={activeVideoSrc}
-            onPlay={setActiveVideoSrc}
-          />
-          <VideoCard
-            src="/videos/Show.mp4"
-            isMobile={isMobile}
-            activeVideoSrc={activeVideoSrc}
-            onPlay={setActiveVideoSrc}
-          />
-          <VideoCard
-            src="/videos/College.mp4"
-            isMobile={isMobile}
-            activeVideoSrc={activeVideoSrc}
-            onPlay={setActiveVideoSrc}
-          />
-          <VideoCard
-            src="/videos/Song.mov"
-            isMobile={isMobile}
-            activeVideoSrc={activeVideoSrc}
-            onPlay={setActiveVideoSrc}
-          />
-        </section>
-        */}
-
-        {/* Experience Section */}
-        <section className="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 border-t border-border pt-20">
-          <div className="lg:col-span-4">
-            <div className="sticky top-32">
-              <TextReveal
-                as="h3"
-                text="My experience"
-                className="text-3xl font-bold tracking-tight leading-[1.1] mb-4 block text-foreground font-heading"
-              />
-              <TextReveal
-                as="p"
-                text="A quick look at my path so far, from startups to enterprises, leading design projects that connect real user needs with meaningful business results."
-                className="text-muted-foreground leading-relaxed max-w-sm"
-                delay={100}
-              />
-            </div>
-          </div>
-
-          <div className="lg:col-span-8 space-y-12">
-            <div className="group">
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-                <div className="md:col-span-1 pt-1">
-                  <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white font-bold text-xs">
-                    RB
-                  </div>
-                </div>
-                <div className="md:col-span-11 border-b border-border pb-12 group-last:border-0">
-                  <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
-                    <div className="md:col-span-7">
-                      <h4 className="text-xl font-bold text-foreground mb-1">RedBeryl Tech</h4>
-                      <h5 className="text-lg font-medium text-foreground mb-4">UX Designer</h5>
-                      <p className="text-muted-foreground leading-relaxed text-base">Design and improve the complete user experience for our digital products, focusing on creating interfaces that are easy to use, accessible to everyone, and visually appealing.</p>
+        {/* Photo Carousel */}
+        <div className="relative z-10 pt-[64px] w-full">
+          <div className="px-4 md:px-8 lg:px-12 pt-10 max-w-[1200px] mx-auto">
+            <Carousel setApi={setHeroApi} opts={{ loop: true, align: "center" }} className="w-full">
+              <CarouselContent className="items-end justify-center -ml-2">
+                {collagePhotos.map((photo, i) => (
+                  <CarouselItem key={i} className="pl-2 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
+                    <div className="overflow-hidden rounded-t-2xl aspect-[9/16]">
+                      <img
+                        src={photo.src}
+                        alt={photo.alt}
+                        className="w-full h-full rounded-t-2xl object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
+                      />
                     </div>
-                    <div className="md:col-span-3 md:text-right">
-                      <span className="text-sm text-muted-foreground font-mono">2024 - Present</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="group">
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-                <div className="md:col-span-1 pt-1">
-                  <div className="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold text-xs">
-                    EC
-                  </div>
-                </div>
-                <div className="md:col-span-11 border-b border-border pb-12 group-last:border-0">
-                  <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
-                    <div className="md:col-span-7">
-                      <h4 className="text-xl font-bold text-foreground mb-1">Esofcode</h4>
-                      <h5 className="text-lg font-medium text-foreground mb-4">UI/UX Designer</h5>
-                      <p className="text-muted-foreground leading-relaxed text-base">Ensure the creation of user-friendly & intuitively understandable interfaces for our users. Conduct research on competitors & industry best practices to optimize readability, comprehension, accessibility & usability.</p>
-                    </div>
-                    <div className="md:col-span-3 md:text-right">
-                      <span className="text-sm text-muted-foreground font-mono">2023 - 2024</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="group">
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-                <div className="md:col-span-1 pt-1">
-                  <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-xs">
-                    KB
-                  </div>
-                </div>
-                <div className="md:col-span-11 border-b border-border pb-12 group-last:border-0">
-                  <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
-                    <div className="md:col-span-7">
-                      <h4 className="text-xl font-bold text-foreground mb-1">KnackBe</h4>
-                      <h5 className="text-lg font-medium text-foreground mb-4">UI Designer</h5>
-                      <p className="text-muted-foreground leading-relaxed text-base">Manage the entire design process, from initial sketches & wireframes to interactive prototypes & polished final designs.</p>
-                    </div>
-                    <div className="md:col-span-3 md:text-right">
-                      <span className="text-sm text-muted-foreground font-mono">2021 - 2023</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
           </div>
-        </section>
-
-        {/* Education Section */}
-        <section className="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 border-t border-border pt-20">
-          <div className="lg:col-span-4">
-            <div className="sticky top-32">
-              <TextReveal
-                as="h3"
-                text="My education"
-                className="text-3xl font-bold tracking-tight leading-[1.1] mb-4 block text-foreground font-heading"
-              />
-              <TextReveal
-                as="p"
-                text="Formal training that shaped my analytical and design thinking."
-                className="text-muted-foreground leading-relaxed max-w-sm"
-                delay={100}
-              />
-            </div>
-          </div>
-
-          <div className="lg:col-span-8 space-y-12">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-              <div className="md:col-span-1 pt-1">
-                <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xs">
-                  PU
-                </div>
-              </div>
-              <div className="md:col-span-11 border-b border-border pb-12 group-last:border-0">
-                <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
-                  <div className="md:col-span-7">
-                    <h4 className="text-xl font-bold text-foreground mb-1">Pune University</h4>
-                    <h5 className="text-lg font-medium text-foreground mb-4">MBA in Business Analytics</h5>
-                    <p className="text-muted-foreground leading-relaxed text-base">Focused on data-driven decision-making and strategic business insights, complementing my design skills with a strong analytical foundation.</p>
-                  </div>
-                  <div className="md:col-span-3 md:text-right">
-                    <span className="text-sm text-muted-foreground font-mono">2022 - 2024</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-              <div className="md:col-span-1 pt-1">
-                <div className="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-xs">
-                  MIT
-                </div>
-              </div>
-              <div className="md:col-span-11 border-b border-border pb-12 group-last:border-0">
-                <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
-                  <div className="md:col-span-7">
-                    <h4 className="text-xl font-bold text-foreground mb-1">MIT Pune</h4>
-                    <h5 className="text-lg font-medium text-foreground mb-4">B.E. in Information Technology</h5>
-                    <p className="text-muted-foreground leading-relaxed text-base">Gained a solid understanding of software development, system architecture, and technology principles, providing a technical backbone to my design approach.</p>
-                  </div>
-                  <div className="md:col-span-3 md:text-right">
-                    <span className="text-sm text-muted-foreground font-mono">2016 - 2019</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Vision Section - Full Width */}
-        <section className="mb-32 -mx-8 lg:-mx-12 px-8 lg:px-12 py-24 bg-muted">
-          <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
-            <div className="lg:col-span-12 mb-8 flex justify-end">
-              <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground">MY VISION OF GREAT DESIGN</span>
-            </div>
-
-            <div className="lg:col-span-4">
-              <TextReveal
-                as="h4"
-                text="Product design is not just pixels or flows, but a shared language between disciplines."
-                className="text-2xl font-semibold leading-tight text-foreground"
-                delay={0}
-              />
-            </div>
-            <div className="lg:col-span-4">
-              <TextReveal
-                as="h4"
-                text="A strong foundation of reusable systems supports meaningful, human-centered experiences."
-                className="text-2xl font-semibold leading-tight text-foreground"
-                delay={100}
-              />
-            </div>
-            <div className="lg:col-span-4">
-              <TextReveal
-                as="h4"
-                text="Great product design turns ideas chaos into coherence."
-                className="text-2xl font-semibold leading-tight text-foreground"
-                delay={200}
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* Hard Skills Section */}
-        <section className="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-          <div className="lg:col-span-4">
-            <TextReveal
-              as="h3"
-              text="What do I specialize as a designer?"
-              className="text-4xl font-bold tracking-tight mb-8 block text-foreground leading-[1.1] font-heading"
-            />
-            <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground block mb-8">HARD SKILLS</span>
-          </div>
-
-          <div className="lg:col-span-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div>
-                <div className="mb-6"><Star className="w-8 h-8 text-foreground" strokeWidth={1.5} /></div>
-                <h4 className="text-lg font-bold mb-3">Conversational AI</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed">I design human-centered AI experiences by unifying tools and making complex logic feel intuitive.</p>
-              </div>
-              <div>
-                <div className="mb-6"><Layout className="w-8 h-8 text-foreground" strokeWidth={1.5} /></div>
-                <h4 className="text-lg font-bold mb-3">Design Systems</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed">I build robust, token-based systems with clear documentation and accessibility standards.</p>
-              </div>
-              <div>
-                <div className="mb-6"><BarChart className="w-8 h-8 text-foreground" strokeWidth={1.5} /></div>
-                <h4 className="text-lg font-bold mb-3">Dashboards</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed">I craft dashboards that go beyond data display, turning complex metrics into actionable insights.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Soft Skills Section */}
-        <section className="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-20 border-t border-border">
-          <div className="lg:col-span-4">
-            <TextReveal
-              as="h3"
-              text="What are my skills beyond craft & execution?"
-              className="text-4xl font-bold tracking-tight mb-8 block text-foreground leading-[1.1] font-heading"
-            />
-            <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground block mb-8">SOFT SKILLS</span>
-          </div>
-
-          <div className="lg:col-span-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div>
-                <div className="mb-6"><Lightbulb className="w-6 h-6 text-foreground" strokeWidth={1.5} /></div>
-                <h4 className="text-base font-bold mb-2">Strategy</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed">Uncover product vision in ambiguous environments.</p>
-              </div>
-              <div>
-                <div className="mb-6"><Users className="w-6 h-6 text-foreground" strokeWidth={1.5} /></div>
-                <h4 className="text-base font-bold mb-2">Collaboration</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed">Align stakeholders with clarity and respect.</p>
-              </div>
-              <div>
-                <div className="mb-6"><MessageSquare className="w-6 h-6 text-foreground" strokeWidth={1.5} /></div>
-                <h4 className="text-base font-bold mb-2">Communication</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed">Translate technical decisions into user value.</p>
-              </div>
-              <div>
-                <div className="mb-6"><Clock className="w-6 h-6 text-foreground" strokeWidth={1.5} /></div>
-                <h4 className="text-base font-bold mb-2">Prioritization</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed">Smart, timely decisions that keep the team moving.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Toolkit Marquee Section */}
-        <section className="mt-8 mb-24 overflow-hidden">
-          <MarqueeStack />
-        </section>
-
-      </main>
-
-      {/* Footer */}
-      <footer className="footer" style={{ backgroundImage: "url('/lovable-uploads/gradient.gif')" }}>
-        <div className="footer-content max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="mb-4 text-left">
-            <TextReveal text="Like what you see??" className="footer-title text-3xl font-medium font-heading" />
-          </div>
-          <h2 className="footer-title font-heading">View my <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer" className="resume-link">resume</a>, get in touch 👋</h2>
-          <div className="social-links flex gap-4 mt-4">
-            <a href="https://dribbble.com/sanket_works" target="_blank" rel="noopener noreferrer" aria-label="Dribbble" className="text-muted-foreground hover:text-foreground transition-colors">
-              <Dribbble className="w-6 h-6" />
-            </a>
-            <a href="https://www.linkedin.com/in/sanketworks/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-muted-foreground hover:text-blue-600 transition-colors">
-              <Linkedin className="w-6 h-6" />
-            </a>
-          </div>
-          <p className="copyright">© 2025 Sanket • Made with figma + lovable ❤️</p>
         </div>
+
+        {/* Name + Bio */}
+        <div className="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-12 pt-12 pb-20 text-center">
+        <Reveal>
+          <h1 className="text-[40px] md:text-[52px] lg:text-[60px] font-medium tracking-[-0.03em] leading-[1.05] text-white mb-2">
+            Sanket Donekar
+          </h1>
+        </Reveal>
+        <Reveal delay={80}>
+          {/* Double-stack vertical slide — same mechanic as AnimatedLink */}
+          <div className="overflow-hidden mb-8" style={{ height: "1.6em" }}>
+            <div
+              style={{
+                transform: sliding ? "translateY(-100%)" : "translateY(0%)",
+                transition: sliding ? "transform 0.48s cubic-bezier(0.76,0,0.24,1)" : "none",
+              }}
+            >
+              <span className="block text-[17px] font-light tracking-[0.06em] text-white italic leading-[1.6]">
+                {roles[roleIndex]}
+              </span>
+              <span className="block text-[17px] font-light tracking-[0.06em] text-white italic leading-[1.6]">
+                {roles[(roleIndex + 1) % roles.length]}
+              </span>
+            </div>
+          </div>
+        </Reveal>
+        <Reveal delay={160}>
+          <p className="text-[17px] md:text-[18px] leading-[1.75] font-light text-white/50 max-w-[680px] mx-auto">
+            I enjoy taking messy, complicated systems and making them feel effortless for users. Based in Pune, I blend service design, user research, and AI-powered workflows to ship products that actually move the needle.
+          </p>
+        </Reveal>
+        </div>{/* end name+bio */}
+      </div>{/* end hero wrapper */}
+
+      {/* ── Work Experience ──────────────────────────── */}
+      <section className="max-w-[1200px] mx-auto px-6 lg:px-12 py-16 border-t border-white/10">
+        <Reveal>
+          <h2 className="text-[28px] md:text-[34px] font-medium tracking-[-0.02em] text-white mb-14">
+            Work Experience
+          </h2>
+        </Reveal>
+
+        <div className="flex flex-col divide-y divide-white/[0.07]">
+          {experience.map((item, i) => (
+            <Reveal key={i} delay={i * 80}>
+              <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-4 md:gap-8 py-10">
+                {/* Company + Role + Date */}
+                <div>
+                  <p className="text-[16px] font-medium text-white leading-snug">{item.company}</p>
+                  <p className="text-[13px] font-light text-white/40 mt-0.5">{item.role}</p>
+                  <p className="text-[13px] font-light tracking-[0.04em] text-white/35 font-mono mt-2.5">{item.date}</p>
+                </div>
+                {/* Bullets */}
+                <ul className="flex flex-col gap-2.5">
+                  {item.bullets.map((b, j) => (
+                    <li key={j} className="flex gap-2.5 text-[14px] leading-[1.65] font-light text-white/45">
+                      <span className="mt-[6px] w-1 h-1 rounded-full bg-white/25 flex-shrink-0" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Education ────────────────────────────────── */}
+      <section className="max-w-[1200px] mx-auto px-6 lg:px-12 py-16 border-t border-white/10">
+        <Reveal>
+          <h2 className="text-[28px] md:text-[34px] font-medium tracking-[-0.02em] text-white mb-14">
+            Education
+          </h2>
+        </Reveal>
+
+        <div className="flex flex-col gap-4">
+          {education.map((item, i) => (
+            <Reveal key={i} delay={i * 100}>
+              <div className="relative bg-[#0d0d0d] rounded-2xl px-8 py-7 flex items-start gap-5"
+                style={{ border: "1px solid rgba(255,255,255,0.07)" }}>
+                {/* Number badge */}
+                <span className="absolute top-5 right-6 text-[13px] font-light tabular-nums text-white/20 tracking-[0.08em]">
+                  {item.num}
+                </span>
+                {/* Icon */}
+                <div className="mt-0.5 flex-shrink-0">{item.icon}</div>
+                {/* Content */}
+                <div>
+                  <h3 className="text-[17px] font-medium text-white leading-snug mb-1">
+                    {item.degree}
+                  </h3>
+                  <p className="text-[14px] font-light text-white/40 tracking-[0.02em]">
+                    {item.institution} | {item.detail}
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Skills ───────────────────────────────────── */}
+      <section className="max-w-[1200px] mx-auto px-6 lg:px-12 py-16 border-t border-white/10">
+        <Reveal>
+          <h2 className="text-[28px] md:text-[34px] font-medium tracking-[-0.02em] text-white mb-10">
+            Skills
+          </h2>
+        </Reveal>
+        <Reveal delay={80}>
+          <div className="flex flex-wrap gap-2.5">
+            {skills.map((skill) => (
+              <span
+                key={skill}
+                className="px-4 py-2 rounded-full text-[14px] font-light tracking-[-0.01em] text-white/55 transition-colors hover:text-white/80 hover:border-white/20"
+                style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── Toolkit ──────────────────────────────────── */}
+      <section className="max-w-[1200px] mx-auto px-6 lg:px-12 py-16 border-t border-white/10">
+        <Reveal>
+          <h2 className="text-[28px] md:text-[34px] font-medium tracking-[-0.02em] text-white mb-10">
+            Toolkit
+          </h2>
+        </Reveal>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          {tools.map((tool, i) => (
+            <Reveal key={tool.name} delay={i * 40}>
+              <div
+                className="flex items-center gap-3.5 px-4 py-4 rounded-2xl transition-colors hover:bg-white/[0.04]"
+                style={{ background: "#0d0d0d", border: "1px solid rgba(255,255,255,0.07)" }}
+              >
+                <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-xl"
+                  style={{ background: "rgba(255,255,255,0.05)" }}>
+                  <img
+                    src={tool.img}
+                    alt={tool.name}
+                    className="w-5 h-5 object-contain"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = "none";
+                    }}
+                  />
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <span className="text-[14px] font-medium text-white leading-snug truncate">{tool.name}</span>
+                  <span className="text-[12px] font-light text-white/35 leading-snug truncate">{tool.category}</span>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Resume CTA ───────────────────────────────── */}
+      <section className="max-w-[1200px] mx-auto px-6 lg:px-12 py-20 border-t border-white/10 flex flex-col items-center gap-6 text-center">
+        <Reveal>
+          <p className="text-[17px] font-light text-white/45 tracking-[-0.01em]">
+            Want the full picture?
+          </p>
+        </Reveal>
+        <Reveal delay={80}>
+          <a
+            href="/Sanket Donekar Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative overflow-hidden px-8 py-3.5 rounded-full text-[15px] font-medium tracking-[-0.01em] text-white hover:bg-white/[0.08] transition-colors"
+            style={{ border: "1px solid rgba(255,255,255,0.3)" }}
+          >
+            <span className="btn-shine pointer-events-none absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+            Open Resume
+          </a>
+        </Reveal>
+      </section>
+
+      {/* ── Footer CTA ───────────────────────────────── */}
+      <footer className="relative min-h-[80vh] flex flex-col overflow-hidden border-t border-white/10">
+
+        {/* Spline background */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          {/* @ts-ignore */}
+          <spline-viewer
+            url="https://prod.spline.design/Ewb8vIqWFjVZn1-c/scene.splinecode"
+            style={{ width: "100%", height: "100%", display: "block" }}
+          />
+          <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
+        </div>
+
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-6 gap-8 py-24">
+
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[14px] font-light tracking-[-0.01em] text-white/60"
+            style={{ border: "1px solid rgba(255,255,255,0.15)" }}>
+            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+            Available For Work
+          </span>
+
+          <h2 className="text-[28px] md:text-[40px] lg:text-[48px] font-medium leading-[1.2] tracking-[-0.02em] text-white max-w-[680px]">
+            If you've made it this far, we're either meant to work together, or you just really like great design.
+          </h2>
+
+          <a
+            href="mailto:sanket.donekar@gmail.com"
+            className="relative overflow-hidden px-8 py-3.5 rounded-full text-[15px] font-medium tracking-[-0.01em] text-white hover:bg-white/[0.08] transition-colors"
+            style={{ border: "1px solid rgba(255,255,255,0.3)" }}
+          >
+            <span className="btn-shine pointer-events-none absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+            Book a Free Call
+          </a>
+
+          <div className="flex items-center gap-5 mt-2">
+            <a href="https://www.linkedin.com/in/sanketworks/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-white/40 hover:text-white/70 transition-colors">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
+            </a>
+            <span className="w-px h-4 bg-white/20" />
+            <a href="mailto:sanket.donekar@gmail.com" aria-label="Email" className="text-white/40 hover:text-white/70 transition-colors">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+              </svg>
+            </a>
+            <span className="w-px h-4 bg-white/20" />
+            <a href="https://dribbble.com/sanket_works" target="_blank" rel="noopener noreferrer" aria-label="Dribbble" className="text-white/40 hover:text-white/70 transition-colors">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32" /></svg>
+            </a>
+          </div>
+
+        </div>
+
+        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-0 px-8 lg:px-16 py-5 border-t border-white/10">
+          <a href="mailto:sanket.donekar@gmail.com" className="text-[13px] font-light tracking-[-0.01em] text-white/35 hover:text-white/55 transition-colors lg:pr-5">
+            sanket.donekar@gmail.com
+          </a>
+          <span className="hidden lg:block w-px h-3.5 bg-white/20 flex-shrink-0" />
+          <span className="text-[13px] font-light tracking-[-0.01em] text-white/35 lg:px-5">
+            © 2026 Sanket Donekar
+          </span>
+          <span className="hidden lg:block w-px h-3.5 bg-white/20 flex-shrink-0" />
+          <a href="/Sanket Donekar Resume.pdf" target="_blank" rel="noopener noreferrer" className="text-[13px] font-light tracking-[-0.01em] text-white/35 hover:text-white/55 transition-colors lg:pl-5">
+            Resume →
+          </a>
+        </div>
+
       </footer>
+
     </div>
   );
 };

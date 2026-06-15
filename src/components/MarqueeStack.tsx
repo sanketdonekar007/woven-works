@@ -1,6 +1,6 @@
 import React from 'react';
 import TextReveal from './TextReveal';
-import { Heart, Terminal, Video, Route, Search } from 'lucide-react';
+import { Heart, Terminal, Video, Route, Search, Bot, Rocket, Palette, Film } from 'lucide-react';
 
 export const techStack = [
     { 
@@ -42,6 +42,26 @@ export const techStack = [
         name: "Searching", 
         description: "Exploring every tool helps design", 
         icon: <Search className="w-5 h-5 text-[#3B82F6]" />
+    },
+    {
+        name: "Claude",
+        description: "For design",
+        icon: <Bot className="w-5 h-5 text-[#D97757]" />
+    },
+    {
+        name: "Antigravity",
+        description: "Web dev",
+        icon: <Rocket className="w-5 h-5 text-[#10B981]" />
+    },
+    {
+        name: "Adobe Suite",
+        description: "Creative workflow",
+        icon: <Palette className="w-5 h-5 text-[#FF0000]" />
+    },
+    {
+        name: "Camtasia",
+        description: "Video editing",
+        icon: <Film className="w-5 h-5 text-[#3B82F6]" />
     }
 ];
 

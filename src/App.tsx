@@ -8,12 +8,14 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import ProjectDetail from "./pages/ProjectDetail";
 import NotFound from "./pages/NotFound";
+import { CursorAndProgress } from "./components/CursorAndProgress";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <CursorAndProgress />
       <Toaster />
       <Sonner />
       <BrowserRouter>
@@ -21,7 +23,6 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/projects/:projectId" element={<ProjectDetail />} />
-
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

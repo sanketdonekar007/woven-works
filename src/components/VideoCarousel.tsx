@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { LazyVideo } from './LazyVideo';
 
 export const VideoCarousel = ({ videos }: { videos: string[] }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -17,17 +18,11 @@ export const VideoCarousel = ({ videos }: { videos: string[] }) => {
 
     return (
         <div className="relative w-full bg-muted rounded-xl overflow-hidden group shadow-inner flex items-center justify-center">
-            <video
+            <LazyVideo
                 key={videos[currentIndex]}
                 src={videos[currentIndex]}
                 className="w-full h-auto"
-                autoPlay
-                muted
-                loop
-                playsInline
-            >
-                Your browser does not support the video tag.
-            </video>
+            />
             <div className="absolute bottom-4 left-0 right-0 text-center text-sm text-muted-foreground bg-white/80 py-1 backdrop-blur-sm pointer-events-none">
                 Video {currentIndex + 1} of {videos.length}
             </div>
