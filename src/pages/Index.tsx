@@ -261,38 +261,38 @@ const Index = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="text-white/40 hover:text-white/70 transition-colors"
+              className="text-white/60 hover:text-white transition-colors"
             >
-              <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
             </a>
-            <span className="w-px h-4 bg-white/15" />
+            <span className="w-px h-4 bg-white/25" />
             <a
               href="mailto:sanket.donekar@gmail.com"
               aria-label="Email"
-              className="text-white/40 hover:text-white/70 transition-colors"
+              className="text-white/60 hover:text-white transition-colors"
             >
-              <svg className="w-[18px] h-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
               </svg>
             </a>
-            <span className="w-px h-4 bg-white/15" />
+            <span className="w-px h-4 bg-white/25" />
             <a
               href="https://dribbble.com/sanket_works"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Dribbble"
-              className="text-white/40 hover:text-white/70 transition-colors"
+              className="text-white/60 hover:text-white transition-colors"
             >
-              <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
             </a>
           </div>
 
           {/* Scroll indicator */}
-          <div className="flex items-center gap-3 opacity-35">
+          <div className="flex items-center gap-3 opacity-65">
             <span className="text-[16px] font-light tracking-[0.12em] uppercase text-white">Scroll down</span>
             <div className="flex items-center gap-1">
               <span className="block w-8 h-px bg-white/60" />
-              <svg className="w-4 h-5 text-white" viewBox="0 0 16 20" fill="none" stroke="currentColor" strokeWidth={1.2}>
+              <svg className="w-4 h-5 text-white animate-bounce" viewBox="0 0 16 20" fill="none" stroke="currentColor" strokeWidth={1.2}>
                 <rect x="1" y="1" width="14" height="18" rx="7" />
                 <line x1="8" y1="5" x2="8" y2="8" strokeLinecap="round" />
               </svg>

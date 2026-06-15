@@ -153,6 +153,7 @@ const About = () => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [sliding, setSliding] = useState(false);
   const [heroApi, setHeroApi] = useState<CarouselApi>();
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     document.documentElement.classList.add("dark");
@@ -160,7 +161,20 @@ const About = () => {
 
   useEffect(() => {
     if (!heroApi) return;
+    const onSelect = () => {
+      setActiveIndex(heroApi.selectedScrollSnap());
+    };
+    heroApi.on("select", onSelect);
+    onSelect();
+    return () => {
+      heroApi.off("select", onSelect);
+    };
+  }, [heroApi]);
+
+  useEffect(() => {
+    if (!heroApi) return;
     const interval = setInterval(() => {
+      if (window.innerWidth < 640) return;
       heroApi.scrollNext();
     }, 3500);
     return () => clearInterval(interval);
@@ -210,10 +224,10 @@ const About = () => {
         {/* Photo Carousel */}
         <div className="relative z-10 pt-[64px] w-full">
           <div className="px-4 md:px-8 lg:px-12 pt-10 max-w-[1200px] mx-auto">
-            <Carousel setApi={setHeroApi} opts={{ loop: true, align: "center" }} className="w-full">
-              <CarouselContent className="items-end justify-center -ml-2">
+            <Carousel setApi={setHeroApi} opts={{ loop: false, align: "start" }} className="w-full">
+              <CarouselContent className="items-end -ml-2">
                 {collagePhotos.map((photo, i) => (
-                  <CarouselItem key={i} className="pl-2 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
+                  <CarouselItem key={i} className="pl-2 basis-[55%] sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
                     <div className="overflow-hidden rounded-t-2xl aspect-[9/16]">
                       <img
                         src={photo.src}
