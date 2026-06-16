@@ -235,6 +235,10 @@ body::before {
 .animate-scroll     { animation: scroll var(--animation-duration) linear infinite; }
 .animate-scroll:hover { animation-play-state: paused; }
 .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
+.animate-scroll-mobile {
+  animation: chips-scroll-left 15s linear infinite;
+  will-change: transform;
+}
 
 /* ─── Header ─────────────────────────────────────────────── */
 .header {
