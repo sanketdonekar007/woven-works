@@ -174,7 +174,6 @@ const About = () => {
   useEffect(() => {
     if (!heroApi) return;
     const interval = setInterval(() => {
-      if (window.innerWidth < 640) return;
       heroApi.scrollNext();
     }, 3500);
     return () => clearInterval(interval);
@@ -224,7 +223,7 @@ const About = () => {
         {/* Photo Carousel */}
         <div className="relative z-10 pt-[64px] w-full">
           <div className="px-4 md:px-8 lg:px-12 pt-10 max-w-[1200px] mx-auto">
-            <Carousel setApi={setHeroApi} opts={{ loop: false, align: "start" }} className="w-full">
+            <Carousel setApi={setHeroApi} opts={{ loop: true, align: "start" }} className="w-full">
               <CarouselContent className="items-end -ml-2">
                 {collagePhotos.map((photo, i) => (
                   <CarouselItem key={i} className="pl-2 basis-[55%] sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
