@@ -228,6 +228,8 @@ const Index = () => {
           {/* Centred vignette */}
           <div className="absolute inset-0 z-[1]"
             style={{ background: "radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,0,0,0.60) 0%, transparent 75%)" }} />
+          {/* Overall dark overlay to improve text contrast */}
+          <div className="absolute inset-0 z-[2] bg-black/45" />
           {/* Bottom fade */}
           <div className="absolute bottom-0 left-0 right-0 h-48 z-10"
             style={{ background: "linear-gradient(to bottom, transparent, #000)" }} />
