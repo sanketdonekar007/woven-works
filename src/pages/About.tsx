@@ -154,6 +154,7 @@ const About = () => {
   const [sliding, setSliding] = useState(false);
   const [heroApi, setHeroApi] = useState<CarouselApi>();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [tappedIndex, setTappedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     document.documentElement.classList.add("dark");
@@ -224,18 +225,30 @@ const About = () => {
         <div className="relative z-10 pt-[64px] w-full">
           {/* Mobile view: smooth continuous CSS marquee */}
           <div className="sm:hidden w-full overflow-hidden pt-10 relative">
-            <div className="flex w-max animate-scroll-mobile">
-              {[...collagePhotos, ...collagePhotos].map((photo, i) => (
-                <div key={i} className="w-[140px] px-1 flex-shrink-0">
-                  <div className="overflow-hidden rounded-t-2xl aspect-[9/16]">
-                    <img
-                      src={photo.src}
-                      alt={photo.alt}
-                      className="w-full h-full rounded-t-2xl object-cover object-top grayscale"
-                    />
+            <div
+              className="flex w-max animate-scroll-mobile"
+              style={{ animationPlayState: tappedIndex !== null ? "paused" : "running" }}
+            >
+              {[...collagePhotos, ...collagePhotos].map((photo, i) => {
+                const isTapped = tappedIndex === i;
+                return (
+                  <div
+                    key={i}
+                    className="w-[140px] px-1 flex-shrink-0 cursor-pointer"
+                    onClick={() => setTappedIndex(isTapped ? null : i)}
+                  >
+                    <div className="overflow-hidden rounded-t-2xl aspect-[9/16]">
+                      <img
+                        src={photo.src}
+                        alt={photo.alt}
+                        className={`w-full h-full rounded-t-2xl object-cover object-top transition-all duration-500 ${
+                          isTapped ? "grayscale-0 scale-[1.03]" : "grayscale"
+                        }`}
+                      />
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
