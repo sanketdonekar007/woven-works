@@ -7,17 +7,28 @@ export const MusicPlayer = () => {
   const toggleMusic = () => {
     const audio = audioRef.current;
     if (!audio) return;
+    
     if (playing) {
       audio.pause();
+      setPlaying(false);
     } else {
-      audio.play();
+      // Modern browsers return a promise from play()
+      audio.play()
+        .then(() => {
+          setPlaying(true);
+        })
+        .catch((error) => {
+          console.error("Failed to play audio:", error);
+          setPlaying(false);
+        });
     }
-    setPlaying(!playing);
   };
+
+  const audioSrc = `${import.meta.env.BASE_URL || "/"}music.mp3`.replace(/\/+/g, "/");
 
   return (
     <>
-      <audio ref={audioRef} src="/music.mp3" loop preload="none" />
+      <audio ref={audioRef} src={audioSrc} loop preload="auto" />
       <button
         onClick={toggleMusic}
         aria-label={playing ? "Pause music" : "Play music"}
