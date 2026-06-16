@@ -291,7 +291,7 @@ const About = () => {
                 <div>
                   <p className="text-[16px] font-medium text-white leading-snug">{item.company}</p>
                   <p className="text-[13px] font-light text-white/40 mt-0.5">{item.role}</p>
-                  <p className="text-[13px] font-light tracking-[0.04em] text-white/35 font-mono mt-2.5">{item.date}</p>
+                  <p className="text-[13px] font-light text-white/40 mt-2">{item.date}</p>
                 </div>
                 {/* Bullets */}
                 <ul className="flex flex-col gap-2.5">
