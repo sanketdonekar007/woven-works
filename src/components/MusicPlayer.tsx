@@ -24,7 +24,7 @@ export const MusicPlayer = () => {
     }
   };
 
-  const audioSrc = `${import.meta.env.BASE_URL || "/"}music.mp3`.replace(/\/+/g, "/");
+  const audioSrc = "/music.mp3";
 
   return (
     <>
