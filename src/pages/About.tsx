@@ -399,26 +399,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* ── Resume CTA ───────────────────────────────── */}
-      <section className="max-w-[1200px] mx-auto px-6 lg:px-12 py-20 border-t border-white/10 flex flex-col items-center gap-6 text-center">
-        <Reveal>
-          <p className="text-[17px] font-light text-white/45 tracking-[-0.01em]">
-            Want the full picture?
-          </p>
-        </Reveal>
-        <Reveal delay={80}>
-          <a
-            href="/Sanket Donekar Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative overflow-hidden px-8 py-3.5 rounded-full text-[15px] font-medium tracking-[-0.01em] text-white hover:bg-white/[0.08] transition-colors"
-            style={{ border: "1px solid rgba(255,255,255,0.3)" }}
-          >
-            <span className="btn-shine pointer-events-none absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-            Open Resume
-          </a>
-        </Reveal>
-      </section>
+
 
       {/* ── Footer CTA ───────────────────────────────── */}
       <footer className="relative min-h-[80vh] flex flex-col overflow-hidden border-t border-white/10">
