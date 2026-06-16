@@ -57,7 +57,7 @@ function Reveal({
 /* ── Data ───────────────────────────────────────────────── */
 const experience = [
   {
-    date: "Mar '24 – Present",
+    date: "Mar 2024 – Present",
     company: "RedBeryl Tech",
     role: "Senior UX Designer",
     bullets: [
@@ -69,7 +69,7 @@ const experience = [
     ],
   },
   {
-    date: "Mar '23 – Feb '24",
+    date: "Mar 2023 – Feb 2024",
     company: "Esoftcode",
     role: "UI/UX Designer",
     bullets: [
@@ -79,7 +79,7 @@ const experience = [
     ],
   },
   {
-    date: "Jul '21 – Mar '23",
+    date: "Jul 2021 – Mar 2023",
     company: "KnackBe Tech",
     role: "UI Designer",
     bullets: [
