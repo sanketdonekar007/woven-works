@@ -944,12 +944,6 @@ export const projects: Record<string, ProjectData> = {
                 ]
             },
             {
-                type: "image",
-                src: "/lovable-uploads/phase1-empathise.png",
-                caption: "Shadowing compliance executors revealed significant anxiety normalized as part of the job.",
-                fullWidth: true
-            },
-            {
                 type: "process-steps",
                 title: "Field Observations",
                 highlight: "The root problem was anxiety caused by invisible status state, not simple interface quality.",
