@@ -1000,7 +1000,7 @@ export const projects: Record<string, ProjectData> = {
             {
                 type: "image",
                 title: "Service Blueprint",
-                src: "/lovable-uploads/service-blueprint.png",
+                src: "/lovable-uploads/vstate-service-blueprint.png",
                 caption: "Mapping client-portal actions directly to backstage admin pipelines and state API triggers."
             },
             {
@@ -1206,12 +1206,10 @@ export const projects: Record<string, ProjectData> = {
                 note: "Focus on the visual hierarchy of the Action Center vs. Global Visibility."
             },
             {
-                type: "asset-placeholder",
-                id: "service-blueprint-placeholder",
+                type: "image",
                 title: "System Thinking & Blueprint",
-                assetType: "custom-diagram",
-                description: "👉 Human-designed visual required: Replace with human-designed service blueprint showing Frontstage (Client Portal), Backstage (Admin Engine), and Systems (State APIs).",
-                note: "This section is critical for showing deep product thinking. DO NOT generate fake service blueprint diagrams."
+                src: "/lovable-uploads/vstate-service-blueprint.png",
+                caption: "System thinking service blueprint mapping Frontstage (Client Portal), Backstage (Admin Engine), and Systems (State APIs)."
             },
             // ── Phase 3: Ideate & Design System ──────────────────────────────
             {
