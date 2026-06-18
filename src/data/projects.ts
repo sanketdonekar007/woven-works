@@ -864,11 +864,10 @@ export const projects: Record<string, ProjectData> = {
                 ]
             },
             {
-                type: "asset-placeholder",
+                type: "image",
                 title: "Edge & Error States",
-                assetType: "screen-design",
-                description: "UX flows mapping offline queries, custom database contributor requests, and unreadable barcodes.",
-                note: "Designed error states early to shape the core API scanning model."
+                src: "/lovable-uploads/snackhack-edge-error.png",
+                caption: "UX flows mapping offline queries, custom database contributor requests, and unreadable barcodes."
             },
             {
                 type: "prototype",
