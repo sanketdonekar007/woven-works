@@ -975,7 +975,7 @@ export const projects: Record<string, ProjectData> = {
             {
                 type: "image",
                 title: "Research Analysis",
-                src: "/lovable-uploads/affinity-diagram.png",
+                src: "/lovable-uploads/vstate-research-analysis.png",
                 caption: "Affinity map clusters: Invisible system state identified as the core bottleneck."
             },
             // ── Phase 2: Define ─────────────────────────────────────────────
