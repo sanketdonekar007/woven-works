@@ -1116,7 +1116,8 @@ export const projects: Record<string, ProjectData> = {
             {
                 type: "image",
                 title: "Design System Foundations",
-                src: "",
+                src: "/lovable-uploads/vstate-design-system.png",
+                caption: "Design system foundations showing typography, status tokens, grids, and primary components."
             },
             {
                 type: "impact",
@@ -1231,11 +1232,10 @@ export const projects: Record<string, ProjectData> = {
                 ]
             },
             {
-                type: "asset-placeholder",
+                type: "image",
                 title: "Design System Elements",
-                assetType: "screen-design",
-                description: "👉 Human-designed visual required: Insert real design system components (buttons, inputs, status badges, table rows).",
-                note: "AI has generated the layout; leave these placeholders for actual handcrafted elements."
+                src: "/lovable-uploads/vstate-design-system.png",
+                caption: "Reusable design system elements including buttons, inputs, status badges, and table structures."
             },
             // ── Phase 4 & 5: Test & Outcomes ────────────────────────────────
             {
