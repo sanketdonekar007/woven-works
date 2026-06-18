@@ -963,7 +963,7 @@ export const projects: Record<string, ProjectData> = {
             {
                 type: "image",
                 title: "Before vState — Fragmented Workflow",
-                src: "",
+                src: "/lovable-uploads/vstate-before-workflow.png",
                 caption: "Spanning emails, spreadsheets, and WhatsApp groups without central visibility."
             },
             {
@@ -1179,12 +1179,10 @@ export const projects: Record<string, ProjectData> = {
                 ]
             },
             {
-                type: "asset-placeholder",
-                id: "current-workflow-placeholder",
+                type: "image",
                 title: "Current Fragmented Workflow",
-                assetType: "flow-diagram",
-                description: "👉 Human-designed visual required: Map out the existing fragmented workflow showing the gaps between spreadsheets, emails, and manual tracking.",
-                note: "Reason: This requires accurate process thinking and should not be AI-generated. Provide spacing and layout for a horizontal flow."
+                src: "/lovable-uploads/vstate-before-workflow.png",
+                caption: "The legacy fragmented workflow showing gaps between spreadsheets, emails, and manual tracking."
             },
             // ── Phase 2: Define ─────────────────────────────────────────────
             {
