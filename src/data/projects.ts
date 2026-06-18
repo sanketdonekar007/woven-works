@@ -975,7 +975,7 @@ export const projects: Record<string, ProjectData> = {
             {
                 type: "image",
                 title: "User Journey Map",
-                src: "/lovable-uploads/user-journey-maps.png",
+                src: "/lovable-uploads/vstate-user-journey-map.png",
                 caption: "Highlighting key anxiety spikes: morning status compilation and incoming queries."
             },
             {
