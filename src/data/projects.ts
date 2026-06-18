@@ -716,11 +716,10 @@ export const projects: Record<string, ProjectData> = {
                 description: "Interact with the onboarding flow and contextual learning loops."
             },
             {
-                type: "asset-placeholder",
+                type: "image",
                 title: "Edge & Empty States",
-                assetType: "screen-design",
-                description: "Onboarding empty states, offline drill fallbacks, and progress reset warnings.",
-                note: "Empty states designed contextually to serve as feature entry points."
+                src: "/lovable-uploads/langlang-edge-empty.png",
+                caption: "Onboarding empty states, offline drill fallbacks, and progress reset warnings."
             },
             // ── Phase 5: Test ───────────────────────────────────────────────
             {
