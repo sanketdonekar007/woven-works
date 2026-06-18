@@ -968,6 +968,12 @@ export const projects: Record<string, ProjectData> = {
             },
             {
                 type: "image",
+                title: "User Personas",
+                src: "/lovable-uploads/vstate-user-personas.png",
+                caption: "Understanding user archetypes, operational goals, and daily compliance blockers."
+            },
+            {
+                type: "image",
                 title: "User Journey Map",
                 src: "/lovable-uploads/user-journey-maps.png",
                 caption: "Highlighting key anxiety spikes: morning status compilation and incoming queries."
@@ -1183,6 +1189,12 @@ export const projects: Record<string, ProjectData> = {
                 title: "Current Fragmented Workflow",
                 src: "/lovable-uploads/vstate-before-workflow.png",
                 caption: "The legacy fragmented workflow showing gaps between spreadsheets, emails, and manual tracking."
+            },
+            {
+                type: "image",
+                title: "User Personas",
+                src: "/lovable-uploads/vstate-user-personas.png",
+                caption: "Understanding user archetypes, operational goals, and daily compliance blockers."
             },
             // ── Phase 2: Define ─────────────────────────────────────────────
             {
