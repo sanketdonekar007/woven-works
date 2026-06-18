@@ -475,11 +475,10 @@ export const projects: Record<string, ProjectData> = {
                 caption: "Play-triggered expansion → inline keyword search → highlighted results."
             },
             {
-                type: "asset-placeholder",
+                type: "image",
                 title: "Edge & Error States",
-                assetType: "screen-design",
-                description: "UX flows mapping offline errors, unclear audio alerts, and unsupported language fallbacks.",
-                note: "Figma design specs for error states handled prior to visual polish."
+                src: "/lovable-uploads/whatsapp-edge-error.png",
+                caption: "UX flows mapping offline errors, unclear audio alerts, and unsupported language fallbacks."
             },
             {
                 type: "impact",
