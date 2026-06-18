@@ -1075,7 +1075,8 @@ export const projects: Record<string, ProjectData> = {
             {
                 type: "image",
                 title: "Service Ecosystem Map",
-                src: "",
+                src: "/lovable-uploads/vstate-ecosystem-map.png",
+                caption: "Service ecosystem blueprint showcasing cross-system orchestration and integration."
             },
             // ── Phase 5: Test ───────────────────────────────────────────────
             {
