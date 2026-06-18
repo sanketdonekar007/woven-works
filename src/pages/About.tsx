@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import AnimatedLink from "@/components/AnimatedLink";
-import { MusicPlayer } from "@/components/MusicPlayer";
 import {
   Carousel,
   CarouselContent,
@@ -199,8 +198,6 @@ const About = () => {
 
   return (
     <div className="bg-black min-h-screen text-white font-vietnam">
-
-      <MusicPlayer />
 
       {/* ── Nav ─────────────────────────────────────── */}
       <header className={`header${scrolled ? " scrolled" : ""}`}>

@@ -5,7 +5,6 @@ import { RevealOnScroll } from "../components/RevealOnScroll";
 import { projects } from "@/data/projects";
 import { BlockRenderer } from "@/components/ProjectBlocks";
 import { ExternalLink, ChevronLeft } from "lucide-react";
-import { MusicPlayer } from "@/components/MusicPlayer";
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -87,7 +86,6 @@ const ProjectDetail = () => {
       className="project-detail-container min-h-screen font-vietnam"
       style={{ background: '#000000', color: '#FFFFFF', ['--accent-color' as any]: project.accentColor || '#3b82f6' }}
     >
-      <MusicPlayer />
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 w-full z-50 px-8 py-5 flex items-center backdrop-blur-[12px] transition-all duration-300"

@@ -9,6 +9,7 @@ import About from "./pages/About";
 import ProjectDetail from "./pages/ProjectDetail";
 import NotFound from "./pages/NotFound";
 import { CursorAndProgress } from "./components/CursorAndProgress";
+import { MusicPlayer } from "./components/MusicPlayer";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/projects/:projectId" element={<ProjectDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <MusicPlayer />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

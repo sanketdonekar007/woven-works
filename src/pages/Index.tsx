@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Layers, GitBranch, Cpu, Code2 } from "lucide-react";
 import AnimatedLink from "@/components/AnimatedLink";
-import { MusicPlayer } from "@/components/MusicPlayer";
 
 /* ─── Data ───────────────────────────────────────────── */
 
@@ -212,8 +211,6 @@ const Index = () => {
           </nav>
         </div>
       </header>
-
-      <MusicPlayer />
 
       {/* ── Hero ────────────────────────────────────── */}
       <section className="hero-section relative overflow-hidden" id="hero">
