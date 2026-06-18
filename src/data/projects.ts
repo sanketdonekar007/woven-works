@@ -1063,7 +1063,7 @@ export const projects: Record<string, ProjectData> = {
             {
                 type: "image",
                 title: "After vState — Unified Platform",
-                src: "",
+                src: "/lovable-uploads/vstate-after-platform.png",
                 caption: "One central platform substituting email chains and isolated spreadsheets."
             },
             {
