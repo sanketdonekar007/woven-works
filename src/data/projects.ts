@@ -793,8 +793,9 @@ export const projects: Record<string, ProjectData> = {
                 title: "Primary Persona",
                 personas: [
                     {
-                        name: "Sarah Patel",
+                        name: "Sneha Patil",
                         role: "Health-Conscious Shopper",
+                        image: "/lovable-uploads/sneha-patil.png",
                         quote: "\"Just tell me if it's good or not in under 30 seconds.\"",
                         meta: "Age 32 | Mumbai",
                         traits: ["Busy", "Skeptical of labels"],
