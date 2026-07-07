@@ -196,7 +196,11 @@ const ProjectDetail = () => {
                 <img
                   src={project.headerImage}
                   alt={project.title}
-                  className={`w-full transition-transform duration-[3000ms] group-hover:scale-105 ${isSnackHack ? 'h-auto object-contain' : 'h-full object-cover'}`}
+                  className={`w-full transition-transform duration-[3000ms] ${
+                    project.id === 'tutoronboarding'
+                      ? 'scale-[1.3] group-hover:scale-[1.36]'
+                      : 'group-hover:scale-105'
+                  } ${isSnackHack ? 'h-auto object-contain' : 'h-full object-cover'}`}
                 />
               </div>
             </RevealOnScroll>

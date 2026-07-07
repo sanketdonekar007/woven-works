@@ -19,7 +19,9 @@ export type BlockType =
     | "image"
     | "user-flow-popup"
     | "prototype"
-    | "asset-placeholder";
+    | "asset-placeholder"
+    | "metrics-grid"
+    | "trade-offs";
 
 export interface BaseBlock {
     type: BlockType;
@@ -138,7 +140,7 @@ export interface LearningsBlock extends BaseBlock {
 
 export interface CustomComponentBlock extends BaseBlock {
     type: "custom-component";
-    componentName: "UserFlow" | "VideoCarousel" | "VStateIA" | "HealthScoreExplanation" | "SnackHackIA" | "VStateServiceEcosystem" | "VStateBeforeWorkflow" | "VStateAfterWorkflow" | "VStatePainPoints" | "VStateNotificationSystem" | "VStateServiceBlueprint" | "VStateResearchInsights" | "VStateDesignSystemGrid" | "CricMetrixBeforeAfter" | "CricMetrixAttendanceSystem" | "CricMetrixVoiceScorer" | "CricMetrixRoleDashboards" | "CricMetrixTwinTables" | "CricMetrixFeeCheckout" | "CricMetrixImpactMetrics";
+    componentName: "UserFlow" | "VideoCarousel" | "VStateIA" | "HealthScoreExplanation" | "SnackHackIA" | "VStateServiceEcosystem" | "VStateBeforeWorkflow" | "VStateAfterWorkflow" | "VStatePainPoints" | "VStateNotificationSystem" | "VStateServiceBlueprint" | "VStateResearchInsights" | "VStateDesignSystemGrid" | "CricMetrixBeforeAfter" | "CricMetrixAttendanceSystem" | "CricMetrixVoiceScorer" | "CricMetrixRoleDashboards" | "CricMetrixTwinTables" | "CricMetrixFeeCheckout" | "CricMetrixImpactMetrics" | "CricMetrixIA";
     props?: Record<string, any>;
 }
 
@@ -173,6 +175,25 @@ export interface AssetPlaceholderBlock extends BaseBlock {
     codeBuilt?: string;
 }
 
+export interface MetricsGridBlock extends BaseBlock {
+    type: "metrics-grid";
+    metrics: {
+        value: string;
+        label: string;
+        description?: string;
+    }[];
+}
+
+export interface TradeOffsBlock extends BaseBlock {
+    type: "trade-offs";
+    items: {
+        option: string;
+        status: "rejected" | "selected" | "neutral";
+        reasoning: string;
+        tradeOff: string;
+    }[];
+}
+
 export type ProjectBlock =
     | RichTextBlock
     | ProblemStatementBlock
@@ -193,7 +214,9 @@ export type ProjectBlock =
     | ImageBlock
     | UserFlowPopupBlock
     | PrototypeBlock
-    | AssetPlaceholderBlock;
+    | AssetPlaceholderBlock
+    | MetricsGridBlock
+    | TradeOffsBlock;
 
 export interface ProjectData {
     id: string;
@@ -397,109 +420,105 @@ export const projects: Record<string, ProjectData> = {
         blocks: [
             {
                 type: "role-list",
-                title: "Project Context & My Role",
-                content: "UX Designer (2-week sprint concept)",
-                highlight: "Designing within an existing system used by 2 billion people who couldn't be retrained.",
+                title: "01. Context & Research",
+                content: "Senior UX Designer (2-week sprint concept)",
+                highlight: "How do you design an interface modification for 2 billion active users without introducing any cognitive friction or retraining cost?",
                 roles: [
-                    "Competitive audit: Apple Live Transcription, Telegram, Otter.ai",
-                    "Interviews: Conducted 5 moderated user sessions on voice note habits & privacy",
-                    "A/B Testing: Compared always-on vs. play-triggered transcription models"
+                    "Competitive Audit: Evaluated speech-to-text behaviors across Apple Live Transcription, Telegram Premium, and Otter.ai.",
+                    "User Context Interviews: Moderated sessions with 5 power users exploring voice note habits, listening constraints, and privacy preferences.",
+                    "A/B Hypothesis Testing: Evaluated always-on auto-transcription against play-triggered context-aware transcription."
                 ]
             },
             {
                 type: "problem-statement",
-                title: "The Problem",
-                highlight: "Users in quiet or loud environments cannot listen to voice notes privately or scan long clips for info.",
-                content: "Core user barriers identified:",
+                title: "02. The Core Problem",
+                highlight: "Users in noise-constrained or highly private social environments are excluded from the voice-first format, leading to information retrieval bottlenecks.",
+                content: "Three primary user experience barriers identified:",
                 list: [
-                    "Accessibility exclusion: 466M hard-of-hearing users are left out of the format",
-                    "Context constraints: Audio is unplayable in meetings, quiet offices, or loud transit",
-                    "Retrieval friction: Finding one detail requires replaying long audio (avg. 90s wasted)"
+                    "Accessibility Exclusion: 466 million hard-of-hearing or deaf users are systematically excluded from consuming voice messages.",
+                    "Situational Constraints: Audio is completely unplayable during active meetings, quiet workspaces, or loud transit environments.",
+                    "Information Retrieval Friction: Locating a specific address, name, or phone number requires manual scrub-and-replay (averaging 90 seconds wasted)."
                 ]
             },
             {
                 type: "process-steps",
-                title: "Research Insights",
-                highlight: "Every competitor that transcribes by default creates UI clutter and privacy alerts. Users want control.",
-                content: "",
+                title: "03. Focus & Strategy",
+                highlight: "Our Reframe: Users don't need a static speech-to-text translation block. They need a highly responsive, situational control layer that remains invisible until explicitly needed, prioritizing local privacy.",
+                content: "Guiding principles established for the sprint:",
                 steps: [
-                    "Audit finding: Default auto-transcription triggers privacy anxiety.",
-                    "User sentiment: 4/5 participants avoid voice notes when context forces them to listen.",
-                    "Key pivot: Design transcription to be invisible until explicitly requested."
+                    "On-Demand Execution: Transcription remains 100% hidden unless activated via explicit intent (press-to-reveal or swipe).",
+                    "Local-First Privacy: Leverage hardware-level neural engine speech recognition to process audio locally, respecting WhatsApp's E2E encryption trust.",
+                    "Invisible Integration: Maintain existing chat bubbles and design systems with zero new structural learning curve."
                 ]
             },
             {
-                type: "process-steps",
-                title: "Point of View & Strategic Direction",
-                highlight: "The Reframe: Users don't want another text box; they want a situational control mechanism that is invisible until triggered.",
-                content: "",
-                steps: [
-                    "Target: Make voice notes 100% accessible to quiet environments and hearing-impaired users.",
-                    "Privacy: Never process or show text without explicit user consent."
-                ]
-            },
-            {
-                type: "goals-list",
-                title: "How Might We & Principles",
-                goals: [
-                    "HMW make transcription accessible without cluttering the chat view?",
-                    "HMW respect end-to-end encryption with local-first processing?",
-                    "HMW speak WhatsApp's existing design language with zero learning curve?",
-                    "Principle: On-demand, never automatic.",
-                    "Principle: Zero new UI until triggered.",
-                    "Principle: Mirror existing link preview/reaction drawer animations."
-                ]
-            },
-            {
-                type: "challenges",
-                title: "Alternatives Explored",
-                challenges: [
+                type: "trade-offs",
+                title: "04. Alternatives Explored",
+                items: [
                     {
-                        challenge: "Auto-transcribe on receipt",
-                        solution: "Rejected. Triggers high privacy concern and clutters bubble UI."
+                        option: "Auto-transcribe on receipt",
+                        status: "rejected",
+                        reasoning: "Generates massive visual noise inside chat threads. Users felt anxious about text previews displaying sensitive voice notes automatically on their locked screen or passive scroll.",
+                        tradeOff: "High visibility, but severe degradation of privacy controls and visual clutter."
                     },
                     {
-                        challenge: "AI-generated summaries",
-                        solution: "Rejected. Summaries miss critical specifics like phone numbers, names, or addresses."
+                        option: "AI-generated summaries",
+                        status: "rejected",
+                        reasoning: "Although effective for longer conversations, summaries missed critical micro-details (e.g. phone numbers, specific addresses) that users frequently need to copy and paste.",
+                        tradeOff: "Fast overview, but high risk of critical data loss in short-form messaging."
                     },
                     {
-                        challenge: "Chosen Approach: Play-triggered inline transcription",
-                        solution: "Fully opt-in, processed locally, expandable on-tap, maintaining E2E trust."
+                        option: "Play-triggered inline transcription",
+                        status: "selected",
+                        reasoning: "Processes text locally only when the user interacts, allowing dynamic inline expansion and contextual search highlighting inside the bubble.",
+                        tradeOff: "Minor interaction cost to activate, but preserves end-to-end security and keeps UI clean."
                     }
                 ]
             },
             {
                 type: "image",
-                title: "Interaction Flow",
+                title: "05. Interaction Design",
                 src: "/lovable-uploads/whatsapp-gif.gif",
-                caption: "Play-triggered expansion → inline keyword search → highlighted results."
+                caption: "Interactive Flow: Play-triggered expansion → inline keyword search → highlighted query matches."
             },
             {
                 type: "image",
-                title: "Edge & Error States",
+                title: "06. Robustness & Edge Cases",
                 src: "/lovable-uploads/whatsapp-edge-error.png",
-                caption: "UX flows mapping offline errors, unclear audio alerts, and unsupported language fallbacks."
+                caption: "Defensive UX: Flows mapping low-bandwidth offline mode, overlapping audio/noise warnings, and language pack downloads."
             },
             {
-                type: "impact",
-                title: "Usability Outcomes & Testing",
-                items: [
-                    "Detail retrieval time dropped from 90 seconds to 15 seconds in usability tasks (n=5)",
-                    "100% accessibility score achieved for simulated hearing-impaired scenarios",
-                    "Zero cognitive drag reported due to the collapsed-by-default visual model"
+                type: "metrics-grid",
+                title: "07. Impact & Usability",
+                metrics: [
+                    {
+                        value: "15s",
+                        label: "Detail Retrieval Speed",
+                        description: "Average time to locate specific info dropped from 90 seconds (scrubbing audio) to just 15 seconds (using inline text search)."
+                    },
+                    {
+                        value: "100%",
+                        label: "Accessibility Score",
+                        description: "Evaluated and validated for WCAG compliance across simulated hearing impairment and high-contrast scenarios."
+                    },
+                    {
+                        value: "0.0",
+                        label: "UI Cognitive Drag",
+                        description: "Zero user friction or interface overload reported during moderated tasks due to the collapsed-by-default visual approach."
+                    }
                 ]
             },
             {
                 type: "learnings",
-                title: "Retrospective & Learnings",
+                title: "08. Key Takeaways",
                 learnings: [
-                    "Observation beats surveys: Watching users struggle to retrieve details mid-session exposed the need for keyword search.",
-                    "Design system constraint: Adapting to existing chat bubble spacing forced tighter typography choices.",
-                    "Testing bias: Real hearing-impaired users should have been included in the earliest testing round rather than simulated."
+                    "Empirical Observation beats assumptions: Watching users struggle to retrieve details in-context exposed the immediate need for keyword search within transcripts.",
+                    "Design System Rigor: Designing for a massive global audience means working within incredibly tight screen constraints, prioritizing content over layout ornamentation.",
+                    "Testing Inclusivity: Real hearing-impaired users should have been brought into the earliest wireframe stages rather than simulated near the end of the sprint."
                 ],
                 future: [
-                    "Multi-chat keyword index (search text across all voice notes)",
-                    "AI summary helper for notes longer than 3 minutes"
+                    "Global Voice Index: Searching text queries across all voice notes in the global WhatsApp search bar.",
+                    "Contextual Action Triggers: Automatically parsing addresses into maps or dates into calendars from transcription bubbles."
                 ]
             }
         ]
@@ -1619,6 +1638,104 @@ export const projects: Record<string, ProjectData> = {
                 future: [
                     "Mobile App compilation",
                     "Computer vision swing analysis from training videos"
+                ]
+            }
+        ]
+    },
+    tutoronboarding: {
+        id: "tutoronboarding",
+        title: "Locate Tutors. Tutor Onboarding UX Case Study",
+        navTitle: "Locate Tutors. Tutor Onboarding Experience",
+        subtitle: "Designing an End-to-End Tutor Verification & Profile Journey",
+        headerImage: "/lovable-uploads/locate-tutor-intro.png",
+        intro: "An end-to-end tutor onboarding experience balancing business verification needs with a smooth and motivating user journey.",
+        role: "Product Designer / UX Designer",
+        timeline: "2025",
+        platforms: "Web Application",
+        type: "Product Design · B2B2C",
+        industry: "EdTech · Marketplace",
+        duration: "4 weeks",
+        focus: "Marketplace Trust, Profile Completion, Progressive Disclosure, Verification Flows",
+        accentColor: "#4f46e5",
+        themeGradient: "from-[#EEF2FF] to-[#FFFFFF]",
+        links: [
+            { text: "", url: "" },
+            { text: "", url: "" },
+        ],
+        blocks: [
+            {
+                type: "problem-statement",
+                title: "The Problem & Challenge",
+                highlight: "Tutors abandoned the platform due to long, overwhelming verification and profile creation processes.",
+                content: "Locate Tutors needed a scalable onboarding experience that:",
+                list: [
+                    "Profile Abandonment: Tutors dropped off during long multi-step data entry forms.",
+                    "Verification Friction: Balancing platform safety and student trust with tutor signup effort.",
+                    "Low Profile Quality: Capturing teaching expertise and pricing structure without overwhelming tutors."
+                ]
+            },
+            {
+                type: "process-steps",
+                title: "Design Thinking Process",
+                highlight: "Empathize, Define, Ideate, Prototype, Test",
+                content: "A systematic approach to improve tutor confidence and completion rates.",
+                steps: [
+                    "Empathize: Interview tutors and analyze profile completion barriers.",
+                    "Define: Reframe: How might we help tutors create trustworthy profiles without overwhelming them?",
+                    "Ideate: Progressive onboarding, AI resume assistance, and real-time previews.",
+                    "Prototype: Multi-step wizard, profile strength indicators, and calendar slots.",
+                    "Test: Validate usability, completion effort, and tutor confidence."
+                ]
+            },
+            {
+                type: "asset-placeholder",
+                title: "The Step-by-Step Experience (Interactive Figma Prototype)",
+                assetType: "screen-design",
+                description: "👉 Interactive Figma Prototype: Mapping the improvised 9-step onboarding flow with real-time status headers and the profile strength side panel.",
+                note: "This section will embed the live Figma prototype workspace once ready."
+            },
+            {
+                type: "challenges",
+                title: "Key Improvements & UX Solutions",
+                challenges: [
+                    {
+                        challenge: "Progress Wizard",
+                        solution: "Multi-step flow with completion percentage and auto-save later support."
+                    },
+                    {
+                        challenge: "Pricing Decision Friction",
+                        solution: "Built a Recommended Pricing Engine based on expertise and market demand."
+                    },
+                    {
+                        challenge: "Credential Verification",
+                        solution: "Secure, clear document vaults to capture degrees, certifications, and experience letters."
+                    },
+                    {
+                        challenge: "AI Resume-to-Profile Assistant",
+                        solution: "Allows tutors to upload an existing resume to automatically parse and pre-fill form fields."
+                    }
+                ]
+            },
+            {
+                type: "impact",
+                title: "Expected Design Impact",
+                items: [
+                    "30% to 40% reduction in onboarding drop-offs",
+                    "Faster profile completion and higher data quality",
+                    "Increased tutor and student trust in the marketplace",
+                    "Better student-to-tutor matching efficiency"
+                ]
+            },
+            {
+                type: "learnings",
+                title: "Retrospective & Learnings",
+                learnings: [
+                    "Progressive disclosure is king: Breaking down 30+ input fields into 9 logical steps reduces user cognitive fatigue.",
+                    "Transparency fosters patience: Clear review status tracking prevents tutors from feeling abandoned during background screening."
+                ],
+                future: [
+                    "Real-time marketplace demand indicators during onboarding",
+                    "AI-driven intro video enhancer and helper scripts"
                 ]
             }
         ]

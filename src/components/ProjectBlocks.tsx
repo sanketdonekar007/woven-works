@@ -24,6 +24,7 @@ import {
     CricMetrixFeeCheckout,
     CricMetrixImpactMetrics,
 } from "./CricMetrix";
+import { CricMetrixIA } from "./CricMetrixIA";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { LazyVideo } from "./LazyVideo";
 import { ProjectBlock } from "@/data/projects";
@@ -32,13 +33,15 @@ import { Check, CheckCircle2, AlertCircle, ArrowRight, ImageIcon, Film, GitBranc
 export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, accentColor?: string }) => {
     const titleClass = "text-[26px] md:text-[32px] font-medium text-white mb-8 leading-[1.1] tracking-[-0.02em]";
     const subtitleClass = "text-[16px] tracking-[0.18em] mb-3 block uppercase font-light text-white/40";
+    const bodyClass = "text-[16px] md:text-[18px] text-white/50 leading-[1.75] font-light";
+    const listClass = "text-[16px] md:text-[17px] text-white/60 leading-[1.7] font-light";
 
     switch (block.type) {
         case "rich-text":
             return (
                 <RevealOnScroll className="w-full">
                     {block.title && <h2 className={titleClass}>{block.title}</h2>}
-                    {block.content && <p className={`text-[16px] md:text-[18px] text-white/50 leading-[1.75] font-light ${block.fullWidth ? "w-full" : "max-w-3xl"}`}>{block.content}</p>}
+                    {block.content && <p className={`${bodyClass} ${block.fullWidth ? "w-full" : "max-w-3xl"}`}>{block.content}</p>}
                 </RevealOnScroll>
             );
 
@@ -47,7 +50,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                 <RevealOnScroll className="max-w-6xl">
                     <span className={subtitleClass}>{block.title || "The Challenge"}</span>
                     {block.highlight && <h2 className={titleClass}>{block.highlight}</h2>}
-                    {block.content && <p className="text-[18px] text-white/50 mb-16 leading-[1.65em] max-w-3xl">{block.content}</p>}
+                    {block.content && <p className={`${bodyClass} mb-16 max-w-3xl`}>{block.content}</p>}
 
                     <div className="space-y-16">
                         {block.list.map((item, i) => {
@@ -59,7 +62,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                     </div>
                                     <div className="pt-2">
                                         <h4 className="text-[20px] font-medium text-white mb-2">{title}</h4>
-                                        {desc && <p className="text-white/50 text-[18px] leading-[1.65em] max-w-xl">{desc}</p>}
+                                        {desc && <p className={`${bodyClass} max-w-xl`}>{desc}</p>}
                                     </div>
                                 </div>
                             );
@@ -73,7 +76,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                 <RevealOnScroll className="max-w-6xl">
                     <span className={subtitleClass}>Process & Methodology</span>
                     {block.title && <h2 className={titleClass}>{block.title}</h2>}
-                    {block.highlight && <p className="text-[20px] text-white/50 mb-16 max-w-4xl leading-[1.65em]">{block.highlight}</p>}
+                    {block.highlight && <p className="text-[18px] md:text-[20px] text-white/50 mb-16 max-w-4xl leading-[1.65em] font-light">{block.highlight}</p>}
 
                     <div className="grid md:grid-cols-2 gap-12">
                         {block.roles.map((item, i) => (
@@ -102,11 +105,11 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     <div className="grid md:grid-cols-2 gap-x-20 gap-y-24">
                         {block.triggers.map((trigger, index) => (
                             <div key={index} className="space-y-8 animate-in fade-in slide-in-from-bottom duration-700">
-                                <h3 className="text-[20px] font-medium tracking-[-0.02em]er text-white border-b border-white/10 pb-6">{trigger.category}</h3>
+                                <h3 className="text-[20px] font-medium tracking-[-0.02em] text-white border-b border-white/10 pb-6">{trigger.category}</h3>
                                 <ul className="space-y-6">
                                     {trigger.terms.map((term, i) => (
-                                        <li key={i} className="text-white/50 font-medium text-[18px] flex items-start gap-3">
-                                            <ArrowRight className="w-4 h-4 mt-1 shrink-0 text-white/50/50" />
+                                        <li key={i} className={`${bodyClass} flex items-start gap-3`}>
+                                            <ArrowRight className="w-4 h-4 mt-1 shrink-0 text-white/30" />
                                             <span>{term}</span>
                                         </li>
                                     ))}
@@ -128,7 +131,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                     className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-3"
                                     style={{ backgroundColor: accentColor || '#666' }}
                                 />
-                                <span className="text-[17px] text-white/60 leading-[1.7] font-light">{goal}</span>
+                                <span className={listClass}>{goal}</span>
                             </li>
                         ))}
                     </ul>
@@ -173,12 +176,12 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                 <RevealOnScroll className="max-w-4xl">
                     <span className={subtitleClass}>The Workflow</span>
                     {block.title && <h2 className={titleClass}>{block.title}</h2>}
-                    {block.highlight && <p className="text-[17px] text-white/50 mb-8 leading-[1.7] font-light">{block.highlight}</p>}
+                    {block.highlight && <p className={`${bodyClass} mb-8`}>{block.highlight}</p>}
                     <ul className="space-y-4">
                         {block.steps.map((step, i) => (
                             <li key={i} className="flex items-start gap-4">
                                 <span className="text-[12px] tabular-nums text-white/25 font-light mt-1 flex-shrink-0">0{i + 1}</span>
-                                <span className="text-[17px] text-white/60 leading-[1.7] font-light">{step}</span>
+                                <span className={listClass}>{step}</span>
                             </li>
                         ))}
                     </ul>
@@ -222,10 +225,10 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                             <RevealOnScroll key={i} delay={i * 100}>
                                 <div className="flex flex-col gap-10">
                                     <div className="flex items-start gap-6">
-                                        <div className="text-[20px] font-medium tracking-[-0.02em]er text-white/50 mt-1.5">0{i + 1}</div>
+                                        <div className="text-[20px] font-medium tracking-[-0.02em] text-white/50 mt-1.5">0{i + 1}</div>
                                         <div className="flex flex-col">
                                             <h3 className="text-[20px] md:text-[20px] font-medium tracking-[-0.02em] leading-[1.1] text-white">{screen.title}</h3>
-                                            {screen.description && <p className="text-[18px] text-white/50 mt-2 leading-[1.65em] max-w-4xl">{screen.description}</p>}
+                                            {screen.description && <p className={`${bodyClass} mt-2 max-w-4xl`}>{screen.description}</p>}
                                         </div>
                                     </div>
                                     <div className="rounded-[1.5rem] md:rounded-[2.5rem] p-4 md:p-6 lg:p-8 overflow-hidden shadow-sm bg-[#0d0d0d] group border border-white/10">
@@ -397,6 +400,13 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     </RevealOnScroll>
                 );
             }
+            if (block.componentName === "CricMetrixIA") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <CricMetrixIA />
+                    </RevealOnScroll>
+                );
+            }
             return null;
 
         case "image":
@@ -417,7 +427,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                             />
                         )}
                     </div>
-                    {block.caption && <div className="mt-6 text-center text-white/50 italic font-medium tracking-[-0.02em]er text-[18px] w-full">{block.caption}</div>}
+                    {block.caption && <div className="mt-6 text-center text-white/50 italic font-medium tracking-[-0.02em] text-[16px] md:text-[18px] w-full">{block.caption}</div>}
                 </RevealOnScroll>
             );
 
@@ -430,8 +440,8 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     </p>
                     <div className="grid md:grid-cols-2 gap-10 mb-20">
                         {block.steps.map((step, i) => (
-                            <div key={i} className="flex gap-3 items-center text-white/50 font-medium text-[18px]">
-                                <ArrowRight className="w-4 h-4 shrink-0 text-white/50/50" /> {step}
+                            <div key={i} className={`${bodyClass} flex gap-3 items-center`}>
+                                <ArrowRight className="w-4 h-4 shrink-0 text-white/30" /> {step}
                             </div>
                         ))}
                     </div>
@@ -476,12 +486,12 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                 <RevealOnScroll className="max-w-4xl">
                     <span className={subtitleClass}>{block.title || "Design Language"}</span>
                     <h2 className={titleClass}>{block.highlight}</h2>
-                    {block.content && <p className="text-[17px] text-white/50 mb-8 leading-[1.7] font-light">{block.content}</p>}
+                    {block.content && <p className={`${bodyClass} mb-8`}>{block.content}</p>}
                     <ul className="space-y-4">
                         {block.items.map((item, i) => (
                             <li key={i} className="flex items-start gap-4">
                                 <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-3" style={{ backgroundColor: accentColor }} />
-                                <span className="text-[17px] text-white/60 leading-[1.7] font-light">{item}</span>
+                                <span className={listClass}>{item}</span>
                             </li>
                         ))}
                     </ul>
@@ -502,7 +512,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                     <div className="mt-1">
                                         <Check className="w-5 h-5" style={{ color: accentColor }} />
                                     </div>
-                                    <span className="text-white/50 text-[18px]">{item}</span>
+                                    <span className={bodyClass}>{item}</span>
                                 </div>
                             ))}
                         </div>
@@ -522,7 +532,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                     className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-3"
                                     style={{ backgroundColor: accentColor || '#666' }}
                                 />
-                                <span className="text-[17px] text-white/60 leading-[1.7] font-light">{item}</span>
+                                <span className={listClass}>{item}</span>
                             </li>
                         ))}
                     </ul>
@@ -535,13 +545,13 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     <div className="grid md:grid-cols-[1fr_2fr] gap-12">
                         <div>
                             <span className={subtitleClass}>Reflections</span>
-                            <h2 className="text-[20px] font-medium tracking-[-0.02em] leading-[1.1] text-white">{block.title || "Learnings"}</h2>
+                            <h2 className="text-[20px] font-medium tracking-[-0.02em] text-white">{block.title || "Learnings"}</h2>
                         </div>
                         <div className="space-y-8">
                             {block.learnings.map((item, i) => (
                                 <div key={i} className="flex gap-6 group">
-                                    <div className="text-[20px] font-medium tracking-[-0.02em]er text-white/20 group-hover:text-white/30 transition-colors">0{i + 1}</div>
-                                    <p className="text-[20px] text-white/50 leading-[1.65em] pt-2">{item}</p>
+                                    <div className="text-[20px] font-medium tracking-[-0.02em] text-white/20 group-hover:text-white/30 transition-colors">0{i + 1}</div>
+                                    <p className={`${bodyClass} pt-2`}>{item}</p>
                                 </div>
                             ))}
                         </div>
@@ -551,13 +561,13 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                         <div className="grid md:grid-cols-[1fr_2fr] gap-12">
                             <div>
                                 <span className={subtitleClass}>Roadmap</span>
-                                <h2 className="text-[20px] font-medium tracking-[-0.02em] leading-[1.1] text-white">Future Scope</h2>
+                                <h2 className="text-[20px] font-medium tracking-[-0.02em] text-white">Future Scope</h2>
                             </div>
                             <ul className="space-y-4">
                                 {block.future.map((item, i) => (
                                     <li key={i} className="flex items-start gap-4">
                                         <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-3" style={{ backgroundColor: accentColor }} />
-                                        <span className="text-[17px] text-white/60 leading-[1.7] font-light">{item}</span>
+                                        <span className={listClass}>{item}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -628,6 +638,61 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                 </RevealOnScroll>
             );
         }
+
+        case "metrics-grid":
+            return (
+                <RevealOnScroll className="max-w-6xl">
+                    {block.title && <span className={subtitleClass}>{block.title}</span>}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6">
+                        {block.metrics.map((m, idx) => (
+                            <div key={idx} className="border border-white/10 rounded-[20px] p-8 bg-white/[0.02] flex flex-col justify-between hover:border-white/20 transition-all">
+                                <div className="text-[48px] md:text-[64px] font-semibold tracking-tight leading-none mb-4" style={{ color: accentColor || '#fff' }}>
+                                    {m.value}
+                                </div>
+                                <div>
+                                    <h4 className="text-[18px] font-medium text-white mb-2">{m.label}</h4>
+                                    {m.description && <p className="text-white/50 text-[15px] leading-relaxed">{m.description}</p>}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </RevealOnScroll>
+            );
+
+        case "trade-offs":
+            return (
+                <RevealOnScroll className="max-w-6xl">
+                    {block.title && <span className={subtitleClass}>{block.title}</span>}
+                    <div className="flex flex-col gap-6 mt-6">
+                        {block.items.map((item, idx) => {
+                            const isSelected = item.status === "selected";
+                            const isRejected = item.status === "rejected";
+                            return (
+                                <div key={idx} className="border border-white/10 rounded-[20px] p-6 md:p-8 bg-white/[0.01] hover:bg-white/[0.02] transition-all grid md:grid-cols-[1fr_2fr_1.5fr] gap-6 items-start">
+                                    <div>
+                                        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3 ${
+                                            isSelected ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' :
+                                            isRejected ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20' :
+                                            'bg-white/10 text-white/50 border border-white/15'
+                                        }`}>
+                                            {item.status}
+                                        </span>
+                                        <h4 className="text-[18px] font-medium text-white leading-tight">{item.option}</h4>
+                                    </div>
+                                    <div className="text-white/50 text-[15px] leading-relaxed">
+                                        <strong className="text-white/80 block mb-1">Reasoning & Feedback</strong>
+                                        {item.reasoning}
+                                    </div>
+                                    <div className="text-white/50 text-[15px] leading-relaxed">
+                                        <strong className="text-white/80 block mb-1">UX Trade-Off</strong>
+                                        {item.tradeOff}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </RevealOnScroll>
+            );
 
         default:
             return null;

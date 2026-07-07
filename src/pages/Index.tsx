@@ -8,6 +8,15 @@ import AnimatedLink from "@/components/AnimatedLink";
 
 const projects = [
   {
+    slug: "tutoronboarding",
+    title: "Locate Tutors, Onboarding & Verification",
+    description:
+      "I designed an end-to-end tutor onboarding and credential verification experience, optimizing profile completion and building marketplace trust through 9 structured stages.",
+    image: "/lovable-uploads/locate-tutor-intro.png",
+    alt: "Locate Tutors Onboarding Experience",
+    category: "EdTech · Marketplace · Web",
+  },
+  {
     slug: "vstatecompliance",
     title: "vState, Workflow Platform",
     description:
@@ -34,7 +43,7 @@ const projects = [
     alt: "AccuRest Supply Chain Platform",
     category: "Enterprise SaaS · Supply Chain",
   },
-  {
+  /* {
     slug: "cricmetrix",
     title: "CricMetrix, Cricket Academy Platform",
     description:
@@ -42,7 +51,7 @@ const projects = [
     image: "/lovable-uploads/filenow3.jpg",
     alt: "CricMetrix Cricket Academy Platform",
     category: "Sports Tech · AI · SaaS",
-  },
+  }, */
   {
     slug: "whatsapp",
     title: "WhatsApp, Voice NLP",
@@ -338,7 +347,11 @@ const Index = () => {
                   src={project.image}
                   alt={project.alt}
                   loading="lazy"
-                  className="w-full aspect-[4/3] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                  className={`w-full aspect-[4/3] object-cover transition-transform duration-700 ease-out ${
+                    project.slug === 'tutoronboarding' 
+                      ? 'scale-[1.3] group-hover:scale-[1.33]' 
+                      : 'group-hover:scale-[1.02]'
+                  }`}
                 />
               </div>
             </Link>
