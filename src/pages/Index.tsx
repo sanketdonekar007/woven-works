@@ -349,7 +349,7 @@ const Index = () => {
                   loading="lazy"
                   className={`w-full aspect-[4/3] object-cover transition-transform duration-700 ease-out ${
                     project.slug === 'tutoronboarding' 
-                      ? 'scale-[1.3] group-hover:scale-[1.33]' 
+                      ? 'scale-[1.5] group-hover:scale-[1.53]' 
                       : 'group-hover:scale-[1.02]'
                   }`}
                 />
