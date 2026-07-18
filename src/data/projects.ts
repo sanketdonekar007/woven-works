@@ -1658,9 +1658,9 @@ export const projects: Record<string, ProjectData> = {
         focus: "Marketplace Trust, Profile Completion, Progressive Disclosure, Verification Flows",
         accentColor: "#4f46e5",
         themeGradient: "from-[#EEF2FF] to-[#FFFFFF]",
+        clientWebsite: "https://www.locatetutor.com",
         links: [
-            { text: "", url: "" },
-            { text: "", url: "" },
+            { text: "Figma File", url: "https://www.figma.com/proto/7nW2mgIQJV3YccEFW0neFn/Locate-Tutor?node-id=1-587&p=f&viewport=732%2C261%2C0.03&t=OEDlcH79FvpQk9Lx-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" }
         ],
         blocks: [
             {
@@ -1688,11 +1688,10 @@ export const projects: Record<string, ProjectData> = {
                 ]
             },
             {
-                type: "asset-placeholder",
-                title: "The Step-by-Step Experience (Interactive Figma Prototype)",
-                assetType: "screen-design",
-                description: "👉 Interactive Figma Prototype: Mapping the improvised 9-step onboarding flow with real-time status headers and the profile strength side panel.",
-                note: "This section will embed the live Figma prototype workspace once ready."
+                type: "prototype",
+                title: "The Step-by-Step Experience",
+                description: "Interactive Figma Prototype mapping the improvised 9-step onboarding flow with real-time status headers and the profile strength side panel.",
+                url: "https://www.figma.com/proto/7nW2mgIQJV3YccEFW0neFn/Locate-Tutor?node-id=1-587&p=f&viewport=732%2C261%2C0.03&t=OEDlcH79FvpQk9Lx-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1"
             },
             {
                 type: "challenges",

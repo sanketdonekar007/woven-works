@@ -17,15 +17,17 @@ export const CursorAndProgress = () => {
       mouseX = e.clientX;
       mouseY = e.clientY;
       if (dotRef.current) {
-        dotRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+        dotRef.current.style.left = `${mouseX}px`;
+        dotRef.current.style.top = `${mouseY}px`;
       }
     };
 
     const animate = () => {
-      ringX += (mouseX - ringX) * 0.15;
-      ringY += (mouseY - ringY) * 0.15;
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
       if (ringRef.current) {
-        ringRef.current.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+        ringRef.current.style.left = `${ringX}px`;
+        ringRef.current.style.top = `${ringY}px`;
       }
 
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;

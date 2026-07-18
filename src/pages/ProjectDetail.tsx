@@ -181,9 +181,21 @@ const ProjectDetail = () => {
                   <p className="text-[16px] leading-[1.75] font-light max-w-2xl" style={{ color: 'rgba(255,255,255,0.55)' }}>
                     {project.intro}
                   </p>
-                  <div className="flex flex-col gap-1.5 min-w-[160px] md:pl-10 flex-shrink-0" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)', paddingLeft: '2.5rem' }}>
-                    <span className="text-[13px] tracking-[0.22em] uppercase font-light mb-1" style={{ color: 'rgba(255,255,255,0.3)' }}>Role</span>
-                    <span className="text-[16px] font-medium text-white leading-snug">{project.role}</span>
+                  <div className="flex flex-row gap-10 md:gap-16 flex-shrink-0">
+                    <div className="flex flex-col gap-1.5 min-w-[140px] md:pl-10" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)', paddingLeft: '2.5rem' }}>
+                      <span className="text-[13px] tracking-[0.22em] uppercase font-light mb-1" style={{ color: 'rgba(255,255,255,0.3)' }}>Role</span>
+                      <span className="text-[16px] font-medium text-white leading-snug">{project.role}</span>
+                    </div>
+                    {project.clientWebsite && (
+                      <div className="flex flex-col gap-1.5 min-w-[140px] md:pl-10" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)', paddingLeft: '2.5rem' }}>
+                        <span className="text-[13px] tracking-[0.22em] uppercase font-light mb-1" style={{ color: 'rgba(255,255,255,0.3)' }}>Live Website</span>
+                        <a href={project.clientWebsite} target="_blank" rel="noopener noreferrer"
+                          className="text-[16px] font-medium text-white leading-snug flex items-center gap-1 hover:opacity-60 transition-opacity group/link">
+                          {project.clientWebsite.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
+                          <ExternalLink className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
               </RevealOnScroll>
