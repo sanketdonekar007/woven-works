@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,6 +17,10 @@ export const PasswordProtectedProject = ({
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (password.toLowerCase() === 'saycheez') {
+            const projectSlug = to.split('/').pop();
+            if (projectSlug) {
+                sessionStorage.setItem(`unlocked_${projectSlug}`, 'true');
+            }
             setIsOpen(false);
             navigate(to);
         } else {
@@ -26,7 +30,7 @@ export const PasswordProtectedProject = ({
 
     return (
         <>
-            <div onClick={() => setIsOpen(true)} className="cursor-pointer inline-flex items-center w-fit">
+            <div onClick={() => setIsOpen(true)} className="cursor-pointer block w-full">
                 {children}
             </div>
 

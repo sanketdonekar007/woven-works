@@ -61,6 +61,89 @@ const ProjectDetail = () => {
     );
   }
 
+  const isProtected = project.isProtected;
+  const [isUnlocked, setIsUnlocked] = useState(() => {
+    if (!isProtected) return true;
+    return sessionStorage.getItem(`unlocked_${project.id}`) === 'true';
+  });
+
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
+
+  const handlePasswordSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password.toLowerCase() === 'saycheez') {
+      sessionStorage.setItem(`unlocked_${project.id}`, 'true');
+      setIsUnlocked(true);
+    } else {
+      setError(true);
+    }
+  };
+
+  if (!isUnlocked) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center text-center px-6 bg-black text-white font-vietnam relative overflow-hidden">
+        {/* Subtle background glow */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[120px]" 
+            style={{ backgroundColor: `${project.accentColor || '#3b82f6'}15` }}
+          />
+        </div>
+
+        <div className="relative z-10 max-w-md w-full bg-[#0d0d0d] border border-white/10 rounded-[32px] p-8 md:p-10 shadow-2xl backdrop-blur-md">
+          <div className="text-4xl mb-6">🔒</div>
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-white mb-3">
+            Protected Case Study
+          </h2>
+          <p className="text-white/50 text-sm md:text-base leading-relaxed mb-8">
+            This case study contains confidential work and is password protected. Enter the password to access.
+          </p>
+
+          <form onSubmit={handlePasswordSubmit} className="space-y-5">
+            <div className="space-y-2">
+              <input
+                type="password"
+                placeholder="Enter password..."
+                value={password}
+                autoFocus
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError(false);
+                }}
+                className={`w-full h-12 rounded-2xl border px-4 text-sm bg-white/[0.04] text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary transition-all text-center ${
+                  error ? 'border-red-500 focus:ring-red-500' : 'border-white/10'
+                }`}
+                style={{ '--tw-ring-color': project.accentColor || '#3b82f6' } as React.CSSProperties}
+              />
+              {error && (
+                <p className="text-sm text-red-400 font-medium pt-1">
+                  Incorrect password. Please try again.
+                </p>
+              )}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3 pt-3">
+              <Link
+                to="/"
+                className="w-full h-12 rounded-full text-sm font-medium text-white/55 hover:text-white hover:bg-white/[0.05] transition-all flex items-center justify-center border border-white/10"
+              >
+                Back to Home
+              </Link>
+              <button
+                type="submit"
+                className="w-full h-12 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
+                style={{ backgroundColor: project.accentColor || '#fff', color: '#000' }}
+              >
+                View Case Study
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
   const isSnackHack = project.id === 'snackhack';
 
   // Resolve the active titled block index for sidebar highlighting

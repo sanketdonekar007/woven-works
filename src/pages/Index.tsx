@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Layers, GitBranch, Cpu, Code2 } from "lucide-react";
 import AnimatedLink from "@/components/AnimatedLink";
+import { PasswordProtectedProject } from "@/components/PasswordProtectedProject";
 
 /* ─── Data ───────────────────────────────────────────── */
 
@@ -318,44 +319,69 @@ const Index = () => {
         <p className="text-base font-light tracking-[0.1em] uppercase text-white/40 mb-0">Featured Projects</p>
 
         <div className="mt-0 border-t border-white/10">
-          {projects.map((project) => (
-            <Link
-              key={project.slug}
-              to={`/projects/${project.slug}`}
-              className="group flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-6 py-16 md:py-[80px] border-b border-white/10"
-            >
-              {/* Text column */}
-              <div className="w-full md:flex-1 md:min-w-[400px] flex flex-col gap-5 md:pr-10 order-2 md:order-1">
-                <span className="text-base font-light tracking-[-0.01em] text-white/35">{project.category}</span>
-                <h3 className="text-[26px] md:text-[32px] font-medium leading-[1.2em] tracking-[-0.01em] text-white group-hover:text-primary transition-colors duration-300">
-                  {project.title}
-                </h3>
-                <p className="text-[16px] leading-[1.5em] font-light tracking-[-0.02em] text-white/55 max-w-[520px]">
-                  {project.description}
-                </p>
-                <span className="inline-flex items-center gap-1.5 text-base font-light tracking-[-0.02em] text-white/35 group-hover:text-white/55 transition-colors mt-1">
-                  Read Case Study
-                  <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                  </svg>
-                </span>
-              </div>
+          {projects.map((project) => {
+            const isAccuRest = project.slug === 'accurest';
+            
+            const cardContent = (
+              <>
+                {/* Text column */}
+                <div className="w-full md:flex-1 md:min-w-[400px] flex flex-col gap-5 md:pr-10 order-2 md:order-1 text-left">
+                  <span className="text-base font-light tracking-[-0.01em] text-white/35">
+                    {project.category} {isAccuRest && "🔒"}
+                  </span>
+                  <h3 className="text-[26px] md:text-[32px] font-medium leading-[1.2em] tracking-[-0.01em] text-white group-hover:text-primary transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  <p className="text-[16px] leading-[1.5em] font-light tracking-[-0.02em] text-white/55 max-w-[520px]">
+                    {project.description}
+                  </p>
+                  <span className="inline-flex items-center gap-1.5 text-base font-light tracking-[-0.02em] text-white/35 group-hover:text-white/55 transition-colors mt-1">
+                    {isAccuRest ? 'Unlock Case Study' : 'Read Case Study'}
+                    <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                    </svg>
+                  </span>
+                </div>
 
-              {/* Image column */}
-              <div className="w-full md:flex-1 md:min-w-[400px] overflow-hidden rounded-[18px] order-1 md:order-2">
-                <img
-                  src={project.image}
-                  alt={project.alt}
-                  loading="lazy"
-                  className={`w-full aspect-[4/3] object-cover transition-transform duration-700 ease-out ${
-                    project.slug === 'tutoronboarding' 
-                      ? 'scale-[1.5] group-hover:scale-[1.53]' 
-                      : 'group-hover:scale-[1.02]'
-                  }`}
-                />
-              </div>
-            </Link>
-          ))}
+                {/* Image column */}
+                <div className="w-full md:flex-1 md:min-w-[400px] overflow-hidden rounded-[18px] order-1 md:order-2">
+                  <img
+                    src={project.image}
+                    alt={project.alt}
+                    loading="lazy"
+                    className={`w-full aspect-[4/3] object-cover transition-transform duration-700 ease-out ${
+                      project.slug === 'tutoronboarding' 
+                        ? 'scale-[1.5] group-hover:scale-[1.53]' 
+                        : 'group-hover:scale-[1.02]'
+                    }`}
+                  />
+                </div>
+              </>
+            );
+
+            if (isAccuRest) {
+              return (
+                <PasswordProtectedProject
+                  key={project.slug}
+                  to={`/projects/${project.slug}`}
+                >
+                  <div className="group flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-6 py-16 md:py-[80px] border-b border-white/10 w-full">
+                    {cardContent}
+                  </div>
+                </PasswordProtectedProject>
+              );
+            }
+
+            return (
+              <Link
+                key={project.slug}
+                to={`/projects/${project.slug}`}
+                className="group flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-6 py-16 md:py-[80px] border-b border-white/10 w-full"
+              >
+                {cardContent}
+              </Link>
+            );
+          })}
         </div>
       </section>
 

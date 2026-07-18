@@ -237,6 +237,7 @@ export interface ProjectData {
     accentColor?: string;
     themeGradient?: string;
     clientWebsite?: string;
+    isProtected?: boolean;
     lists?: string[];
     links: [
         { text: string, url: string },
@@ -1276,6 +1277,7 @@ export const projects: Record<string, ProjectData> = {
     },
     accurest: {
         id: "accurest",
+        isProtected: true,
         title: "AccuRest. Shipment & Purchase Order Experience",
         navTitle: "AccuRest. Supply Chain Platform",
         subtitle: "Designing the operational nerve centre of an enterprise supply chain platform.",
