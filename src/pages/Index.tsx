@@ -246,7 +246,7 @@ const Index = () => {
 
           {/* Intro text */}
           <div className="flex flex-col gap-1 mb-10">
-            <p className="text-[36px] md:text-[52px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.01em] text-white/65">
+            <p className="text-[26px] sm:text-[36px] md:text-[52px] lg:text-[60px] font-light leading-[1.2] tracking-[-0.01em] text-white/65">
               Hey, I'm{" "}
               <img
                 src="/lovable-uploads/cheeze.png"
@@ -255,10 +255,10 @@ const Index = () => {
               />{" "}
               Sanket,
             </p>
-            <h1 className="text-[36px] md:text-[52px] lg:text-[60px] font-medium leading-[1.1] tracking-[-0.01em] text-white">
+            <h1 className="text-[26px] sm:text-[36px] md:text-[52px] lg:text-[60px] font-medium leading-[1.2] tracking-[-0.01em] text-white">
               A UX Designer making things easy ✨
             </h1>
-            <h2 className="text-[36px] md:text-[52px] lg:text-[60px] font-medium leading-[1.1] tracking-[-0.01em] text-white/50">
+            <h2 className="text-[26px] sm:text-[36px] md:text-[52px] lg:text-[60px] font-medium leading-[1.2] tracking-[-0.01em] text-white/50">
               for people and helping businesses grow.
             </h2>
           </div>
@@ -390,7 +390,7 @@ const Index = () => {
 
         <div className="mb-16">
           <p className="text-[16px] font-light tracking-[0.14em] uppercase text-white/35 mb-5">Design services</p>
-          <h2 className="text-[28px] md:text-[36px] lg:text-[42px] font-medium leading-[1.2] tracking-[-0.02em] text-white w-full">
+          <h2 className="text-[22px] sm:text-[28px] md:text-[36px] lg:text-[42px] font-medium leading-[1.25] tracking-[-0.02em] text-white w-full">
             Helping teams ship products that users actually love.
           </h2>
         </div>
@@ -463,7 +463,7 @@ const Index = () => {
               <span className="inline-flex items-center gap-2 w-fit px-3.5 py-1.5 rounded-full border border-white/15 text-[16px] font-light tracking-[0.08em] text-white/50">
                 @ Reviews
               </span>
-              <h2 className="text-[40px] md:text-[52px] lg:text-[64px] font-medium leading-[1.05] tracking-[-0.02em] text-white">
+              <h2 className="text-[28px] sm:text-[40px] md:text-[52px] lg:text-[64px] font-medium leading-[1.15] tracking-[-0.02em] text-white">
                 Client Reviews
               </h2>
               <p className="text-[16px] leading-[1.65em] font-light tracking-[-0.01em] text-white/45 max-w-[400px]">
@@ -572,7 +572,7 @@ const Index = () => {
           </span>
 
           {/* Heading */}
-          <h2 className="text-[28px] md:text-[40px] lg:text-[48px] font-medium leading-[1.2] tracking-[-0.02em] text-white max-w-[720px]">
+          <h2 className="text-[22px] sm:text-[28px] md:text-[40px] lg:text-[48px] font-medium leading-[1.25] tracking-[-0.02em] text-white max-w-[720px]">
             Good ideas deserve great design ✨ Let's bring yours to life 🚀
           </h2>
 

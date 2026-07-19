@@ -251,7 +251,7 @@ const ProjectDetail = () => {
                 <p className="text-[13px] tracking-[0.22em] uppercase font-light mb-5" style={{ color: 'rgba(255,255,255,0.35)' }}>
                   {project.type || project.industry} · Case Study
                 </p>
-                <h1 className="text-[44px] md:text-[60px] lg:text-[72px] font-semibold text-white leading-[1.02] mb-10"
+                <h1 className="text-[32px] sm:text-[44px] md:text-[60px] lg:text-[72px] font-semibold text-white leading-[1.1] mb-10"
                   style={{ letterSpacing: '-0.03em', fontFamily: "'Be Vietnam Pro', sans-serif" }}>
                   {project.title}
                 </h1>
@@ -381,7 +381,7 @@ const ProjectDetail = () => {
                 {project.sections.map((section, index) => (
                   <RevealOnScroll key={index} delay={index * 100}>
                     <div className="space-y-6">
-                      <h2 className="text-[28px] font-semibold text-white" style={{ letterSpacing: '-0.02em' }}>{section.title}</h2>
+                      <h2 className="text-[22px] sm:text-[28px] font-semibold text-white" style={{ letterSpacing: '-0.02em' }}>{section.title}</h2>
                       <p className="text-[16px] leading-[1.75] font-light" style={{ color: 'rgba(255,255,255,0.5)' }}>{section.content}</p>
                     </div>
                   </RevealOnScroll>
@@ -412,7 +412,7 @@ const ProjectDetail = () => {
             Available For Work
           </span>
 
-          <h2 className="text-[28px] md:text-[40px] lg:text-[48px] font-medium leading-[1.2] tracking-[-0.02em] text-white max-w-[720px]">
+          <h2 className="text-[22px] sm:text-[28px] md:text-[40px] lg:text-[48px] font-medium leading-[1.25] tracking-[-0.02em] text-white max-w-[720px]">
             Good ideas deserve great design ✨ Let's bring yours to life 🚀
           </h2>
 

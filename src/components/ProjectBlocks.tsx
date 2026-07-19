@@ -31,10 +31,10 @@ import { ProjectBlock } from "@/data/projects";
 import { Check, CheckCircle2, AlertCircle, ArrowRight, ImageIcon, Film, GitBranch, Layers } from "lucide-react";
 
 export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, accentColor?: string }) => {
-    const titleClass = "text-[26px] md:text-[32px] font-medium text-white mb-8 leading-[1.1] tracking-[-0.02em]";
-    const subtitleClass = "text-[16px] tracking-[0.18em] mb-3 block uppercase font-light text-white/40";
-    const bodyClass = "text-[16px] md:text-[18px] text-white/50 leading-[1.75] font-light";
-    const listClass = "text-[16px] md:text-[17px] text-white/60 leading-[1.7] font-light";
+    const titleClass = "text-[21px] sm:text-[26px] md:text-[32px] font-medium text-white mb-8 leading-[1.25] tracking-[-0.02em]";
+    const subtitleClass = "text-[14px] sm:text-[16px] tracking-[0.18em] mb-3 block uppercase font-light text-white/40";
+    const bodyClass = "text-[15px] sm:text-[16px] md:text-[18px] text-white/50 leading-[1.75] font-light";
+    const listClass = "text-[15px] sm:text-[16px] md:text-[17px] text-white/60 leading-[1.7] font-light";
 
     switch (block.type) {
         case "rich-text":
@@ -61,7 +61,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                         0{i + 1}
                                     </div>
                                     <div className="pt-2">
-                                        <h4 className="text-[20px] font-medium text-white mb-2">{title}</h4>
+                                        <h4 className="text-[18px] sm:text-[20px] font-medium text-white mb-2">{title}</h4>
                                         {desc && <p className={`${bodyClass} max-w-xl`}>{desc}</p>}
                                     </div>
                                 </div>
@@ -105,7 +105,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     <div className="grid md:grid-cols-2 gap-x-20 gap-y-24">
                         {block.triggers.map((trigger, index) => (
                             <div key={index} className="space-y-8 animate-in fade-in slide-in-from-bottom duration-700">
-                                <h3 className="text-[20px] font-medium tracking-[-0.02em] text-white border-b border-white/10 pb-6">{trigger.category}</h3>
+                                <h3 className="text-[18px] sm:text-[20px] font-medium tracking-[-0.02em] text-white border-b border-white/10 pb-6">{trigger.category}</h3>
                                 <ul className="space-y-6">
                                     {trigger.terms.map((term, i) => (
                                         <li key={i} className={`${bodyClass} flex items-start gap-3`}>
@@ -143,7 +143,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                 <RevealOnScroll className="max-w-6xl">
                     <div className="text-center space-y-12">
                         <span className={subtitleClass}>Structure & Flow</span>
-                        <p className="text-[20px] md:text-[32px] font-medium tracking-[-0.02em] leading-[1.1] text-white max-w-5xl mx-auto italic">
+                        <p className="text-[18px] sm:text-[22px] md:text-[32px] font-medium tracking-[-0.02em] leading-relaxed text-white max-w-5xl mx-auto italic">
                             "{block.highlight}"
                         </p>
                         <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 pt-10">
@@ -217,7 +217,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                 <RevealOnScroll className="w-full py-32">
                     <div className="mb-24 max-w-4xl">
                         <span className={subtitleClass}>{block.title || "Final Product"}</span>
-                        {block.highlight && <h2 className="text-[20px] md:text-[32px] font-medium tracking-[-0.02em] leading-[1.1] text-white">{block.highlight}</h2>}
+                        {block.highlight && <h2 className="text-[18px] sm:text-[22px] md:text-[32px] font-medium tracking-[-0.02em] leading-snug text-white">{block.highlight}</h2>}
                     </div>
 
                     <div className="space-y-48">
@@ -227,7 +227,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                     <div className="flex items-start gap-6">
                                         <div className="text-[20px] font-medium tracking-[-0.02em] text-white/50 mt-1.5">0{i + 1}</div>
                                         <div className="flex flex-col">
-                                            <h3 className="text-[20px] md:text-[20px] font-medium tracking-[-0.02em] leading-[1.1] text-white">{screen.title}</h3>
+                                            <h3 className="text-[18px] sm:text-[20px] font-medium tracking-[-0.02em] leading-snug text-white">{screen.title}</h3>
                                             {screen.description && <p className={`${bodyClass} mt-2 max-w-4xl`}>{screen.description}</p>}
                                         </div>
                                     </div>
@@ -435,7 +435,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
             return (
                 <RevealOnScroll className="max-w-6xl">
                     <span className={subtitleClass}>{block.title || "Functional Mapping"}</span>
-                    <p className="text-[20px] md:text-[32px] font-medium tracking-[-0.02em] leading-[1.1] text-white max-w-5xl italic mb-20 group cursor-default transition-all hover:text-white">
+                    <p className="text-[18px] sm:text-[22px] md:text-[32px] font-medium tracking-[-0.02em] leading-relaxed text-white max-w-5xl italic mb-20 group cursor-default transition-all hover:text-white">
                         "{block.highlight}"
                     </p>
                     <div className="grid md:grid-cols-2 gap-10 mb-20">
@@ -504,7 +504,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     <span className={subtitleClass}>{block.title || "Inclusive Design"}</span>
                     <div className="grid md:grid-cols-2 gap-12">
                         <div className="space-y-6">
-                            <h2 className="text-[20px] font-medium tracking-[-0.02em] leading-[1.1] text-white">Universal accessibility standards were integrated from the start.</h2>
+                            <h2 className="text-[18px] sm:text-[20px] font-medium tracking-[-0.02em] leading-snug text-white">Universal accessibility standards were integrated from the start.</h2>
                         </div>
                         <div className="space-y-4">
                             {block.items.map((item, i) => (
