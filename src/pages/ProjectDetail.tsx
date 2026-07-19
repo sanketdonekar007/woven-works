@@ -170,21 +170,24 @@ const ProjectDetail = () => {
     >
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full z-50 px-8 py-5 flex items-center backdrop-blur-[12px] transition-all duration-300"
+      <nav className="fixed top-0 left-0 w-full z-50 px-4 sm:px-8 py-4 sm:py-5 flex items-center justify-between backdrop-blur-[12px] transition-all duration-300"
         style={{ background: 'rgba(0,0,0,0.8)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
-        <div className="flex-1 flex justify-start">
-          <Link to="/" state={{ restoreScroll: true }} className="flex items-center gap-2.5" style={{ color: '#fff' }}>
+        <div className="flex items-center gap-3 min-w-0 flex-1 lg:flex-none">
+          <Link to="/" state={{ restoreScroll: true }} className="flex items-center gap-2 flex-shrink-0" style={{ color: '#fff' }}>
             <div className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white/10"
               style={{ border: '1px solid rgba(255,255,255,0.15)' }}>
               <ChevronLeft className="w-3.5 h-3.5" />
             </div>
-            <span className="text-[16px] tracking-[0.18em] uppercase font-light" style={{ color: 'rgba(255,255,255,0.45)' }}>Back</span>
+            <span className="text-[14px] sm:text-[16px] tracking-[0.18em] uppercase font-light" style={{ color: 'rgba(255,255,255,0.45)' }}>Back</span>
           </Link>
+          <span className="lg:hidden text-white/45 font-light text-[15px] border-l border-white/15 pl-3 truncate">
+            {project.navTitle || project.title}
+          </span>
         </div>
-        <div className="flex-1 flex justify-center text-center text-[16px] tracking-[0.18em] uppercase font-light" style={{ color: 'rgba(255,255,255,0.4)' }}>
+        <div className="hidden lg:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-[16px] tracking-[0.18em] uppercase font-light" style={{ color: 'rgba(255,255,255,0.4)' }}>
           {project.navTitle || project.title}
         </div>
-        <div className="flex-1 flex justify-end" />
+        <div className="hidden lg:block flex-1 flex justify-end" />
       </nav>
 
       {/* Full-width layout with padding */}
