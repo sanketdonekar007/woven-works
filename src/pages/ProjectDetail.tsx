@@ -91,7 +91,7 @@ const ProjectDetail = () => {
           />
         </div>
 
-        <div className="relative z-10 max-w-md w-full bg-[#0d0d0d] border border-white/10 rounded-[32px] p-8 md:p-10 shadow-2xl backdrop-blur-md">
+        <div className="relative z-10 max-w-md w-full bg-[#0d0d0d] border border-white/10 rounded-[28px] p-6 sm:p-8 md:p-10 shadow-2xl backdrop-blur-md mx-4">
           <div className="text-4xl mb-6">🔒</div>
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-white mb-3">
             Protected Case Study
@@ -106,7 +106,6 @@ const ProjectDetail = () => {
                 type="password"
                 placeholder="Enter password..."
                 value={password}
-                autoFocus
                 onChange={(e) => {
                   setPassword(e.target.value);
                   setError(false);
@@ -123,7 +122,7 @@ const ProjectDetail = () => {
               )}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 pt-3">
+            <div className="flex flex-col-reverse sm:flex-row gap-3 pt-3">
               <Link
                 to="/"
                 className="w-full h-12 rounded-full text-sm font-medium text-white/55 hover:text-white hover:bg-white/[0.05] transition-all flex items-center justify-center border border-white/10"
