@@ -40,7 +40,7 @@ const projects = [
     title: "AccuRest, Supply Chain Platform",
     description:
       "I designed the operational nerve centre of an enterprise supply chain platform, from PO to warehouse delivery across 5 stakeholder teams in under 8 minutes per shipment.",
-    image: "/lovable-uploads/filenow3.jpg",
+    image: "/lovable-uploads/accurest-hero.png",
     alt: "AccuRest Supply Chain Platform",
     category: "Enterprise SaaS · Supply Chain",
   },
