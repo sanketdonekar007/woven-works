@@ -63,7 +63,7 @@ export const TextReveal = ({
                 >
                     <span
                         className={cn(
-                            "inline-block transition-transform duration-700 ease-[cubic-bezier(0.2,0.65,0.3,0.9)] will-change-transform translate-y-[120%]",
+                            "inline-block transition-transform duration-700 [transition-timing-function:cubic-bezier(0.2,0.65,0.3,0.9)] will-change-transform translate-y-[120%]",
                             isVisible && "translate-y-0",
                             wordClassName,
                             highlightWords?.includes(word.replace(/[^a-zA-Z0-9+]/g, '')) && highlightClassName

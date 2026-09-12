@@ -15,7 +15,7 @@ const AnimatedLink = ({ to, href, children, className = "", target, rel, onClick
     // Common content wrapper with the animation logic
     const content = (
         <div className="relative overflow-hidden h-[1.2em] group cursor-pointer px-[2px]">
-            <div className="transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full">
+            <div className="transition-transform duration-500 [transition-timing-function:cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full">
                 <span className="block">{children}</span>
                 <span className="block absolute top-full left-0 text-foreground/50">{children}</span>
             </div>

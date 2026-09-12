@@ -531,7 +531,7 @@ export const projects: Record<string, ProjectData> = {
         subtitle: "Compliance & Filing Management Platform (B2B SaaS)",
         headerImage: "/lovable-uploads/filenow2.jpg",
         intro: "vState centralizes multi-state filing, strict deadlines, and client communication into a unified platform.",
-        role: "Senior UI/UX Designer",
+        role: "Senior UX Designer · End-to-end project owner",
         focus: "UX Strategy, Information Architecture, User Flows, Design Systems",
         quote: "Designing for compliance means designing for clarity, trust, and zero margin for error.",
         timeline: "June 2024 - March 2025",
@@ -772,7 +772,7 @@ export const projects: Record<string, ProjectData> = {
         subtitle: "Nutritional Insights at Your Fingertips",
         headerImage: "/lovable-uploads/Snack Hack Hero.png",
         intro: "SnackHack analyzes snack products on the spot, offering instant, easy-to-read health insights and suggesting better alternatives.",
-        role: "Product Design",
+        role: "Senior UX Designer · Product design owner",
         type: "Product Design · Mobile App",
         industry: "Health & Food Tech",
         duration: "Ongoing",
@@ -1283,7 +1283,7 @@ export const projects: Record<string, ProjectData> = {
         subtitle: "Designing the operational nerve centre of an enterprise supply chain platform.",
         headerImage: "/lovable-uploads/filenow3.jpg",
         intro: "AccuRest is an enterprise SaaS platform managing inventory, forecasting, and fulfillment logistics.",
-        role: "Lead Product Designer",
+        role: "Senior UX Designer · End-to-end design owner",
         focus: "End-to-end ownership across discovery, research, flow mapping, and high-fidelity design",
         timeline: "2023 - 2024",
         type: "Enterprise SaaS · Supply Chain",
@@ -1313,7 +1313,7 @@ export const projects: Record<string, ProjectData> = {
             {
                 type: "problem-statement",
                 title: "The Challenge",
-                highlight: "Juggling 5 fragmented tools created massive shipment tracking delays and Payment terms mismatch.",
+                highlight: "Five fragmented tools created shipment-tracking delays, inconsistent status definitions, and payment-term mismatches.",
                 content: "Supply chain complexities discovered:",
                 list: [
                     "PO consolidation: Single shipments containing items from multiple Purchase Orders.",
@@ -1415,18 +1415,14 @@ export const projects: Record<string, ProjectData> = {
                 ]
             },
             {
-                type: "asset-placeholder",
+                type: "rich-text",
                 title: "Edge & Conflict States",
-                assetType: "screen-design",
-                description: "UX flows mapping customs hold states, partial PO variances, and vendor non-response triggers.",
-                note: "Customs hold mockups helped redesign the linear state model to support pause status."
+                content: "I mapped customs holds, partial PO variances, ETA overrides, and vendor non-response as first-class workflow states. Testing these exceptions exposed a flaw in the original linear model, so I introduced pause, escalation, and recovery paths before developer handoff."
             },
             {
-                type: "asset-placeholder",
+                type: "rich-text",
                 title: "Handoff Documentation",
-                assetType: "custom-diagram",
-                description: "Annotation maps illustrating the 20 milestones × 5 roles notification trigger system.",
-                note: "Figma specs saved development hours by resolving ambiguous workflow rules early."
+                content: "The handoff documented 20 shipment milestones across five roles, including state ownership, notification triggers, permissions, validation rules, and failure behavior. Product, engineering, and operational SMEs used the same specification to resolve ambiguous workflow rules before implementation."
             },
             // ── Phase 5: Test ───────────────────────────────────────────────
             {
@@ -1649,9 +1645,9 @@ export const projects: Record<string, ProjectData> = {
         title: "Locate Tutors. Tutor Onboarding UX Case Study",
         navTitle: "Locate Tutors. Tutor Onboarding Experience",
         subtitle: "Designing an End-to-End Tutor Verification & Profile Journey",
-        headerImage: "/lovable-uploads/locate-tutor-intro.png",
+        headerImage: "/lovable-uploads/locate-tutor-intro-optimized.jpg",
         intro: "An end-to-end tutor onboarding experience balancing business verification needs with a smooth and motivating user journey.",
-        role: "Product Designer / UX Designer",
+        role: "Senior UX Designer · End-to-end product design",
         timeline: "2025",
         platforms: "Web Application",
         type: "Product Design · B2B2C",
@@ -1719,9 +1715,9 @@ export const projects: Record<string, ProjectData> = {
             },
             {
                 type: "impact",
-                title: "Expected Design Impact",
+                title: "Projected Impact · Not Yet Measured",
                 items: [
-                    "30% to 40% reduction in onboarding drop-offs",
+                    "Target: 30% to 40% reduction in onboarding drop-offs",
                     "Faster profile completion and higher data quality",
                     "Increased tutor and student trust in the marketplace",
                     "Better student-to-tutor matching efficiency"

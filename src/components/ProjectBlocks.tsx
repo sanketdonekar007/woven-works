@@ -35,6 +35,12 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
     const subtitleClass = "text-[14px] sm:text-[16px] tracking-[0.18em] mb-3 block uppercase font-light text-white/40";
     const bodyClass = "text-[15px] sm:text-[16px] md:text-[18px] text-white/50 leading-[1.75] font-light";
     const listClass = "text-[15px] sm:text-[16px] md:text-[17px] text-white/60 leading-[1.7] font-light";
+    const splitStatement = (value: string) => {
+        const separator = value.indexOf(": ");
+        return separator > -1
+            ? { label: value.slice(0, separator), detail: value.slice(separator + 2) }
+            : { label: value, detail: "" };
+    };
 
     switch (block.type) {
         case "rich-text":
@@ -48,23 +54,31 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
         case "problem-statement":
             return (
                 <RevealOnScroll className="max-w-6xl">
-                    <span className={subtitleClass}>{block.title || "The Challenge"}</span>
-                    {block.highlight && <h2 className={titleClass}>{block.highlight}</h2>}
-                    {block.content && <p className={`${bodyClass} mb-16 max-w-3xl`}>{block.content}</p>}
+                    <div className="grid lg:grid-cols-[0.75fr_1.5fr] gap-5 lg:gap-16 items-start mb-10 md:mb-14">
+                        <div>
+                            <span className={subtitleClass}>Problem framing</span>
+                            <p className="text-sm leading-6 text-white/35 max-w-xs">What users were trying to accomplish, where the experience broke down, and why it mattered.</p>
+                        </div>
+                        <div>
+                            <h2 className="text-[25px] sm:text-[30px] md:text-[38px] font-medium text-white leading-[1.25] tracking-[-0.03em] mb-5">{block.highlight || block.title}</h2>
+                            {block.content && <p className={`${bodyClass} max-w-2xl`}>{block.content}</p>}
+                        </div>
+                    </div>
 
-                    <div className="space-y-16">
+                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-3">
                         {block.list.map((item, i) => {
-                            const [title, desc] = item.includes(":") ? item.split(": ") : [item, ""];
+                            const { label, detail } = splitStatement(item);
                             return (
-                                <div key={i} className="flex gap-8 items-start group">
-                                    <div className="text-[44px] font-medium tracking-[-0.02em] text-white/20 group-hover:text-white/30 transition-colors leading-none border-b border-white/10 pb-4">
-                                        0{i + 1}
+                                <article key={i} className="group rounded-[20px] border border-white/10 bg-white/[0.025] p-5 md:p-6 min-h-[190px] flex flex-col hover:bg-white/[0.045] hover:border-white/20 transition-colors">
+                                    <div className="flex items-center justify-between mb-8">
+                                        <span className="text-xs uppercase tracking-[0.16em] text-white/30">User friction</span>
+                                        <span className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-xs text-white/35">{String(i + 1).padStart(2, "0")}</span>
                                     </div>
-                                    <div className="pt-2">
-                                        <h4 className="text-[18px] sm:text-[20px] font-medium text-white mb-2">{title}</h4>
-                                        {desc && <p className={`${bodyClass} max-w-xl`}>{desc}</p>}
+                                    <div className="mt-auto">
+                                        <h3 className="text-[18px] font-medium text-white mb-2 leading-snug">{label}</h3>
+                                        {detail && <p className="text-[15px] leading-6 text-white/50">{detail}</p>}
                                     </div>
-                                </div>
+                                </article>
                             );
                         })}
                     </div>
@@ -74,15 +88,15 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
         case "role-list":
             return (
                 <RevealOnScroll className="max-w-6xl">
-                    <span className={subtitleClass}>Process & Methodology</span>
+                    <span className={subtitleClass}>Research approach</span>
                     {block.title && <h2 className={titleClass}>{block.title}</h2>}
-                    {block.highlight && <p className="text-[18px] md:text-[20px] text-white/50 mb-16 max-w-4xl leading-[1.65em] font-light">{block.highlight}</p>}
+                    {block.highlight && <p className="text-[17px] md:text-[19px] text-white/50 mb-10 max-w-3xl leading-[1.7] font-light">{block.highlight}</p>}
 
-                    <div className="grid md:grid-cols-2 gap-12">
+                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-3">
                         {block.roles.map((item, i) => (
-                            <div key={i} className="border-l border-white/10 pl-8 py-4 hover:border-gray-900 transition-colors">
-                                <span className="text-base font-medium text-white/50 uppercase tracking-[0.1em] block mb-2">0{i + 1}</span>
-                                <div className="text-[20px] font-medium text-white leading-tight">{item}</div>
+                            <div key={i} className="rounded-[18px] border border-white/10 bg-white/[0.02] p-5 md:p-6 hover:border-white/20 transition-colors">
+                                <span className="text-xs text-white/30 uppercase tracking-[0.14em] block mb-5">Method {String(i + 1).padStart(2, "0")}</span>
+                                <div className="text-[16px] leading-7 font-medium text-white/75">{item}</div>
                             </div>
                         ))}
                     </div>
@@ -124,14 +138,11 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
             return (
                 <RevealOnScroll className="max-w-5xl">
                     <span className={subtitleClass}>{block.title || "Strategic Intent"}</span>
-                    <ul className="space-y-4">
+                    <ul className="grid md:grid-cols-2 gap-3">
                         {block.goals.map((goal, i) => (
-                            <li key={i} className="flex items-start gap-4">
-                                <div
-                                    className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-3"
-                                    style={{ backgroundColor: accentColor || '#666' }}
-                                />
-                                <span className={listClass}>{goal}</span>
+                            <li key={i} className="rounded-[18px] border border-white/10 bg-white/[0.02] p-5 flex items-start gap-4">
+                                <span className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-xs" style={{ color: accentColor, backgroundColor: `${accentColor || '#666'}18` }}>{i + 1}</span>
+                                <span className="text-[15px] sm:text-[16px] text-white/60 leading-7 font-light">{goal}</span>
                             </li>
                         ))}
                     </ul>
@@ -177,14 +188,14 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     <span className={subtitleClass}>The Workflow</span>
                     {block.title && <h2 className={titleClass}>{block.title}</h2>}
                     {block.highlight && <p className={`${bodyClass} mb-8`}>{block.highlight}</p>}
-                    <ul className="space-y-4">
+                    <ol className="grid md:grid-cols-2 gap-3">
                         {block.steps.map((step, i) => (
-                            <li key={i} className="flex items-start gap-4">
-                                <span className="text-[12px] tabular-nums text-white/25 font-light mt-1 flex-shrink-0">0{i + 1}</span>
-                                <span className={listClass}>{step}</span>
+                            <li key={i} className="rounded-[18px] border border-white/10 p-5 md:p-6 bg-white/[0.02] flex gap-4 items-start">
+                                <span className="text-[12px] tabular-nums text-white/30 font-light flex-shrink-0 mt-1">{String(i + 1).padStart(2, "0")}</span>
+                                <span className="text-[15px] sm:text-[16px] text-white/60 leading-7 font-light">{step}</span>
                             </li>
                         ))}
-                    </ul>
+                    </ol>
                 </RevealOnScroll>
             );
 
@@ -192,18 +203,18 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
             return (
                 <RevealOnScroll className="max-w-6xl">
                     <span className={subtitleClass}>{block.title || "Strategic Solutions"}</span>
-                    <div className="divide-y divide-white/10">
+                    <div className="grid gap-3">
                         {block.challenges.map((item, index) => (
-                            <div key={index} className="py-12 grid md:grid-cols-[1fr_1.5fr] gap-12 group">
-                                <div className="space-y-2">
-                                    <div className="text-[16px] font-medium uppercase tracking-[0.1em] text-white/30 group-hover:text-rose-400 transition-colors">Challenge</div>
-                                    <div className="text-[20px] font-medium text-white">{item.challenge}</div>
+                            <article key={index} className="rounded-[20px] border border-white/10 bg-white/[0.02] p-5 md:p-7 grid md:grid-cols-[0.8fr_1.2fr] gap-6 md:gap-10 group hover:border-white/20 transition-colors">
+                                <div>
+                                    <div className="text-xs font-medium uppercase tracking-[0.14em] text-rose-300/55 mb-3">Friction</div>
+                                    <h3 className="text-[18px] font-medium text-white leading-snug">{item.challenge}</h3>
                                 </div>
-                                <div className="space-y-2">
-                                    <div className="text-[16px] font-medium uppercase tracking-[0.1em] text-white/30 group-hover:text-emerald-400 transition-colors">Solution</div>
-                                    <div className="text-[20px] font-medium text-white/50 leading-[1.65em]">{item.solution}</div>
+                                <div className="md:border-l md:border-white/10 md:pl-10">
+                                    <div className="text-xs font-medium uppercase tracking-[0.14em] text-emerald-300/55 mb-3">Design response</div>
+                                    <p className="text-[16px] text-white/55 leading-7">{item.solution}</p>
                                 </div>
-                            </div>
+                            </article>
                         ))}
                     </div>
                 </RevealOnScroll>
@@ -235,13 +246,13 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                         {screen.image.endsWith('.mp4') ? (
                                             <LazyVideo
                                                 src={screen.image}
-                                                className="w-full h-auto block rounded-xl md:rounded-2xl transition-transform duration-[2000ms] group-hover:scale-105"
+                                                className="w-full h-auto block rounded-xl md:rounded-2xl transition-transform [transition-duration:2000ms] group-hover:scale-105"
                                             />
                                         ) : (
                                             <img
                                                 src={screen.image}
                                                 alt={screen.title}
-                                                className="w-full h-auto block rounded-xl md:rounded-2xl transition-transform duration-[2000ms] group-hover:scale-105"
+                                                className="w-full h-auto block rounded-xl md:rounded-2xl transition-transform [transition-duration:2000ms] group-hover:scale-105"
                                             />
                                         )}
                                     </div>
@@ -522,17 +533,19 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
 
         case "impact":
             return (
-                <RevealOnScroll className="max-w-4xl">
-                    <span className={subtitleClass}>{block.title || "Outcomes"}</span>
-                    <h2 className={titleClass}>Measuring Success</h2>
-                    <ul className="space-y-4">
+                <RevealOnScroll className="max-w-6xl rounded-[24px] border border-white/10 bg-white/[0.025] p-6 md:p-9">
+                    <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+                        <div>
+                            <span className={subtitleClass}>{block.title || "Outcomes"}</span>
+                            <h2 className="text-[25px] md:text-[34px] font-medium text-white tracking-[-0.03em]">What changed</h2>
+                        </div>
+                        <p className="text-sm leading-6 text-white/35 max-w-xs">Results retain their original validation context, including test sample sizes and projected status.</p>
+                    </div>
+                    <ul className="grid md:grid-cols-2 gap-3">
                         {block.items.map((item, i) => (
-                            <li key={i} className="flex items-start gap-4">
-                                <div
-                                    className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-3"
-                                    style={{ backgroundColor: accentColor || '#666' }}
-                                />
-                                <span className={listClass}>{item}</span>
+                            <li key={i} className="rounded-[16px] border border-white/10 bg-black/20 p-5 flex items-start gap-4">
+                                <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: accentColor || '#fff' }} />
+                                <span className="text-[15px] sm:text-[16px] text-white/65 leading-7">{item}</span>
                             </li>
                         ))}
                     </ul>
@@ -541,33 +554,33 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
 
         case "learnings":
             return (
-                <RevealOnScroll className="max-w-6xl space-y-24">
-                    <div className="grid md:grid-cols-[1fr_2fr] gap-12">
+                <RevealOnScroll className="max-w-6xl space-y-8">
+                    <div className="rounded-[24px] border border-white/10 p-6 md:p-9 grid md:grid-cols-[0.7fr_1.5fr] gap-8 md:gap-12">
                         <div>
                             <span className={subtitleClass}>Reflections</span>
-                            <h2 className="text-[20px] font-medium tracking-[-0.02em] text-white">{block.title || "Learnings"}</h2>
+                            <h2 className="text-[24px] md:text-[30px] font-medium tracking-[-0.03em] text-white">{block.title || "Learnings"}</h2>
                         </div>
-                        <div className="space-y-8">
+                        <div className="space-y-3">
                             {block.learnings.map((item, i) => (
-                                <div key={i} className="flex gap-6 group">
-                                    <div className="text-[20px] font-medium tracking-[-0.02em] text-white/20 group-hover:text-white/30 transition-colors">0{i + 1}</div>
-                                    <p className={`${bodyClass} pt-2`}>{item}</p>
+                                <div key={i} className="rounded-[16px] bg-white/[0.025] border border-white/10 p-5 flex gap-4 group">
+                                    <span className="text-xs text-white/30 mt-1">{String(i + 1).padStart(2, "0")}</span>
+                                    <p className="text-[15px] sm:text-[16px] leading-7 text-white/60">{item}</p>
                                 </div>
                             ))}
                         </div>
                     </div>
 
-                    <div className="pt-16 border-t border-white/10">
+                    <div className="rounded-[24px] border border-white/10 bg-white/[0.02] p-6 md:p-9">
                         <div className="grid md:grid-cols-[1fr_2fr] gap-12">
                             <div>
                                 <span className={subtitleClass}>Roadmap</span>
                                 <h2 className="text-[20px] font-medium tracking-[-0.02em] text-white">Future Scope</h2>
                             </div>
-                            <ul className="space-y-4">
+                            <ul className="space-y-3">
                                 {block.future.map((item, i) => (
-                                    <li key={i} className="flex items-start gap-4">
-                                        <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-3" style={{ backgroundColor: accentColor }} />
-                                        <span className={listClass}>{item}</span>
+                                    <li key={i} className="flex items-start gap-4 rounded-[14px] border border-white/10 p-4">
+                                        <ArrowRight className="w-4 h-4 flex-shrink-0 mt-1" style={{ color: accentColor }} />
+                                        <span className="text-[15px] text-white/55 leading-6">{item}</span>
                                     </li>
                                 ))}
                             </ul>

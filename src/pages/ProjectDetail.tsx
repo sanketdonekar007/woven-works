@@ -12,6 +12,24 @@ const ProjectDetail = () => {
 
   const [activeSection, setActiveSection] = useState<number>(-1);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const isProtected = project?.isProtected ?? false;
+  const [isUnlocked, setIsUnlocked] = useState(() => {
+    if (!project?.isProtected) return true;
+    return sessionStorage.getItem(`unlocked_${project.id}`) === 'true';
+  });
+  const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
+
+  const handlePasswordSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (password.toLowerCase() === 'saycheez' && project) {
+      sessionStorage.setItem(`unlocked_${project.id}`, 'true');
+      setIsUnlocked(true);
+      setPasswordError(false);
+      return;
+    }
+    setPasswordError(true);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -61,82 +79,27 @@ const ProjectDetail = () => {
     );
   }
 
-  const isProtected = project.isProtected;
-  const [isUnlocked, setIsUnlocked] = useState(() => {
-    if (!isProtected) return true;
-    return sessionStorage.getItem(`unlocked_${project.id}`) === 'true';
-  });
-
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(false);
-
-  const handlePasswordSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password.toLowerCase() === 'saycheez') {
-      sessionStorage.setItem(`unlocked_${project.id}`, 'true');
-      setIsUnlocked(true);
-    } else {
-      setError(true);
-    }
-  };
-
-  if (!isUnlocked) {
+  if (isProtected && !isUnlocked) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center text-center px-6 bg-black text-white font-vietnam relative overflow-hidden">
-        {/* Subtle background glow */}
-        <div className="absolute inset-0 pointer-events-none z-0">
-          <div 
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[120px]" 
-            style={{ backgroundColor: `${project.accentColor || '#3b82f6'}15` }}
-          />
-        </div>
-
-        <div className="relative z-10 max-w-md w-full bg-[#0d0d0d] border border-white/10 rounded-[28px] p-6 sm:p-8 md:p-10 shadow-2xl backdrop-blur-md mx-4">
-          <div className="text-4xl mb-6">🔒</div>
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-white mb-3">
-            Protected Case Study
-          </h2>
-          <p className="text-white/50 text-sm md:text-base leading-relaxed mb-8">
-            This case study contains confidential work and is password protected. Enter the password to access.
-          </p>
-
-          <form onSubmit={handlePasswordSubmit} className="space-y-5">
-            <div className="space-y-2">
-              <input
-                type="password"
-                placeholder="Enter password..."
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  setError(false);
-                }}
-                className={`w-full h-12 rounded-2xl border px-4 text-sm bg-white/[0.04] text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary transition-all text-center ${
-                  error ? 'border-red-500 focus:ring-red-500' : 'border-white/10'
-                }`}
-                style={{ '--tw-ring-color': project.accentColor || '#3b82f6' } as React.CSSProperties}
-              />
-              {error && (
-                <p className="text-sm text-red-400 font-medium pt-1">
-                  Incorrect password. Please try again.
-                </p>
-              )}
-            </div>
-
-            <div className="flex flex-col-reverse sm:flex-row gap-3 pt-3">
-              <Link
-                to="/"
-                className="w-full h-12 rounded-full text-sm font-medium text-white/55 hover:text-white hover:bg-white/[0.05] transition-all flex items-center justify-center border border-white/10"
-              >
-                Back to Home
-              </Link>
-              <button
-                type="submit"
-                className="w-full h-12 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
-                style={{ backgroundColor: project.accentColor || '#fff', color: '#000' }}
-              >
-                View Case Study
-              </button>
-            </div>
+      <div className="min-h-screen flex items-center justify-center bg-black text-white px-6 font-vietnam">
+        <div className="w-full max-w-md rounded-[28px] border border-white/10 bg-[#0d0d0d] p-7 sm:p-10 text-center shadow-2xl">
+          <div className="text-3xl mb-5" aria-hidden="true">🔒</div>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-3">Protected Case Study</h1>
+          <p className="text-sm sm:text-base leading-6 text-white/50 mb-8">This client project contains confidential work. Enter the shared portfolio password to continue.</p>
+          <form onSubmit={handlePasswordSubmit} className="space-y-4">
+            <label htmlFor="case-study-password" className="sr-only">Case study password</label>
+            <input
+              id="case-study-password"
+              type="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(event) => { setPassword(event.target.value); setPasswordError(false); }}
+              placeholder="Enter password"
+              className={`w-full h-12 rounded-2xl border bg-white/[0.04] px-4 text-center text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-indigo-400 ${passwordError ? 'border-red-500' : 'border-white/10'}`}
+            />
+            {passwordError && <p role="alert" className="text-sm text-red-400">Incorrect password. Please try again.</p>}
+            <button type="submit" className="w-full h-12 rounded-full bg-white text-black text-sm font-medium hover:opacity-90 transition-opacity">View Case Study</button>
+            <Link to="/" className="flex h-11 items-center justify-center text-sm text-white/45 hover:text-white">Back to portfolio</Link>
           </form>
         </div>
       </div>
@@ -144,6 +107,8 @@ const ProjectDetail = () => {
   }
 
   const isSnackHack = project.id === 'snackhack';
+  const problemBlock = project.blocks?.find((block) => block.type === 'problem-statement');
+  const impactBlock = project.blocks?.find((block) => block.type === 'impact');
 
   // Resolve the active titled block index for sidebar highlighting
   const getActiveTitledIndex = () => {
@@ -286,6 +251,56 @@ const ProjectDetail = () => {
               </RevealOnScroll>
             </div>
 
+            {/* Recruiter-friendly executive summary */}
+            <RevealOnScroll delay={160}>
+              <section className="mb-20 rounded-[24px] border border-white/10 bg-white/[0.025] p-6 md:p-10" aria-labelledby="case-study-summary">
+                <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-14">
+                  <div className="lg:w-[38%]">
+                    <p className="text-[13px] tracking-[0.22em] uppercase font-light text-white/35 mb-3">Executive summary</p>
+                    <h2 id="case-study-summary" className="text-[26px] md:text-[34px] font-semibold text-white tracking-[-0.03em] leading-tight">
+                      The case in two minutes
+                    </h2>
+                    <p className="mt-5 text-[15px] leading-7 text-white/50">
+                      {project.focus || 'End-to-end product design from problem framing through validation and delivery.'}
+                    </p>
+                  </div>
+                  <div className="flex-1 grid sm:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-[13px] tracking-[0.18em] uppercase text-white/35 mb-3">Problem and stakes</h3>
+                      <p className="text-[15px] leading-7 text-white/65">
+                        {problemBlock?.highlight || project.intro}
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-[13px] tracking-[0.18em] uppercase text-white/35 mb-3">
+                        {impactBlock?.title || 'Outcome'}
+                      </h3>
+                      {impactBlock ? (
+                        <ul className="space-y-2 text-[15px] leading-6 text-white/65">
+                          {impactBlock.items.slice(0, 3).map((item) => <li key={item}>• {item}</li>)}
+                        </ul>
+                      ) : (
+                        <p className="text-[15px] leading-7 text-white/65">See the validation and outcome evidence in the full case study below.</p>
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="text-[13px] tracking-[0.18em] uppercase text-white/35 mb-3">My ownership</h3>
+                      <p className="text-[15px] leading-7 text-white/65">{project.role}</p>
+                    </div>
+                    <div>
+                      <h3 className="text-[13px] tracking-[0.18em] uppercase text-white/35 mb-3">Scope</h3>
+                      <p className="text-[15px] leading-7 text-white/65">{[project.duration, project.platforms].filter(Boolean).join(' · ')}</p>
+                    </div>
+                  </div>
+                </div>
+                {impactBlock && (
+                  <p className="mt-8 pt-5 border-t border-white/10 text-[13px] leading-6 text-white/35">
+                    Evidence is labeled in context below. Usability-test, pilot, operational, and projected results are not presented as equivalent forms of validation.
+                  </p>
+                )}
+              </section>
+            </RevealOnScroll>
+
             {/* Hero Image */}
             <RevealOnScroll delay={200}>
               <div className={`overflow-hidden mb-20 group ${isSnackHack ? 'w-fit mx-auto p-5 rounded-[24px]' : 'rounded-[24px] aspect-[16/9] w-full'}`}
@@ -293,11 +308,7 @@ const ProjectDetail = () => {
                 <img
                   src={project.headerImage}
                   alt={project.title}
-                  className={`w-full transition-transform duration-[3000ms] ${
-                    project.id === 'tutoronboarding'
-                      ? 'scale-[1.3] group-hover:scale-[1.36]'
-                      : 'group-hover:scale-105'
-                  } ${isSnackHack ? 'h-auto object-contain' : 'h-full object-cover'}`}
+                  className={`w-full transition-transform [transition-duration:3000ms] ${project.id === 'tutoronboarding' ? 'scale-[1.3] group-hover:scale-[1.36]' : 'group-hover:scale-105'} ${isSnackHack ? 'h-auto object-contain' : 'h-full object-cover'}`}
                 />
               </div>
             </RevealOnScroll>
@@ -352,16 +363,23 @@ const ProjectDetail = () => {
 
             {/* Content Blocks */}
             {project.blocks && project.blocks.length > 0 && (
-              <div className="pb-40 pt-4">
+              <section className="pb-32 pt-4" aria-labelledby="full-case-study">
+                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 pb-8 mb-16 border-b border-white/10">
+                  <div>
+                    <p className="text-[13px] tracking-[0.22em] uppercase font-light text-white/35 mb-3">Full case study</p>
+                    <h2 id="full-case-study" className="text-[26px] md:text-[36px] font-semibold tracking-[-0.03em] text-white">Decisions, evidence, and delivery</h2>
+                  </div>
+                  <p className="text-sm leading-6 text-white/40 max-w-sm">Follow the story from context to validation, or use the chapter navigation to jump to the evidence you need.</p>
+                </div>
                 {project.blocks.map((block, index) => {
                   const getDynamicMargin = () => {
                     if (index === 0) return '';
                     const isVstate = project.id?.includes('vstate');
                     const isNewSection = !!block.title;
-                    if (isVstate) return isNewSection ? 'mt-24 md:mt-32' : 'mt-8 md:mt-12';
-                    if (isNewSection) return 'mt-32 md:mt-48';
-                    if (['image', 'prototype', 'wireframes', 'user-flow-popup'].includes(block.type)) return 'mt-16 md:mt-24';
-                    return 'mt-10 md:mt-16';
+                    if (isVstate) return isNewSection ? 'mt-20 md:mt-28' : 'mt-8 md:mt-12';
+                    if (isNewSection) return 'mt-24 md:mt-32';
+                    if (['image', 'prototype', 'wireframes', 'user-flow-popup'].includes(block.type)) return 'mt-12 md:mt-20';
+                    return 'mt-8 md:mt-12';
                   };
                   return (
                     <div
@@ -375,7 +393,7 @@ const ProjectDetail = () => {
                     </div>
                   );
                 })}
-              </div>
+              </section>
             )}
 
             {/* Legacy content fallback */}

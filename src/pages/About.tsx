@@ -65,6 +65,8 @@ const experience = [
       "US HealthTech scanner — reduced scan-to-decision time by 33%.",
       "US EdTech tutor marketplace — improved match accuracy by 55% in usability testing.",
       "3 atomic design systems — 70% team efficiency gain, 50% less developer rework.",
+      "Facilitated discovery and alignment with product, engineering, operations, and client stakeholders across complex workflows.",
+      "Defined reusable UX patterns and handoff standards that improved delivery consistency across product teams.",
     ],
   },
   {
@@ -144,7 +146,7 @@ const collagePhotos = [
   { src: "/lovable-uploads/figma-design.png", alt: "Figma design work" },
 ];
 
-const roles = ["UX Designer ✦", "Cricket Player", "Performer", "Gamer"];
+const roles = ["Senior Product Designer ✦", "Systems Thinker", "Cricket Player", "Performer"];
 
 /* ── Page ───────────────────────────────────────────────── */
 const About = () => {
@@ -296,7 +298,7 @@ const About = () => {
         </Reveal>
         <Reveal delay={160}>
           <p className="text-[17px] md:text-[18px] leading-[1.75] font-light text-white/50 max-w-[680px] mx-auto">
-            I enjoy taking messy, complicated systems and making them feel effortless for users. Based in Pune, I blend service design, user research, and AI-powered workflows to ship products that actually move the needle.
+            I turn complex, multi-role systems into clear product experiences. Based in Pune, I combine product strategy, service design, user research, and close engineering collaboration to move work from ambiguity to validated, build-ready solutions.
           </p>
         </Reveal>
         </div>{/* end name+bio */}
@@ -447,11 +449,11 @@ const About = () => {
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[14px] font-light tracking-[-0.01em] text-white/60"
             style={{ border: "1px solid rgba(255,255,255,0.15)" }}>
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            Available For Work
+            Open to Senior Product Design opportunities
           </span>
 
           <h2 className="text-[28px] md:text-[40px] lg:text-[48px] font-medium leading-[1.2] tracking-[-0.02em] text-white max-w-[680px]">
-            If you've made it this far, we're either meant to work together, or you just really like great design.
+            Let’s build a clear, useful product out of a complex problem.
           </h2>
 
           <a
@@ -460,7 +462,7 @@ const About = () => {
             style={{ border: "1px solid rgba(255,255,255,0.3)" }}
           >
             <span className="btn-shine pointer-events-none absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-            Book a Free Call
+            Discuss a product design role
           </a>
 
           <div className="flex items-center gap-5 mt-2">

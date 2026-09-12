@@ -13,9 +13,10 @@ const projects = [
     title: "Locate Tutors, Onboarding & Verification",
     description:
       "I designed an end-to-end tutor onboarding and credential verification experience, optimizing profile completion and building marketplace trust through 9 structured stages.",
-    image: "/lovable-uploads/locate-tutor-intro.png",
+    image: "/lovable-uploads/locate-tutor-intro-optimized.jpg",
     alt: "Locate Tutors Onboarding Experience",
     category: "EdTech · Marketplace · Web",
+    featured: true,
   },
   {
     slug: "vstatecompliance",
@@ -25,24 +26,27 @@ const projects = [
     image: "/lovable-uploads/filenow3.jpg",
     alt: "vState Compliance Workflow Platform",
     category: "B2B SaaS · Compliance",
+    featured: true,
   },
   {
     slug: "snackhack",
     title: "Snack Hack, Decode Your Snacks",
     description:
-      "I designed the scanner core, results flow, and onboarding for a HealthTech app, synthesising 8 user interviews to cut scan-to-insight time by 92%.",
+      "I designed the scanner core, results flow, and onboarding for a HealthTech app. In usability testing, first-scan success reached 92% and scan-to-decision time improved by 33%.",
     image: "/lovable-uploads/Snack Hack Hero.png",
     alt: "SnackHack, Decode Your Snacks",
     category: "HealthTech · Mobile",
+    featured: true,
   },
   {
     slug: "accurest",
     title: "AccuRest, Supply Chain Platform",
     description:
-      "I designed the operational nerve centre of an enterprise supply chain platform, from PO to warehouse delivery across 5 stakeholder teams in under 8 minutes per shipment.",
-    image: "/lovable-uploads/accurest-hero.png",
+      "I designed the operational nerve centre of an enterprise supply chain platform, reducing shipment creation from 45 to 8 minutes in usability testing across five stakeholder groups.",
+    image: "/lovable-uploads/accurest-hero-optimized.jpg",
     alt: "AccuRest Supply Chain Platform",
     category: "Enterprise SaaS · Supply Chain",
+    featured: true,
   },
   /* {
     slug: "cricmetrix",
@@ -61,15 +65,17 @@ const projects = [
     image: "/lovable-uploads/whatsapp-feature.jpg",
     alt: "WhatsApp Voice NLP Concept",
     category: "Concept · Social UX",
+    featured: false,
   },
   {
     slug: "langlang",
     title: "LangLang, Language Learning App",
     description:
-      "A user-centred approach to language learning featuring interactive exercises and AI-driven recommendations, improving engagement 40% and onboarding speed 3×.",
+      "A concept exploring calmer language-learning habits, accessible onboarding, interactive exercises, and AI-guided recommendations.",
     image: "/lovable-uploads/langlang.png",
     alt: "LangLang Language Learning App",
     category: "EdTech · Mobile",
+    featured: false,
   },
 ];
 
@@ -159,8 +165,11 @@ const reviews = [
 const stats = [
   { value: "35+", label: "Design projects completed" },
   { value: "5+", label: "Years of experience" },
-  { value: "97%", label: "Client satisfaction rate" },
+  { value: "3", label: "Design systems delivered" },
 ];
+
+const featuredProjects = projects.filter((project) => project.featured);
+const explorations = projects.filter((project) => !project.featured);
 
 /* ─── Page ───────────────────────────────────────────── */
 
@@ -256,11 +265,14 @@ const Index = () => {
               Sanket,
             </p>
             <h1 className="text-[26px] sm:text-[36px] md:text-[52px] lg:text-[60px] font-medium leading-[1.2] tracking-[-0.01em] text-white">
-              A UX Designer making things easy ✨
+              Senior Product Designer simplifying complex systems.
             </h1>
             <h2 className="text-[26px] sm:text-[36px] md:text-[52px] lg:text-[60px] font-medium leading-[1.2] tracking-[-0.01em] text-white/50">
-              for people and helping businesses grow.
+              B2B SaaS, service design, and scalable product experiences.
             </h2>
+            <p className="mt-5 text-sm sm:text-base font-light text-white/45 tracking-[0.02em]">
+              5+ years · Pune, India · Enterprise SaaS, compliance, supply chain and HealthTech
+            </p>
           </div>
 
           {/* Social row — icon only */}
@@ -319,7 +331,7 @@ const Index = () => {
         <p className="text-base font-light tracking-[0.1em] uppercase text-white/40 mb-0">Featured Projects</p>
 
         <div className="mt-0 border-t border-white/10">
-          {projects.map((project) => {
+          {featuredProjects.map((project) => {
             const isAccuRest = project.slug === 'accurest';
             
             const cardContent = (
@@ -349,11 +361,7 @@ const Index = () => {
                     src={project.image}
                     alt={project.alt}
                     loading="lazy"
-                    className={`w-full aspect-[4/3] object-cover transition-transform duration-700 ease-out ${
-                      project.slug === 'tutoronboarding' 
-                        ? 'scale-[1.5] group-hover:scale-[1.53]' 
-                        : 'group-hover:scale-[1.02]'
-                    }`}
+                    className={`w-full aspect-[4/3] object-cover transition-transform duration-700 ease-out ${project.slug === 'tutoronboarding' ? 'scale-[1.5] group-hover:scale-[1.53]' : 'group-hover:scale-[1.02]'}`}
                   />
                 </div>
               </>
@@ -361,10 +369,7 @@ const Index = () => {
 
             if (isAccuRest) {
               return (
-                <PasswordProtectedProject
-                  key={project.slug}
-                  to={`/projects/${project.slug}`}
-                >
+                <PasswordProtectedProject key={project.slug} to={`/projects/${project.slug}`}>
                   <div className="group flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-6 py-16 md:py-[80px] border-b border-white/10 w-full">
                     {cardContent}
                   </div>
@@ -385,11 +390,31 @@ const Index = () => {
         </div>
       </section>
 
+      <section className="max-w-[1200px] mx-auto px-6 lg:px-10 pb-20">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 border-b border-white/10 pb-6 mb-8">
+          <div>
+            <p className="text-base font-light tracking-[0.1em] uppercase text-white/40 mb-3">Selected explorations</p>
+            <h2 className="text-[24px] md:text-[32px] font-medium tracking-[-0.02em] text-white">Focused studies in emerging product spaces.</h2>
+          </div>
+          <p className="text-sm text-white/40 max-w-md">Concept and sprint work exploring interaction patterns, onboarding, and responsible AI-assisted experiences.</p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-4">
+          {explorations.map((project) => (
+            <Link key={project.slug} to={`/projects/${project.slug}`} className="group rounded-[18px] border border-white/10 bg-[#0d0d0d] p-6 hover:border-white/25 transition-colors">
+              <span className="text-sm text-white/35">{project.category}</span>
+              <h3 className="text-xl font-medium text-white mt-3 group-hover:text-primary transition-colors">{project.title}</h3>
+              <p className="text-sm leading-6 text-white/45 mt-3 line-clamp-3">{project.description}</p>
+              <span className="inline-block text-sm text-white/55 mt-5">View exploration ↗</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* ── Services / Expertise ─────────────────────── */}
       <section className="max-w-[1200px] mx-auto px-6 lg:px-10 py-20 border-t border-white/10">
 
         <div className="mb-16">
-          <p className="text-[16px] font-light tracking-[0.14em] uppercase text-white/35 mb-5">Design services</p>
+          <p className="text-[16px] font-light tracking-[0.14em] uppercase text-white/35 mb-5">How I contribute</p>
           <h2 className="text-[22px] sm:text-[28px] md:text-[36px] lg:text-[42px] font-medium leading-[1.25] tracking-[-0.02em] text-white w-full">
             Helping teams ship products that users actually love.
           </h2>
@@ -464,10 +489,10 @@ const Index = () => {
                 @ Reviews
               </span>
               <h2 className="text-[28px] sm:text-[40px] md:text-[52px] lg:text-[64px] font-medium leading-[1.15] tracking-[-0.02em] text-white">
-                Client Reviews
+                What collaborators say
               </h2>
               <p className="text-[16px] leading-[1.65em] font-light tracking-[-0.01em] text-white/45 max-w-[400px]">
-                Real feedback from people I have worked with who trusted my design expertise and judgements to elevate the performances in the corporate industry.
+                Feedback from clients and cross-functional collaborators on product thinking, execution, and working together.
               </p>
             </div>
           </div>
@@ -568,12 +593,12 @@ const Index = () => {
           {/* Available pill */}
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 text-base font-light tracking-[-0.01em] text-white/60">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            Available For Work
+            Open to Senior Product Design opportunities
           </span>
 
           {/* Heading */}
           <h2 className="text-[22px] sm:text-[28px] md:text-[40px] lg:text-[48px] font-medium leading-[1.25] tracking-[-0.02em] text-white max-w-[720px]">
-            Good ideas deserve great design ✨ Let's bring yours to life 🚀
+            Looking for a designer who can bring clarity to complex products?
           </h2>
 
           {/* CTA */}
@@ -582,7 +607,7 @@ const Index = () => {
             className="relative overflow-hidden px-8 py-3.5 rounded-full border border-white/30 text-base font-medium tracking-[-0.01em] text-white hover:bg-white/8 transition-colors"
           >
             <span className="btn-shine pointer-events-none absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-            Book a Free Call
+            Discuss a product design role
           </a>
 
           {/* Social icons */}

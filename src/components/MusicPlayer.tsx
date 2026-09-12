@@ -28,7 +28,7 @@ export const MusicPlayer = () => {
 
   return (
     <>
-      <audio ref={audioRef} src={audioSrc} loop preload="auto" />
+      <audio ref={audioRef} src={audioSrc} loop preload="none" />
       <button
         onClick={toggleMusic}
         aria-label={playing ? "Pause music" : "Play music"}
