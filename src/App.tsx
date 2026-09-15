@@ -32,13 +32,15 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/projects/:projectId" element={<ProjectDetail />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <MusicPlayer />
+        <div data-ts="trip">
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/projects/:projectId" element={<ProjectDetail />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <MusicPlayer />
+        </div>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

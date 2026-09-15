@@ -72,7 +72,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                                 <article key={i} className="group rounded-[20px] border border-white/10 bg-white/[0.025] p-5 md:p-6 min-h-[190px] flex flex-col hover:bg-white/[0.045] hover:border-white/20 transition-colors">
                                     <div className="flex items-center justify-between mb-8">
                                         <span className="text-xs uppercase tracking-[0.16em] text-white/30">User friction</span>
-                                        <span className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-xs text-white/35">{String(i + 1).padStart(2, "0")}</span>
+                                        <span className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-xs text-white/35 dt-num">{String(i + 1).padStart(2, "0")}</span>
                                     </div>
                                     <div className="mt-auto">
                                         <h3 className="text-[18px] font-medium text-white mb-2 leading-snug">{label}</h3>
@@ -90,7 +90,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                 <RevealOnScroll className="max-w-6xl">
                     <span className={subtitleClass}>Research approach</span>
                     {block.title && <h2 className={titleClass}>{block.title}</h2>}
-                    {block.highlight && <p className="text-[17px] md:text-[19px] text-white/50 mb-10 max-w-3xl leading-[1.7] font-light">{block.highlight}</p>}
+                    {block.highlight && <p className="text-[17px] md:text-[19px] text-white/50 mb-10 max-w-3xl leading-[1.7] font-light dt-lead">{block.highlight}</p>}
 
                     <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-3">
                         {block.roles.map((item, i) => (
@@ -187,7 +187,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                 <RevealOnScroll className="max-w-4xl">
                     <span className={subtitleClass}>The Workflow</span>
                     {block.title && <h2 className={titleClass}>{block.title}</h2>}
-                    {block.highlight && <p className={`${bodyClass} mb-8`}>{block.highlight}</p>}
+                    {block.highlight && <p className={`${bodyClass} dt-lead mb-8`}>{block.highlight}</p>}
                     <ol className="grid md:grid-cols-2 gap-3">
                         {block.steps.map((step, i) => (
                             <li key={i} className="rounded-[18px] border border-white/10 p-5 md:p-6 bg-white/[0.02] flex gap-4 items-start">
@@ -236,7 +236,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                             <RevealOnScroll key={i} delay={i * 100}>
                                 <div className="flex flex-col gap-10">
                                     <div className="flex items-start gap-6">
-                                        <div className="text-[20px] font-medium tracking-[-0.02em] text-white/50 mt-1.5">0{i + 1}</div>
+                                        <div className="text-[20px] font-medium tracking-[-0.02em] text-white/50 mt-1.5 dt-num">0{i + 1}</div>
                                         <div className="flex flex-col">
                                             <h3 className="text-[18px] sm:text-[20px] font-medium tracking-[-0.02em] leading-snug text-white">{screen.title}</h3>
                                             {screen.description && <p className={`${bodyClass} mt-2 max-w-4xl`}>{screen.description}</p>}
@@ -659,7 +659,7 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6">
                         {block.metrics.map((m, idx) => (
                             <div key={idx} className="border border-white/10 rounded-[20px] p-8 bg-white/[0.02] flex flex-col justify-between hover:border-white/20 transition-all">
-                                <div className="text-[48px] md:text-[64px] font-semibold tracking-tight leading-none mb-4" style={{ color: accentColor || '#fff' }}>
+                                <div className="text-[48px] md:text-[64px] font-semibold tracking-tight leading-none mb-4 dt-num" style={{ color: accentColor || '#fff' }}>
                                     {m.value}
                                 </div>
                                 <div>

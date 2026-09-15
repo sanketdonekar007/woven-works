@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;900&family=Fragment+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&family=Instrument+Serif:ital@1&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -103,6 +104,137 @@
 .font-vietnam {
   font-family: 'Be Vietnam Pro', sans-serif;
 }
+
+/* ─── "Trip" typography scale ───────────────────────────────
+   Fluid type system modelled on thedesigntrip.com.
+   Applied at the app shell so every portfolio route shares it.
+   Onest stands in for Delight, Instrument Serif for Nyght Serif. */
+[data-ts="trip"] {
+  --dt-sans: 'Onest', system-ui, sans-serif;
+  --dt-serif: 'Instrument Serif', Georgia, serif;
+
+  --dt-xs:   clamp(13px, 1vw,   14px);
+  --dt-sm:   clamp(14px, 1.2vw, 16px);
+  --dt-base: clamp(16px, 1.3vw, 18px);
+  --dt-lg:   clamp(18px, 1.6vw, 22px);
+  --dt-xl:   clamp(22px, 2vw,   28px);
+  --dt-2xl:  clamp(28px, 2.5vw, 36px);
+  --dt-3xl:  clamp(36px, 3.5vw, 48px);
+  --dt-4xl:  clamp(44px, 5vw,   64px);
+  --dt-display: clamp(40px, 6vw, 84px);
+
+  --dt-lh-tight:  1.2;
+  --dt-lh-snug:   1.33;
+  --dt-lh-normal: 1.5;
+
+  font-family: var(--dt-sans);
+  letter-spacing: -0.02em;
+}
+
+[data-ts="trip"] .font-vietnam {
+  font-family: var(--dt-sans);
+}
+
+[data-ts="trip"] h1,
+[data-ts="trip"] h2,
+[data-ts="trip"] h3,
+[data-ts="trip"] h4 {
+  font-family: var(--dt-sans);
+  font-weight: 400;
+  line-height: var(--dt-lh-tight);
+  letter-spacing: -0.03em;
+}
+
+[data-ts="trip"] p,
+[data-ts="trip"] li {
+  line-height: var(--dt-lh-normal);
+  letter-spacing: -0.01em;
+}
+
+/* Italic serif accent — the DT signature pairing.
+   Onest ships no true italic, so italic text routes to the serif
+   rather than being synthesised into a faux oblique. */
+[data-ts="trip"] .italic,
+[data-ts="trip"] .dt-accent {
+  font-family: var(--dt-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Serif runs optically small and tight next to the sans at the same
+   nominal size, so it is nudged up and given back a little tracking. */
+[data-ts="trip"] .dt-accent {
+  font-size: 1.08em;
+  line-height: 0.9;
+}
+
+/* Lead-in line beneath a section heading. Element qualifier outranks the
+   px-size remaps further down, which would otherwise reset the size. */
+[data-ts="trip"] p.dt-lead {
+  font-family: var(--dt-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--dt-xl);
+  line-height: var(--dt-lh-snug);
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* Numerals — counters, indices, metric values */
+[data-ts="trip"] .dt-num {
+  font-family: var(--dt-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Hero display line */
+[data-ts="trip"] .dt-display {
+  font-size: var(--dt-display);
+  line-height: 1.05;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+}
+
+/* Remap the case study's fixed px sizes onto the fluid scale.
+   Higher specificity than Tailwind utilities, so responsive
+   step-ups are intentionally superseded by the clamps. */
+[data-ts="trip"] .text-\[12px\],
+[data-ts="trip"] .text-\[13px\],
+[data-ts="trip"] .text-xs   { font-size: var(--dt-xs); }
+
+[data-ts="trip"] .text-\[14px\],
+[data-ts="trip"] .text-sm   { font-size: var(--dt-sm); }
+
+[data-ts="trip"] .text-\[15px\],
+[data-ts="trip"] .text-\[16px\],
+[data-ts="trip"] .text-\[17px\],
+[data-ts="trip"] .text-base { font-size: var(--dt-base); }
+
+[data-ts="trip"] .text-\[18px\],
+[data-ts="trip"] .text-\[19px\],
+[data-ts="trip"] .text-\[20px\] { font-size: var(--dt-lg); }
+
+[data-ts="trip"] .text-\[21px\],
+[data-ts="trip"] .text-\[22px\],
+[data-ts="trip"] .text-\[24px\],
+[data-ts="trip"] .text-\[25px\] { font-size: var(--dt-xl); line-height: var(--dt-lh-snug); }
+
+[data-ts="trip"] .text-\[26px\],
+[data-ts="trip"] .text-\[30px\],
+[data-ts="trip"] .text-\[32px\],
+[data-ts="trip"] .text-\[34px\] { font-size: var(--dt-2xl); line-height: var(--dt-lh-tight); }
+
+[data-ts="trip"] .text-\[38px\],
+[data-ts="trip"] .text-\[48px\] { font-size: var(--dt-3xl); line-height: var(--dt-lh-tight); }
+
+[data-ts="trip"] .text-\[64px\] { font-size: var(--dt-4xl); line-height: 1.05; }
+
+/* Lighter weight ladder — DT leans light on display type */
+[data-ts="trip"] .font-semibold { font-weight: 500; }
+[data-ts="trip"] .font-medium   { font-weight: 450; }
+[data-ts="trip"] .font-light    { font-weight: 300; }
 
 [data-cs="true"] .border-border,
 [data-cs="true"] [class*="border-"] {
@@ -490,5 +622,3 @@ h2.footer-title { @apply text-3xl font-medium mb-4 text-left; }
   body { cursor: auto; }
   .cursor-dot, .cursor-ring { display: none; }
 }
-
-

@@ -219,9 +219,17 @@ const ProjectDetail = () => {
                 <p className="text-[13px] tracking-[0.22em] uppercase font-light mb-5" style={{ color: 'rgba(255,255,255,0.35)' }}>
                   {project.type || project.industry} · Case Study
                 </p>
-                <h1 className="text-[32px] sm:text-[44px] md:text-[60px] lg:text-[72px] font-semibold text-white leading-[1.1] mb-10"
-                  style={{ letterSpacing: '-0.03em', fontFamily: "'Be Vietnam Pro', sans-serif" }}>
-                  {project.title}
+                <h1 className="dt-display text-white mb-10">
+                  {(() => {
+                    const [lead, ...rest] = project.title.split('. ');
+                    if (!rest.length) return project.title;
+                    return (
+                      <>
+                        {lead}.{' '}
+                        <span className="dt-accent">{rest.join('. ')}</span>
+                      </>
+                    );
+                  })()}
                 </h1>
               </RevealOnScroll>
 
