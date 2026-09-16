@@ -109,6 +109,19 @@ const ProjectDetail = () => {
   const isSnackHack = project.id === 'snackhack';
   const problemBlock = project.blocks?.find((block) => block.type === 'problem-statement');
   const impactBlock = project.blocks?.find((block) => block.type === 'impact');
+  const projectHighlights = [
+    project.role ? { label: 'Role', value: project.role } : null,
+    project.industry ? { label: 'Industry', value: project.industry } : null,
+    (project.duration || project.timeline) ? { label: 'Duration', value: project.duration || project.timeline || '' } : null,
+    project.type ? { label: 'Type', value: project.type } : null,
+    project.platforms ? { label: 'Platform', value: project.platforms } : null,
+    project.clientWebsite ? {
+      label: 'Live website',
+      value: project.clientWebsite.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''),
+      url: project.clientWebsite,
+    } : null,
+    project.links?.[0]?.url ? { label: 'Resources', value: project.links[0].text, url: project.links[0].url } : null,
+  ].filter((item): item is { label: string; value: string; url?: string } => Boolean(item));
 
   // Resolve the active titled block index for sidebar highlighting
   const getActiveTitledIndex = () => {
@@ -234,30 +247,46 @@ const ProjectDetail = () => {
               </RevealOnScroll>
 
               <RevealOnScroll delay={100}>
-                <div className="flex flex-col md:flex-row md:items-start gap-10 md:gap-16 pt-10"
-                  style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-                  <p className="text-[16px] leading-[1.75] font-light max-w-2xl" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                <div className="pt-10" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                  <p className="text-[16px] leading-[1.75] font-light max-w-3xl" style={{ color: 'rgba(255,255,255,0.55)' }}>
                     {project.intro}
                   </p>
-                  <div className="flex flex-row gap-10 md:gap-16 flex-shrink-0">
-                    <div className="flex flex-col gap-1.5 min-w-[140px] md:pl-10" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)', paddingLeft: '2.5rem' }}>
-                      <span className="text-[13px] tracking-[0.22em] uppercase font-light mb-1" style={{ color: 'rgba(255,255,255,0.3)' }}>Role</span>
-                      <span className="text-[16px] font-medium text-white leading-snug">{project.role}</span>
-                    </div>
-                    {project.clientWebsite && (
-                      <div className="flex flex-col gap-1.5 min-w-[140px] md:pl-10" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)', paddingLeft: '2.5rem' }}>
-                        <span className="text-[13px] tracking-[0.22em] uppercase font-light mb-1" style={{ color: 'rgba(255,255,255,0.3)' }}>Live Website</span>
-                        <a href={project.clientWebsite} target="_blank" rel="noopener noreferrer"
-                          className="text-[16px] font-medium text-white leading-snug flex items-center gap-1 hover:opacity-60 transition-opacity group/link">
-                          {project.clientWebsite.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
-                          <ExternalLink className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                        </a>
-                      </div>
-                    )}
-                  </div>
                 </div>
               </RevealOnScroll>
             </div>
+
+            {/* Featured image — the visual opener for every case study */}
+            <RevealOnScroll delay={140}>
+              <div className={`overflow-hidden mb-12 group ${isSnackHack ? 'w-fit mx-auto p-5 rounded-[24px]' : 'rounded-[24px] aspect-[16/9] w-full'}`}
+                style={{ background: '#161819' }}>
+                <img
+                  src={project.headerImage}
+                  alt={`${project.title} featured project visual`}
+                  className={`w-full transition-transform [transition-duration:3000ms] ${project.id === 'tutoronboarding' ? 'scale-[1.3] group-hover:scale-[1.36]' : 'group-hover:scale-105'} ${isSnackHack ? 'h-auto object-contain' : 'h-full object-cover'}`}
+                />
+              </div>
+            </RevealOnScroll>
+
+            {/* A single source of truth for project facts */}
+            <section className="mb-20 border-y border-white/10" aria-labelledby="project-highlights">
+              <h2 id="project-highlights" className="sr-only">Project highlights</h2>
+              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {projectHighlights.map((item) => (
+                  <div key={item.label} className="min-w-0 border-b border-r border-white/10 px-5 py-6 md:px-7">
+                    <div className="mb-2 text-[13px] font-light uppercase tracking-[0.22em] text-white/30">{item.label}</div>
+                    {item.url ? (
+                      <a href={item.url} target="_blank" rel="noopener noreferrer"
+                        className="group/link flex items-center gap-1.5 break-words text-[15px] font-medium leading-snug text-white transition-opacity hover:opacity-60">
+                        {item.value}
+                        <ExternalLink className="h-3 w-3 flex-shrink-0 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                      </a>
+                    ) : (
+                      <div className="break-words text-[15px] font-medium leading-snug text-white">{item.value}</div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
 
             {/* Recruiter-friendly executive summary */}
             <RevealOnScroll delay={160}>
@@ -291,14 +320,6 @@ const ProjectDetail = () => {
                         <p className="text-[15px] leading-7 text-white/65">See the validation and outcome evidence in the full case study below.</p>
                       )}
                     </div>
-                    <div>
-                      <h3 className="text-[13px] tracking-[0.18em] uppercase text-white/35 mb-3">My ownership</h3>
-                      <p className="text-[15px] leading-7 text-white/65">{project.role}</p>
-                    </div>
-                    <div>
-                      <h3 className="text-[13px] tracking-[0.18em] uppercase text-white/35 mb-3">Scope</h3>
-                      <p className="text-[15px] leading-7 text-white/65">{[project.duration, project.platforms].filter(Boolean).join(' · ')}</p>
-                    </div>
                   </div>
                 </div>
                 {impactBlock && (
@@ -308,66 +329,6 @@ const ProjectDetail = () => {
                 )}
               </section>
             </RevealOnScroll>
-
-            {/* Hero Image */}
-            <RevealOnScroll delay={200}>
-              <div className={`overflow-hidden mb-20 group ${isSnackHack ? 'w-fit mx-auto p-5 rounded-[24px]' : 'rounded-[24px] aspect-[16/9] w-full'}`}
-                style={{ background: '#161819' }}>
-                <img
-                  src={project.headerImage}
-                  alt={project.title}
-                  className={`w-full transition-transform [transition-duration:3000ms] ${project.id === 'tutoronboarding' ? 'scale-[1.3] group-hover:scale-[1.36]' : 'group-hover:scale-105'} ${isSnackHack ? 'h-auto object-contain' : 'h-full object-cover'}`}
-                />
-              </div>
-            </RevealOnScroll>
-
-            {/* Metadata Strip */}
-            <div className="flex flex-wrap mb-20" style={{ borderTop: '1px solid rgba(255,255,255,0.08)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
-              {project.industry && (
-                <div className="py-6 pr-10 mr-10" style={{ borderRight: '1px solid rgba(255,255,255,0.08)' }}>
-                  <div className="text-[13px] tracking-[0.22em] uppercase font-light mb-2" style={{ color: 'rgba(255,255,255,0.3)' }}>Industry</div>
-                  <div className="text-[15px] font-medium text-white">{project.industry}</div>
-                </div>
-              )}
-              {project.duration && (
-                <div className="py-6 pr-10 mr-10" style={{ borderRight: '1px solid rgba(255,255,255,0.08)' }}>
-                  <div className="text-[13px] tracking-[0.22em] uppercase font-light mb-2" style={{ color: 'rgba(255,255,255,0.3)' }}>Duration</div>
-                  <div className="text-[15px] font-medium text-white">{project.duration}</div>
-                </div>
-              )}
-              {project.type && (
-                <div className="py-6 pr-10 mr-10" style={{ borderRight: '1px solid rgba(255,255,255,0.08)' }}>
-                  <div className="text-[13px] tracking-[0.22em] uppercase font-light mb-2" style={{ color: 'rgba(255,255,255,0.3)' }}>Type</div>
-                  <div className="text-[15px] font-medium text-white">{project.type}</div>
-                </div>
-              )}
-              {project.platforms && (
-                <div className="py-6 pr-10 mr-10" style={{ borderRight: project.clientWebsite || project.links?.[0]?.url ? '1px solid rgba(255,255,255,0.08)' : 'none' }}>
-                  <div className="text-[13px] tracking-[0.22em] uppercase font-light mb-2" style={{ color: 'rgba(255,255,255,0.3)' }}>Platform</div>
-                  <div className="text-[15px] font-medium text-white">{project.platforms}</div>
-                </div>
-              )}
-              {project.clientWebsite && (
-                <div className="py-6 pr-10 mr-10" style={{ borderRight: project.links?.[0]?.url ? '1px solid rgba(255,255,255,0.08)' : 'none' }}>
-                  <div className="text-[13px] tracking-[0.22em] uppercase font-light mb-2" style={{ color: 'rgba(255,255,255,0.3)' }}>Client</div>
-                  <a href={project.clientWebsite} target="_blank" rel="noopener noreferrer"
-                    className="text-[15px] font-medium text-white flex items-center gap-1.5 hover:opacity-60 transition-opacity group/link">
-                    {project.clientWebsite.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
-                    <ExternalLink className="w-3 h-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                  </a>
-                </div>
-              )}
-              {project.links?.[0]?.url && (
-                <div className="py-6">
-                  <div className="text-[13px] tracking-[0.22em] uppercase font-light mb-2" style={{ color: 'rgba(255,255,255,0.3)' }}>Resources</div>
-                  <a href={project.links[0].url} target="_blank" rel="noopener noreferrer"
-                    className="text-[15px] font-medium text-white flex items-center gap-1.5 hover:opacity-60 transition-opacity group/link">
-                    {project.links[0].text}
-                    <ExternalLink className="w-3 h-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                  </a>
-                </div>
-              )}
-            </div>
 
             {/* Content Blocks */}
             {project.blocks && project.blocks.length > 0 && (
