@@ -30,7 +30,7 @@ import { LazyVideo } from "./LazyVideo";
 import { ProjectBlock } from "@/data/projects";
 import { Check, CheckCircle2, AlertCircle, ArrowRight, ImageIcon, Film, GitBranch, Layers } from "lucide-react";
 
-export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, accentColor?: string }) => {
+export const BlockRenderer = ({ block, accentColor, projectId }: { block: ProjectBlock, accentColor?: string, projectId?: string }) => {
     const titleClass = "text-[21px] sm:text-[26px] md:text-[32px] font-medium text-white mb-8 leading-[1.25] tracking-[-0.02em]";
     const subtitleClass = "text-[14px] sm:text-[16px] tracking-[0.18em] mb-3 block uppercase font-light text-white/40";
     const bodyClass = "text-[15px] sm:text-[16px] md:text-[18px] text-white/50 leading-[1.75] font-light";
@@ -52,6 +52,55 @@ export const BlockRenderer = ({ block, accentColor }: { block: ProjectBlock, acc
             );
 
         case "problem-statement":
+            if (projectId === "tutoronboarding") {
+                const frictionPoints = block.list.map(splitStatement);
+                return (
+                    <RevealOnScroll className="max-w-6xl">
+                        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-20 items-start">
+                            <div>
+                                <span className={subtitleClass}>The challenge</span>
+                                <h2 className="text-[28px] sm:text-[34px] md:text-[44px] font-medium text-white leading-[1.18] tracking-[-0.035em] mb-6">
+                                    Too much effort before tutors could see the value.
+                                </h2>
+                                <p className="text-[16px] md:text-[18px] leading-8 text-white/50 max-w-xl">
+                                    Tutors were asked to complete a long profile and submit verification details without a clear sense of progress, purpose, or payoff.
+                                </p>
+                            </div>
+
+                            <div className="rounded-[24px] border border-white/10 bg-white/[0.025] p-5 sm:p-7">
+                                <p className="mb-7 text-[11px] uppercase tracking-[0.2em] text-white/30">Where the journey broke down</p>
+                                <div className="space-y-3">
+                                    {['Create account', 'Complete profile', 'Submit credentials', 'Wait for review'].map((step, index) => (
+                                        <div key={step} className="relative flex items-center gap-4">
+                                            <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border text-[11px] ${index === 0 ? 'border-white/20 text-white/70' : 'border-white/10 text-white/35'}`}>
+                                                {String(index + 1).padStart(2, '0')}
+                                            </span>
+                                            <div className={`flex-1 rounded-xl border px-4 py-3 text-[14px] ${index === 1 || index === 2 ? 'border-indigo-400/30 bg-indigo-400/[0.07] text-white/80' : 'border-white/10 text-white/50'}`}>
+                                                {step}
+                                            </div>
+                                            {(index === 1 || index === 2) && <span className="hidden sm:block text-[11px] uppercase tracking-[0.14em] text-indigo-300/70">High friction</span>}
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="mt-6 border-t border-white/10 pt-5 flex items-center justify-between gap-4">
+                                    <span className="text-[13px] text-white/40">Result</span>
+                                    <span className="text-[14px] font-medium text-white/75">Incomplete profiles and abandonment</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="mt-12 grid md:grid-cols-3 border-y border-white/10">
+                            {frictionPoints.map(({ label, detail }, index) => (
+                                <article key={label} className={`py-7 md:px-7 ${index > 0 ? 'border-t md:border-t-0 md:border-l border-white/10' : ''}`}>
+                                    <span className="mb-4 block text-[11px] uppercase tracking-[0.18em] text-white/25">Friction {String(index + 1).padStart(2, '0')}</span>
+                                    <h3 className="mb-2 text-[17px] font-medium text-white/85">{label}</h3>
+                                    {detail && <p className="text-[14px] leading-6 text-white/45">{detail}</p>}
+                                </article>
+                            ))}
+                        </div>
+                    </RevealOnScroll>
+                );
+            }
             return (
                 <RevealOnScroll className="max-w-6xl">
                     <div className="grid lg:grid-cols-[0.75fr_1.5fr] gap-5 lg:gap-16 items-start mb-10 md:mb-14">

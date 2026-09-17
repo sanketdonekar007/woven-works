@@ -107,6 +107,7 @@ const ProjectDetail = () => {
   }
 
   const isSnackHack = project.id === 'snackhack';
+  const isTutorOnboarding = project.id === 'tutoronboarding';
   const problemBlock = project.blocks?.find((block) => block.type === 'problem-statement');
   const impactBlock = project.blocks?.find((block) => block.type === 'impact');
   const projectHighlights = [
@@ -139,6 +140,18 @@ const ProjectDetail = () => {
   };
 
   const activeTitledIndex = getActiveTitledIndex();
+  const getNavLabel = (title: string) => {
+    if (!isTutorOnboarding) return title;
+    const tutorLabels: Record<string, string> = {
+      'The Problem & Challenge': 'Problem',
+      'Design Thinking Process': 'Process',
+      'The Step-by-Step Experience': 'Experience',
+      'Key Improvements & UX Solutions': 'Solutions',
+      'Projected Impact · Not Yet Measured': 'Impact',
+      'Retrospective & Learnings': 'Learnings',
+    };
+    return tutorLabels[title] || title;
+  };
 
   return (
     <div
@@ -214,7 +227,7 @@ const ProjectDetail = () => {
                         {chapterNum}
                       </span>
                       <span className="text-[13px] uppercase leading-tight tracking-[0.12em] font-light" style={{ color: isActive ? '#fff' : 'rgba(255,255,255,0.5)' }}>
-                        {block.title}
+                        {getNavLabel(block.title)}
                       </span>
                     </div>
                   );
@@ -227,13 +240,13 @@ const ProjectDetail = () => {
           <div className="flex-1 min-w-0">
 
             {/* Project Hero */}
-            <div className="mb-20 pt-16">
+            <div className={`${isTutorOnboarding ? 'mb-10 md:mb-12' : 'mb-20'} pt-16`}>
               <RevealOnScroll>
                 <p className="text-[13px] tracking-[0.22em] uppercase font-light mb-5" style={{ color: 'rgba(255,255,255,0.35)' }}>
                   {project.type || project.industry} · Case Study
                 </p>
-                <h1 className="dt-display text-white mb-10">
-                  {(() => {
+                <h1 className={`dt-display text-white ${isTutorOnboarding ? 'mb-7 max-w-5xl' : 'mb-10'}`}>
+                  {isTutorOnboarding ? 'Designing a faster, more trustworthy tutor onboarding experience' : (() => {
                     const [lead, ...rest] = project.title.split('. ');
                     if (!rest.length) return project.title;
                     return (
@@ -247,10 +260,26 @@ const ProjectDetail = () => {
               </RevealOnScroll>
 
               <RevealOnScroll delay={100}>
-                <div className="pt-10" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-                  <p className="text-[16px] leading-[1.75] font-light max-w-3xl" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                    {project.intro}
+                <div className={isTutorOnboarding ? '' : 'pt-10'} style={isTutorOnboarding ? undefined : { borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                  <p className={`${isTutorOnboarding ? 'text-[18px] md:text-[21px] max-w-4xl leading-[1.6]' : 'text-[16px] leading-[1.75] max-w-3xl'} font-light`} style={{ color: 'rgba(255,255,255,0.55)' }}>
+                    {isTutorOnboarding
+                      ? 'A progressive nine-step journey designed to reduce form fatigue while improving profile quality and verification confidence.'
+                      : project.intro}
                   </p>
+                  {isTutorOnboarding && (
+                    <div className="mt-8 flex flex-wrap gap-x-10 gap-y-4 border-t border-white/10 pt-6">
+                      {[
+                        ['Role', project.role?.split('·')[0]?.trim()],
+                        ['Duration', project.duration || project.timeline],
+                        ['Platform', project.platforms],
+                      ].map(([label, value]) => value && (
+                        <div key={label} className="min-w-[130px]">
+                          <span className="block text-[11px] uppercase tracking-[0.18em] text-white/30 mb-1.5">{label}</span>
+                          <span className="text-[14px] text-white/70">{value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </RevealOnScroll>
             </div>
@@ -268,7 +297,7 @@ const ProjectDetail = () => {
             </RevealOnScroll>
 
             {/* A single source of truth for project facts */}
-            <section className="mb-20 border-y border-white/10" aria-labelledby="project-highlights">
+            <section className={`${isTutorOnboarding ? 'hidden' : 'mb-20'} border-y border-white/10`} aria-labelledby="project-highlights">
               <h2 id="project-highlights" className="sr-only">Project highlights</h2>
               <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {projectHighlights.map((item) => (
@@ -289,7 +318,27 @@ const ProjectDetail = () => {
             </section>
 
             {/* Recruiter-friendly executive summary */}
-            <RevealOnScroll delay={160}>
+            {isTutorOnboarding && (
+              <RevealOnScroll delay={160}>
+                <section className="mb-20 md:mb-28 border-y border-white/10" aria-labelledby="tutor-overview">
+                  <h2 id="tutor-overview" className="sr-only">Project overview</h2>
+                  <div className="grid md:grid-cols-3">
+                    {[
+                      ['Context', 'Locate Tutors needed to onboard educators with enough information to build credible, searchable profiles.'],
+                      ['Challenge', 'Long forms and unclear verification requirements created fatigue before tutors could see the value of completing their profile.'],
+                      ['Design direction', 'Break the journey into manageable steps, make progress visible, and explain why sensitive information is needed.'],
+                    ].map(([label, copy], index) => (
+                      <article key={label} className={`py-7 md:py-9 md:px-8 ${index > 0 ? 'border-t md:border-t-0 md:border-l border-white/10' : ''}`}>
+                        <p className="mb-4 text-[11px] uppercase tracking-[0.2em] text-white/30">{label}</p>
+                        <p className="text-[15px] md:text-[16px] leading-7 text-white/65">{copy}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+              </RevealOnScroll>
+            )}
+
+            {!isTutorOnboarding && <RevealOnScroll delay={160}>
               <section className="mb-20 rounded-[24px] border border-white/10 bg-white/[0.025] p-6 md:p-10" aria-labelledby="case-study-summary">
                 <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-14">
                   <div className="lg:w-[38%]">
@@ -328,7 +377,7 @@ const ProjectDetail = () => {
                   </p>
                 )}
               </section>
-            </RevealOnScroll>
+            </RevealOnScroll>}
 
             {/* Content Blocks */}
             {project.blocks && project.blocks.length > 0 && (
@@ -358,7 +407,7 @@ const ProjectDetail = () => {
                       ref={(el) => (sectionRefs.current[index] = el)}
                       className={`scroll-mt-32 ${getDynamicMargin()}`}
                     >
-                      <BlockRenderer block={block} accentColor={project.accentColor} />
+                      <BlockRenderer block={block} accentColor={project.accentColor} projectId={project.id} />
                     </div>
                   );
                 })}
