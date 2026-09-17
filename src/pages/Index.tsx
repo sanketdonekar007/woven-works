@@ -12,7 +12,7 @@ const projects = [
     slug: "tutoronboarding",
     title: "Locate Tutors, Onboarding & Verification",
     description:
-      "I designed an end-to-end tutor onboarding and credential verification experience, optimizing profile completion and building marketplace trust through 9 structured stages.",
+      "I designed an end-to-end tutor onboarding and credential verification experience, building marketplace trust through eight focused input steps and a clear success state.",
     image: "/lovable-uploads/locate-tutor-intro-optimized.jpg",
     alt: "Locate Tutors Onboarding Experience",
     category: "EdTech · Marketplace · Web",

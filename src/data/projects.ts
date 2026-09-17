@@ -1674,65 +1674,129 @@ export const projects: Record<string, ProjectData> = {
             },
             {
                 type: "process-steps",
-                title: "Design Thinking Process",
-                highlight: "Empathize, Define, Ideate, Prototype, Test",
-                content: "A systematic approach to improve tutor confidence and completion rates.",
+                title: "Design Strategy",
+                highlight: "The experience had to make a long, trust-sensitive process feel useful at every step—not merely shorter.",
+                content: "Four principles connected the business need for complete, verified profiles with the tutor's need for clarity, motivation, and control.",
                 steps: [
-                    "Empathize: Interview tutors and analyze profile completion barriers.",
-                    "Define: Reframe: How might we help tutors create trustworthy profiles without overwhelming them?",
-                    "Ideate: Progressive onboarding, AI resume assistance, and real-time previews.",
-                    "Prototype: Multi-step wizard, profile strength indicators, and calendar slots.",
-                    "Test: Validate usability, completion effort, and tutor confidence."
+                    "Make progress tangible: Show the current step, overall profile strength, and exactly what remains.",
+                    "Explain the payoff: Connect every request to trust, visibility, bookings, or profile quality.",
+                    "Reduce decision anxiety: Provide contextual recommendations for pricing, content, and availability.",
+                    "Build trust progressively: Separate profile completion from verification and make each status visible."
+                ]
+            },
+            {
+                type: "core-screens",
+                title: "The Confidence Layer",
+                highlight: "A persistent layer of progress, verification, and student-facing feedback keeps the value of completion visible throughout the journey.",
+                screens: [
+                    {
+                        title: "Progress that explains itself",
+                        image: "/lovable-uploads/tutor-confidence-layer.png",
+                        description: "The first step introduces the eight-part journey while the side panel separates profile strength from verification progress. A live student preview shows tutors how their inputs translate into a public profile. Prototype metrics shown in the UI are illustrative, not measured outcomes."
+                    },
+                    {
+                        title: "A review state built for confidence, not correction",
+                        image: "/lovable-uploads/tutor-review-submit.png",
+                        description: "Before submission, tutors can scan every section, see readiness and verification status, and jump directly back to edit without losing their progress."
+                    }
+                ]
+            },
+            {
+                type: "challenges",
+                title: "Key Product Decisions",
+                challenges: [
+                    {
+                        challenge: "A long process felt endless",
+                        solution: "An eight-step journey, persistent completion score, and save-and-continue pattern turned one large form into a sequence of achievable commitments."
+                    },
+                    {
+                        challenge: "Tutors could not judge what a complete profile looked like",
+                        solution: "The student-view preview translated abstract form fields into the profile students would eventually evaluate."
+                    },
+                    {
+                        challenge: "Verification created uncertainty",
+                        solution: "Identity, education, experience, and background checks were tracked independently so pending reviews did not feel like lost submissions."
+                    },
+                    {
+                        challenge: "High-effort fields slowed completion",
+                        solution: "Resume import and assisted writing reduced repetitive entry while keeping tutors in control of every imported or generated field."
+                    }
+                ]
+            },
+            {
+                type: "core-screens",
+                title: "Reducing Pricing Uncertainty",
+                highlight: "Instead of asking tutors to guess, the pricing step turns market context into an informed decision.",
+                screens: [
+                    {
+                        title: "Recommendations without removing control",
+                        image: "/lovable-uploads/tutor-pricing-guidance.png",
+                        description: "Recommended ranges, market averages, top-performer benchmarks, and competitiveness feedback help tutors set rates confidently while leaving the final decision in their hands. Values shown are illustrative prototype data."
+                    }
+                ]
+            },
+            {
+                type: "core-screens",
+                title: "Accelerating Completion with AI",
+                highlight: "Assistance is positioned as an optional shortcut—not an opaque replacement for tutor input.",
+                screens: [
+                    {
+                        title: "Import from an existing resume",
+                        image: "/lovable-uploads/tutor-resume-import.png",
+                        description: "The upload state explains what will be extracted, which file types are supported, and how the document will be handled before processing begins."
+                    },
+                    {
+                        title: "Review before anything is applied",
+                        image: "/lovable-uploads/tutor-resume-review.png",
+                        description: "Extracted information remains selectable and editable. Tutors choose what enters their profile, preserving agency and reducing the risk of silent AI errors."
+                    }
+                ]
+            },
+            {
+                type: "core-screens",
+                title: "From Setup to Submission",
+                highlight: "Eight focused input steps lead to a dedicated success state, keeping completion distinct from the verification that follows.",
+                screens: [
+                    {
+                        title: "Availability designed around real teaching schedules",
+                        image: "/lovable-uploads/tutor-onboarding-step7.png",
+                        description: "Tutors can define repeatable teaching windows while retaining visibility into how availability will affect student matching."
+                    },
+                    {
+                        title: "A clear handoff into verification",
+                        image: "/lovable-uploads/tutor-onboarding-step9.png",
+                        description: "The completion state confirms submission and sets expectations for what happens next, preventing the review period from feeling like a dead end."
+                    }
                 ]
             },
             {
                 type: "prototype",
-                title: "The Step-by-Step Experience",
-                description: "Interactive Figma Prototype mapping the improvised 9-step onboarding flow with real-time status headers and the profile strength side panel.",
+                title: "Explore the Complete Journey",
+                description: "The interactive prototype connects all eight input steps, supporting states, and the final submission experience.",
                 url: "https://www.figma.com/proto/7nW2mgIQJV3YccEFW0neFn/Locate-Tutor?node-id=1-587&p=f&viewport=732%2C261%2C0.03&t=OEDlcH79FvpQk9Lx-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1"
-            },
-            {
-                type: "challenges",
-                title: "Key Improvements & UX Solutions",
-                challenges: [
-                    {
-                        challenge: "Progress Wizard",
-                        solution: "Multi-step flow with completion percentage and auto-save later support."
-                    },
-                    {
-                        challenge: "Pricing Decision Friction",
-                        solution: "Built a Recommended Pricing Engine based on expertise and market demand."
-                    },
-                    {
-                        challenge: "Credential Verification",
-                        solution: "Secure, clear document vaults to capture degrees, certifications, and experience letters."
-                    },
-                    {
-                        challenge: "AI Resume-to-Profile Assistant",
-                        solution: "Allows tutors to upload an existing resume to automatically parse and pre-fill form fields."
-                    }
-                ]
             },
             {
                 type: "impact",
                 title: "Projected Impact · Not Yet Measured",
                 items: [
-                    "Target: 30% to 40% reduction in onboarding drop-offs",
-                    "Faster profile completion and higher data quality",
-                    "Increased tutor and student trust in the marketplace",
-                    "Better student-to-tutor matching efficiency"
+                    "Target: reduce onboarding drop-off by 30–40%; requires production measurement.",
+                    "Expected: faster profile completion through progressive entry and optional resume import.",
+                    "Expected: higher profile quality through live preview, contextual guidance, and review-before-submit.",
+                    "Expected: stronger marketplace trust through transparent, separately tracked verification states."
                 ]
             },
             {
                 type: "learnings",
                 title: "Retrospective & Learnings",
                 learnings: [
-                    "Progressive disclosure is king: Breaking down 30+ input fields into 9 logical steps reduces user cognitive fatigue.",
-                    "Transparency fosters patience: Clear review status tracking prevents tutors from feeling abandoned during background screening."
+                    "Progress is most motivating when it explains value. A percentage alone is weaker than showing what each completed section contributes to profile quality.",
+                    "Profile completion and verification are different mental models. Separating them prevents a complete profile from appearing unfinished while checks are pending.",
+                    "AI assistance needs a review boundary. Selective import keeps efficiency from coming at the cost of accuracy or user control."
                 ],
                 future: [
-                    "Real-time marketplace demand indicators during onboarding",
-                    "AI-driven intro video enhancer and helper scripts"
+                    "Validate where tutors pause or abandon across each of the eight input steps.",
+                    "Test whether pricing guidance improves completion confidence without anchoring rates too aggressively.",
+                    "Measure resume-import accuracy and the percentage of extracted fields tutors accept, edit, or reject."
                 ]
             }
         ]

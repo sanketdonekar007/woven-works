@@ -144,9 +144,13 @@ const ProjectDetail = () => {
     if (!isTutorOnboarding) return title;
     const tutorLabels: Record<string, string> = {
       'The Problem & Challenge': 'Problem',
-      'Design Thinking Process': 'Process',
-      'The Step-by-Step Experience': 'Experience',
-      'Key Improvements & UX Solutions': 'Solutions',
+      'Design Strategy': 'Strategy',
+      'The Confidence Layer': 'Confidence layer',
+      'Key Product Decisions': 'Decisions',
+      'Reducing Pricing Uncertainty': 'Pricing',
+      'Accelerating Completion with AI': 'AI assistance',
+      'From Setup to Submission': 'Journey',
+      'Explore the Complete Journey': 'Prototype',
       'Projected Impact · Not Yet Measured': 'Impact',
       'Retrospective & Learnings': 'Learnings',
     };
@@ -263,7 +267,7 @@ const ProjectDetail = () => {
                 <div className={isTutorOnboarding ? '' : 'pt-10'} style={isTutorOnboarding ? undefined : { borderTop: '1px solid rgba(255,255,255,0.08)' }}>
                   <p className={`${isTutorOnboarding ? 'text-[18px] md:text-[21px] max-w-4xl leading-[1.6]' : 'text-[16px] leading-[1.75] max-w-3xl'} font-light`} style={{ color: 'rgba(255,255,255,0.55)' }}>
                     {isTutorOnboarding
-                      ? 'A progressive nine-step journey designed to reduce form fatigue while improving profile quality and verification confidence.'
+                      ? 'An eight-step onboarding journey with a dedicated success state, designed to reduce form fatigue while improving profile quality and verification confidence.'
                       : project.intro}
                   </p>
                   {isTutorOnboarding && (

@@ -272,15 +272,16 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
         case "core-screens":
             const imageScreens = block.screens.filter(s => typeof s === 'object') as { title: string, image: string, description?: string }[];
             const labelScreens = block.screens.filter(s => typeof s === 'string') as string[];
+            const isTutorScreens = projectId === "tutoronboarding";
 
             return (
-                <RevealOnScroll className="w-full py-32">
-                    <div className="mb-24 max-w-4xl">
+                <RevealOnScroll className={`w-full ${isTutorScreens ? "py-4" : "py-32"}`}>
+                    <div className={`${isTutorScreens ? "mb-12" : "mb-24"} max-w-4xl`}>
                         <span className={subtitleClass}>{block.title || "Final Product"}</span>
                         {block.highlight && <h2 className="text-[18px] sm:text-[22px] md:text-[32px] font-medium tracking-[-0.02em] leading-snug text-white">{block.highlight}</h2>}
                     </div>
 
-                    <div className="space-y-48">
+                    <div className={isTutorScreens ? "space-y-24 md:space-y-32" : "space-y-48"}>
                         {imageScreens.map((screen, i) => (
                             <RevealOnScroll key={i} delay={i * 100}>
                                 <div className="flex flex-col gap-10">
