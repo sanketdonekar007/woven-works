@@ -292,17 +292,17 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
                                             {screen.description && <p className={`${bodyClass} mt-2 max-w-4xl`}>{screen.description}</p>}
                                         </div>
                                     </div>
-                                    <div className="rounded-[1.5rem] md:rounded-[2.5rem] p-4 md:p-6 lg:p-8 overflow-hidden shadow-sm bg-[#0d0d0d] group border border-white/10">
+                                    <div className={`rounded-[1.5rem] md:rounded-[2.5rem] p-4 md:p-6 lg:p-8 overflow-hidden shadow-sm bg-[#0d0d0d] group border border-white/10 ${isTutorScreens ? "h-[80vh] md:h-[800px] flex items-center justify-center" : ""}`}>
                                         {screen.image.endsWith('.mp4') ? (
                                             <LazyVideo
                                                 src={screen.image}
-                                                className="w-full h-auto block rounded-xl md:rounded-2xl transition-transform [transition-duration:2000ms] group-hover:scale-105"
+                                                className={`${isTutorScreens ? "max-h-full max-w-full w-auto h-auto object-contain" : "w-full h-auto"} block rounded-xl md:rounded-2xl transition-transform [transition-duration:2000ms] group-hover:scale-105`}
                                             />
                                         ) : (
                                             <img
                                                 src={screen.image}
                                                 alt={screen.title}
-                                                className="w-full h-auto block rounded-xl md:rounded-2xl transition-transform [transition-duration:2000ms] group-hover:scale-105"
+                                                className={`${isTutorScreens ? "max-h-full max-w-full w-auto h-auto object-contain" : "w-full h-auto"} block rounded-xl md:rounded-2xl transition-transform [transition-duration:2000ms] group-hover:scale-105`}
                                             />
                                         )}
                                     </div>
