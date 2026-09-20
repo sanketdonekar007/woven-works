@@ -55,7 +55,7 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
             if (projectId === "tutoronboarding") {
                 const frictionPoints = block.list.map(splitStatement);
                 return (
-                    <RevealOnScroll className="max-w-6xl">
+                    <RevealOnScroll className="w-full">
                         <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-20 items-start">
                             <div>
                                 <span className={subtitleClass}>The challenge</span>
@@ -102,7 +102,7 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
                 );
             }
             return (
-                <RevealOnScroll className="max-w-6xl">
+                <RevealOnScroll className="w-full">
                     <div className="grid lg:grid-cols-[0.75fr_1.5fr] gap-5 lg:gap-16 items-start mb-10 md:mb-14">
                         <div>
                             <span className={subtitleClass}>Problem framing</span>
@@ -136,7 +136,7 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
 
         case "role-list":
             return (
-                <RevealOnScroll className="max-w-6xl">
+                <RevealOnScroll className="w-full">
                     <span className={subtitleClass}>Research approach</span>
                     {block.title && <h2 className={titleClass}>{block.title}</h2>}
                     {block.highlight && <p className="text-[17px] md:text-[19px] text-white/50 mb-10 max-w-3xl leading-[1.7] font-light dt-lead">{block.highlight}</p>}
@@ -154,7 +154,7 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
 
         case "personas": {
             return (
-                <RevealOnScroll className="max-w-5xl">
+                <RevealOnScroll className="w-full">
                     <span className={subtitleClass}>{block.title || "User Personas"}</span>
                     <PersonaCarousel personas={block.personas} accentColor={accentColor} />
                 </RevealOnScroll>
@@ -163,7 +163,7 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
 
         case "triggers":
             return (
-                <RevealOnScroll className="max-w-6xl">
+                <RevealOnScroll className="w-full">
                     <span className={subtitleClass}>{block.title || "User Dynamics"}</span>
                     <div className="grid md:grid-cols-2 gap-x-20 gap-y-24">
                         {block.triggers.map((trigger, index) => (
@@ -185,7 +185,7 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
 
         case "goals-list":
             return (
-                <RevealOnScroll className="max-w-5xl">
+                <RevealOnScroll className="w-full">
                     <span className={subtitleClass}>{block.title || "Strategic Intent"}</span>
                     <ul className="grid md:grid-cols-2 gap-3">
                         {block.goals.map((goal, i) => (
@@ -233,11 +233,13 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
 
         case "process-steps":
             return (
-                <RevealOnScroll className="max-w-4xl">
-                    <span className={subtitleClass}>The Workflow</span>
-                    {block.title && <h2 className={titleClass}>{block.title}</h2>}
-                    {block.highlight && <p className={`${bodyClass} dt-lead mb-8`}>{block.highlight}</p>}
-                    <ol className="grid md:grid-cols-2 gap-3">
+                <RevealOnScroll className="w-full">
+                    <div className="w-full">
+                        <span className={subtitleClass}>The Workflow</span>
+                        {block.title && <h2 className={titleClass}>{block.title}</h2>}
+                        {block.highlight && <p className={`${bodyClass} dt-lead mb-8`}>{block.highlight}</p>}
+                    </div>
+                    <ol className="grid md:grid-cols-2 gap-3 max-w-5xl">
                         {block.steps.map((step, i) => (
                             <li key={i} className="rounded-[18px] border border-white/10 p-5 md:p-6 bg-white/[0.02] flex gap-4 items-start">
                                 <span className="text-[12px] tabular-nums text-white/30 font-light flex-shrink-0 mt-1">{String(i + 1).padStart(2, "0")}</span>
@@ -250,7 +252,7 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
 
         case "challenges":
             return (
-                <RevealOnScroll className="max-w-6xl">
+                <RevealOnScroll className="w-full">
                     <span className={subtitleClass}>{block.title || "Strategic Solutions"}</span>
                     <div className="grid gap-3">
                         {block.challenges.map((item, index) => (
@@ -276,7 +278,7 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
 
             return (
                 <RevealOnScroll className={`w-full ${isTutorScreens ? "py-4" : "py-32"}`}>
-                    <div className={`${isTutorScreens ? "mb-12" : "mb-24"} max-w-4xl`}>
+                    <div className={`${isTutorScreens ? "mb-12" : "mb-24"} w-full`}>
                         <span className={subtitleClass}>{block.title || "Final Product"}</span>
                         {block.highlight && <h2 className="text-[18px] sm:text-[22px] md:text-[32px] font-medium tracking-[-0.02em] leading-snug text-white">{block.highlight}</h2>}
                     </div>
@@ -472,7 +474,7 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
 
         case "image":
             return (
-                <RevealOnScroll className={block.fullWidth ? "w-full" : "max-w-6xl"}>
+                <RevealOnScroll className="w-full">
                     {block.title && <h2 className={titleClass}>{block.title}</h2>}
                     <div className={`overflow-hidden shadow-sm bg-[#0d0d0d] border border-white/10 ${block.fullWidth ? "rounded-[1.5rem] md:rounded-[2rem]" : "rounded-[1.5rem] md:rounded-[2rem] p-4 md:p-8 lg:p-12"}`}>
                         {block.src.endsWith('.mp4') ? (
@@ -494,7 +496,7 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
 
         case "user-flow-popup":
             return (
-                <RevealOnScroll className="max-w-6xl">
+                <RevealOnScroll className="w-full">
                     <span className={subtitleClass}>{block.title || "Functional Mapping"}</span>
                     <p className="text-[18px] sm:text-[22px] md:text-[32px] font-medium tracking-[-0.02em] leading-relaxed text-white max-w-5xl italic mb-20 group cursor-default transition-all hover:text-white">
                         "{block.highlight}"
@@ -524,7 +526,7 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
         case "prototype":
             return (
                 <RevealOnScroll className="w-full">
-                    <div className="text-center mb-16 max-w-4xl mx-auto">
+                    <div className="text-center mb-16 w-full">
                         <span className={subtitleClass}>{block.title || "Interactive Prototype"}</span>
                         {block.description && <h2 className="text-[20px] md:text-[20px] font-medium tracking-[-0.02em] leading-[1.1] text-white italic">{block.description}</h2>}
                     </div>
@@ -544,7 +546,7 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
 
         case "design-system":
             return (
-                <RevealOnScroll className="max-w-4xl">
+                <RevealOnScroll className="w-full">
                     <span className={subtitleClass}>{block.title || "Design Language"}</span>
                     <h2 className={titleClass}>{block.highlight}</h2>
                     {block.content && <p className={`${bodyClass} mb-8`}>{block.content}</p>}
@@ -561,7 +563,7 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
 
         case "accessibility":
             return (
-                <RevealOnScroll className="max-w-6xl">
+                <RevealOnScroll className="w-full">
                     <span className={subtitleClass}>{block.title || "Inclusive Design"}</span>
                     <div className="grid md:grid-cols-2 gap-12">
                         <div className="space-y-6">
@@ -583,7 +585,7 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
 
         case "impact":
             return (
-                <RevealOnScroll className="max-w-6xl rounded-[24px] border border-white/10 bg-white/[0.025] p-6 md:p-9">
+                <RevealOnScroll className="w-full rounded-[24px] border border-white/10 bg-white/[0.025] p-6 md:p-9">
                     <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
                         <div>
                             <span className={subtitleClass}>{block.title || "Outcomes"}</span>
@@ -604,7 +606,7 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
 
         case "learnings":
             return (
-                <RevealOnScroll className="max-w-6xl space-y-8">
+                <RevealOnScroll className="w-full space-y-8">
                     <div className="rounded-[24px] border border-white/10 p-6 md:p-9 grid md:grid-cols-[0.7fr_1.5fr] gap-8 md:gap-12">
                         <div>
                             <span className={subtitleClass}>Reflections</span>

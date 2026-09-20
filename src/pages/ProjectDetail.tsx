@@ -244,12 +244,12 @@ const ProjectDetail = () => {
           <div className="flex-1 min-w-0">
 
             {/* Project Hero */}
-            <div className={`${isTutorOnboarding ? 'mb-10 md:mb-12' : 'mb-20'} pt-16`}>
+            <div className="mb-10 md:mb-12 pt-16">
               <RevealOnScroll>
                 <p className="text-[13px] tracking-[0.22em] uppercase font-light mb-5" style={{ color: 'rgba(255,255,255,0.35)' }}>
                   {project.type || project.industry} · Case Study
                 </p>
-                <h1 className={`dt-display text-white ${isTutorOnboarding ? 'mb-7 max-w-5xl' : 'mb-10'}`}>
+                <h1 className="dt-display text-white mb-7 w-full">
                   {isTutorOnboarding ? 'Designing a faster, more trustworthy tutor onboarding experience' : (() => {
                     const [lead, ...rest] = project.title.split('. ');
                     if (!rest.length) return project.title;
@@ -265,7 +265,7 @@ const ProjectDetail = () => {
 
               <RevealOnScroll delay={100}>
                 <div className={isTutorOnboarding ? '' : 'pt-10'} style={isTutorOnboarding ? undefined : { borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-                  <p className={`${isTutorOnboarding ? 'text-[18px] md:text-[21px] max-w-4xl leading-[1.6]' : 'text-[16px] leading-[1.75] max-w-3xl'} font-light`} style={{ color: 'rgba(255,255,255,0.55)' }}>
+                  <p className="text-[18px] md:text-[21px] w-full leading-[1.6] font-light" style={{ color: 'rgba(255,255,255,0.55)' }}>
                     {isTutorOnboarding
                       ? 'An eight-step onboarding journey with a dedicated success state, designed to reduce form fatigue while improving profile quality and verification confidence.'
                       : project.intro}

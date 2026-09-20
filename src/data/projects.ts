@@ -1658,7 +1658,7 @@ export const projects: Record<string, ProjectData> = {
         themeGradient: "from-[#EEF2FF] to-[#FFFFFF]",
         clientWebsite: "https://www.locatetutor.com",
         links: [
-            { text: "Figma File", url: "https://www.figma.com/proto/7nW2mgIQJV3YccEFW0neFn/Locate-Tutor?node-id=1-587&p=f&viewport=732%2C261%2C0.03&t=OEDlcH79FvpQk9Lx-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" }
+            { text: "Figma File", url: "https://www.figma.com/design/4Ai41numD4u5FTinK0hf9c/LT?node-id=7-1217&t=zo87nlplGYKHV5cB-1" }
         ],
         blocks: [
             {
@@ -1773,7 +1773,7 @@ export const projects: Record<string, ProjectData> = {
                 type: "prototype",
                 title: "Explore the Complete Journey",
                 description: "The interactive prototype connects all eight input steps, supporting states, and the final submission experience.",
-                url: "https://www.figma.com/proto/7nW2mgIQJV3YccEFW0neFn/Locate-Tutor?node-id=1-587&p=f&viewport=732%2C261%2C0.03&t=OEDlcH79FvpQk9Lx-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1"
+                url: "https://www.figma.com/proto/4Ai41numD4u5FTinK0hf9c/LT?node-id=1-587&viewport=397%2C-339%2C0.51&t=YVm1Mm55bmiqiYNs-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1"
             },
             {
                 type: "impact",
@@ -1797,6 +1797,173 @@ export const projects: Record<string, ProjectData> = {
                     "Validate where tutors pause or abandon across each of the eight input steps.",
                     "Test whether pricing guidance improves completion confidence without anchoring rates too aggressively.",
                     "Measure resume-import accuracy and the percentage of extracted fields tutors accept, edit, or reject."
+                ]
+            }
+        ]
+    }
+    ,
+    bajajpay: {
+        id: "bajajpay",
+        title: "Bajaj Pay, From One Payment to a Habit",
+        navTitle: "Bajaj Pay, Bill Payments",
+        subtitle: "Turning a first bill payment into a recurring one, without a louder homepage or more notifications",
+        headerImage: "/finance/hero.png",
+        intro: "A first bill payment is a transaction, not a relationship. Between that payment and the next due date, nothing gives the user a reason to come back instead of the UPI app already open on his phone. I designed the return trip: keep the biller at the moment of success, send exactly one alert when the bill is actually out, and offer autopay only after he has shown the habit.",
+        role: "Design & Testing Member (design assignment, Bajaj Finance)",
+        type: "Design Assignment · Concept",
+        industry: "FinTech · Bill Payments",
+        duration: "Self-directed exercise",
+        timeline: "Sep 2026",
+        platforms: "Android & iOS",
+        focus: "Retention · Behavioural design · Notification economy",
+        accentColor: "#EE6A1F",
+        themeGradient: "from-[#FFF4EC] to-[#FFFFFF]",
+        quote: "Users don't forget the bill. They forget where they paid it.",
+        links: [
+            { text: "Prototype", url: "https://www.figma.com/proto/v6nRT70XoidMNHfU3xHsE9/Finance?node-id=78-845&page-id=0%3A1&scaling=min-zoom&content-scaling=fixed" },
+            { text: "Design File", url: "https://www.figma.com/design/alnuFxWJikeHpqNvOvJiy6/Finance?node-id=0-1" },
+        ],
+        blocks: [
+            {
+                type: "rich-text",
+                title: "Context",
+                highlight: "A design assignment for Bajaj Finance, scoped to one question: why do people pay their first bill here and then not come back?",
+                content: "This is a concept study, not shipped work. With no analytics access, I worked from the live Bajaj Pay app as it existed on 17 Sep 2026, publicly documented product behaviour, and competitor teardowns. Every number in the measurement section is a plan, not a result.\n\nI set myself two constraints a real team would face: no new homepage real estate, and no increase in notification volume. A retention win that costs the user more noise is borrowed, not earned — and those two rules ended up driving every decision that follows."
+            },
+            {
+                type: "role-list",
+                title: "Role & Constraints",
+                highlight: "Solo designer, end to end: problem framing, research plan, flow, wireframes, visual design, component foundations and the measurement plan.",
+                content: "The rules I held myself to:",
+                roles: [
+                    "No new entry point: reuse the Upcoming bills section that already exists rather than adding a badge or tab",
+                    "Alert budget of 1 per biller per cycle, bundled when two or more bills fall within three days",
+                    "Autopay never offered on a first payment, only after two on-time payments of a steady amount",
+                    "Handoffs left untouched: existing payment gateway, UPI AutoPay mandate flow, login, KYC and global nav"
+                ]
+            },
+            {
+                type: "image",
+                title: "The Problem",
+                src: "/finance/problem.png",
+                caption: "The loss happens in the silence between payments, not at the second payment — he pays on day 0, then nothing reaches him until the board's SMS does.",
+                fullWidth: true
+            },
+            {
+                type: "image",
+                title: "How I'd Research It",
+                src: "/finance/research.png",
+                caption: "Four insights, each tied to the screen it drove. The through-line: users want convenience, but they want control over their money more.",
+                fullWidth: true
+            },
+            {
+                type: "image",
+                title: "Read of What Exists Today",
+                src: "/finance/audit.png",
+                caption: "Eleven observations across four live screens. The finding that reframed the brief: the data is already there — the due date, the early-pay price, an Upcoming bills card — it just sits below the promos.",
+                fullWidth: true
+            },
+            {
+                type: "image",
+                title: "Flow: One Cycle, Three Outcomes",
+                src: "/finance/flow.png",
+                caption: "The happy path, the failure branch and the waiting state — with the alert budget and the autopay eligibility rules written onto the canvas rather than left implicit.",
+                fullWidth: true
+            },
+            {
+                type: "image",
+                title: "Wireframes: Structure Before Styling",
+                src: "/finance/wireframes.png",
+                caption: "Six states, each annotated with the three decisions behind it.",
+                fullWidth: true
+            },
+            {
+                type: "core-screens",
+                title: "Visual Design",
+                highlight: "Three moments carry the whole idea: the moment after success, being found again a month later, and what happens when it fails.",
+                screens: [
+                    {
+                        title: "The moment after success",
+                        image: "/finance/visual-design.png",
+                        description: "Keeping the biller where attention already is — plus the return a month later, and the failure screen that leads with the money state."
+                    },
+                    {
+                        title: "Autopay, earned — not pushed",
+                        image: "/finance/supporting-states.png",
+                        description: "Asked once, after two on-time payments, with three controls answering three fears. Alongside it, 'bill not out yet' becomes a plan instead of a dead end."
+                    },
+                    {
+                        title: "Before → after, on the real screens",
+                        image: "/finance/before-after.png",
+                        description: "The same three changes, set against live screenshots of the current app."
+                    }
+                ]
+            },
+            {
+                type: "prototype",
+                title: "Interactive Prototype",
+                url: "https://www.figma.com/proto/v6nRT70XoidMNHfU3xHsE9/Finance?node-id=78-845&page-id=0%3A1&content-scaling=fixed",
+                description: "Walk one billing cycle end to end, then the habit — and branch into the failure and bill-not-out-yet states.",
+                height: "820px"
+            },
+            {
+                type: "image",
+                title: "Foundations",
+                src: "/finance/foundations.png",
+                caption: "Calm finance, calibrated against the live app: big numbers, short supporting text, because people scan bills rather than read them.",
+                fullWidth: true
+            },
+            {
+                type: "trade-offs",
+                title: "Trade-offs",
+                items: [
+                    {
+                        option: "Reminder ON by default at the success screen",
+                        status: "selected",
+                        reasoning: "The feature only works if the reminder exists, and an opt-in checkbox at a moment of celebration gets ignored. The honesty cost is paid by stating the promise inline: one alert, around 16 Oct.",
+                        tradeOff: "It's a default the user didn't ask for. I made it one tap to switch off and set an early-warning metric: if more people turn it off than keep it, the default isn't trusted and I'd revisit it before reading anything else."
+                    },
+                    {
+                        option: "Offering autopay at the first payment",
+                        status: "rejected",
+                        reasoning: "It's the fastest route to an autopay number and the standard growth play. But a first-time payer has no reason to trust a standing debit yet, and asking early converts the hesitant into the resentful.",
+                        tradeOff: "Slower autopay adoption, and we give up volume in cycle 1. I'd rather measure autopay stopped within 60 days as a guardrail than book a conversion that churns."
+                    },
+                    {
+                        option: "A new 'My Bills' tab or homepage badge",
+                        status: "rejected",
+                        reasoning: "The audit showed Upcoming bills already exists and already has the data. The problem was that promos outranked it, not that it was missing.",
+                        tradeOff: "Less visible than a dedicated surface. But reordering existing sections costs no new real estate, ships faster, and doesn't fragment where bills live."
+                    },
+                    {
+                        option: "More reminders as the due date approaches",
+                        status: "rejected",
+                        reasoning: "A reminder ladder would almost certainly lift payment rate in the short term. It would also degrade every other notification the app sends.",
+                        tradeOff: "We're betting on one well-timed alert beating three poorly-timed ones. If the bet is wrong, reminder-to-payment will show it, and bundling gives multi-biller users fewer sends than today."
+                    }
+                ]
+            },
+            {
+                type: "image",
+                title: "How I'd Know It Worked",
+                src: "/finance/metrics.png",
+                caption: "First-payment cohorts split 50/50 into test and holdout, read over two billing cycles — with a stated kill criterion, so the number that would prove me wrong is named before launch.",
+                fullWidth: true
+            },
+            {
+                type: "learnings",
+                title: "Reflection",
+                learnings: [
+                    "The audit changed the brief. I expected to design a retention feature and found a prioritisation problem: the due date, the early-pay price and the Upcoming bills card were all already there, just outranked by promos.",
+                    "Constraints made the work sharper, not smaller. Banning new homepage real estate and capping notification volume killed the easy answers early and forced the alert budget, which became the most defensible part of the design.",
+                    "Writing the eligibility rule for autopay in plain language — who gets asked, who doesn't, and how long a dismissal holds — surfaced more edge cases than the flow diagram did.",
+                    "Stating a kill criterion before launch is uncomfortable and worth it. Naming the number that would prove me wrong made the rest of the measurement plan honest."
+                ],
+                future: [
+                    "Verify where the second payment actually happens today: another app, an offline counter, or late. The denominator changes the size of the problem.",
+                    "Confirm how early each biller's bill can be fetched, since that alone decides whether the one reminder can land inside the early-pay window.",
+                    "Test the reminder-on default against an explicit opt-in, reading switch-off rate rather than payment rate.",
+                    "Check whether existing SMS and email receipts already bring people back, and to which screen — that route may be cheaper than anything I designed."
                 ]
             }
         ]

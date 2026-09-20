@@ -58,6 +58,16 @@ const projects = [
     category: "Sports Tech · AI · SaaS",
   }, */
   {
+    slug: "bajajpay",
+    title: "Bajaj Pay, From One Payment to a Habit",
+    description:
+      "A design assignment on bill-payment retention: keep the biller at the moment of success, spend exactly one well-timed alert per cycle, and earn autopay instead of pushing it — all without new homepage space or extra notifications.",
+    image: "/finance/hero.png",
+    alt: "Bajaj Pay bill payments case study",
+    category: "FinTech · Mobile · Assignment",
+    featured: false,
+  },
+  {
     slug: "whatsapp",
     title: "WhatsApp, Voice NLP",
     description:
