@@ -1773,7 +1773,7 @@ export const projects: Record<string, ProjectData> = {
                 type: "prototype",
                 title: "Explore the Complete Journey",
                 description: "The interactive prototype connects all eight input steps, supporting states, and the final submission experience.",
-                url: "https://www.figma.com/proto/4Ai41numD4u5FTinK0hf9c/LT?node-id=1-587&viewport=397%2C-339%2C0.51&t=YVm1Mm55bmiqiYNs-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1"
+                url: "https://www.figma.com/proto/4Ai41numD4u5FTinK0hf9c/LT?node-id=1-587&viewport=397%2C-339%2C0.51&t=Vgu2xAIyPGiLHssS-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1"
             },
             {
                 type: "impact",
