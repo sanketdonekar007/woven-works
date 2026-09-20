@@ -22,7 +22,7 @@ const projects = [
     slug: "vstatecompliance",
     title: "vState, Workflow Platform",
     description:
-      "I led end-to-end service design for a multi-tenant compliance SaaS, from stakeholder research and service blueprints to high-fidelity flows that reduced manual work by 70% for 200+ clients.",
+      "I led end-to-end service design for a multi-tenant compliance SaaS, from stakeholder research and service blueprints to high-fidelity flows that cut filing cycles by 45% and client status inquiries by 70% in pilot sessions.",
     image: "/lovable-uploads/filenow3.jpg",
     alt: "vState Compliance Workflow Platform",
     category: "B2B SaaS · Compliance",
@@ -42,7 +42,7 @@ const projects = [
     slug: "accurest",
     title: "AccuRest, Supply Chain Platform",
     description:
-      "I designed the operational nerve centre of an enterprise supply chain platform, reducing shipment creation from 45 to 8 minutes in usability testing across five stakeholder groups.",
+      "I designed the operational nerve centre of an enterprise supply chain platform, reducing shipment creation from 45 to 8 minutes in usability testing (n=6) across five stakeholder groups.",
     image: "/lovable-uploads/accurest-hero-optimized.jpg",
     alt: "AccuRest Supply Chain Platform",
     category: "Enterprise SaaS · Supply Chain",
@@ -71,7 +71,7 @@ const projects = [
     slug: "whatsapp",
     title: "WhatsApp, Voice NLP",
     description:
-      "I designed a UX concept enhancing WhatsApp's voice messaging with AI-powered transcription, cutting time-to-detail from 90 seconds to 15 across 5 usability test rounds.",
+      "I designed a UX concept enhancing WhatsApp's voice messaging with AI-powered transcription, cutting time-to-detail from 90 seconds to 15 in concept testing across 5 rounds.",
     image: "/lovable-uploads/whatsapp-feature.jpg",
     alt: "WhatsApp Voice NLP Concept",
     category: "Concept · Social UX",

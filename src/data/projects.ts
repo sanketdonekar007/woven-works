@@ -376,7 +376,7 @@ export const projects: Record<string, ProjectData> = {
                 type: "impact",
                 title: "Final Outcomes",
                 items: [
-                    "35 to 40% faster feature rollout cycles",
+                    "Noticeably faster feature rollout cycles once teams composed screens from shared components (team-reported, not instrumented)",
                     "Reduced component duplication across modules",
                     "Scalable multi-tenant UX structure",
                     "Improved compliance deadline tracking",
@@ -607,8 +607,8 @@ export const projects: Record<string, ProjectData> = {
                 type: "impact",
                 title: "Usability Outcomes & Direct Feedback",
                 items: [
-                    "50% reduction in filing completion time compared to legacy sheets",
-                    "80% drop in client status inquiries due to transparent dashboard access",
+                    "45% faster filing cycles, recorded in internal pilot sessions against the legacy spreadsheet process",
+                    "70% fewer client status inquiries once clients could self-serve status from the dashboard",
                     "Zero missed client deadlines across the first year of platform deployment"
                 ]
             }
@@ -1138,10 +1138,10 @@ export const projects: Record<string, ProjectData> = {
                 type: "impact",
                 title: "Usability Outcomes & Impact",
                 items: [
-                    "70% less manual administrative work — automated status alerts replaced emails",
-                    "50% faster filing cycles achieved via role-specific task focus",
-                    "80% drop in client status inquiries due to transparent dashboard access",
-                    "Super Admin daily status compiled in 15 minutes, down from 2 hours average"
+                    "45% faster filing cycles, recorded in internal pilot sessions against the legacy spreadsheet process",
+                    "70% fewer client status inquiries once clients could self-serve status from the dashboard",
+                    "Substantially less manual administrative work, as automated status alerts replaced routine email chasing (client-reported, not instrumented)",
+                    "Super Admin daily status compiled in roughly 15 minutes, down from about 2 hours (client-reported)"
                 ]
             },
             {
@@ -1255,8 +1255,8 @@ export const projects: Record<string, ProjectData> = {
                 type: "impact",
                 title: "Usability Validation & Business Impact",
                 items: [
-                    "70% reduction in status email inquiries via direct self-serve portals",
-                    "45% faster filing cycles recorded in internal pilot sessions",
+                    "70% fewer client status inquiries once clients could self-serve status from the dashboard",
+                    "45% faster filing cycles, recorded in internal pilot sessions against the legacy spreadsheet process",
                     "Zero missed client deadlines across the first year of platform deployment",
                     "Rigorous legal audit-trail compliance successfully verified"
                 ]
@@ -1603,10 +1603,10 @@ export const projects: Record<string, ProjectData> = {
                 type: "impact",
                 title: "Field Usability & Impact",
                 items: [
-                    "92% reduction in attendance time — 20-player squad marked in under 10 seconds vs. 17 minutes manual roll call",
-                    "4.8× increase in parent login engagement during the 4-week beta pilot",
-                    "35% increase in on-time monthly fee payments using wallet cashbacks",
-                    "40% increase in student drill completions via milestone rings transparency"
+                    "Attendance for a 20-player squad dropped from a ~17 minute manual roll call to under 10 seconds, timed during the beta pilot",
+                    "Parent logins rose sharply over the 4-week beta pilot, though the sample was too small to treat as a reliable rate",
+                    "Academy staff reported more fees arriving on time after wallet cashbacks were introduced (not instrumented)",
+                    "Coaches observed higher drill completion once milestone rings made progress visible (qualitative, from pilot feedback)"
                 ]
             },
             {

@@ -452,11 +452,11 @@ const ProjectDetail = () => {
 
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 text-base font-light tracking-[-0.01em] text-white/60">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            Available For Work
+            Open to Senior Product Design opportunities
           </span>
 
           <h2 className="text-[22px] sm:text-[28px] md:text-[40px] lg:text-[48px] font-medium leading-[1.25] tracking-[-0.02em] text-white max-w-[720px]">
-            Good ideas deserve great design ✨ Let's bring yours to life 🚀
+            Looking for a designer who can bring clarity to complex products?
           </h2>
 
           <a
@@ -465,7 +465,7 @@ const ProjectDetail = () => {
             style={{ border: '1px solid rgba(255,255,255,0.3)' }}
           >
             <span className="btn-shine pointer-events-none absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-            Book a Free Call
+            Discuss a product design role
           </a>
 
           <div className="flex items-center gap-5 mt-2">
