@@ -268,9 +268,9 @@ const Index = () => {
             <p className="text-[26px] sm:text-[36px] md:text-[52px] lg:text-[60px] font-light leading-[1.2] tracking-[-0.01em] text-white/65">
               Hey, I'm{" "}
               <img
-                src="/lovable-uploads/cheeze.png"
+                src="/lovable-uploads/sanket-avatar.jpg"
                 className="inline-block w-9 h-9 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full object-cover align-middle mx-1"
-                alt=""
+                alt="Sanket Donekar"
               />{" "}
               Sanket,
             </p>
