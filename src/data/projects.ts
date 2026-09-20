@@ -498,14 +498,14 @@ export const projects: Record<string, ProjectData> = {
                         description: "Average time to locate specific info dropped from 90 seconds (scrubbing audio) to just 15 seconds (using inline text search)."
                     },
                     {
-                        value: "100%",
-                        label: "Accessibility Score",
-                        description: "Evaluated and validated for WCAG compliance across simulated hearing impairment and high-contrast scenarios."
+                        value: "WCAG AA",
+                        label: "Accessibility Target",
+                        description: "Audited against WCAG 2.1 AA for contrast, touch-target size, and screen-reader labelling on the transcript view, including high-contrast and hearing-impairment scenarios."
                     },
                     {
-                        value: "0.0",
-                        label: "UI Cognitive Drag",
-                        description: "Zero user friction or interface overload reported during moderated tasks due to the collapsed-by-default visual approach."
+                        value: "None",
+                        label: "Clutter Raised in Testing",
+                        description: "No participant in moderated tasks raised the transcript as added clutter, which was the specific risk the collapsed-by-default approach was designed to avoid."
                     }
                 ]
             },
@@ -609,7 +609,7 @@ export const projects: Record<string, ProjectData> = {
                 items: [
                     "45% faster filing cycles, recorded in internal pilot sessions against the legacy spreadsheet process",
                     "70% fewer client status inquiries once clients could self-serve status from the dashboard",
-                    "Zero missed client deadlines across the first year of platform deployment"
+                    "No missed statutory deadlines reported in the first year of deployment, supported by the deadline-tracking design alongside the client's own operations"
                 ]
             }
         ]
@@ -748,7 +748,7 @@ export const projects: Record<string, ProjectData> = {
                 items: [
                     "5/5 usability testers completed conversation-first onboarding without instructions",
                     "4/5 testers preferred milestone cumulative rings over streaks when shown both options side-by-side in usability round 2",
-                    "Recall rates for media-linked vocabulary doubled compared to isolated drill words"
+                    "Media-linked vocabulary was recalled noticeably more often than isolated drill words in short in-session checks, though not over spaced intervals"
                 ]
             },
             {
@@ -1257,7 +1257,7 @@ export const projects: Record<string, ProjectData> = {
                 items: [
                     "70% fewer client status inquiries once clients could self-serve status from the dashboard",
                     "45% faster filing cycles, recorded in internal pilot sessions against the legacy spreadsheet process",
-                    "Zero missed client deadlines across the first year of platform deployment",
+                    "No missed statutory deadlines reported in the first year of deployment, supported by the deadline-tracking design alongside the client's own operations",
                     "Rigorous legal audit-trail compliance successfully verified"
                 ]
             },
