@@ -486,12 +486,12 @@ const Index = () => {
 
         {/* Header */}
         <div className="max-w-[1200px] mx-auto px-6 lg:px-10 mb-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="overflow-hidden rounded-[18px] aspect-[4/3]">
+          <div className="grid grid-cols-1 md:grid-cols-[minmax(0,320px)_1fr] gap-8 md:gap-12 items-center">
+            <div className="overflow-hidden rounded-[18px] w-full max-w-[280px] md:max-w-none mx-auto md:mx-0">
               <img
                 src="/lovable-uploads/sanket-portrait.jpg"
                 alt="Sanket Donekar"
-                className="w-full h-full object-cover grayscale"
+                className="w-full h-auto grayscale"
               />
             </div>
             <div className="flex flex-col gap-5">
