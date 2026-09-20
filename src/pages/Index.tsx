@@ -268,7 +268,7 @@ const Index = () => {
             <p className="text-[26px] sm:text-[36px] md:text-[52px] lg:text-[60px] font-light leading-[1.2] tracking-[-0.01em] text-white/65">
               Hey, I'm{" "}
               <img
-                src="/lovable-uploads/sanket-avatar.jpg"
+                src="/lovable-uploads/me.png"
                 className="inline-block w-9 h-9 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full object-cover align-middle mx-1"
                 alt="Sanket Donekar"
               />{" "}
@@ -489,8 +489,8 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="overflow-hidden rounded-[18px] aspect-[4/3]">
               <img
-                src="/lovable-uploads/me.png"
-                alt="Working session"
+                src="/lovable-uploads/sanket-avatar.jpg"
+                alt="Sanket Donekar"
                 className="w-full h-full object-cover grayscale"
               />
             </div>
