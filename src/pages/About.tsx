@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import AnimatedLink from "@/components/AnimatedLink";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   Carousel,
   CarouselContent,
@@ -158,10 +159,6 @@ const About = () => {
   const [tappedIndex, setTappedIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    document.documentElement.classList.add("dark");
-  }, []);
-
-  useEffect(() => {
     if (!heroApi) return;
     const onSelect = () => {
       setActiveIndex(heroApi.selectedScrollSnap());
@@ -199,7 +196,7 @@ const About = () => {
   }, []);
 
   return (
-    <div className="bg-black min-h-screen text-white font-vietnam">
+    <div className="theme-page bg-black min-h-screen text-white font-vietnam">
 
       {/* ── Nav ─────────────────────────────────────── */}
       <header className={`header${scrolled ? " scrolled" : ""}`}>
@@ -212,6 +209,7 @@ const About = () => {
               <li><AnimatedLink href="/#works">Works</AnimatedLink></li>
               <li><AnimatedLink to="/about" className="active">About Me</AnimatedLink></li>
               <li><AnimatedLink href="/Sanket Donekar Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</AnimatedLink></li>
+              <li><ThemeToggle /></li>
             </ul>
           </nav>
         </div>
@@ -348,7 +346,7 @@ const About = () => {
         <div className="flex flex-col gap-4">
           {education.map((item, i) => (
             <Reveal key={i} delay={i * 100}>
-              <div className="relative bg-[#0d0d0d] rounded-2xl px-8 py-7 flex items-start gap-5"
+              <div className="education-card relative bg-[#0d0d0d] rounded-2xl px-8 py-7 flex items-start gap-5"
                 style={{ border: "1px solid rgba(255,255,255,0.07)" }}>
                 {/* Number badge */}
                 <span className="absolute top-5 right-6 text-[13px] font-light tabular-nums text-white/20 tracking-[0.08em]">
@@ -435,7 +433,7 @@ const About = () => {
       <footer className="relative min-h-[80vh] flex flex-col overflow-hidden border-t border-white/10">
 
         {/* Spline background */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="cinematic-bg absolute inset-0 z-0 pointer-events-none">
           {/* @ts-ignore */}
           <spline-viewer
             url="https://prod.spline.design/Ewb8vIqWFjVZn1-c/scene.splinecode"
@@ -458,7 +456,7 @@ const About = () => {
 
           <a
             href="mailto:sanket.donekar@gmail.com"
-            className="relative overflow-hidden px-8 py-3.5 rounded-full text-[15px] font-medium tracking-[-0.01em] text-white hover:bg-white/[0.08] transition-colors"
+            className="light-footer-cta relative overflow-hidden px-8 py-3.5 rounded-full text-[15px] font-medium tracking-[-0.01em] text-white hover:bg-white/[0.08] transition-all"
             style={{ border: "1px solid rgba(255,255,255,0.3)" }}
           >
             <span className="btn-shine pointer-events-none absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent" />

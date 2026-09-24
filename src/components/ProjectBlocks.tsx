@@ -256,14 +256,14 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
                     <span className={subtitleClass}>{block.title || "Strategic Solutions"}</span>
                     <div className="grid gap-3">
                         {block.challenges.map((item, index) => (
-                            <article key={index} className="rounded-[20px] border border-white/10 bg-white/[0.02] p-5 md:p-7 grid md:grid-cols-[0.8fr_1.2fr] gap-6 md:gap-10 group hover:border-white/20 transition-colors">
+                            <article key={index} className="rounded-[20px] border border-border bg-card dark:border-white/10 dark:bg-white/[0.02] p-5 md:p-7 grid md:grid-cols-[0.8fr_1.2fr] gap-6 md:gap-10 group hover:border-primary/30 dark:hover:border-white/20 transition-colors">
                                 <div>
-                                    <div className="text-xs font-medium uppercase tracking-[0.14em] text-rose-300/55 mb-3">Friction</div>
-                                    <h3 className="text-[18px] font-medium text-white leading-snug">{item.challenge}</h3>
+                                    <div className="decision-friction-label text-xs font-semibold uppercase tracking-[0.14em] text-rose-700 dark:text-rose-300/70 mb-3">Friction</div>
+                                    <h3 className="text-[18px] font-medium text-foreground dark:text-white leading-snug">{item.challenge}</h3>
                                 </div>
-                                <div className="md:border-l md:border-white/10 md:pl-10">
-                                    <div className="text-xs font-medium uppercase tracking-[0.14em] text-emerald-300/55 mb-3">Design response</div>
-                                    <p className="text-[16px] text-white/55 leading-7">{item.solution}</p>
+                                <div className="md:border-l md:border-border dark:md:border-white/10 md:pl-10">
+                                    <div className="decision-response-label text-xs font-semibold uppercase tracking-[0.14em] text-emerald-700 dark:text-emerald-300/70 mb-3">Design response</div>
+                                    <p className="text-[16px] text-muted-foreground dark:text-white/55 leading-7">{item.solution}</p>
                                 </div>
                             </article>
                         ))}
@@ -622,17 +622,17 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
                         </div>
                     </div>
 
-                    <div className="rounded-[24px] border border-white/10 bg-white/[0.02] p-6 md:p-9">
+                    <div className="roadmap-card rounded-[24px] border border-border bg-card dark:border-white/10 dark:bg-white/[0.02] p-6 md:p-9">
                         <div className="grid md:grid-cols-[1fr_2fr] gap-12">
                             <div>
-                                <span className={subtitleClass}>Roadmap</span>
-                                <h2 className="text-[20px] font-medium tracking-[-0.02em] text-white">Future Scope</h2>
+                                <span className="text-[14px] sm:text-[16px] tracking-[0.18em] mb-3 block uppercase font-semibold text-muted-foreground dark:text-white/40">Roadmap</span>
+                                <h2 className="text-[20px] font-medium tracking-[-0.02em] text-foreground dark:text-white">Future Scope</h2>
                             </div>
                             <ul className="space-y-3">
                                 {block.future.map((item, i) => (
-                                    <li key={i} className="flex items-start gap-4 rounded-[14px] border border-white/10 p-4">
+                                    <li key={i} className="flex items-start gap-4 rounded-[14px] border border-border bg-background/60 dark:border-white/10 dark:bg-transparent p-4">
                                         <ArrowRight className="w-4 h-4 flex-shrink-0 mt-1" style={{ color: accentColor }} />
-                                        <span className="text-[15px] text-white/55 leading-6">{item}</span>
+                                        <span className="text-[15px] text-muted-foreground dark:text-white/55 leading-6">{item}</span>
                                     </li>
                                 ))}
                             </ul>

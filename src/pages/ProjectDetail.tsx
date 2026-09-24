@@ -5,6 +5,7 @@ import { RevealOnScroll } from "../components/RevealOnScroll";
 import { projects } from "@/data/projects";
 import { BlockRenderer } from "@/components/ProjectBlocks";
 import { ExternalLink, ChevronLeft } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -81,11 +82,12 @@ const ProjectDetail = () => {
 
   if (isProtected && !isUnlocked) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-black text-white px-6 font-vietnam">
-        <div className="w-full max-w-md rounded-[28px] border border-white/10 bg-[#0d0d0d] p-7 sm:p-10 text-center shadow-2xl">
+      <div className="min-h-screen flex items-center justify-center bg-background text-foreground px-6 font-vietnam">
+        <div className="fixed right-5 top-5"><ThemeToggle /></div>
+        <div className="w-full max-w-md rounded-[28px] border border-border bg-card p-7 sm:p-10 text-center shadow-2xl">
           <div className="text-3xl mb-5" aria-hidden="true">🔒</div>
           <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-3">Protected Case Study</h1>
-          <p className="text-sm sm:text-base leading-6 text-white/50 mb-8">This client project contains confidential work. Enter the shared portfolio password to continue.</p>
+          <p className="text-sm sm:text-base leading-6 text-muted-foreground mb-8">This client project contains confidential work. Enter the shared portfolio password to continue.</p>
           <form onSubmit={handlePasswordSubmit} className="space-y-4">
             <label htmlFor="case-study-password" className="sr-only">Case study password</label>
             <input
@@ -95,11 +97,11 @@ const ProjectDetail = () => {
               value={password}
               onChange={(event) => { setPassword(event.target.value); setPasswordError(false); }}
               placeholder="Enter password"
-              className={`w-full h-12 rounded-2xl border bg-white/[0.04] px-4 text-center text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-indigo-400 ${passwordError ? 'border-red-500' : 'border-white/10'}`}
+              className={`w-full h-12 rounded-2xl border bg-background px-4 text-center text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${passwordError ? 'border-red-500' : 'border-border'}`}
             />
             {passwordError && <p role="alert" className="text-sm text-red-400">Incorrect password. Please try again.</p>}
-            <button type="submit" className="w-full h-12 rounded-full bg-white text-black text-sm font-medium hover:opacity-90 transition-opacity">View Case Study</button>
-            <Link to="/" className="flex h-11 items-center justify-center text-sm text-white/45 hover:text-white">Back to portfolio</Link>
+            <button type="submit" className="w-full h-12 rounded-full bg-foreground text-background text-sm font-medium hover:opacity-90 transition-opacity">View Case Study</button>
+            <Link to="/" className="flex h-11 items-center justify-center text-sm text-muted-foreground hover:text-foreground">Back to portfolio</Link>
           </form>
         </div>
       </div>
@@ -168,8 +170,8 @@ const ProjectDetail = () => {
       <nav className="fixed top-0 left-0 w-full z-50 px-4 sm:px-8 py-4 sm:py-5 flex items-center justify-between backdrop-blur-[12px] transition-all duration-300"
         style={{ background: 'rgba(0,0,0,0.8)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
         <div className="flex items-center gap-3 min-w-0 flex-1 lg:flex-none">
-          <Link to="/" state={{ restoreScroll: true }} className="flex items-center gap-2 flex-shrink-0" style={{ color: '#fff' }}>
-            <div className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white/10"
+          <Link to="/" state={{ restoreScroll: true }} className="case-study-back flex items-center gap-2 flex-shrink-0" style={{ color: '#fff' }}>
+            <div className="case-study-back-icon w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white/10"
               style={{ border: '1px solid rgba(255,255,255,0.15)' }}>
               <ChevronLeft className="w-3.5 h-3.5" />
             </div>
@@ -182,7 +184,7 @@ const ProjectDetail = () => {
         <div className="hidden lg:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-[16px] tracking-[0.18em] uppercase font-light" style={{ color: 'rgba(255,255,255,0.4)' }}>
           {project.navTitle || project.title}
         </div>
-        <div className="hidden lg:block flex-1 flex justify-end" />
+        <div className="flex-1 flex justify-end"><ThemeToggle /></div>
       </nav>
 
       {/* Full-width layout with padding */}
@@ -437,9 +439,9 @@ const ProjectDetail = () => {
       </div>
 
       {/* Footer */}
-      <footer className="relative min-h-screen flex flex-col overflow-hidden border-t border-white/10">
+      <footer className="case-study-footer relative min-h-screen flex flex-col overflow-hidden border-t border-white/10">
 
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="cinematic-bg absolute inset-0 z-0 pointer-events-none">
           {/* @ts-ignore */}
           <spline-viewer
             url="https://prod.spline.design/Ewb8vIqWFjVZn1-c/scene.splinecode"
@@ -461,7 +463,7 @@ const ProjectDetail = () => {
 
           <a
             href="mailto:sanket.donekar@gmail.com"
-            className="relative overflow-hidden px-8 py-3.5 rounded-full text-base font-medium tracking-[-0.01em] text-white hover:bg-white/[0.08] transition-colors"
+            className="light-footer-cta relative overflow-hidden px-8 py-3.5 rounded-full text-base font-medium tracking-[-0.01em] text-white hover:bg-white/[0.08] transition-all"
             style={{ border: '1px solid rgba(255,255,255,0.3)' }}
           >
             <span className="btn-shine pointer-events-none absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent" />

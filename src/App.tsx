@@ -11,6 +11,7 @@ import ProjectDetail from "./pages/ProjectDetail";
 import NotFound from "./pages/NotFound";
 import { CursorAndProgress } from "./components/CursorAndProgress";
 import { MusicPlayer } from "./components/MusicPlayer";
+import { ThemeProvider } from "next-themes";
 
 const queryClient = new QueryClient();
 
@@ -25,25 +26,27 @@ const ScrollToTop = () => {
 };
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <CursorAndProgress />
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <div data-ts="trip">
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/projects/:projectId" element={<ProjectDetail />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <MusicPlayer />
-        </div>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <ThemeProvider attribute="class" defaultTheme="light" enableSystem storageKey="portfolio-theme">
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <CursorAndProgress />
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTop />
+          <div data-ts="trip">
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/projects/:projectId" element={<ProjectDetail />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <MusicPlayer />
+          </div>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </ThemeProvider>
 );
 
 export default App;

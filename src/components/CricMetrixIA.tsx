@@ -288,7 +288,7 @@ export function CricMetrixIA() {
   }, [modules, searchQuery, activeTab]);
 
   return (
-    <div className="w-full text-white bg-slate-950 rounded-3xl p-6 md:p-8 border border-white/10 relative overflow-hidden">
+    <div className="dark-visual w-full text-white bg-slate-950 rounded-3xl p-6 md:p-8 border border-white/10 relative overflow-hidden">
       {/* Background radial highlight */}
       <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-cyan-500/10 blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-purple-500/10 blur-[100px] pointer-events-none" />

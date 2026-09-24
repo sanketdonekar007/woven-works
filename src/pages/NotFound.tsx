@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NotFound = () => {
   const location = useLocation();
@@ -12,7 +13,8 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-muted">
+    <div className="min-h-screen flex items-center justify-center bg-background text-foreground">
+      <div className="fixed right-5 top-5"><ThemeToggle /></div>
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4">404</h1>
         <p className="text-xl text-muted-foreground mb-4">Oops! Page not found</p>

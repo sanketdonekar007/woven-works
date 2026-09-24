@@ -2,8 +2,8 @@ type SnackHackIAProps = { accentColor?: string };
 
 const Node = ({ children, color, muted = false }: { children: React.ReactNode; color: string; muted?: boolean }) => (
     <div
-        className="relative z-10 min-h-16 px-5 py-4 rounded-2xl border text-center text-[15px] md:text-[16px] font-medium flex items-center justify-center shadow-[0_12px_35px_rgba(0,0,0,0.22)]"
-        style={{ color: muted ? 'rgba(255,255,255,.72)' : '#fff', backgroundColor: muted ? `${color}18` : color, borderColor: muted ? `${color}45` : `${color}80` }}
+        className={`snack-ia-node relative z-10 min-h-16 px-5 py-4 rounded-2xl border text-center text-[15px] md:text-[16px] font-medium flex items-center justify-center ${muted ? 'snack-ia-node-muted text-foreground dark:text-white/70' : 'text-black'} shadow-[0_12px_35px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_35px_rgba(0,0,0,0.22)]`}
+        style={{ backgroundColor: muted ? `${color}18` : color, borderColor: muted ? `${color}70` : `${color}a0` }}
     >
         {children}
     </div>

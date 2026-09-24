@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Layers, GitBranch, Cpu, Code2 } from "lucide-react";
 import AnimatedLink from "@/components/AnimatedLink";
 import { PasswordProtectedProject } from "@/components/PasswordProtectedProject";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 /* ─── Data ───────────────────────────────────────────── */
 
@@ -187,10 +188,6 @@ const Index = () => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
-  useEffect(() => {
-    document.documentElement.classList.add("dark");
-  }, []);
-
   // Disable native scroll restoration so we control it ourselves
   useEffect(() => {
     window.history.scrollRestoration = 'manual';
@@ -236,6 +233,7 @@ const Index = () => {
               <li><AnimatedLink href="#works">Works</AnimatedLink></li>
               <li><AnimatedLink to="/about">About</AnimatedLink></li>
               <li><AnimatedLink href="/Sanket Donekar Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</AnimatedLink></li>
+              <li><ThemeToggle /></li>
             </ul>
           </nav>
         </div>
@@ -245,7 +243,7 @@ const Index = () => {
       <section className="hero-section relative overflow-hidden" id="hero">
 
         {/* Spline background */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="cinematic-bg absolute inset-0 z-0 pointer-events-none">
           {/* @ts-ignore */}
           <spline-viewer
             url="https://prod.spline.design/Ewb8vIqWFjVZn1-c/scene.splinecode"
@@ -336,7 +334,7 @@ const Index = () => {
       </section>
 
       {/* ── Featured Projects ────────────────────────── */}
-      <section id="works" className="max-w-[1200px] mx-auto px-6 lg:px-10 py-16">
+      <section id="works" className="theme-section max-w-[1200px] mx-auto px-6 lg:px-10 py-16">
 
         <p className="text-base font-light tracking-[0.1em] uppercase text-white/40 mb-0">Featured Projects</p>
 
@@ -400,7 +398,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="max-w-[1200px] mx-auto px-6 lg:px-10 pb-20">
+      <section className="theme-section max-w-[1200px] mx-auto px-6 lg:px-10 pb-20">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 border-b border-white/10 pb-6 mb-8">
           <div>
             <p className="text-base font-light tracking-[0.1em] uppercase text-white/40 mb-3">Selected explorations</p>
@@ -421,7 +419,7 @@ const Index = () => {
       </section>
 
       {/* ── Services / Expertise ─────────────────────── */}
-      <section className="max-w-[1200px] mx-auto px-6 lg:px-10 py-20 border-t border-white/10">
+      <section className="theme-section max-w-[1200px] mx-auto px-6 lg:px-10 py-20 border-t border-white/10">
 
         <div className="mb-16">
           <p className="text-[16px] font-light tracking-[0.14em] uppercase text-white/35 mb-5">How I contribute</p>
@@ -446,11 +444,9 @@ const Index = () => {
         {/* Skill chips — two-row horizontal carousel */}
         <div className="relative overflow-hidden -mx-6 lg:-mx-10 px-0">
           {/* Left fade */}
-          <div className="pointer-events-none absolute left-0 top-0 h-full w-24 z-10"
-            style={{ background: "linear-gradient(to right, #000 0%, transparent 100%)" }} />
+          <div className="carousel-edge carousel-edge-left pointer-events-none absolute left-0 top-0 h-full w-24 z-10" />
           {/* Right fade */}
-          <div className="pointer-events-none absolute right-0 top-0 h-full w-24 z-10"
-            style={{ background: "linear-gradient(to left, #000 0%, transparent 100%)" }} />
+          <div className="carousel-edge carousel-edge-right pointer-events-none absolute right-0 top-0 h-full w-24 z-10" />
 
           {/* Row 1 */}
           <div className="flex gap-2 mb-2 skill-row-1">
@@ -482,7 +478,7 @@ const Index = () => {
       </section>
 
       {/* ── Client Reviews ───────────────────────────── */}
-      <section className="py-20 border-t border-white/10">
+      <section className="theme-section py-20 border-t border-white/10">
 
         {/* Header */}
         <div className="max-w-[1200px] mx-auto px-6 lg:px-10 mb-12">
@@ -511,14 +507,8 @@ const Index = () => {
         {/* Carousel — auto-scrolling marquee, pauses on hover */}
         <div className="max-w-[1200px] mx-auto px-6 lg:px-10">
         <div className="relative overflow-hidden">
-          <div
-            className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-28 z-10"
-            style={{ background: "linear-gradient(to right, #000 0%, transparent 100%)" }}
-          />
-          <div
-            className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-28 z-10"
-            style={{ background: "linear-gradient(to left, #000 0%, transparent 100%)" }}
-          />
+          <div className="carousel-edge carousel-edge-left pointer-events-none absolute inset-y-0 left-0 w-16 md:w-28 z-10" />
+          <div className="carousel-edge carousel-edge-right pointer-events-none absolute inset-y-0 right-0 w-16 md:w-28 z-10" />
 
           {/* Duplicated track for seamless loop */}
           <div className="flex w-max reviews-track">
@@ -569,7 +559,7 @@ const Index = () => {
       </section>
 
       {/* ── Stats ────────────────────────────────────── */}
-      <section className="max-w-[1200px] mx-auto px-6 lg:px-10 py-16 border-t border-white/10">
+      <section className="theme-section max-w-[1200px] mx-auto px-6 lg:px-10 py-16 border-t border-white/10">
         <div className="flex flex-col md:flex-row items-start gap-12 md:gap-0">
           {stats.map((stat, i) => (
             <div
@@ -587,7 +577,7 @@ const Index = () => {
       <footer className="relative min-h-screen flex flex-col overflow-hidden border-t border-white/10">
 
         {/* Spline background */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="cinematic-bg absolute inset-0 z-0 pointer-events-none">
           {/* @ts-ignore */}
           <spline-viewer
             url="https://prod.spline.design/Ewb8vIqWFjVZn1-c/scene.splinecode"
@@ -614,7 +604,7 @@ const Index = () => {
           {/* CTA */}
           <a
             href="mailto:sanket.donekar@gmail.com"
-            className="relative overflow-hidden px-8 py-3.5 rounded-full border border-white/30 text-base font-medium tracking-[-0.01em] text-white hover:bg-white/8 transition-colors"
+            className="light-footer-cta relative overflow-hidden px-8 py-3.5 rounded-full border border-white/30 text-base font-medium tracking-[-0.01em] text-white hover:bg-white/8 transition-colors"
           >
             <span className="btn-shine pointer-events-none absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
             Discuss a product design role
