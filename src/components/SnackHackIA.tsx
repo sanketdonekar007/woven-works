@@ -3,7 +3,12 @@ type SnackHackIAProps = { accentColor?: string };
 const Node = ({ children, color, muted = false }: { children: React.ReactNode; color: string; muted?: boolean }) => (
     <div
         className={`snack-ia-node relative z-10 min-h-16 px-5 py-4 rounded-2xl border text-center text-[15px] md:text-[16px] font-medium flex items-center justify-center ${muted ? 'snack-ia-node-muted text-foreground dark:text-white/70' : 'text-black'} shadow-[0_12px_35px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_35px_rgba(0,0,0,0.22)]`}
-        style={{ backgroundColor: muted ? `${color}18` : color, borderColor: muted ? `${color}70` : `${color}a0` }}
+        style={{
+            backgroundColor: muted ? `${color}18` : color,
+            borderColor: muted ? `${color}70` : `${color}a0`,
+            '--snack-ia-node-color': color,
+            '--snack-ia-node-border': `${color}a0`,
+        } as React.CSSProperties}
     >
         {children}
     </div>
@@ -36,6 +41,7 @@ export const SnackHackIA = ({ accentColor = '#FF6B01' }: SnackHackIAProps) => {
                         {['Product Details', 'Health Score', 'Alternatives'].map((label) => (
                             <div key={label} className="relative">
                                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-px h-10" style={{ backgroundColor: lineColor }} />
+                                <div className="absolute bottom-[calc(100%+2.25rem)] left-1/2 -translate-x-1/2 w-2 h-2 rounded-full" style={{ backgroundColor: accentColor }} />
                                 <Node color={childColor}>{label}</Node>
                             </div>
                         ))}
@@ -51,16 +57,18 @@ export const SnackHackIA = ({ accentColor = '#FF6B01' }: SnackHackIAProps) => {
                 <div className="w-px h-8" style={{ backgroundColor: lineColor }} />
                 <div className="w-full max-w-xs"><Node color={accentColor}>Scan</Node></div>
                 <div className="w-px h-8" style={{ backgroundColor: lineColor }} />
-                <div className="relative w-full max-w-xs pl-7 space-y-3">
-                    <div className="absolute left-2 top-0 bottom-0 w-px" style={{ backgroundColor: lineColor }} />
+                <div className="relative w-full max-w-xs pt-8 pl-7">
+                    <div className="absolute left-2 top-0 bottom-8 w-px" style={{ backgroundColor: lineColor }} />
                     <div className="absolute left-2 right-1/2 top-0 h-px" style={{ backgroundColor: lineColor }} />
-                    <div className="absolute left-2 right-1/2 bottom-0 h-px" style={{ backgroundColor: lineColor }} />
-                    {['Product Details', 'Health Score', 'Alternatives'].map((label) => (
-                        <div key={label} className="relative">
-                            <div className="absolute right-full top-1/2 w-5 h-px" style={{ backgroundColor: lineColor }} />
-                            <Node color={childColor}>{label}</Node>
-                        </div>
-                    ))}
+                    <div className="space-y-3">
+                        {['Product Details', 'Health Score', 'Alternatives'].map((label) => (
+                            <div key={label} className="relative">
+                                <div className="absolute right-full top-1/2 w-5 h-px" style={{ backgroundColor: lineColor }} />
+                                <div className="absolute right-[calc(100%+1rem)] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full" style={{ backgroundColor: accentColor }} />
+                                <Node color={childColor}>{label}</Node>
+                            </div>
+                        ))}
+                    </div>
                 </div>
                 <div className="w-px h-8" style={{ backgroundColor: lineColor }} />
                 <div className="w-full max-w-xs"><Node color={accentColor} muted>Scan History</Node></div>

@@ -433,7 +433,7 @@ const Index = () => {
           {services.map((s) => (
             <div key={s.title} className="bg-[#0d0d0d] rounded-[18px] p-8 flex flex-col gap-4">
               <div className="flex items-center gap-3 mb-1">
-                <s.Icon className="w-[18px] h-[18px] text-white/35" strokeWidth={1.5} />
+                <s.Icon className="service-card-icon w-[18px] h-[18px] text-white/35" strokeWidth={1.5} />
                 <h3 className="text-[17px] font-medium leading-[1.2em] tracking-[-0.02em] text-white">{s.title}</h3>
               </div>
               <p className="text-[16px] leading-[1.65em] font-light tracking-[-0.01em] text-white/45">{s.description}</p>

@@ -784,6 +784,10 @@ html:not(.dark) .theme-section span.font-medium {
   color: hsl(var(--foreground));
 }
 
+html:not(.dark) .theme-section .service-card-icon {
+  color: hsl(var(--foreground) / 0.65);
+}
+
 html:not(.dark) .theme-section [class*="border-white"] {
   border-color: hsl(var(--border));
 }
@@ -1111,3 +1115,10 @@ html:not(.dark) [data-cs="true"] .dark-visual .text-white\/80 { color: rgb(255 2
 html:not(.dark) [data-cs="true"] .dark-visual [class*="border-white"] { border-color: rgb(255 255 255 / 0.1) !important; }
 html:not(.dark) [data-cs="true"] .dark-visual .bg-white\/5 { background-color: rgb(255 255 255 / 0.05) !important; }
 html:not(.dark) [data-cs="true"] .dark-visual .bg-white\/10 { background-color: rgb(255 255 255 / 0.1) !important; }
+
+/* Scan History uses the same solid node treatment as its peers in light mode. */
+html:not(.dark) [data-cs="true"] .snack-ia-node-muted {
+  color: #000 !important;
+  background-color: var(--snack-ia-node-color) !important;
+  border-color: var(--snack-ia-node-border) !important;
+}
