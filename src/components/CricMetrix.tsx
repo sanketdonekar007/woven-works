@@ -134,7 +134,7 @@ const attendanceModes = [
     bg: "rgba(16,185,129,0.06)",
     border: "rgba(16,185,129,0.2)",
     mockup: (
-      <div className="relative w-full aspect-[9/16] max-w-[160px] mx-auto rounded-[24px] overflow-hidden" style={{ background: "#0a0a14", border: "2px solid rgba(16,185,129,0.3)" }}>
+      <div className="dark-visual relative w-full aspect-[9/16] max-w-[160px] mx-auto rounded-[24px] overflow-hidden" style={{ background: "#0a0a14", border: "2px solid rgba(16,185,129,0.3)" }}>
         {/* Face placeholder */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full" style={{ background: "rgba(255,255,255,0.06)", border: "2px solid rgba(16,185,129,0.5)" }} />
         {/* Scan corners */}
@@ -170,7 +170,7 @@ const attendanceModes = [
     bg: "rgba(0,167,225,0.06)",
     border: "rgba(0,167,225,0.2)",
     mockup: (
-      <div className="relative w-full aspect-[9/16] max-w-[160px] mx-auto rounded-[24px] overflow-hidden" style={{ background: "#0a0a14", border: `2px solid rgba(0,167,225,0.3)` }}>
+      <div className="dark-visual relative w-full aspect-[9/16] max-w-[160px] mx-auto rounded-[24px] overflow-hidden" style={{ background: "#0a0a14", border: `2px solid rgba(0,167,225,0.3)` }}>
         {/* Squad silhouettes */}
         {[
           { top: "20%", left: "12%", c: MINT }, { top: "20%", left: "35%", c: MINT },
@@ -206,7 +206,7 @@ const attendanceModes = [
     bg: "rgba(245,158,11,0.06)",
     border: "rgba(245,158,11,0.2)",
     mockup: (
-      <div className="relative w-full aspect-[9/16] max-w-[160px] mx-auto rounded-[24px] overflow-hidden" style={{ background: "#0a0a14", border: "2px solid rgba(245,158,11,0.3)" }}>
+      <div className="dark-visual relative w-full aspect-[9/16] max-w-[160px] mx-auto rounded-[24px] overflow-hidden" style={{ background: "#0a0a14", border: "2px solid rgba(245,158,11,0.3)" }}>
         {/* Search bar */}
         <div className="absolute top-4 left-2 right-2 rounded-lg px-2 py-1.5" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(245,158,11,0.3)" }}>
           <div className="text-[8px] text-white/40">🔍 Search player…</div>
@@ -333,7 +333,7 @@ export function CricMetrixVoiceScorer() {
     <div className="w-full grid md:grid-cols-2 gap-6">
       {/* Left: Phone UI */}
       <div className="flex flex-col items-center justify-center">
-        <div className="relative w-full max-w-[300px] rounded-[40px] overflow-hidden shadow-2xl" style={{ background: INDIGO, border: "2px solid rgba(0,167,225,0.25)" }}>
+        <div className="dark-visual relative w-full max-w-[300px] rounded-[40px] overflow-hidden shadow-2xl" style={{ background: INDIGO, border: "2px solid rgba(0,167,225,0.25)" }}>
           {/* Status bar */}
           <div className="flex items-center justify-between px-6 pt-5 pb-2">
             <span className="text-[10px] font-bold text-white/40">9:41 AM</span>
@@ -754,7 +754,7 @@ export function CricMetrixFeeCheckout() {
     <div ref={ref} className="w-full grid md:grid-cols-2 gap-6 items-start">
       {/* Checkout panel */}
       <div
-        className="rounded-3xl overflow-hidden transition-all duration-700"
+        className="dark-visual rounded-3xl overflow-hidden transition-all duration-700"
         style={{
           background: "linear-gradient(135deg, rgba(30,27,75,0.95) 0%, rgba(10,10,30,0.98) 100%)",
           border: "1px solid rgba(0,167,225,0.25)",

@@ -30,9 +30,12 @@ export const MusicPlayer = () => {
     <>
       <audio ref={audioRef} src={audioSrc} loop preload="none" />
       <button
+        type="button"
         onClick={toggleMusic}
         aria-label={playing ? "Pause music" : "Play music"}
-        className="fixed right-5 bottom-8 z-50 flex items-center justify-center w-14 h-14 rounded-full border border-white/15 bg-black/60 backdrop-blur-md text-white/50 hover:text-white/80 hover:border-white/30 transition-all duration-300 shadow-lg"
+        aria-pressed={playing}
+        data-playing={playing}
+        className="music-player fixed right-5 bottom-8 z-50 flex items-center justify-center w-14 h-14 rounded-full border border-white/15 bg-black/60 backdrop-blur-md text-white/50 hover:text-white/80 hover:border-white/30 transition-all duration-300 shadow-lg"
       >
         <svg className="w-[26px] h-[18px]" viewBox="0 0 26 18" fill="currentColor">
           <rect x="0"    y="7"  width="2.5" height="4"  rx="1.25" opacity="0.5"  className={playing ? "music-bar-7" : ""} />

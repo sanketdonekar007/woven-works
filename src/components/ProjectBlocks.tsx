@@ -25,6 +25,7 @@ import {
     CricMetrixImpactMetrics,
 } from "./CricMetrix";
 import { CricMetrixIA } from "./CricMetrixIA";
+import { RedBerylBeforeAfter, RedBerylDesignDev, RedBerylIA } from "./RedBerylWebsite";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { LazyVideo } from "./LazyVideo";
 import { ProjectBlock } from "@/data/projects";
@@ -190,7 +191,7 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
                     <ul className="grid md:grid-cols-2 gap-3">
                         {block.goals.map((goal, i) => (
                             <li key={i} className="rounded-[18px] border border-white/10 bg-white/[0.02] p-5 flex items-start gap-4">
-                                <span className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-xs" style={{ color: accentColor, backgroundColor: `${accentColor || '#666'}18` }}>{i + 1}</span>
+                                <span className="case-study-goal-index w-7 h-7 rounded-full border flex items-center justify-center flex-shrink-0 text-xs font-semibold" style={{ color: accentColor, backgroundColor: `${accentColor || '#666'}18`, borderColor: `${accentColor || '#666'}30` }}>{i + 1}</span>
                                 <span className="text-[15px] sm:text-[16px] text-white/60 leading-7 font-light">{goal}</span>
                             </li>
                         ))}
@@ -470,6 +471,27 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
                     </RevealOnScroll>
                 );
             }
+            if (block.componentName === "RedBerylBeforeAfter") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <RedBerylBeforeAfter />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "RedBerylIA") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <RedBerylIA accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "RedBerylDesignDev") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <RedBerylDesignDev />
+                    </RevealOnScroll>
+                );
+            }
             return null;
 
         case "image":
@@ -477,9 +499,10 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
                 <RevealOnScroll className="w-full">
                     {block.title && <h2 className={titleClass}>{block.title}</h2>}
                     <div className={`overflow-hidden shadow-sm bg-[#0d0d0d] border border-white/10 ${block.fullWidth ? "rounded-[1.5rem] md:rounded-[2rem]" : "rounded-[1.5rem] md:rounded-[2rem] p-4 md:p-8 lg:p-12"}`}>
-                        {block.src.endsWith('.mp4') ? (
+                        {block.src.endsWith('.mp4') || block.src.endsWith('.webm') ? (
                             <LazyVideo
                                 src={block.src}
+                                poster={block.src.includes('navigation-prototype') ? '/redberyl/navigation-prototype-final-poster.png' : undefined}
                                 className="w-full h-auto block rounded-xl"
                             />
                         ) : (

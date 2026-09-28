@@ -140,7 +140,7 @@ export interface LearningsBlock extends BaseBlock {
 
 export interface CustomComponentBlock extends BaseBlock {
     type: "custom-component";
-    componentName: "UserFlow" | "VideoCarousel" | "VStateIA" | "HealthScoreExplanation" | "SnackHackIA" | "VStateServiceEcosystem" | "VStateBeforeWorkflow" | "VStateAfterWorkflow" | "VStatePainPoints" | "VStateNotificationSystem" | "VStateServiceBlueprint" | "VStateResearchInsights" | "VStateDesignSystemGrid" | "CricMetrixBeforeAfter" | "CricMetrixAttendanceSystem" | "CricMetrixVoiceScorer" | "CricMetrixRoleDashboards" | "CricMetrixTwinTables" | "CricMetrixFeeCheckout" | "CricMetrixImpactMetrics" | "CricMetrixIA";
+    componentName: "UserFlow" | "VideoCarousel" | "VStateIA" | "HealthScoreExplanation" | "SnackHackIA" | "VStateServiceEcosystem" | "VStateBeforeWorkflow" | "VStateAfterWorkflow" | "VStatePainPoints" | "VStateNotificationSystem" | "VStateServiceBlueprint" | "VStateResearchInsights" | "VStateDesignSystemGrid" | "CricMetrixBeforeAfter" | "CricMetrixAttendanceSystem" | "CricMetrixVoiceScorer" | "CricMetrixRoleDashboards" | "CricMetrixTwinTables" | "CricMetrixFeeCheckout" | "CricMetrixImpactMetrics" | "CricMetrixIA" | "RedBerylBeforeAfter" | "RedBerylIA" | "RedBerylDesignDev";
     props?: Record<string, any>;
 }
 
@@ -401,6 +401,174 @@ export const projects: Record<string, ProjectData> = {
         ],
     },
     */
+    redberylwebsite: {
+        id: "redberylwebsite",
+        title: "RedBeryl. Website Redesign",
+        navTitle: "RedBeryl Website Redesign",
+        subtitle: "Reframing a growing technology company around products, AI capabilities, and proof",
+        headerImage: "/redberyl/new-homepage.png",
+        intro: "I redesigned RedBeryl's digital presence from a conventional IT-services website into a scalable, product-led platform that helps enterprise buyers understand a complex portfolio and reach the right solution faster.",
+        role: "Senior UX / Product Designer · Website design owner",
+        type: "Website Redesign · B2B Technology",
+        industry: "Enterprise Technology · AI",
+        duration: "End-to-end redesign",
+        timeline: "2026",
+        platforms: "Responsive Web · CMS",
+        focus: "UX strategy, information architecture, interaction design, responsive UI, design systems, and developer collaboration.",
+        clientWebsite: "https://www.redberyltech.com/",
+        accentColor: "#2F6FED",
+        themeGradient: "from-[#EEF4FF] to-[#FFFFFF]",
+        links: [
+            { text: "Dev Design Figma file", url: "https://www.figma.com/design/DjRecUkxb6YMzLlzFikQfA/RedBeryl-Website-Design?node-id=6843-5166" },
+        ],
+        blocks: [
+            {
+                type: "problem-statement",
+                title: "The Business Had Outgrown Its Website",
+                highlight: "RedBeryl had evolved into a multi-product, AI-enabled technology company, but its website still read like a broad catalogue of IT services.",
+                content: "The redesign needed to improve comprehension without hiding the breadth that made the business credible.",
+                list: [
+                    "Positioning gap: Proprietary platforms and client services competed for attention without a clear hierarchy.",
+                    "Discovery gap: Visitors could not quickly understand the relationship between products, capabilities, industries, and delivery services.",
+                    "Proof gap: Technical breadth was described, but outcomes, case studies, and product evidence were not part of one persuasive journey.",
+                    "Scale gap: An expanding catalogue required a repeatable information and page system rather than more isolated landing pages."
+                ]
+            },
+            {
+                type: "role-list",
+                title: "Discovery & Experience Audit",
+                highlight: "I treated the redesign as an information and positioning problem before treating it as a visual one.",
+                content: "Evidence used to frame the redesign:",
+                roles: [
+                    "Audited the existing navigation, homepage hierarchy, content quality, calls to action, and responsive behavior.",
+                    "Inventoried products, services, industries, proof points, careers, editorial content, and conversion paths.",
+                    "Worked from stakeholder and product inputs to separate owned platforms from delivery capabilities.",
+                    "Mapped reusable content patterns so design and engineering could scale the site beyond launch."
+                ]
+            },
+            {
+                type: "custom-component",
+                title: "Before & After",
+                componentName: "RedBerylBeforeAfter"
+            },
+            {
+                type: "goals-list",
+                title: "Experience Principles",
+                goals: [
+                    "Make the business model understandable in the first screen: products, proof, and a clear demo path.",
+                    "Let visitors browse by what RedBeryl owns, what it delivers, or the industry problem they need solved.",
+                    "Explain technical depth visually, while keeping every diagram connected to a business outcome.",
+                    "Create reusable structures for product, service, industry, case-study, blog, and career content.",
+                    "Design complex interactions with deliberate mobile alternatives rather than shrinking the desktop experience."
+                ]
+            },
+            {
+                type: "custom-component",
+                title: "Information Architecture",
+                componentName: "RedBerylIA"
+            },
+            {
+                type: "image",
+                title: "Navigation Prototype",
+                src: "/redberyl/navigation-prototype-final.webm",
+                caption: "The working prototype cycles through Products, Services, Industries, AI Solutions, and Company—showing how every category opens into scannable destinations, contextual descriptions, and a focused detail card.",
+                fullWidth: true
+            },
+            {
+                type: "challenges",
+                title: "Key Product Decisions",
+                challenges: [
+                    {
+                        challenge: "One generic corporate hero",
+                        solution: "Replaced it with a product ecosystem that exposes seven platforms, communicates their relationship, and provides direct product and demo actions."
+                    },
+                    {
+                        challenge: "A navigation that would grow into a long list",
+                        solution: "Introduced contextual mega-menus for Products, Services, Industries, Company, and AI Solutions, with concise descriptions that support recognition before a click."
+                    },
+                    {
+                        challenge: "Abstract AI claims",
+                        solution: "Used capability maps, accelerator architecture, product examples, and case-study evidence to show how AI connects to operational workflows."
+                    },
+                    {
+                        challenge: "Desktop-first visual complexity",
+                        solution: "Created responsive compositions, carousels, and touch-friendly alternatives for diagrams and dense content at phone and tablet widths."
+                    }
+                ]
+            },
+            {
+                type: "custom-component",
+                title: "Design to Development",
+                componentName: "RedBerylDesignDev"
+            },
+            {
+                type: "core-screens",
+                title: "The Redesigned Experience",
+                highlight: "A connected journey from portfolio discovery to technical confidence and conversion.",
+                screens: [
+                    {
+                        title: "Product-led homepage",
+                        image: "/redberyl/new-homepage.png",
+                        description: "Seven products are presented as one connected ecosystem, with the active platform explained through plain-language value and direct next steps."
+                    },
+                    {
+                        title: "The previous homepage",
+                        image: "/redberyl/old-homepage.png",
+                        description: "The earlier carousel focused on one offer at a time, while the overall portfolio and relationship between offerings remained difficult to scan."
+                    }
+                ]
+            },
+            {
+                type: "design-system",
+                title: "A System Designed to Ship",
+                highlight: "The website was structured as a reusable product, not a collection of one-off marketing pages.",
+                content: "A shared visual and interaction language supports future products, campaigns, and editorial updates while keeping implementation predictable.",
+                items: [
+                    "Reusable navigation, CTA, banner, card, testimonial, loading, and error-state components.",
+                    "Template-driven product, service, industry, case-study, blog, career, and contact experiences.",
+                    "Responsive typography, spacing, and breakpoint behavior documented across desktop, tablet, and mobile.",
+                    "Strapi-backed publishing paths for content that needs to evolve without frontend releases.",
+                    "Motion patterns used to explain systems and relationships, with static and touch-friendly responsive fallbacks."
+                ]
+            },
+            {
+                type: "metrics-grid",
+                title: "Implementation Scale",
+                metrics: [
+                    { value: "7", label: "Products", description: "Presented as an owned, connected platform portfolio." },
+                    { value: "12", label: "Services", description: "Grouped into a discoverable and scalable navigation model." },
+                    { value: "9", label: "Industries", description: "Dedicated paths for domain-specific relevance and proof." }
+                ]
+            },
+            {
+                type: "impact",
+                title: "Delivered Outcomes",
+                items: [
+                    "Repositioned the homepage from a rotating service promotion into a coherent product-led story.",
+                    "Established five primary navigation groups that can absorb new offerings without flattening the hierarchy.",
+                    "Created reusable page systems across products, services, industries, AI solutions, company content, and conversion flows.",
+                    "Added responsive validation at 390px, 820px, and 1440px reference widths for complex interactions and content layouts.",
+                    "Integrated CMS-ready case studies, blogs, careers, and product content so teams can publish without redesigning each page."
+                ]
+            },
+            {
+                type: "learnings",
+                title: "Reflection",
+                learnings: [
+                    "A broad offering becomes easier to understand when the architecture reflects the business model, not the internal org chart.",
+                    "Enterprise buyers need progressive disclosure: a clear category first, enough context in navigation, and technical depth only when they ask for it.",
+                    "Complex motion is most valuable when it explains a relationship. Every animated desktop concept needs an equally intentional mobile behavior.",
+                    "A marketing website at this scale behaves like a product—the content model, component system, error handling, and publishing workflow are part of the UX."
+                ],
+                future: [
+                    "Validate navigation findability with task-based testing across buyers, candidates, and existing clients.",
+                    "Instrument product discovery, demo intent, and content journeys to establish a post-launch baseline.",
+                    "Run accessibility and performance audits against production content and real network conditions.",
+                    "Use search and enquiry data to refine which industries and solutions deserve stronger homepage prominence."
+                ]
+            }
+        ]
+    },
     whatsapp: {
         id: "whatsapp",
         title: "WhatsApp. Quick Voice Note Transcription",

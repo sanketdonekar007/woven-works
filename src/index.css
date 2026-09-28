@@ -15,26 +15,27 @@
 
 @layer base {
   :root {
-    --background: 217 60% 98%;
-    --foreground: 240 10% 3%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 4%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 4%;
-    --primary: 33 100% 65%;
+    /* Light palette sampled from the Mansi Mokashi portfolio reference. */
+    --background: 36 26% 96.3%; /* #f8f6f3 */
+    --foreground: 188 9% 18%; /* #2a3132 */
+    --card: 43 15% 90.8%; /* #ebe9e4 */
+    --card-foreground: 188 9% 18%;
+    --popover: 36 26% 96.3%;
+    --popover-foreground: 188 9% 18%;
+    --primary: 21 100% 50%; /* #ff5900 */
     --primary-foreground: 0 0% 100%;
     --animation-duration: 20s;
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
+    --secondary: 40 9% 86.7%; /* #e0deda */
+    --secondary-foreground: 188 9% 18%;
+    --muted: 43 15% 90.8%;
+    --muted-foreground: 189 4% 38.6%; /* #5f6566 */
+    --accent: 43 15% 90.8%;
+    --accent-foreground: 188 9% 18%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 33 100% 65%;
+    --border: 40 9% 86.7%;
+    --input: 38 7% 78.4%; /* #ccc9c4 */
+    --ring: 21 100% 50%;
     --radius: 1rem;
   }
 
@@ -330,6 +331,39 @@ body::before {
 .music-bar-6 { transform-origin: center; animation: music-bounce-3 1.8s ease-in-out infinite 0.5s; }
 .music-bar-7 { transform-origin: center; animation: music-bounce-1 1.8s ease-in-out infinite 0.3s; }
 
+/* Match the floating audio control to the light palette. */
+html:not(.dark) .music-player {
+  background: hsl(var(--card) / 0.96);
+  border-color: hsl(var(--input));
+  color: #b54100;
+  box-shadow: 0 8px 24px hsl(var(--foreground) / 0.12);
+}
+
+html:not(.dark) .music-player:hover {
+  background: hsl(var(--background));
+  border-color: hsl(var(--primary));
+  color: hsl(var(--primary));
+  transform: translateY(-2px);
+}
+
+html:not(.dark) .music-player[data-playing="true"] {
+  background: hsl(var(--primary));
+  border-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  box-shadow: 0 10px 26px hsl(var(--primary) / 0.25);
+}
+
+html:not(.dark) .music-player[data-playing="true"]:hover {
+  background: #df4e00;
+  border-color: #df4e00;
+  color: hsl(var(--primary-foreground));
+}
+
+.music-player:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 4px;
+}
+
 @keyframes chips-scroll-left  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @keyframes chips-scroll-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 
@@ -424,13 +458,13 @@ html:not(.dark) .carousel-edge {
 }
 
 html:not(.dark) .header {
-  background: rgba(255, 255, 255, 0.82);
-  border-color: rgba(15, 23, 42, 0.1);
+  background: rgb(248 246 243 / 0.86);
+  border-color: hsl(var(--border));
 }
 
 html:not(.dark) .header.scrolled {
-  background: rgba(255, 255, 255, 0.94);
-  border-color: rgba(15, 23, 42, 0.14);
+  background: rgb(248 246 243 / 0.96);
+  border-color: hsl(var(--input));
 }
 
 /* Light mode uses a quiet canvas instead of the animated hero/footer scene. */
@@ -458,7 +492,16 @@ html:not(.dark) .portfolio-container > footer svg {
 
 html:not(.dark) .hero-section h1,
 html:not(.dark) .portfolio-container > footer h2 {
+  color: #001a66;
+}
+
+html:not(.dark) .hero-section .hero-content > div:first-child > p:first-child {
   color: hsl(var(--foreground));
+}
+
+html:not(.dark) .hero-section::before,
+html:not(.dark) .hero-section::after {
+  display: none;
 }
 
 html:not(.dark) .hero-section [class*="bg-white"],
@@ -475,21 +518,22 @@ html:not(.dark) .portfolio-container > footer a:hover {
 }
 
 html:not(.dark) .portfolio-container > footer .light-footer-cta {
-  color: hsl(var(--foreground));
-  background: hsl(var(--card));
-  box-shadow: 0 8px 24px hsl(220 20% 20% / 0.06);
+  color: hsl(var(--primary-foreground));
+  background: hsl(var(--primary));
+  border-color: hsl(var(--primary));
+  box-shadow: 0 8px 24px hsl(var(--primary) / 0.14);
 }
 
 html:not(.dark) .portfolio-container > footer .light-footer-cta:hover {
-  color: hsl(var(--primary));
-  border-color: hsl(var(--primary) / 0.55);
-  background: hsl(var(--primary) / 0.06);
+  color: hsl(var(--primary-foreground));
+  border-color: #df4e00;
+  background: #df4e00;
   transform: translateY(-3px) scale(1.015);
   box-shadow: 0 14px 34px hsl(var(--primary) / 0.16);
 }
 
 html:not(.dark) .portfolio-container > footer .light-footer-cta .btn-shine {
-  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.28), transparent);
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.28), transparent);
 }
 
 .about-header, .project-header {
@@ -767,8 +811,7 @@ h2.footer-title { @apply text-3xl font-medium mb-4 text-left; }
   .cursor-dot, .cursor-ring { display: none; }
 }
 
-/* Light-mode treatment for the homepage's content canvas. The hero and footer
-   deliberately retain their high-contrast, cinematic presentation. */
+/* Shared light surfaces and text across the portfolio. */
 html:not(.dark) .theme-section {
   color: hsl(var(--foreground));
 }
@@ -785,7 +828,7 @@ html:not(.dark) .theme-section span.font-medium {
 }
 
 html:not(.dark) .theme-section .service-card-icon {
-  color: hsl(var(--foreground) / 0.65);
+  color: hsl(var(--primary));
 }
 
 html:not(.dark) .theme-section [class*="border-white"] {
@@ -795,7 +838,7 @@ html:not(.dark) .theme-section [class*="border-white"] {
 html:not(.dark) .theme-section [class*="bg-[#0d0d0d]"] {
   background-color: hsl(var(--card));
   border: 1px solid hsl(var(--border));
-  box-shadow: 0 12px 35px hsl(220 20% 20% / 0.05);
+  box-shadow: 0 12px 35px hsl(var(--foreground) / 0.04);
 }
 
 html:not(.dark) .theme-section [class*="bg-white/"] {
@@ -812,6 +855,14 @@ html:not(.dark) .theme-section [style*="linear-gradient(to left, #000"] {
 
 html:not(.dark) .theme-section a:hover span {
   color: hsl(var(--foreground));
+}
+
+html:not(.dark) .theme-section .group:hover h3 {
+  color: #b54100;
+}
+
+html:not(.dark) .theme-section .group:hover[class*="bg-[#0d0d0d]"] {
+  border-color: hsl(var(--primary) / 0.35);
 }
 
 /* About page */
@@ -832,6 +883,10 @@ html:not(.dark) .theme-page .font-medium {
   color: hsl(var(--foreground));
 }
 
+html:not(.dark) .theme-page h1 {
+  color: #001a66;
+}
+
 html:not(.dark) .theme-page p,
 html:not(.dark) .theme-page li,
 html:not(.dark) .theme-page span,
@@ -848,12 +903,12 @@ html:not(.dark) .theme-page section [style*="background"] {
 html:not(.dark) .theme-page .education-card {
   background: hsl(var(--card));
   border-color: hsl(var(--border)) !important;
-  box-shadow: 0 10px 30px hsl(220 20% 20% / 0.055);
+  box-shadow: 0 10px 30px hsl(var(--foreground) / 0.045);
 }
 
 html:not(.dark) .theme-page .education-card:hover {
   border-color: hsl(var(--primary) / 0.35) !important;
-  box-shadow: 0 14px 36px hsl(220 20% 20% / 0.08);
+  box-shadow: 0 14px 36px hsl(var(--foreground) / 0.08);
   transform: translateY(-2px);
 }
 
@@ -877,23 +932,27 @@ html:not(.dark) .theme-page footer {
   background: hsl(var(--background));
 }
 
+html:not(.dark) .theme-page footer h2 {
+  color: #001a66;
+}
+
 html:not(.dark) .theme-page footer .light-footer-cta {
-  color: hsl(var(--foreground));
-  background: hsl(var(--card));
-  border-color: hsl(var(--border)) !important;
-  box-shadow: 0 8px 24px hsl(220 20% 20% / 0.06);
+  color: hsl(var(--primary-foreground));
+  background: hsl(var(--primary));
+  border-color: hsl(var(--primary)) !important;
+  box-shadow: 0 8px 24px hsl(var(--primary) / 0.14);
 }
 
 html:not(.dark) .theme-page footer .light-footer-cta:hover {
-  color: hsl(var(--primary));
-  border-color: hsl(var(--primary) / 0.55) !important;
-  background: hsl(var(--primary) / 0.06);
+  color: hsl(var(--primary-foreground));
+  border-color: #df4e00 !important;
+  background: #df4e00;
   transform: translateY(-3px) scale(1.015);
   box-shadow: 0 14px 34px hsl(var(--primary) / 0.16);
 }
 
 html:not(.dark) .theme-page footer .light-footer-cta .btn-shine {
-  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.28), transparent);
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.28), transparent);
 }
 
 /* Case-study pages */
@@ -957,6 +1016,37 @@ html:not(.dark) [data-cs="true"] .text-white {
   color: hsl(var(--foreground)) !important;
 }
 
+html:not(.dark) [data-cs="true"] h1.dt-display {
+  color: #001a66 !important;
+}
+
+html:not(.dark) [data-cs="true"] aside > .sticky {
+  max-height: calc(100vh - 8rem);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0.35rem;
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--input)) transparent;
+}
+
+html:not(.dark) [data-cs="true"] .case-study-chapter {
+  flex-shrink: 0;
+  min-height: 2rem;
+  padding-inline: 0.5rem;
+  border-left: 3px solid transparent;
+  border-radius: 0 0.5rem 0.5rem 0;
+  opacity: 1 !important;
+}
+
+html:not(.dark) [data-cs="true"] .case-study-chapter.is-active {
+  background: hsl(var(--primary) / 0.1);
+  border-left-color: hsl(var(--primary));
+}
+
+html:not(.dark) [data-cs="true"] .case-study-chapter:not(.is-active):hover {
+  background: hsl(var(--card) / 0.75);
+}
+
 html:not(.dark) [data-cs="true"] .text-white\/30,
 html:not(.dark) [data-cs="true"] .text-white\/25,
 html:not(.dark) [data-cs="true"] .text-white\/35,
@@ -1000,6 +1090,23 @@ html:not(.dark) [data-cs="true"] .snack-ia-node-muted {
   background-color: color-mix(in srgb, var(--accent-color) 10%, hsl(var(--card))) !important;
   border-color: color-mix(in srgb, var(--accent-color) 48%, hsl(var(--border))) !important;
   box-shadow: 0 10px 28px hsl(220 20% 20% / 0.08);
+}
+
+html:not(.dark) [data-cs="true"] .redberyl-handoff-point {
+  background: hsl(var(--card)) !important;
+  border-color: hsl(var(--border)) !important;
+  box-shadow: 0 8px 24px hsl(220 20% 20% / 0.05);
+}
+
+html:not(.dark) [data-cs="true"] .redberyl-handoff-point p {
+  color: hsl(var(--foreground) / 0.72) !important;
+}
+
+html:not(.dark) [data-cs="true"] .case-study-goal-index {
+  color: var(--accent-color) !important;
+  background-color: color-mix(in srgb, var(--accent-color) 15%, hsl(var(--card))) !important;
+  border-color: color-mix(in srgb, var(--accent-color) 42%, hsl(var(--border))) !important;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--accent-color) 15%, transparent);
 }
 
 html:not(.dark) [data-cs="true"] .text-indigo-300\/70 {
@@ -1046,15 +1153,25 @@ html:not(.dark) [data-cs="true"] [style*="background: rgb(22"] {
   background: hsl(var(--card)) !important;
 }
 
-html:not(.dark) [data-cs="true"] aside .opacity-100 span {
-  color: hsl(var(--foreground)) !important;
+html:not(.dark) [data-cs="true"] .case-study-chapter span {
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+html:not(.dark) [data-cs="true"] .case-study-chapter.is-active span:first-child {
+  color: #b54100 !important;
+  font-weight: 600;
+}
+
+html:not(.dark) [data-cs="true"] .case-study-chapter.is-active span:last-child {
+  color: #001a66 !important;
+  font-weight: 600;
 }
 
 /* Preserve white content on deliberately colored data-visualization tiles. */
 html:not(.dark) [data-cs="true"] [style*="linear-gradient"] .text-white,
 html:not(.dark) [data-cs="true"] [style*="background-color"] .text-white,
 html:not(.dark) [data-cs="true"] [style*="background-color"].text-white,
-html:not(.dark) [data-cs="true"] [style*="background-color"][style*="color"] {
+html:not(.dark) [data-cs="true"] [style*="background-color"][style*="color"]:not(.case-study-goal-index) {
   color: #fff !important;
 }
 
@@ -1065,7 +1182,7 @@ html:not(.dark) [data-cs="true"] .case-study-footer {
 }
 
 html:not(.dark) [data-cs="true"] .case-study-footer h2 {
-  color: hsl(var(--foreground)) !important;
+  color: #001a66 !important;
 }
 
 html:not(.dark) [data-cs="true"] .case-study-footer span,
@@ -1074,27 +1191,27 @@ html:not(.dark) [data-cs="true"] .case-study-footer svg {
   color: hsl(var(--muted-foreground)) !important;
 }
 
-html:not(.dark) [data-cs="true"] .case-study-footer [class*="bg-white"] {
+html:not(.dark) [data-cs="true"] .case-study-footer [class*="bg-white"]:not(.light-footer-cta) {
   background-color: hsl(var(--border)) !important;
 }
 
 html:not(.dark) [data-cs="true"] .case-study-footer .light-footer-cta {
-  color: hsl(var(--foreground)) !important;
-  background: hsl(var(--card));
-  border-color: hsl(var(--border)) !important;
-  box-shadow: 0 8px 24px hsl(220 20% 20% / 0.06);
+  color: hsl(var(--primary-foreground)) !important;
+  background: hsl(var(--primary));
+  border-color: hsl(var(--primary)) !important;
+  box-shadow: 0 8px 24px hsl(var(--primary) / 0.14);
 }
 
 html:not(.dark) [data-cs="true"] .case-study-footer .light-footer-cta:hover {
-  color: hsl(var(--primary)) !important;
-  border-color: hsl(var(--primary) / 0.55) !important;
-  background: hsl(var(--primary) / 0.06);
+  color: hsl(var(--primary-foreground)) !important;
+  border-color: #df4e00 !important;
+  background: #df4e00;
   transform: translateY(-3px) scale(1.015);
   box-shadow: 0 14px 34px hsl(var(--primary) / 0.16);
 }
 
 html:not(.dark) [data-cs="true"] .case-study-footer .light-footer-cta .btn-shine {
-  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.28), transparent) !important;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.28), transparent) !important;
 }
 
 /* Explicit dark data visualizations keep their internal contrast in both themes. */
@@ -1107,12 +1224,22 @@ html:not(.dark) [data-cs="true"] .dark-visual .text-white {
 }
 
 html:not(.dark) [data-cs="true"] .dark-visual .text-white\/30 { color: rgb(255 255 255 / 0.3) !important; }
+html:not(.dark) [data-cs="true"] .dark-visual .text-white\/25 { color: rgb(255 255 255 / 0.25) !important; }
+html:not(.dark) [data-cs="true"] .dark-visual .text-white\/35 { color: rgb(255 255 255 / 0.35) !important; }
 html:not(.dark) [data-cs="true"] .dark-visual .text-white\/40 { color: rgb(255 255 255 / 0.4) !important; }
+html:not(.dark) [data-cs="true"] .dark-visual .text-white\/45 { color: rgb(255 255 255 / 0.45) !important; }
 html:not(.dark) [data-cs="true"] .dark-visual .text-white\/50 { color: rgb(255 255 255 / 0.5) !important; }
+html:not(.dark) [data-cs="true"] .dark-visual .text-white\/55 { color: rgb(255 255 255 / 0.55) !important; }
 html:not(.dark) [data-cs="true"] .dark-visual .text-white\/60 { color: rgb(255 255 255 / 0.6) !important; }
+html:not(.dark) [data-cs="true"] .dark-visual .text-white\/65 { color: rgb(255 255 255 / 0.65) !important; }
 html:not(.dark) [data-cs="true"] .dark-visual .text-white\/70 { color: rgb(255 255 255 / 0.7) !important; }
+html:not(.dark) [data-cs="true"] .dark-visual .text-white\/75 { color: rgb(255 255 255 / 0.75) !important; }
 html:not(.dark) [data-cs="true"] .dark-visual .text-white\/80 { color: rgb(255 255 255 / 0.8) !important; }
+html:not(.dark) [data-cs="true"] .dark-visual .text-white\/85 { color: rgb(255 255 255 / 0.85) !important; }
+html:not(.dark) [data-cs="true"] .dark-visual [style*="color: rgba(255"] { color: rgb(255 255 255 / 0.65) !important; }
 html:not(.dark) [data-cs="true"] .dark-visual [class*="border-white"] { border-color: rgb(255 255 255 / 0.1) !important; }
+html:not(.dark) [data-cs="true"] .dark-visual [style*="border: 1px solid rgba(255"],
+html:not(.dark) [data-cs="true"] .dark-visual [style*="border-top: 1px solid rgba(255"] { border-color: rgb(255 255 255 / 0.14) !important; }
 html:not(.dark) [data-cs="true"] .dark-visual .bg-white\/5 { background-color: rgb(255 255 255 / 0.05) !important; }
 html:not(.dark) [data-cs="true"] .dark-visual .bg-white\/10 { background-color: rgb(255 255 255 / 0.1) !important; }
 

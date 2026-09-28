@@ -40,6 +40,16 @@ const projects = [
     featured: true,
   },
   {
+    slug: "redberylwebsite",
+    title: "RedBeryl, Website Redesign",
+    description:
+      "I redesigned a growing technology company's website around seven products, AI capabilities, and scalable discovery—turning a flat service catalogue into a connected enterprise platform.",
+    image: "/redberyl/new-homepage.png",
+    alt: "RedBeryl website redesign",
+    category: "B2B Technology · Website · AI",
+    featured: true,
+  },
+  {
     slug: "accurest",
     title: "AccuRest, Supply Chain Platform",
     description:

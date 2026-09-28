@@ -13,6 +13,7 @@ const ProjectDetail = () => {
 
   const [activeSection, setActiveSection] = useState<number>(-1);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const chapterListRef = useRef<HTMLDivElement>(null);
   const isProtected = project?.isProtected ?? false;
   const [isUnlocked, setIsUnlocked] = useState(() => {
     if (!project?.isProtected) return true;
@@ -69,6 +70,21 @@ const ProjectDetail = () => {
 
     return () => observer.disconnect();
   }, [project]);
+
+  // Keep the highlighted chapter visible in longer case studies.
+  useEffect(() => {
+    const list = chapterListRef.current;
+    const active = list?.querySelector<HTMLElement>('.case-study-chapter.is-active');
+    if (!list || !active) return;
+
+    const top = active.getBoundingClientRect().top - list.getBoundingClientRect().top + list.scrollTop;
+    const bottom = top + active.offsetHeight;
+    if (top < list.scrollTop) {
+      list.scrollTo({ top: Math.max(0, top - 8), behavior: 'smooth' });
+    } else if (bottom > list.scrollTop + list.clientHeight) {
+      list.scrollTo({ top: bottom - list.clientHeight + 8, behavior: 'smooth' });
+    }
+  }, [activeSection, projectId]);
 
   if (!project) {
     return (
@@ -195,7 +211,7 @@ const ProjectDetail = () => {
 
           {/* LEFT SIDEBAR — sticky, visible from hero */}
           <aside className="hidden lg:block w-44 xl:w-52 flex-shrink-0">
-            <div className="sticky top-28 flex flex-col gap-1">
+            <div ref={chapterListRef} className="sticky top-28 flex flex-col gap-1">
 
               {/* pt spacer to roughly align with hero title */}
               <div className="h-14" />
@@ -203,8 +219,8 @@ const ProjectDetail = () => {
               {/* Overview — active during hero */}
               <div
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className={`flex items-start gap-3 cursor-pointer transition-all duration-300 py-1 ${
-                  activeSection === -1 ? 'opacity-100' : 'opacity-40 hover:opacity-65'
+                className={`case-study-chapter flex items-start gap-3 cursor-pointer transition-all duration-300 py-1 ${
+                  activeSection === -1 ? 'is-active opacity-100' : 'opacity-40 hover:opacity-65'
                 }`}
               >
                 <span className="text-[13px] tabular-nums pt-px flex-shrink-0 font-light" style={{ color: activeSection === -1 ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.3)' }}>
@@ -227,7 +243,7 @@ const ProjectDetail = () => {
                     <div
                       key={index}
                       onClick={() => sectionRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
-                      className={`flex items-start gap-3 cursor-pointer transition-all duration-300 py-1 ${isActive ? 'opacity-100' : 'opacity-40 hover:opacity-65'}`}
+                      className={`case-study-chapter flex items-start gap-3 cursor-pointer transition-all duration-300 py-1 ${isActive ? 'is-active opacity-100' : 'opacity-40 hover:opacity-65'}`}
                     >
                       <span className="text-[13px] tabular-nums pt-px flex-shrink-0 font-light" style={{ color: isActive ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.3)' }}>
                         {chapterNum}
