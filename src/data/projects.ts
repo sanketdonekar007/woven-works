@@ -435,6 +435,11 @@ export const projects: Record<string, ProjectData> = {
                 ]
             },
             {
+                type: "rich-text",
+                title: "Team & My Role",
+                content: "Our four-person team included me as the senior UX / product designer, Yudhish as junior designer, Dnyanada as design intern, and Vivek as React developer. I led the website design, mentored Yudhish and Dnyanada through the design process, and worked closely with Vivek to ensure the implemented experience stayed true to the designs."
+            },
+            {
                 type: "role-list",
                 title: "Discovery & Experience Audit",
                 highlight: "I treated the redesign as an information and positioning problem before treating it as a visual one.",
