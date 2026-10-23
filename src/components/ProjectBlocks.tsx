@@ -26,6 +26,8 @@ import {
 } from "./CricMetrix";
 import { CricMetrixIA } from "./CricMetrixIA";
 import { RedBerylBeforeAfter, RedBerylDesignDev, RedBerylIA } from "./RedBerylWebsite";
+import { CheckAltContext, CheckAltDesignSystem, CheckAltPlatform, CheckAltPrototypeAudit, CheckAltScorecardEvolution } from "./CheckAltCaseStudy";
+import { VStatePrototype } from "./VStatePrototype";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { LazyVideo } from "./LazyVideo";
 import { ProjectBlock } from "@/data/projects";
@@ -408,6 +410,13 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
                     </RevealOnScroll>
                 );
             }
+            if (block.componentName === "VStatePrototype") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <VStatePrototype accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
             if (block.componentName === "VStateDesignSystemGrid") {
                 return (
                     <RevealOnScroll className="w-full my-8">
@@ -485,6 +494,41 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
                     </RevealOnScroll>
                 );
             }
+            if (block.componentName === "CheckAltContext") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <CheckAltContext accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "CheckAltPrototypeAudit") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <CheckAltPrototypeAudit />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "CheckAltDesignSystem") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <CheckAltDesignSystem accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "CheckAltScorecardEvolution") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <CheckAltScorecardEvolution accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "CheckAltPlatform") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <CheckAltPlatform accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
             if (block.componentName === "RedBerylDesignDev") {
                 return (
                     <RevealOnScroll className="w-full my-8">
@@ -499,7 +543,17 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
                 <RevealOnScroll className="w-full">
                     {block.title && <h2 className={titleClass}>{block.title}</h2>}
                     <div className={`overflow-hidden shadow-sm bg-[#0d0d0d] border border-white/10 ${block.fullWidth ? "rounded-[1.5rem] md:rounded-[2rem]" : "rounded-[1.5rem] md:rounded-[2rem] p-4 md:p-8 lg:p-12"}`}>
-                        {block.src.endsWith('.mp4') || block.src.endsWith('.webm') ? (
+                        {block.controls ? (
+                            <video
+                                src={block.src}
+                                poster={block.poster}
+                                controls
+                                playsInline
+                                preload="metadata"
+                                aria-label={block.title}
+                                className="w-full h-auto block rounded-xl"
+                            />
+                        ) : block.src.endsWith('.mp4') || block.src.endsWith('.webm') ? (
                             <LazyVideo
                                 src={block.src}
                                 poster={block.src.includes('navigation-prototype') ? '/redberyl/navigation-prototype-final-poster.png' : undefined}

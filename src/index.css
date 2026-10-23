@@ -1249,3 +1249,9 @@ html:not(.dark) [data-cs="true"] .snack-ia-node-muted {
   background-color: var(--snack-ia-node-color) !important;
   border-color: var(--snack-ia-node-border) !important;
 }
+
+html:not(.dark) [data-cs="true"] .checkalt-card {
+  background: hsl(var(--card)) !important;
+  border-color: hsl(var(--border)) !important;
+  box-shadow: 0 8px 24px hsl(220 20% 20% / 0.05);
+}

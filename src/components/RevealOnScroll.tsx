@@ -23,13 +23,16 @@ export const RevealOnScroll = ({
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        // Very tall blocks can never reach the ratio threshold on short viewports,
+        // so also reveal once they cover a quarter of the visible area.
+        const coversViewport = !!entry.rootBounds && entry.intersectionRect.height >= entry.rootBounds.height * 0.25;
+        if (entry.isIntersecting && (entry.intersectionRatio >= threshold || coversViewport)) {
           setIsVisible(true);
           observer.disconnect(); // Only animate once
         }
       },
       {
-        threshold,
+        threshold: Array.from({ length: 11 }, (_, i) => (threshold * i) / 10),
         rootMargin: "0px 0px -50px 0px" // Trigger slightly before element is fully in view
       }
     );

@@ -140,7 +140,7 @@ export interface LearningsBlock extends BaseBlock {
 
 export interface CustomComponentBlock extends BaseBlock {
     type: "custom-component";
-    componentName: "UserFlow" | "VideoCarousel" | "VStateIA" | "HealthScoreExplanation" | "SnackHackIA" | "VStateServiceEcosystem" | "VStateBeforeWorkflow" | "VStateAfterWorkflow" | "VStatePainPoints" | "VStateNotificationSystem" | "VStateServiceBlueprint" | "VStateResearchInsights" | "VStateDesignSystemGrid" | "CricMetrixBeforeAfter" | "CricMetrixAttendanceSystem" | "CricMetrixVoiceScorer" | "CricMetrixRoleDashboards" | "CricMetrixTwinTables" | "CricMetrixFeeCheckout" | "CricMetrixImpactMetrics" | "CricMetrixIA" | "RedBerylBeforeAfter" | "RedBerylIA" | "RedBerylDesignDev";
+    componentName: "UserFlow" | "VideoCarousel" | "VStateIA" | "HealthScoreExplanation" | "SnackHackIA" | "VStateServiceEcosystem" | "VStateBeforeWorkflow" | "VStateAfterWorkflow" | "VStatePainPoints" | "VStateNotificationSystem" | "VStateServiceBlueprint" | "VStateResearchInsights" | "VStateDesignSystemGrid" | "CricMetrixBeforeAfter" | "CricMetrixAttendanceSystem" | "CricMetrixVoiceScorer" | "CricMetrixRoleDashboards" | "CricMetrixTwinTables" | "CricMetrixFeeCheckout" | "CricMetrixImpactMetrics" | "CricMetrixIA" | "RedBerylBeforeAfter" | "RedBerylIA" | "RedBerylDesignDev" | "CheckAltContext" | "CheckAltPrototypeAudit" | "CheckAltDesignSystem" | "CheckAltScorecardEvolution" | "CheckAltPlatform" | "VStatePrototype";
     props?: Record<string, any>;
 }
 
@@ -149,6 +149,9 @@ export interface ImageBlock extends BaseBlock {
     src: string;
     caption?: string;
     fullWidth?: boolean;
+    // Video only: show native controls (with sound) instead of a muted autoplay loop.
+    controls?: boolean;
+    poster?: string;
 }
 
 export interface UserFlowPopupBlock extends BaseBlock {
@@ -570,6 +573,211 @@ export const projects: Record<string, ProjectData> = {
                     "Instrument product discovery, demo intent, and content journeys to establish a post-launch baseline.",
                     "Run accessibility and performance audits against production content and real network conditions.",
                     "Use search and enquiry data to refine which industries and solutions deserve stronger homepage prominence."
+                ]
+            }
+        ]
+    },
+    checkalt: {
+        id: "checkalt",
+        title: "CheckAlt. Nexus & ObservabilityOS",
+        navTitle: "CheckAlt Operations Platform",
+        subtitle: "From an AI-generated prototype to a governed operations platform for a US payments processor",
+        headerImage: "/checkalt/obs-hero.webp",
+        intro: "CheckAlt's operations team ran their day across three payment platforms — KLIK, ERAS and ClearingWorks. A fast AI-built prototype proved the features but wasn't usable. I built a design system first, then designed Nexus for business operations and ObservabilityOS for the telemetry underneath — three products, one design language.",
+        role: "Lead UX/UI Designer · Design system owner",
+        type: "Enterprise SaaS · Operations & Observability",
+        industry: "FinTech · Payments Processing",
+        duration: "End-to-end design ownership",
+        timeline: "2026",
+        platforms: "Web · Desktop-first enterprise",
+        focus: "Prototype audit, design system, dashboard & workflow UX, data visualisation, developer and AI-assisted handoff, product promo video.",
+        accentColor: "#3B6FD8",
+        themeGradient: "from-[#EEF3FC] to-[#FFFFFF]",
+        links: [
+            { text: "CheckAlt design system in Figma", url: "https://www.figma.com/design/7DbKcY1WQWPLkPI7AyWn1W/Check-Alt" },
+        ],
+        blocks: [
+            {
+                type: "problem-statement",
+                title: "Operations Spread Across Three Platforms",
+                highlight: "CheckAlt processes payments, remittances, ACH and check images for banks — and its operators had to watch every deadline across separate systems.",
+                content: "The product had to tell operators what needs action first, without making a calm day look like an emergency or an emergency look calm.",
+                list: [
+                    "Fragmentation: file arrivals, transmissions and reconciliations were monitored separately in KLIK, ERAS and ClearingWorks.",
+                    "Deadline pressure: work is judged against bank cut-offs — Late, No Work and Failure mean very different things.",
+                    "Risky recovery: resends, quarantines and restarts touch real money and need a human approval trail.",
+                    "Prototype debt: the first AI-generated build proved the features but could not scale or be trusted day to day."
+                ]
+            },
+            {
+                type: "custom-component",
+                title: "Context",
+                componentName: "CheckAltContext"
+            },
+            {
+                type: "rich-text",
+                title: "Team & My Role",
+                content: "My manager and the backend team gathered requirements from CheckAlt's CEO and built a working prototype with Claude to validate them. When the CEO asked for a better experience, I took over UX and UI end to end: auditing the prototype, creating the CheckAlt design system, designing Nexus and ObservabilityOS, partnering with developers on implementation, and producing the product promo video."
+            },
+            {
+                type: "custom-component",
+                title: "Prototype Audit",
+                componentName: "CheckAltPrototypeAudit"
+            },
+            {
+                type: "goals-list",
+                title: "Design Principles",
+                goals: [
+                    "Status colour is sacred — red, amber and green mean error, warning and success, never decoration.",
+                    "Lead with what needs action first; summarise the calm, surface the exceptions.",
+                    "Dense, not cramped — an 8px grid and 13px body for people who scan tables all day.",
+                    "One way to do each thing: one button system, one modal contract, one table.",
+                    "Write the rules so developers and their AI assistants can follow them without guessing."
+                ]
+            },
+            {
+                type: "custom-component",
+                title: "Design System",
+                componentName: "CheckAltDesignSystem"
+            },
+            {
+                type: "custom-component",
+                title: "Nexus Scorecard",
+                componentName: "CheckAltScorecardEvolution"
+            },
+            {
+                type: "core-screens",
+                title: "Nexus — The Shipped Product",
+                highlight: "Nexus is organised the way operators work: Respond to today, Automate the repeatable, Know what has failed before, Govern what is allowed to change.",
+                screens: [
+                    {
+                        title: "Respond · Overview — where the scorecard landed",
+                        image: "/checkalt/nexus-overview.webp",
+                        description: "File Monitoring, Transmission and Money Movement each list seven business outcomes — Success, No Work, Warning, HITL Approval, Late, Failure, Rejected — with every count visible and an app filter on top. The third round of scorecard feedback, shipped."
+                    },
+                    {
+                        title: "Respond · CxO Dashboard",
+                        image: "/checkalt/nexus-cxo.webp",
+                        description: "A plain-language summary of the day sits beside five headline numbers, each with its baseline or target — SLA compliance, files processed, open incidents, MTTR against the manual baseline and engineering hours saved. Risks, app health and AI-vs-human resolution follow."
+                    },
+                    {
+                        title: "Respond · Monitoring Status",
+                        image: "/checkalt/nexus-monitoring.webp",
+                        description: "A graded daily report, with the monitoring summary and the failure summary side by side. Checks that never ran are reported as “no result”, never quietly counted as a pass. It downloads as HTML or PDF for stakeholders."
+                    },
+                    {
+                        title: "Automate · Workflow Canvas",
+                        image: "/checkalt/nexus-canvas.webp",
+                        description: "Operators compose workflows from the backend node catalogue — control flow, deterministic and cognitive steps — and configure each node in place. Publish is the one primary action. Run, versions and drafts step back."
+                    },
+                    {
+                        title: "Automate · Agent Library",
+                        image: "/checkalt/nexus-agents.webp",
+                        description: "Twelve reusable agents as a governed catalogue: each shows its autonomy tier, the HITL gates it invokes and the node types it composes. The catalogue is read-only — authoring happens in the canvas."
+                    },
+                    {
+                        title: "Automate · Run-Plan Templates",
+                        image: "/checkalt/nexus-templates.webp",
+                        description: "Shared execution templates move through one visible lifecycle: Draft, Validated, Active, Suspended, Retired. Destructive actions such as Retire use the outlined error style, so they don't compete with the page's primary action."
+                    },
+                    {
+                        title: "Know · Knowledge Base (KEDB)",
+                        image: "/checkalt/nexus-kedb.webp",
+                        description: "Known errors are paired with their runbooks and scored for confidence. Low-confidence matches are labelled HITL ONLY — below the threshold, the AI suggests and a person decides."
+                    },
+                    {
+                        title: "Govern · Configuration Center",
+                        image: "/checkalt/nexus-config.webp",
+                        description: "One control plane per application, each with a readiness state, and a visible scope chain — Platform → Application → Client → File profile → Governed version — so operators can see where a setting comes from before they change it."
+                    }
+                ]
+            },
+            {
+                type: "core-screens",
+                title: "ObservabilityOS",
+                highlight: "Nexus answers “is the business process OK?”. ObservabilityOS answers “is the data underneath trustworthy?”",
+                screens: [
+                    {
+                        title: "Dashboard — posture first",
+                        image: "/checkalt/obs-dashboard.webp",
+                        description: "One sentence and one state — Operationally stable, Watch closely or Action required — then an operations queue of what needs action first, replacing the prototype's wall of equal-weight panels."
+                    },
+                    {
+                        title: "Guided pipeline creation",
+                        image: "/checkalt/obs-new-pipeline.webp",
+                        description: "Instead of a blank configuration, engineers choose an architecture preset that states its signals, recommended sources and independence posture. Creating a pipeline provisions processors, Kafka topics, storage, a Grafana dashboard and alert routing."
+                    },
+                    {
+                        title: "Source onboarding that prevents mistakes",
+                        image: "/checkalt/obs-sources.webp",
+                        description: "A receiver blueprint explains the architecture before anything is added, and sources that don't fit the chosen preset are flagged inline — guidance at the moment of decision, not an error after deploy."
+                    },
+                    {
+                        title: "Nexus Health & Status",
+                        image: "/checkalt/obs-nexus-health.webp",
+                        description: "Where the two products meet: a service-health matrix, telemetry freshness and agent availability for every Nexus agent, with the reason behind each state."
+                    },
+                    {
+                        title: "Health that tells the truth",
+                        image: "/checkalt/obs-health.webp",
+                        description: "Health accounts for dependencies, not just pings — the collector shows Degraded when Kafka backpressure builds, even though its endpoint still answers."
+                    },
+                    {
+                        title: "Application dashboards",
+                        image: "/checkalt/obs-app-dashboards.webp",
+                        description: "ClearingWorks, ERAS and Klik share one layout and component set, so an operator who learns one view has learned all three."
+                    }
+                ]
+            },
+            {
+                type: "custom-component",
+                title: "One Platform",
+                componentName: "CheckAltPlatform"
+            },
+            {
+                type: "image",
+                title: "Product Launch",
+                src: "/checkalt/nexus-observabilityos-promo.mp4",
+                poster: "/checkalt/nexus-observabilityos-promo-poster.webp",
+                controls: true,
+                caption: "The launch video I produced — a 2:45 walkthrough of Nexus (operations overview, published workflows, versioning and the workflow canvas) and ObservabilityOS (platform posture, infrastructure health and application dashboards).",
+                fullWidth: true
+            },
+            {
+                type: "metrics-grid",
+                title: "Design Scale",
+                metrics: [
+                    { value: "3", label: "Products", description: "Genie, Nexus and ObservabilityOS on one design language." },
+                    { value: "80 → 6", label: "Colours", description: "Ad-hoc prototype hex values replaced by a 6-colour token palette." },
+                    { value: "17", label: "Use cases", description: "Expressed through 6 reusable workflow families in the UI." }
+                ]
+            },
+            {
+                type: "impact",
+                title: "Delivered Outcomes",
+                items: [
+                    "Replaced an AI-generated prototype with a documented design system shared across four portals and three products.",
+                    "Designed the Nexus operations and CxO scorecards through three feedback-driven iterations with the client.",
+                    "Designed 27 Nexus screens across four operator modes — Respond, Automate, Know and Govern.",
+                    "Designed 20+ ObservabilityOS screens covering pipelines, onboarding, deploy, health, governance and audit.",
+                    "Made human approvals a first-class status, from the scorecard to the approval email.",
+                    "Produced the product promo video used to introduce the platform."
+                ]
+            },
+            {
+                type: "learnings",
+                title: "Reflection",
+                learnings: [
+                    "AI prototypes are a great start, not a finish line — they get the what right fast; design makes it usable, consistent and scalable.",
+                    "When developers build with AI assistants, explicit written rules prevent drift better than a visual style guide alone.",
+                    "A design system that names its own debt earns trust and gets fixed faster than one that pretends to be complete.",
+                    "In operations tools, the hardest design work is deciding what not to alarm about."
+                ],
+                future: [
+                    "Run task-based usability sessions with operators on triage and approval flows.",
+                    "Finish migrating the remaining hard-coded components onto design tokens.",
+                    "Introduce real dark-mode tokens for control-room use.",
+                    "Instrument time-to-triage and missed-SLA detection to measure the redesign in production."
                 ]
             }
         ]
@@ -1269,37 +1477,82 @@ export const projects: Record<string, ProjectData> = {
             // ── Phase 5: Test ───────────────────────────────────────────────
             {
                 type: "core-screens",
-                title: "Interface Verification & Test Iterations",
-                highlight: "Validating high-fidelity layouts under real-world usage scenarios.",
+                title: "The Client Side — Self-Serve Filing",
+                highlight: "Clients start, file, track and answer queries themselves, so status never has to be chased by email.",
                 screens: [
                     {
-                        title: "Super Admin Dashboard",
-                        description: "Geographic map replacing grid lists. At-risk states identified in under 10 seconds.",
-                        image: "/lovable-uploads/Super Admin Deadilines.mp4"
+                        title: "Client dashboard",
+                        description: "Active orders, action required, invoices due and renewals in one row, followed by upcoming compliance deadlines and a one-step way to form a new entity.",
+                        image: "/vstate/client-dashboard.webp"
                     },
                     {
-                        title: "Client Profile & Vault",
-                        description: "Promoted doc vault based on first-round navigation errors.",
-                        image: "/lovable-uploads/Companies.png"
+                        title: "Progressive filing form",
+                        description: "Eight short steps with a visible progress rail and drafts saved automatically. Each step asks only for what that state and entity type need, which brought form errors close to zero in testing.",
+                        image: "/vstate/client-form-entity.webp"
                     },
                     {
-                        title: "Progressive Order Wizard",
-                        description: "Contextual progressive fields, dropping form errors to near-zero.",
-                        image: "/lovable-uploads/order-process.mp4"
+                        title: "Review before it's filed",
+                        description: "Every section is summarised with an inline edit link, and the client confirms the details before the order reaches the cart. What they see is exactly what gets filed.",
+                        image: "/vstate/client-form-review.webp"
+                    },
+                    {
+                        title: "Order tracking",
+                        description: "A five-stage timeline — placed, paid, in review, filed, completed — with an estimated completion date, line-item status and messages with the account rep. This is the screen that removed the routine “where is my filing?” email.",
+                        image: "/vstate/client-order-detail.webp"
+                    },
+                    {
+                        title: "Answering a query",
+                        description: "When the team needs something, the client sees the exact request, uploads the file and replies in one modal, with no email thread to dig through.",
+                        image: "/vstate/client-query.webp"
+                    },
+                    {
+                        title: "Mobile",
+                        description: "The same dashboard on a phone, with the one action that needs attention pinned to the top.",
+                        image: "/vstate/client-mobile.webp"
                     }
                 ]
             },
             {
-                type: "image",
-                title: "Actionable Notification Center",
-                src: "/lovable-uploads/Notification.png",
-                caption: "Structured alerts with clear next-steps."
+                type: "core-screens",
+                title: "The Service-Provider Side — Working the Queue",
+                highlight: "The filing team works from one queue and one order workspace. Super Admins see the whole operation by state, status and account manager.",
+                screens: [
+                    {
+                        title: "Super Admin dashboard",
+                        description: "Orders by state as a tile map, so at-risk states are spotted in seconds, not by scanning rows. Status chips, account-manager workload, pay-later invoices and renewals sit around it.",
+                        image: "/vstate/provider-dashboard.webp"
+                    },
+                    {
+                        title: "Order queue",
+                        description: "My queue, Needs attention, Pay later and Submitted tabs, each with an SLA column that shows what is on track and what has been waiting for days.",
+                        image: "/vstate/provider-queue.webp"
+                    },
+                    {
+                        title: "Order workspace",
+                        description: "Verify order data item by item, move each line item through its own allowed statuses, raise a query or file online with the bot, and keep client messages and internal notes in one activity feed.",
+                        image: "/vstate/provider-workspace.webp"
+                    },
+                    {
+                        title: "Approvals",
+                        description: "Pay-later and cancellation requests come with the client's history attached, so the decision and the note back to the customer happen in one step.",
+                        image: "/vstate/provider-approvals.webp"
+                    },
+                    {
+                        title: "Company profile & vault",
+                        description: "Details, contacts, addresses, key personnel, orders and subscriptions in tabs, with the account rep and recent activity beside them. Testing led us to promote the document vault after first-round navigation errors.",
+                        image: "/vstate/provider-company.webp"
+                    },
+                    {
+                        title: "Actionable notifications",
+                        description: "Every alert says what happened and what to do next. Action-required items are flagged, and preferences for status, renewal and billing alerts sit beside them.",
+                        image: "/vstate/provider-notifications.webp"
+                    }
+                ]
             },
             {
-                type: "image",
-                title: "State Compliance Map",
-                src: "/lovable-uploads/Compliance Map View.mp4",
-                caption: "Dynamic geographic dashboard replacing multi-row table scanning."
+                type: "custom-component",
+                title: "Working Prototype",
+                componentName: "VStatePrototype"
             },
             {
                 type: "image",

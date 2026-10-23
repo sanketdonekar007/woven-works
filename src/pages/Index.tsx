@@ -40,6 +40,16 @@ const projects = [
     featured: true,
   },
   {
+    slug: "checkalt",
+    title: "CheckAlt, Operations Platform",
+    description:
+      "I turned an AI-generated prototype into a governed operations platform for a US payments processor—building the design system first, then designing Nexus and ObservabilityOS on top of it.",
+    image: "/checkalt/obs-hero.webp",
+    alt: "CheckAlt Nexus and ObservabilityOS",
+    category: "FinTech · Enterprise SaaS · Design System",
+    featured: true,
+  },
+  {
     slug: "redberylwebsite",
     title: "RedBeryl, Website Redesign",
     description:
