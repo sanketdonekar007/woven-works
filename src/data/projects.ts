@@ -140,7 +140,7 @@ export interface LearningsBlock extends BaseBlock {
 
 export interface CustomComponentBlock extends BaseBlock {
     type: "custom-component";
-    componentName: "UserFlow" | "VideoCarousel" | "VStateIA" | "HealthScoreExplanation" | "SnackHackIA" | "VStateServiceEcosystem" | "VStateBeforeWorkflow" | "VStateAfterWorkflow" | "VStatePainPoints" | "VStateNotificationSystem" | "VStateServiceBlueprint" | "VStateResearchInsights" | "VStateDesignSystemGrid" | "CricMetrixBeforeAfter" | "CricMetrixAttendanceSystem" | "CricMetrixVoiceScorer" | "CricMetrixRoleDashboards" | "CricMetrixTwinTables" | "CricMetrixFeeCheckout" | "CricMetrixImpactMetrics" | "CricMetrixIA" | "RedBerylBeforeAfter" | "RedBerylIA" | "RedBerylDesignDev" | "CheckAltContext" | "CheckAltPrototypeAudit" | "CheckAltDesignSystem" | "CheckAltScorecardEvolution" | "CheckAltPlatform" | "VStatePrototype";
+    componentName: "UserFlow" | "VideoCarousel" | "VStateIA" | "HealthScoreExplanation" | "SnackHackIA" | "VStateServiceEcosystem" | "VStateBeforeWorkflow" | "VStateAfterWorkflow" | "VStatePainPoints" | "VStateNotificationSystem" | "VStateServiceBlueprint" | "VStateResearchInsights" | "VStateDesignSystemGrid" | "CricMetrixBeforeAfter" | "CricMetrixAttendanceSystem" | "CricMetrixVoiceScorer" | "CricMetrixRoleDashboards" | "CricMetrixTwinTables" | "CricMetrixFeeCheckout" | "CricMetrixImpactMetrics" | "CricMetrixIA" | "RedBerylBeforeAfter" | "RedBerylIA" | "RedBerylDesignDev" | "CheckAltContext" | "CheckAltPrototypeAudit" | "CheckAltDesignSystem" | "CheckAltScorecardEvolution" | "CheckAltPlatform" | "VStatePrototype" | "AccuRestPlatform" | "AccuRestNavigation" | "AccuRestFlows" | "AccuRestDesignSystem" | "AccuRestSystemAudit" | "AccuRestHandoff";
     props?: Record<string, any>;
 }
 
@@ -579,6 +579,7 @@ export const projects: Record<string, ProjectData> = {
     },
     checkalt: {
         id: "checkalt",
+        isProtected: true,
         title: "CheckAlt. Nexus & ObservabilityOS",
         navTitle: "CheckAlt Operations Platform",
         subtitle: "From an AI-generated prototype to a governed operations platform for a US payments processor",
@@ -761,6 +762,7 @@ export const projects: Record<string, ProjectData> = {
                     "Designed 27 Nexus screens across four operator modes — Respond, Automate, Know and Govern.",
                     "Designed 20+ ObservabilityOS screens covering pipelines, onboarding, deploy, health, governance and audit.",
                     "Made human approvals a first-class status, from the scorecard to the approval email.",
+                    "Built WCAG 2.2 AA into the design system: every text token passes contrast, focus rings are mandatory, and only real buttons are allowed.",
                     "Produced the product promo video used to introduce the platform."
                 ]
             },
@@ -1706,45 +1708,52 @@ export const projects: Record<string, ProjectData> = {
         isProtected: true,
         title: "AccuRest. Shipment & Purchase Order Experience",
         navTitle: "AccuRest. Supply Chain Platform",
-        subtitle: "Designing the operational nerve centre of an enterprise supply chain platform.",
-        headerImage: "/lovable-uploads/filenow3.jpg",
-        intro: "AccuRest is an enterprise SaaS platform managing inventory, forecasting, and fulfillment logistics.",
+        subtitle: "Designing AccuShipments — the module that carries every purchase order from vendor to warehouse — inside a seven-module supply chain platform.",
+        headerImage: "/accurest/hero.webp",
+        intro: "Accurest is an enterprise SaaS platform that plans inventory for multi-channel brands — forecasting demand, managing stock, deciding what to order and tracking it home. I led the design of AccuShipments, its largest module, and the design system and navigation that let it work as one product with the other six.",
         role: "Senior UX Designer · End-to-end design owner",
-        focus: "End-to-end ownership across discovery, research, flow mapping, and high-fidelity design",
-        timeline: "2023 - 2024",
+        focus: "Discovery and workflow research, information architecture, AccuShipments end to end (79 screens), the Accurest design system, interaction specs and developer handoff.",
+        timeline: "2026",
         type: "Enterprise SaaS · Supply Chain",
         industry: "Supply Chain · Logistics · B2B Inventory",
-        duration: "12 months",
-        platforms: "Web (Enterprise SaaS)",
-        accentColor: "#6366f1",
-        themeGradient: "from-[#EEF2FF] to-[#FFFFFF]",
+        duration: "2026",
+        platforms: "Web (Enterprise SaaS) · desktop-first, responsive to tablet and mobile",
+        accentColor: "#3B74E0",
+        themeGradient: "from-[#EEF3FC] to-[#FFFFFF]",
         quote: "Replaced a fragmented mix of spreadsheets, email chains, and disconnected tools used by 5 distinct stakeholder groups with a single source of truth.",
         links: [
             { text: "", url: "" },
             { text: "", url: "" },
         ],
         blocks: [
-            // ── Phase 1: Empathize ──────────────────────────────────────────
-            {
-                type: "role-list",
-                title: "User Shadowing & Workflow Audit",
-                highlight: "Lead designer on AccuShipment, collaborating with PM, engineering lead, and operational SMEs.",
-                content: "Shadowing and audit parameters:",
-                roles: [
-                    "Shadowed daily import operations and finance reconciliation calls",
-                    "Mapped 5 user groups: Imports Ops, SC Planners, Finance, Warehouse, and Vendors",
-                    "Audited 4 legacy systems to compile a shared terminology database"
-                ]
-            },
+            // ── Context ─────────────────────────────────────────────────────
             {
                 type: "problem-statement",
                 title: "The Challenge",
                 highlight: "Five fragmented tools created shipment-tracking delays, inconsistent status definitions, and payment-term mismatches.",
                 content: "Supply chain complexities discovered:",
                 list: [
-                    "PO consolidation: Single shipments containing items from multiple Purchase Orders.",
-                    "Varying compliance: Ocean customs rules differed drastically by port and country.",
-                    "Delayed ETA alerts: Downstream warehouses had zero notification of arrival delays."
+                    "PO consolidation: single shipments containing items from multiple purchase orders.",
+                    "Varying compliance: ocean customs rules differed drastically by port and country.",
+                    "Delayed ETA alerts: downstream warehouses and planners had zero notification of arrival delays.",
+                    "Prototype drift: four live prototypes — Accounting, Reports, Milestone Tracker and the module screens — each solved the same problems differently."
+                ]
+            },
+            {
+                type: "custom-component",
+                title: "The Platform",
+                componentName: "AccuRestPlatform"
+            },
+            // ── Discover ────────────────────────────────────────────────────
+            {
+                type: "role-list",
+                title: "User Shadowing & Workflow Audit",
+                highlight: "Lead designer on AccuShipments, collaborating with the PM, engineering lead and operational SMEs.",
+                content: "Shadowing and audit parameters:",
+                roles: [
+                    "Shadowed daily import operations and finance reconciliation calls",
+                    "Mapped 5 user groups: Imports Ops, SC Planners, Finance, Warehouse, and Vendors",
+                    "Audited 4 legacy systems to compile a shared terminology database"
                 ]
             },
             {
@@ -1771,35 +1780,25 @@ export const projects: Record<string, ProjectData> = {
                     }
                 ]
             },
-            // ── Phase 2: Define ─────────────────────────────────────────────
+            // ── Define ──────────────────────────────────────────────────────
             {
                 type: "process-steps",
                 title: "Terminology Standardization",
                 highlight: "The Reframe: The primary bottleneck wasn't a tracker UI; it was establishing a shared status dictionary.",
                 content: "",
                 steps: [
-                    "Status clarity: Formulated a 20-entry glossary defining critical shipping milestones.",
-                    "Trigger handoffs: Enforced state updates that automatically transition tasks between roles."
+                    "Status clarity: formulated a 20-entry glossary defining critical shipping milestones.",
+                    "Trigger handoffs: enforced state updates that automatically transition tasks between roles.",
+                    "One tone per state: the glossary became the platform's status vocabulary — the same colour means the same thing in every module."
                 ]
             },
-            {
-                type: "goals-list",
-                title: "How Might We & Core Principles",
-                goals: [
-                    "HMW make 'Shipped' mean exactly one thing across all operational units?",
-                    "HMW allow external vendors to upload customs files without logging into the platform?",
-                    "Principle: Standard status definitions, removing individual interpretation.",
-                    "Principle: Progressive information disclosure tailored strictly by user role."
-                ]
-            },
-            // ── Phase 3: Ideate ─────────────────────────────────────────────
             {
                 type: "challenges",
                 title: "Structural Concept Exploration",
                 challenges: [
                     {
                         challenge: "Standard Notification Feed",
-                        solution: "Rejected. Too noisy. 200+ active shipments require structured dashboards, not a stream."
+                        solution: "Rejected. Too noisy. 200+ active shipments require structured dashboards, not a stream. Exceptions became Workbench tasks instead."
                     },
                     {
                         challenge: "Single Dashboard Timeline",
@@ -1808,49 +1807,73 @@ export const projects: Record<string, ProjectData> = {
                 ]
             },
             {
-                type: "challenges",
-                title: "PO Foundation & Milestones",
-                challenges: [
+                type: "custom-component",
+                title: "Navigation Model",
+                componentName: "AccuRestNavigation"
+            },
+            {
+                type: "custom-component",
+                title: "Key User Flows",
+                componentName: "AccuRestFlows"
+            },
+            // ── Design ──────────────────────────────────────────────────────
+            {
+                type: "core-screens",
+                title: "AccuShipments — Core Screens",
+                highlight: "Exceptions come first, everywhere: the overview leads with what is about to go wrong, each shipment pins its problem above the timeline, and the Workbench turns it into steps.",
+                screens: [
                     {
-                        challenge: "Reconciliation discrepancies",
-                        solution: "Structured SKU-level entry forms with instant inline cost calculations."
+                        title: "Shipments overview — exception first",
+                        image: "/accurest/sh-overview.webp",
+                        description: "Five numbers, then a seven-stage pipeline from Created to At warehouse. Healthy stages stay quiet; the one stage holding a shipment is the only card with a danger border and a count badge. “Needs attention” lists customs holds, slipped ETAs and overdue invoices with one action each, beside arrivals for the next 14 days with a confidence rating."
                     },
                     {
-                        challenge: "Vendor timeline drift",
-                        solution: "Tracked original cargo dates separately from live ETA overrides."
+                        title: "Shipment detail — the problem pinned on top",
+                        image: "/accurest/sh-detail.webp",
+                        description: "A customs hold is spelled out in plain language, with the cost of each extra day and the warehouse it affects. The route timeline shows vendor → port → port → warehouse, and milestones collapse by stage so only the open stage is expanded. Only the overdue milestone gets a primary button; ready work steps back to secondary, so the eye lands on what is late."
+                    },
+                    {
+                        title: "Workbench — exceptions become steps",
+                        image: "/accurest/sh-workbench.webp",
+                        description: "Milestone rules raise tasks automatically. Each task states the shipment, milestone, units at risk and cost of delay, then breaks the fix into steps — upload the revised invoice, upload the packing list, email the broker from a template. The final action stays disabled with its reason beside it — never a dead button."
+                    },
+                    {
+                        title: "New shipment — built from PO lines",
+                        image: "/accurest/sh-new.webp",
+                        description: "Coordinators pick ready lines from open POs instead of re-typing them. Quantity can't exceed what's open, lines that miss the cargo cut-off are greyed out with a reason, and a live container-load panel shows volume and weight — and suggests ready lines that would still fit."
+                    },
+                    {
+                        title: "Upstream — AccuEngine's container order",
+                        image: "/accurest/ae-container-order.webp",
+                        description: "AccuShipments starts where AccuEngine ends. The ordering engine fills containers by product class and flags a container that would ship 37% full; its container-level POs become the open lines a coordinator ships."
                     }
                 ]
             },
-            // ── Phase 4: Prototype ──────────────────────────────────────────
             {
-                type: "challenges",
-                title: "Core Interface Iterations",
-                challenges: [
-                    {
-                        challenge: "Dense shipment detail navigation",
-                        solution: "Structured views using contextual tabs rather than long scrolls."
-                    },
-                    {
-                        challenge: "Payment milestone tracking",
-                        solution: "Implemented a persistent sidebar showing invoice details directly on the shipment view."
-                    },
-                    {
-                        challenge: "External vendor friction",
-                        solution: "Replaced login portal with email-triggered links, allowing document uploads in 1-click."
-                    }
+                type: "custom-component",
+                title: "Design System",
+                componentName: "AccuRestDesignSystem"
+            },
+            {
+                type: "custom-component",
+                title: "System Audit",
+                componentName: "AccuRestSystemAudit"
+            },
+            {
+                type: "custom-component",
+                title: "Handoff & Specs",
+                componentName: "AccuRestHandoff"
+            },
+            // ── Validate ────────────────────────────────────────────────────
+            {
+                type: "metrics-grid",
+                title: "Design Scale",
+                metrics: [
+                    { value: "79", label: "AccuShipments screens", description: "The largest module — POs, shipments, Workbench, quotations, documents, costs and settings." },
+                    { value: "305", label: "Platform screens", description: "Across seven modules, global patterns and admin, all on one design system." },
+                    { value: "60+", label: "Components", description: "With full state coverage, built on ≈160 tokens in three variable collections." }
                 ]
             },
-            {
-                type: "rich-text",
-                title: "Edge & Conflict States",
-                content: "I mapped customs holds, partial PO variances, ETA overrides, and vendor non-response as first-class workflow states. Testing these exceptions exposed a flaw in the original linear model, so I introduced pause, escalation, and recovery paths before developer handoff."
-            },
-            {
-                type: "rich-text",
-                title: "Handoff Documentation",
-                content: "The handoff documented 20 shipment milestones across five roles, including state ownership, notification triggers, permissions, validation rules, and failure behavior. Product, engineering, and operational SMEs used the same specification to resolve ambiguous workflow rules before implementation."
-            },
-            // ── Phase 5: Test ───────────────────────────────────────────────
             {
                 type: "impact",
                 title: "Impact & Validation Metrics",
@@ -1858,7 +1881,8 @@ export const projects: Record<string, ProjectData> = {
                     "Shipment creation time dropped from 45 minutes to 8 minutes in usability test rounds (n=6)",
                     "Milestone tracking accuracy improved from 60% (sheets) to 97% (system)",
                     "Warehouse Advance Shipment Notice (ASN) notification lead time increased from 0 to 5-7 days",
-                    "Ops manager daily administrative tasks reduced from 2.5 hours to 45 minutes"
+                    "Ops manager daily administrative tasks reduced from 2.5 hours to 45 minutes",
+                    "AccuShipment's 17 menu items reduced to a short, task-named menu, with calculators and reports moved into a Reports hub"
                 ]
             },
             {
@@ -1866,11 +1890,13 @@ export const projects: Record<string, ProjectData> = {
                 title: "Retrospective",
                 learnings: [
                     "Form definitions first: PO and shipment data quality dictates everything downstream; design the data model before styling.",
-                    "Friction reveals structure: The vendor refusal to log in drove the lightweight email link feature, which became the most-used tool."
+                    "Friction reveals structure: the vendor refusal to log in drove lightweight, email-based document requests — now a step inside every Workbench task.",
+                    "A module is only as good as its links: AccuShipments earned its value when a slipped ETA reached AccuStock and AccuForecast without anyone re-typing it."
                 ],
                 future: [
                     "AI-powered predictive ETA adjustments based on weather and route history",
-                    "Lite external portal for carrier direct updates"
+                    "Lite external portal for carrier direct updates",
+                    "Dark mode — the colour collection is already structured for a second mode"
                 ]
             }
         ]
@@ -2199,7 +2225,7 @@ export const projects: Record<string, ProjectData> = {
                 type: "prototype",
                 title: "Explore the Complete Journey",
                 description: "The interactive prototype connects all eight input steps, supporting states, and the final submission experience.",
-                url: "https://www.figma.com/proto/4Ai41numD4u5FTinK0hf9c/LT?node-id=1-587&viewport=397%2C-339%2C0.51&t=Vgu2xAIyPGiLHssS-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1"
+                url: "https://www.figma.com/proto/4Ai41numD4u5FTinK0hf9c/LT?node-id=14809-3902&starting-point-node-id=14809%3A3902&scaling=min-zoom&content-scaling=fixed"
             },
             {
                 type: "impact",

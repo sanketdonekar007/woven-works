@@ -5,6 +5,7 @@ import { Layers, GitBranch, Cpu, Code2 } from "lucide-react";
 import AnimatedLink from "@/components/AnimatedLink";
 import { PasswordProtectedProject } from "@/components/PasswordProtectedProject";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { projects as projectData } from "@/data/projects";
 
 /* ─── Data ───────────────────────────────────────────── */
 
@@ -40,16 +41,6 @@ const projects = [
     featured: true,
   },
   {
-    slug: "checkalt",
-    title: "CheckAlt, Operations Platform",
-    description:
-      "I turned an AI-generated prototype into a governed operations platform for a US payments processor—building the design system first, then designing Nexus and ObservabilityOS on top of it.",
-    image: "/checkalt/obs-hero.webp",
-    alt: "CheckAlt Nexus and ObservabilityOS",
-    category: "FinTech · Enterprise SaaS · Design System",
-    featured: true,
-  },
-  {
     slug: "redberylwebsite",
     title: "RedBeryl, Website Redesign",
     description:
@@ -57,6 +48,16 @@ const projects = [
     image: "/redberyl/new-homepage.png",
     alt: "RedBeryl website redesign",
     category: "B2B Technology · Website · AI",
+    featured: true,
+  },
+  {
+    slug: "checkalt",
+    title: "CheckAlt, Operations Platform",
+    description:
+      "I turned an AI-generated prototype into a governed operations platform for a US payments processor—building the design system first, then designing Nexus and ObservabilityOS on top of it.",
+    image: "/checkalt/checkalt-home-mockup.webp",
+    alt: "CheckAlt Nexus and ObservabilityOS",
+    category: "FinTech · Enterprise SaaS · Design System",
     featured: true,
   },
   {
@@ -360,14 +361,14 @@ const Index = () => {
 
         <div className="mt-0 border-t border-white/10">
           {featuredProjects.map((project) => {
-            const isAccuRest = project.slug === 'accurest';
+            const isLocked = projectData[project.slug]?.isProtected ?? false;
             
             const cardContent = (
               <>
                 {/* Text column */}
                 <div className="w-full md:flex-1 md:min-w-[400px] flex flex-col gap-5 md:pr-10 order-2 md:order-1 text-left">
                   <span className="text-base font-light tracking-[-0.01em] text-white/35">
-                    {project.category} {isAccuRest && "🔒"}
+                    {project.category} {isLocked && "🔒"}
                   </span>
                   <h3 className="text-[26px] md:text-[32px] font-medium leading-[1.2em] tracking-[-0.01em] text-white group-hover:text-primary transition-colors duration-300">
                     {project.title}
@@ -376,7 +377,7 @@ const Index = () => {
                     {project.description}
                   </p>
                   <span className="inline-flex items-center gap-1.5 text-base font-light tracking-[-0.02em] text-white/35 group-hover:text-white/55 transition-colors mt-1">
-                    {isAccuRest ? 'Unlock Case Study' : 'Read Case Study'}
+                    {isLocked ? 'Unlock Case Study' : 'Read Case Study'}
                     <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                     </svg>
@@ -395,7 +396,7 @@ const Index = () => {
               </>
             );
 
-            if (isAccuRest) {
+            if (isLocked) {
               return (
                 <PasswordProtectedProject key={project.slug} to={`/projects/${project.slug}`}>
                   <div className="group flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-6 py-16 md:py-[80px] border-b border-white/10 w-full">

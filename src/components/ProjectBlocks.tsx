@@ -27,6 +27,7 @@ import {
 import { CricMetrixIA } from "./CricMetrixIA";
 import { RedBerylBeforeAfter, RedBerylDesignDev, RedBerylIA } from "./RedBerylWebsite";
 import { CheckAltContext, CheckAltDesignSystem, CheckAltPlatform, CheckAltPrototypeAudit, CheckAltScorecardEvolution } from "./CheckAltCaseStudy";
+import { AccuRestDesignSystem, AccuRestFlows, AccuRestHandoff, AccuRestNavigation, AccuRestPlatform, AccuRestSystemAudit } from "./AccuRestCaseStudy";
 import { VStatePrototype } from "./VStatePrototype";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { LazyVideo } from "./LazyVideo";
@@ -526,6 +527,48 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
                 return (
                     <RevealOnScroll className="w-full my-8">
                         <CheckAltPlatform accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "AccuRestPlatform") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <AccuRestPlatform accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "AccuRestNavigation") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <AccuRestNavigation accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "AccuRestFlows") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <AccuRestFlows />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "AccuRestDesignSystem") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <AccuRestDesignSystem accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "AccuRestSystemAudit") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <AccuRestSystemAudit accentColor={accentColor} />
+                    </RevealOnScroll>
+                );
+            }
+            if (block.componentName === "AccuRestHandoff") {
+                return (
+                    <RevealOnScroll className="w-full my-8">
+                        <AccuRestHandoff accentColor={accentColor} />
                     </RevealOnScroll>
                 );
             }

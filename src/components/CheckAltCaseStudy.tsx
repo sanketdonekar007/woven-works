@@ -131,8 +131,49 @@ export const CheckAltPrototypeAudit = () => (
         </figure>
       ))}
     </div>
+
+    <div className={`${card} mt-6 overflow-hidden`}>
+      <div className="border-b border-white/10 p-5">
+        <p className="text-[12px] uppercase tracking-[0.16em] text-white/35">Accessibility check · WCAG 2.2 AA</p>
+        <p className="mt-2 text-[14px] leading-6 text-white/50">
+          Measured against the prototype's own code. None of it was visible in a demo, and all of it would have shipped.
+        </p>
+      </div>
+      <div className="divide-y divide-white/10">
+        {a11yChecks.map((c) => (
+          <div key={c.criterion} className="grid gap-2 p-5 md:grid-cols-[0.3fr_1fr_1fr] md:gap-6">
+            <p className="text-[14px] text-white">{c.criterion}</p>
+            <p className="text-[13px] leading-5 text-rose-400">{c.before}</p>
+            <p className="text-[13px] leading-5 text-emerald-400">{c.after}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   </section>
 );
+
+const a11yChecks = [
+  {
+    criterion: "Text contrast · 1.4.3",
+    before: "Two muted text colours, used 79 times, measured 2.1–2.5:1 and 3.7–4.0:1 on the dark panels. AA needs 4.5:1.",
+    after: "Every text token passes: primary 17.4:1, secondary 6.1:1, white on navy buttons 10.4:1.",
+  },
+  {
+    criterion: "Keyboard access · 2.1.1",
+    before: "38 clickable divs and spans that a keyboard can't reach or activate.",
+    after: "Real buttons only. A styled box with an onClick is never an accepted substitute.",
+  },
+  {
+    criterion: "Focus visible · 2.4.7",
+    before: "4 rules removed the focus outline, so keyboard users lost their place.",
+    after: "Focus rings are mandatory and set once in the theme. Overrides may not remove them.",
+  },
+  {
+    criterion: "Readable text",
+    before: "About 166 text styles set at 8.5–10.5px across dense panels.",
+    after: "A fixed type scale with 12px as the smallest body size in tables and forms.",
+  },
+];
 
 /* ─── 3. System rules: problem → rule ─── */
 
