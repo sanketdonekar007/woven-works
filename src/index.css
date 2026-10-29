@@ -1020,13 +1020,17 @@ html:not(.dark) [data-cs="true"] h1.dt-display {
   color: #001a66 !important;
 }
 
-html:not(.dark) [data-cs="true"] aside > .sticky {
+[data-cs="true"] aside > .sticky {
   max-height: calc(100vh - 8rem);
   overflow-y: auto;
   overflow-x: hidden;
   padding-right: 0.35rem;
   scrollbar-width: thin;
   scrollbar-color: hsl(var(--input)) transparent;
+}
+
+[data-cs="true"] aside .case-study-chapter {
+  flex-shrink: 0;
 }
 
 html:not(.dark) [data-cs="true"] .case-study-chapter {

@@ -1361,26 +1361,26 @@ export const projects: Record<string, ProjectData> = {
             {
                 type: "image",
                 title: "Before vState — Fragmented Workflow",
-                src: "/lovable-uploads/vstate-before-workflow.png",
-                caption: "Spanning emails, spreadsheets, and WhatsApp groups without central visibility."
+                src: "/lovable-uploads/vstate-before-board.png",
+                caption: "Where a filing's status actually lived: email, an Excel tracker rebuilt every morning, WhatsApp groups, flagged emails and memory, with clients calling in between."
             },
             {
                 type: "image",
-                title: "User Personas",
-                src: "/lovable-uploads/vstate-user-personas.png",
-                caption: "Understanding user archetypes, operational goals, and daily compliance blockers."
+                title: "Three Roles, One Record",
+                src: "/lovable-uploads/vstate-roles-board.png",
+                caption: "Super Admin, filing executive and client: what each needs, what they relied on before, and what vState gives them."
             },
             {
                 type: "image",
                 title: "User Journey Map",
-                src: "/lovable-uploads/vstate-user-journey-map.png",
-                caption: "Highlighting key anxiety spikes: morning status compilation and incoming queries."
+                src: "/lovable-uploads/vstate-journey-board.png",
+                caption: "A day at a filing firm. Anxiety spikes at the morning status rebuild and every client status call; the only calm stretch is the filing itself."
             },
             {
                 type: "image",
-                title: "Research Analysis",
-                src: "/lovable-uploads/vstate-research-analysis.png",
-                caption: "Affinity map clusters: Invisible system state identified as the core bottleneck."
+                title: "Research Synthesis",
+                src: "/lovable-uploads/vstate-affinity-board.png",
+                caption: "Three uneven clusters from 8 interviews and 12 hours of observation. Invisible status was the root cause; deadline anxiety and client chasing were its symptoms."
             },
             // ── Phase 2: Define ─────────────────────────────────────────────
             {
@@ -1404,8 +1404,8 @@ export const projects: Record<string, ProjectData> = {
             {
                 type: "image",
                 title: "Service Blueprint",
-                src: "/lovable-uploads/vstate-service-blueprint.png",
-                caption: "Mapping client-portal actions directly to backstage admin pipelines and state API triggers."
+                src: "/lovable-uploads/vstate-blueprint-board.png",
+                caption: "One filing order from placed to completed, with the old breakdowns marked in red above the stage where each one happened."
             },
             {
                 type: "image",
@@ -1467,14 +1467,8 @@ export const projects: Record<string, ProjectData> = {
             {
                 type: "image",
                 title: "After vState — Unified Platform",
-                src: "/lovable-uploads/vstate-after-platform.png",
-                caption: "One central platform substituting email chains and isolated spreadsheets."
-            },
-            {
-                type: "image",
-                title: "Service Ecosystem Map",
-                src: "/lovable-uploads/vstate-ecosystem-map.png",
-                caption: "Service ecosystem blueprint showcasing cross-system orchestration and integration."
+                src: "/lovable-uploads/vstate-after-board.png",
+                caption: "One shared record replaces the email, spreadsheet and WhatsApp loop. The Super Admin view is shown here; staff and clients see the same orders filtered to their job."
             },
             // ── Phase 5: Test ───────────────────────────────────────────────
             {
@@ -1559,8 +1553,8 @@ export const projects: Record<string, ProjectData> = {
             {
                 type: "image",
                 title: "Design System Foundations",
-                src: "/lovable-uploads/vstate-design-system.png",
-                caption: "Design system foundations showing typography, status tokens, grids, and primary components."
+                src: "/lovable-uploads/vstate-design-system-board.png",
+                caption: "Excerpts from the real library. The status set came first: 19 order states, each with a staff label and a customer label, all toned from status tokens. Geist and Geist Mono for type, raw ramps aliased by light and dark semantic tokens."
             },
             {
                 type: "impact",

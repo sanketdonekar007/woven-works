@@ -26,7 +26,7 @@ const ScrollToTop = () => {
 };
 
 const App = () => (
-  <ThemeProvider attribute="class" defaultTheme="light" enableSystem storageKey="portfolio-theme">
+  <ThemeProvider attribute="class" defaultTheme="dark" storageKey="portfolio-theme">
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <CursorAndProgress />
