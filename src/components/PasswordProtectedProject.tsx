@@ -5,9 +5,11 @@ import { useNavigate } from 'react-router-dom';
 export const PasswordProtectedProject = ({
     to,
     children,
+    className = '',
 }: {
     to: string;
     children: React.ReactNode;
+    className?: string;
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [password, setPassword] = useState('');
@@ -30,7 +32,7 @@ export const PasswordProtectedProject = ({
 
     return (
         <>
-            <div onClick={() => setIsOpen(true)} className="cursor-pointer block w-full">
+            <div onClick={() => setIsOpen(true)} className={`cursor-pointer block w-full ${className}`}>
                 {children}
             </div>
 

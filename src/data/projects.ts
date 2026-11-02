@@ -189,9 +189,13 @@ export interface MetricsGridBlock extends BaseBlock {
 
 export interface TradeOffsBlock extends BaseBlock {
     type: "trade-offs";
+    intro?: string;
+    // Optional overrides for the default "Reasoning & Feedback" / "UX Trade-Off" column headings
+    labels?: { reasoning?: string; tradeOff?: string };
     items: {
         option: string;
         status: "rejected" | "selected" | "neutral";
+        statusLabel?: string;
         reasoning: string;
         tradeOff: string;
     }[];
@@ -624,6 +628,42 @@ export const projects: Record<string, ProjectData> = {
                 type: "custom-component",
                 title: "Prototype Audit",
                 componentName: "CheckAltPrototypeAudit"
+            },
+            {
+                type: "trade-offs",
+                title: "AI in the Process",
+                intro: "The Claude-built prototype was the starting point, not something to throw away. I sorted what it produced into what to keep, what to replace and what AI should keep doing — with written rules so the result stayed consistent.",
+                labels: { reasoning: "What AI produced", tradeOff: "My call & why" },
+                items: [
+                    {
+                        option: "Feature scope & requirements",
+                        status: "selected",
+                        statusLabel: "Kept",
+                        reasoning: "A working prototype that validated the CEO's requirements across KLIK, ERAS and ClearingWorks — the right features, fast.",
+                        tradeOff: "Kept as the source of truth for what the platform does. Redesigning the scope would have thrown away validated decisions."
+                    },
+                    {
+                        option: "Visual layer & layout",
+                        status: "rejected",
+                        statusLabel: "Replaced",
+                        reasoning: "80 ad-hoc hex values and a wall of equal-weight panels, so a calm day and an incident looked the same.",
+                        tradeOff: "Replaced with a 6-colour token palette where status colour only ever means status, and posture-first dashboards that lead with what needs action."
+                    },
+                    {
+                        option: "Building with AI assistants",
+                        status: "selected",
+                        statusLabel: "Governed",
+                        reasoning: "Developers kept building with AI assistants after handoff, which risked the same drift returning screen by screen.",
+                        tradeOff: "Wrote the design system as explicit rules — one button system, one modal contract, one table — so developers and their assistants can follow it without guessing."
+                    },
+                    {
+                        option: "AI decisions inside the product",
+                        status: "neutral",
+                        statusLabel: "Human in the loop",
+                        reasoning: "Nexus agents match known errors to runbooks and can trigger recoveries that touch real money.",
+                        tradeOff: "Low-confidence matches are labelled HITL ONLY and human approval is a first-class status: below the threshold, the AI suggests and a person decides."
+                    }
+                ]
             },
             {
                 type: "goals-list",

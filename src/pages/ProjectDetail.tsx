@@ -458,11 +458,7 @@ const ProjectDetail = () => {
       <footer className="case-study-footer relative min-h-screen flex flex-col overflow-hidden border-t border-white/10">
 
         <div className="cinematic-bg absolute inset-0 z-0 pointer-events-none">
-          {/* @ts-ignore */}
-          <spline-viewer
-            url="https://prod.spline.design/Ewb8vIqWFjVZn1-c/scene.splinecode"
-            style={{ width: "100%", height: "100%", display: "block" }}
-          />
+          <div className="absolute inset-0" style={{ background: "radial-gradient(60% 55% at 50% 45%, hsl(var(--primary) / 0.10) 0%, transparent 70%)" }} />
           <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
         </div>
 

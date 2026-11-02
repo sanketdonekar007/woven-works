@@ -848,6 +848,7 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
             return (
                 <RevealOnScroll className="max-w-6xl">
                     {block.title && <span className={subtitleClass}>{block.title}</span>}
+                    {block.intro && <p className="text-white/55 text-[17px] leading-relaxed mt-4 max-w-3xl">{block.intro}</p>}
                     <div className="flex flex-col gap-6 mt-6">
                         {block.items.map((item, idx) => {
                             const isSelected = item.status === "selected";
@@ -860,16 +861,16 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
                                             isRejected ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20' :
                                             'bg-white/10 text-white/50 border border-white/15'
                                         }`}>
-                                            {item.status}
+                                            {item.statusLabel ?? item.status}
                                         </span>
                                         <h4 className="text-[18px] font-medium text-white leading-tight">{item.option}</h4>
                                     </div>
                                     <div className="text-white/50 text-[15px] leading-relaxed">
-                                        <strong className="text-white/80 block mb-1">Reasoning & Feedback</strong>
+                                        <strong className="text-white/80 block mb-1">{block.labels?.reasoning ?? "Reasoning & Feedback"}</strong>
                                         {item.reasoning}
                                     </div>
                                     <div className="text-white/50 text-[15px] leading-relaxed">
-                                        <strong className="text-white/80 block mb-1">UX Trade-Off</strong>
+                                        <strong className="text-white/80 block mb-1">{block.labels?.tradeOff ?? "UX Trade-Off"}</strong>
                                         {item.tradeOff}
                                     </div>
                                 </div>

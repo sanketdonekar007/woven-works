@@ -1,17 +1,23 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Layers, GitBranch, Cpu, Code2 } from "lucide-react";
 import AnimatedLink from "@/components/AnimatedLink";
-import { PasswordProtectedProject } from "@/components/PasswordProtectedProject";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { projects as projectData } from "@/data/projects";
+import { TextReveal } from "@/components/TextReveal";
+import { ProjectShelf } from "@/components/home/ProjectShelf";
+import { ProcessStrip } from "@/components/home/ProcessStrip";
+import { ExpertiseBento } from "@/components/home/ExpertiseBento";
+import { AIPlayground } from "@/components/home/AIPlayground";
+import { ExplorationsRow } from "@/components/home/ExplorationsRow";
+import { FloatingChipRow, FloatingChips, RowLabel, type FloatingChip } from "@/components/home/shared";
 
 /* ─── Data ───────────────────────────────────────────── */
 
 const projects = [
   {
     slug: "tutoronboarding",
+    year: "2025",
+    metric: "8-step verification · Shipped",
     title: "Locate Tutors, Onboarding & Verification",
     description:
       "I designed an end-to-end tutor onboarding and credential verification experience, building marketplace trust through eight focused input steps and a clear success state.",
@@ -22,6 +28,8 @@ const projects = [
   },
   {
     slug: "vstatecompliance",
+    year: "2024–25",
+    metric: "45% faster filing cycles",
     title: "vState, Workflow Platform",
     description:
       "I led end-to-end service design for a multi-tenant compliance SaaS, from stakeholder research and service blueprints to high-fidelity flows that cut filing cycles by 45% and client status inquiries by 70% in pilot sessions.",
@@ -32,6 +40,8 @@ const projects = [
   },
   {
     slug: "snackhack",
+    year: "2025",
+    metric: "92% first-scan success",
     title: "Snack Hack, Decode Your Snacks",
     description:
       "I designed the scanner core, results flow, and onboarding for a HealthTech app. In usability testing, first-scan success reached 92% and scan-to-decision time improved by 33%.",
@@ -42,6 +52,8 @@ const projects = [
   },
   {
     slug: "redberylwebsite",
+    year: "2026",
+    metric: "7 products, one connected IA",
     title: "RedBeryl, Website Redesign",
     description:
       "I redesigned a growing technology company's website around seven products, AI capabilities, and scalable discovery—turning a flat service catalogue into a connected enterprise platform.",
@@ -52,6 +64,8 @@ const projects = [
   },
   {
     slug: "checkalt",
+    year: "2026",
+    metric: "AI prototype → 3 products, 1 system",
     title: "CheckAlt, Operations Platform",
     description:
       "I turned an AI-generated prototype into a governed operations platform for a US payments processor—building the design system first, then designing Nexus and ObservabilityOS on top of it.",
@@ -62,6 +76,8 @@ const projects = [
   },
   {
     slug: "accurest",
+    year: "2026",
+    metric: "Shipment creation 45 → 8 min",
     title: "AccuRest, Supply Chain Platform",
     description:
       "I designed the operational nerve centre of an enterprise supply chain platform, reducing shipment creation from 45 to 8 minutes in usability testing (n=6) across five stakeholder groups.",
@@ -84,7 +100,7 @@ const projects = [
     title: "Bajaj Pay, From One Payment to a Habit",
     description:
       "A design assignment on bill-payment retention: keep the biller at the moment of success, spend exactly one well-timed alert per cycle, and earn autopay instead of pushing it — all without new homepage space or extra notifications.",
-    image: "/finance/hero.png",
+    image: "/finance/cover-phones.webp",
     alt: "Bajaj Pay bill payments case study",
     category: "FinTech · Mobile · Assignment",
     featured: false,
@@ -111,31 +127,33 @@ const projects = [
   },
 ];
 
-const services = [
-  {
-    Icon: Layers,
-    title: "UX & Product Design",
-    description:
-      "Crafting intuitive, scalable digital products through UX research, wireframing, prototyping, and high-fidelity UI, optimised for clarity, speed, and engagement.",
-  },
-  {
-    Icon: GitBranch,
-    title: "Service Design",
-    description:
-      "Mapping end-to-end service ecosystems, stakeholder journeys, and omnichannel experiences that deliver strategic and operational impact across teams.",
-  },
-  {
-    Icon: Cpu,
-    title: "AI-Powered Workflows",
-    description:
-      "Leveraging AI tools for research synthesis, content strategy, and workflow automation to reduce design cycles and increase innovation velocity.",
-  },
-  {
-    Icon: Code2,
-    title: "UX + Dev Integration",
-    description:
-      "Bridging design with frontend development through clean handoffs, dev-ready assets, and HTML/CSS/JS knowledge, minimising SDLC friction and rework.",
-  },
+const chipIcon = (bg: string, glyph: React.ReactNode, color = "#fff") => (
+  <span className="keep-color grid h-7 w-7 place-items-center rounded-lg text-[13px] font-bold" style={{ background: bg, color }}>
+    {glyph}
+  </span>
+);
+
+const vscodeGlyph = (
+  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+    <path d="M8 7 3 12l5 5M16 7l5 5-5 5" />
+  </svg>
+);
+const analyticsGlyph = (
+  <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
+    <rect x="4" y="13" width="4" height="7" rx="2" fill="#E37400" />
+    <rect x="10" y="8" width="4" height="12" rx="2" fill="#F9AB00" />
+    <rect x="16" y="3" width="4" height="17" rx="2" fill="#F9AB00" />
+  </svg>
+);
+
+const toolChips: FloatingChip[] = [
+  { label: "Figma", note: "Flows, UI, prototypes", accent: "#a259ff", icon: chipIcon("linear-gradient(135deg,#f24e1e,#a259ff)", "F"), className: "left-[4%] top-[9%]", duration: 8.5 },
+  { label: "Notion", note: "Research notes & specs", accent: "#d4d4d4", icon: chipIcon("#ffffff", "N", "#111"), className: "left-[24%] top-[4%]", duration: 9.8, delay: -3 },
+  { label: "Claude", note: "Prototypes & synthesis", accent: "#d97757", icon: chipIcon("#d97757", "✳"), className: "right-[5%] top-[7%]", duration: 7.2, delay: -2 },
+  { label: "Maze", note: "Unmoderated usability tests", accent: "#3b82f6", icon: chipIcon("#3b82f6", "M"), className: "right-[25%] top-[3%]", duration: 8.8, delay: -5 },
+  { label: "VS Code", note: "Build what I design", accent: "#007acc", icon: chipIcon("#007acc", vscodeGlyph), className: "left-[6%] bottom-[8%]", duration: 9.4, delay: -4 },
+  { label: "Google Analytics", note: "Did the design work?", accent: "#f9ab00", icon: chipIcon("#ffffff", analyticsGlyph), className: "left-[40%] bottom-[5%]", duration: 10.6, delay: -6 },
+  { label: "React", note: "Live, coded prototypes", accent: "#61dafb", icon: chipIcon("#0b1220", "⚛", "#61dafb"), className: "right-[4%] bottom-[10%]", duration: 10.2, delay: -1 },
 ];
 
 const skillChips = [
@@ -163,6 +181,9 @@ const reviews = [
     text: "Sanket designed high-converting landing pages for our real estate campaigns that genuinely moved the needle. He understood the audience immediately and delivered pages that were both visually sharp and optimised to convert. Our lead quality improved significantly.",
     rating: 5,
     avatar: "/lovable-uploads/artee-kale.jpg",
+    project: "Real estate landing pages",
+    accent: "#FF5900",
+    tint: "rgba(255, 89, 0, 0.14)",
   },
   {
     name: "Ravi Salunkhe",
@@ -170,6 +191,9 @@ const reviews = [
     text: "We needed a mobile product for a large, diverse FMCG audience across Pune and Sanket nailed it. He balanced simplicity with depth, making the app accessible to a wide range of users without dumbing it down. Exactly what we were looking for.",
     rating: 5,
     avatar: "/lovable-uploads/ravi-salunkhe.jpg",
+    project: "FMCG mobile app",
+    accent: "#2563eb",
+    tint: "rgba(37, 99, 235, 0.14)",
   },
   {
     name: "Santosh Narate",
@@ -177,6 +201,9 @@ const reviews = [
     text: "Sanket has worked across multiple products for us, spanning enterprise SaaS, consumer apps, and both local Pune and international clients. His ability to shift between complex B2B systems and consumer-facing products while maintaining quality is rare and invaluable.",
     rating: 5,
     avatar: "/lovable-uploads/santosh-narate.png",
+    project: "SaaS · Consumer apps",
+    accent: "#7c3aed",
+    tint: "rgba(124, 58, 237, 0.14)",
   },
   {
     name: "Gaurav Phadke",
@@ -184,6 +211,9 @@ const reviews = [
     text: "SnackHack needed to turn something genuinely confusing (nutrition labels) into something anyone could understand in seconds. Sanket cracked that. The scan flow, the results layout, the way alternatives are surfaced; it all felt obvious after he designed it, which is exactly the point. Great to work with across time zones too.",
     rating: 5,
     avatar: "/lovable-uploads/gaurav-phadke.jpg",
+    project: "SnackHack app",
+    accent: "#0d9488",
+    tint: "rgba(13, 148, 136, 0.14)",
   },
   {
     name: "Sunil R. Nair",
@@ -191,13 +221,34 @@ const reviews = [
     text: "Building SoftC's digital identity meant communicating a complex enterprise AI proposition to a sophisticated, global audience. Sanket delivered. He grasped the positioning immediately and produced a website that carries the authority and clarity the brand demands. For someone who has built digital ecosystems across billion-dollar organisations, I know sharp, purposeful design when I see it.",
     rating: 5,
     avatar: "/lovable-uploads/sunil-nair.jpg",
+    project: "SoftC website",
+    accent: "#d97706",
+    tint: "rgba(217, 119, 6, 0.14)",
   },
 ];
 
-const stats = [
-  { value: "35+", label: "Design projects completed" },
-  { value: "5+", label: "Years of experience" },
-  { value: "3", label: "Design systems delivered" },
+const experience = [
+  {
+    date: "2024 – Present",
+    company: "RedBeryl Tech",
+    role: "Senior UX Designer",
+    metric: "45 → 8 min",
+    metricLabel: "Shipment creation time in usability testing (n=6), plus 3 design systems shipped",
+  },
+  {
+    date: "2023 – 2024",
+    company: "Esoftcode",
+    role: "UI/UX Designer",
+    metric: "8 modules",
+    metricLabel: "Unified on one reusable component library for a B2B CRM",
+  },
+  {
+    date: "2021 – 2023",
+    company: "KnackBe Tech",
+    role: "UI Designer",
+    metric: "IA rebuild",
+    metricLabel: "Restructured navigation and hierarchy for an FMCG e-commerce app",
+  },
 ];
 
 const featuredProjects = projects.filter((project) => project.featured);
@@ -263,13 +314,9 @@ const Index = () => {
       {/* ── Hero ────────────────────────────────────── */}
       <section className="hero-section relative overflow-hidden" id="hero">
 
-        {/* Spline background */}
+        {/* Background glow */}
         <div className="cinematic-bg absolute inset-0 z-0 pointer-events-none">
-          {/* @ts-ignore */}
-          <spline-viewer
-            url="https://prod.spline.design/Ewb8vIqWFjVZn1-c/scene.splinecode"
-            style={{ width: "100%", height: "100%", display: "block" }}
-          />
+          <div className="absolute inset-0" style={{ background: "radial-gradient(60% 55% at 50% 45%, hsl(var(--primary) / 0.10) 0%, transparent 70%)" }} />
           {/* Centred vignette */}
           <div className="absolute inset-0 z-[1]"
             style={{ background: "radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,0,0,0.60) 0%, transparent 75%)" }} />
@@ -354,112 +401,60 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Featured Projects ────────────────────────── */}
-      <section id="works" className="theme-section max-w-[1200px] mx-auto px-6 lg:px-10 py-16">
-
-        <p className="text-base font-light tracking-[0.1em] uppercase text-white/40 mb-0">Featured Projects</p>
-
-        <div className="mt-0 border-t border-white/10">
-          {featuredProjects.map((project) => {
-            const isLocked = projectData[project.slug]?.isProtected ?? false;
-            
-            const cardContent = (
-              <>
-                {/* Text column */}
-                <div className="w-full md:flex-1 md:min-w-[400px] flex flex-col gap-5 md:pr-10 order-2 md:order-1 text-left">
-                  <span className="text-base font-light tracking-[-0.01em] text-white/35">
-                    {project.category} {isLocked && "🔒"}
-                  </span>
-                  <h3 className="text-[26px] md:text-[32px] font-medium leading-[1.2em] tracking-[-0.01em] text-white group-hover:text-primary transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="text-[16px] leading-[1.5em] font-light tracking-[-0.02em] text-white/55 max-w-[520px]">
-                    {project.description}
-                  </p>
-                  <span className="inline-flex items-center gap-1.5 text-base font-light tracking-[-0.02em] text-white/35 group-hover:text-white/55 transition-colors mt-1">
-                    {isLocked ? 'Unlock Case Study' : 'Read Case Study'}
-                    <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                    </svg>
-                  </span>
-                </div>
-
-                {/* Image column */}
-                <div className="w-full md:flex-1 md:min-w-[400px] overflow-hidden rounded-[18px] order-1 md:order-2">
-                  <img
-                    src={project.image}
-                    alt={project.alt}
-                    loading="lazy"
-                    className={`w-full aspect-[4/3] object-cover transition-transform duration-700 ease-out ${project.slug === 'tutoronboarding' ? 'scale-[1.5] group-hover:scale-[1.53]' : 'group-hover:scale-[1.02]'}`}
-                  />
-                </div>
-              </>
-            );
-
-            if (isLocked) {
-              return (
-                <PasswordProtectedProject key={project.slug} to={`/projects/${project.slug}`}>
-                  <div className="group flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-6 py-16 md:py-[80px] border-b border-white/10 w-full">
-                    {cardContent}
-                  </div>
-                </PasswordProtectedProject>
-              );
-            }
-
-            return (
-              <Link
-                key={project.slug}
-                to={`/projects/${project.slug}`}
-                className="group flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-6 py-16 md:py-[80px] border-b border-white/10 w-full"
-              >
-                {cardContent}
-              </Link>
-            );
-          })}
+      {/* ── Featured Projects: pinned shelf ───────────── */}
+      <section id="works" className="theme-section pt-24">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-10 mb-10 lg:mb-0 text-center">
+          <p className="text-base font-light tracking-[0.14em] uppercase text-white/40">Featured case studies</p>
+          <TextReveal
+            as="h2"
+            text="Work that shipped."
+            className="mt-3 text-[40px] md:text-[64px] lg:text-[80px] font-medium leading-none tracking-[-0.03em] text-white"
+          />
         </div>
+        <ProjectShelf projects={featuredProjects} />
       </section>
 
-      <section className="theme-section max-w-[1200px] mx-auto px-6 lg:px-10 pb-20">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 border-b border-white/10 pb-6 mb-8">
-          <div>
-            <p className="text-base font-light tracking-[0.1em] uppercase text-white/40 mb-3">Selected explorations</p>
-            <h2 className="text-[24px] md:text-[32px] font-medium tracking-[-0.02em] text-white">Focused studies in emerging product spaces.</h2>
-          </div>
-          <p className="text-sm text-white/40 max-w-md">Concept and sprint work exploring interaction patterns, onboarding, and responsible AI-assisted experiences.</p>
+      {/* ── Playground: AI experiments ───────────────── */}
+      <section id="ai-experiments" className="theme-section relative overflow-hidden py-24">
+        <div className="max-w-[1100px] mx-auto px-6 lg:px-10 text-center">
+          <p className="text-base font-light tracking-[0.14em] uppercase text-white/40">Built with AI</p>
+          <TextReveal
+            as="h2"
+            text="Playground."
+            className="mt-3 text-[40px] md:text-[64px] lg:text-[80px] font-medium leading-none tracking-[-0.03em] text-white"
+          />
+          <p className="mt-5 mx-auto max-w-[680px] text-[17px] leading-[1.6] font-light text-white/50">
+            Experiments with Claude Code and other AI tools: prototypes, motion and ideas I build to explore what these tools can do.
+          </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-4">
-          {explorations.map((project) => (
-            <Link key={project.slug} to={`/projects/${project.slug}`} className="group rounded-[18px] border border-white/10 bg-[#0d0d0d] p-6 hover:border-white/25 transition-colors">
-              <span className="text-sm text-white/35">{project.category}</span>
-              <h3 className="text-xl font-medium text-white mt-3 group-hover:text-primary transition-colors">{project.title}</h3>
-              <p className="text-sm leading-6 text-white/45 mt-3 line-clamp-3">{project.description}</p>
-              <span className="inline-block text-sm text-white/55 mt-5">View exploration ↗</span>
-            </Link>
-          ))}
-        </div>
+        <RowLabel className="mt-12 px-6">AI experiments</RowLabel>
+        <AIPlayground />
       </section>
 
-      {/* ── Services / Expertise ─────────────────────── */}
+      {/* ── How I think: floating tools + process strip ── */}
+      <section className="theme-section relative overflow-hidden py-14 md:py-44 border-t border-white/10">
+        <FloatingChips chips={toolChips} />
+        <FloatingChipRow chips={toolChips.slice(0, 4)} className="mb-10" />
+        <div className="relative px-6 lg:px-10">
+          <ProcessStrip />
+        </div>
+        <FloatingChipRow chips={toolChips.slice(4)} className="mt-10" />
+      </section>
+
+      {/* ── Expertise ────────────────────────────────── */}
       <section className="theme-section max-w-[1200px] mx-auto px-6 lg:px-10 py-20 border-t border-white/10">
 
-        <div className="mb-16">
-          <p className="text-[16px] font-light tracking-[0.14em] uppercase text-white/35 mb-5">How I contribute</p>
-          <h2 className="text-[22px] sm:text-[28px] md:text-[36px] lg:text-[42px] font-medium leading-[1.25] tracking-[-0.02em] text-white w-full">
-            Helping teams ship products that users actually love.
-          </h2>
+        <div className="mb-12 md:mb-16 text-center">
+          <p className="text-[16px] font-light tracking-[0.14em] uppercase text-white/35 mb-3">What I bring</p>
+          <TextReveal
+            as="h2"
+            text="Expertise."
+            className="text-[40px] md:text-[64px] lg:text-[80px] font-medium leading-none tracking-[-0.03em] text-white"
+          />
         </div>
 
-        {/* Service cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
-          {services.map((s) => (
-            <div key={s.title} className="bg-[#0d0d0d] rounded-[18px] p-8 flex flex-col gap-4">
-              <div className="flex items-center gap-3 mb-1">
-                <s.Icon className="service-card-icon w-[18px] h-[18px] text-white/35" strokeWidth={1.5} />
-                <h3 className="text-[17px] font-medium leading-[1.2em] tracking-[-0.02em] text-white">{s.title}</h3>
-              </div>
-              <p className="text-[16px] leading-[1.65em] font-light tracking-[-0.01em] text-white/45">{s.description}</p>
-            </div>
-          ))}
+        <div className="mb-12">
+          <ExpertiseBento />
         </div>
 
         {/* Skill chips — two-row horizontal carousel */}
@@ -534,44 +529,51 @@ const Index = () => {
           {/* Duplicated track for seamless loop */}
           <div className="flex w-max reviews-track">
             {[...reviews, ...reviews].map((review, i) => (
-              <div
+              <article
                 key={`${review.name}-${i}`}
-                className="flex-shrink-0 mr-4 w-[300px] md:w-[340px] bg-[#0d0d0d] rounded-[18px] p-7 flex flex-col gap-5"
+                aria-hidden={i >= reviews.length || undefined}
+                className="rv-card xp-card flex-shrink-0 mr-4 w-[300px] md:w-[360px] flex flex-col rounded-[22px] border border-white/10 bg-[#0d0d0d] p-3 transition-[border-color,box-shadow] duration-300"
+                style={{ "--xp-accent": review.accent, "--xp-tint": review.tint } as React.CSSProperties}
               >
-                {/* Avatar */}
-                {review.avatar ? (
-                  <img
-                    src={review.avatar}
-                    alt={review.name}
-                    className="w-14 h-14 rounded-full object-cover flex-shrink-0 border border-white/10"
-                  />
-                ) : (
-                  <div className="w-14 h-14 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center text-white/55 text-lg font-medium flex-shrink-0">
-                    {review.name.split(" ").map((w) => w[0]).join("").slice(0, 2)}
+                {/* Quote stage */}
+                <div className="xp-card__stage relative flex flex-1 flex-col gap-4 overflow-hidden rounded-[14px] p-6">
+                  <div className="flex items-center justify-between">
+                    <span aria-hidden className="keep-color font-serif text-[56px] leading-[0.6] h-[26px]" style={{ color: review.accent }}>
+                      &ldquo;
+                    </span>
+                    <div className="flex items-center gap-1" aria-label={`Rated ${review.rating} out of 5`}>
+                      {Array.from({ length: review.rating }).map((_, s) => (
+                        <svg key={s} aria-hidden className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" viewBox="0 0 24 24">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                      ))}
+                    </div>
                   </div>
-                )}
-
-                {/* Name + role */}
-                <div className="flex flex-col gap-0.5">
-                  <h3 className="text-[18px] font-medium tracking-[-0.02em] text-white">{review.name}</h3>
-                  <p className="text-[16px] font-light tracking-[-0.01em] text-white/40">{review.role}</p>
+                  <p className="rv-card__quote text-[16px] leading-[1.7em] font-light tracking-[-0.01em] text-white/60 transition-colors duration-300">
+                    {review.text}
+                  </p>
                 </div>
 
-                {/* Review text */}
-                <p className="text-[16px] leading-[1.7em] font-light tracking-[-0.01em] text-white/55 flex-1">
-                  {review.text}
-                </p>
-
-                {/* Stars */}
-                <div className="flex items-center gap-1">
-                  {Array.from({ length: review.rating }).map((_, i) => (
-                    <svg key={i} className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" viewBox="0 0 24 24">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                  ))}
-                  <span className="ml-1.5 text-[16px] font-light text-white/40">5.0</span>
+                {/* Reviewer */}
+                <div className="flex min-h-[124px] items-center gap-3.5 px-2 pb-2 pt-4">
+                  {review.avatar ? (
+                    <img
+                      src={review.avatar}
+                      alt={review.name}
+                      className="w-12 h-12 rounded-full object-cover flex-shrink-0 border border-white/10"
+                    />
+                  ) : (
+                    <div className="w-12 h-12 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center text-white/55 text-base font-medium flex-shrink-0">
+                      {review.name.split(" ").map((w) => w[0]).join("").slice(0, 2)}
+                    </div>
+                  )}
+                  <div className="flex min-w-0 flex-col gap-0.5">
+                    <h3 className="xp-card__title text-[18px] font-medium tracking-[-0.02em] text-white transition-colors duration-300">{review.name}</h3>
+                    <p className="text-[14px] font-light tracking-[-0.01em] text-white/45">{review.role}</p>
+                    <span className="xp-card__metric mt-1 text-[12px] uppercase tracking-[0.08em] text-white/35 transition-colors duration-300">{review.project}</span>
+                  </div>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
@@ -579,31 +581,56 @@ const Index = () => {
 
       </section>
 
-      {/* ── Stats ────────────────────────────────────── */}
-      <section className="theme-section max-w-[1200px] mx-auto px-6 lg:px-10 py-16 border-t border-white/10">
-        <div className="flex flex-col md:flex-row items-start gap-12 md:gap-0">
-          {stats.map((stat, i) => (
+      {/* ── Experience ───────────────────────────────── */}
+      <section className="theme-section max-w-[1200px] mx-auto px-6 lg:px-10 py-20 border-t border-white/10">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+          <div>
+            <p className="text-base font-light tracking-[0.1em] uppercase text-white/40 mb-3">Experience</p>
+            <h2 className="text-[24px] md:text-[32px] font-medium tracking-[-0.02em] text-white">A track record of shipped work.</h2>
+          </div>
+          <p className="text-base font-light text-white/40">5+ years · 3 companies · 35+ projects · 3 design systems</p>
+        </div>
+        <div className="border-t border-white/10">
+          {experience.map((job) => (
             <div
-              key={stat.label}
-              className={`flex-1 flex flex-col gap-2 ${i < stats.length - 1 ? "md:border-r md:border-white/10 md:pr-12" : ""} ${i > 0 ? "md:pl-12" : ""}`}
+              key={job.company}
+              className="grid grid-cols-1 md:grid-cols-[160px_1fr_1.4fr] gap-3 md:gap-8 py-8 border-b border-white/10 md:items-center"
             >
-              <span className="text-[44px] md:text-[54px] font-medium leading-none tracking-[-0.01em] text-white">{stat.value}</span>
-              <span className="text-base font-light tracking-[-0.02em] text-white/40">{stat.label}</span>
+              <span className="text-base font-light text-white/40">{job.date}</span>
+              <div>
+                <p className="text-[20px] font-medium tracking-[-0.01em] text-white">{job.company}</p>
+                <p className="text-base font-light text-white/45">{job.role}</p>
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-[28px] md:text-[32px] font-medium leading-none tracking-[-0.01em] text-white">{job.metric}</span>
+                <span className="text-[15px] font-light leading-snug text-white/45">{job.metricLabel}</span>
+              </div>
             </div>
           ))}
         </div>
+        <Link to="/about" className="inline-block mt-8 text-base font-light text-white/55 hover:text-white transition-colors">
+          Full experience on About ↗
+        </Link>
+      </section>
+
+      {/* ── Sprints & concepts ───────────────────────── */}
+      <section className="theme-section max-w-[1200px] mx-auto px-6 lg:px-10 py-20 border-t border-white/10">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+          <div>
+            <p className="text-base font-light tracking-[0.1em] uppercase text-white/40 mb-3">Sprints & concepts</p>
+            <h2 className="text-[28px] md:text-[40px] font-medium tracking-[-0.02em] text-white">Short briefs, real constraints.</h2>
+          </div>
+          <p className="text-base font-light text-white/40 max-w-md">Assignments and concept sprints on retention, voice and learning habits, outside client work.</p>
+        </div>
+        <ExplorationsRow items={explorations} />
       </section>
 
       {/* ── CTA / Footer ─────────────────────────────── */}
       <footer className="relative min-h-screen flex flex-col overflow-hidden border-t border-white/10">
 
-        {/* Spline background */}
+        {/* Background glow */}
         <div className="cinematic-bg absolute inset-0 z-0 pointer-events-none">
-          {/* @ts-ignore */}
-          <spline-viewer
-            url="https://prod.spline.design/Ewb8vIqWFjVZn1-c/scene.splinecode"
-            style={{ width: "100%", height: "100%", display: "block" }}
-          />
+          <div className="absolute inset-0" style={{ background: "radial-gradient(60% 55% at 50% 45%, hsl(var(--primary) / 0.10) 0%, transparent 70%)" }} />
           {/* Dark overlay so text stays readable */}
           <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
         </div>

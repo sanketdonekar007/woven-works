@@ -9,6 +9,26 @@ import {
   CarouselItem,
   type CarouselApi,
 } from "@/components/ui/carousel";
+import { TextReveal } from "@/components/TextReveal";
+import { ScrollTextReveal } from "@/components/home/shared";
+
+/* Metrics inside experience bullets are shown in the accent colour. */
+const METRIC = /(\d+ min to \d+ min|\d+–\d+%|\d+%)/;
+const highlightMetrics = (text: string) =>
+  text.split(METRIC).map((part, i) =>
+    i % 2 === 1 ? <span key={i} className="accent-text font-medium text-primary">{part}</span> : part
+  );
+
+const storyText = [
+  {
+    text: "I started in engineering, with an IT degree from MIT Pune, and moved into design to work on how people use systems, not just how they are built. An MBA in Business Analytics added the other half: measuring whether a design actually works.",
+    className: "approach-lead text-[20px] md:text-[28px] leading-[1.45] font-light text-white",
+  },
+  {
+    text: "Engineering shows me how systems work. Analytics shows me whether they work. Design is where I make them work for people.",
+    className: "keep-color text-[22px] md:text-[32px] leading-[1.35] font-medium text-primary",
+  },
+];
 
 /* ── Scroll-reveal ───────────────────────────────────────── */
 function useReveal() {
@@ -296,19 +316,21 @@ const About = () => {
         </Reveal>
         <Reveal delay={160}>
           <p className="text-[17px] md:text-[18px] leading-[1.75] font-light text-white/50 max-w-[680px] mx-auto">
-            I turn complex, multi-role systems into clear product experiences. Based in Pune, I combine product strategy, service design, user research, and close engineering collaboration to move work from ambiguity to validated, build-ready solutions.
+            I turn complex, multi-role systems into <span className="bio-strong font-normal text-white">clear product experiences</span>. Based in Pune, I combine product strategy, service design, user research, and close engineering collaboration to move work from ambiguity to validated, build-ready solutions.
           </p>
         </Reveal>
         </div>{/* end name+bio */}
       </div>{/* end hero wrapper */}
 
+      {/* ── My story: scroll-lit text ─────────────────── */}
+      <section className="max-w-[980px] mx-auto px-6 lg:px-12 py-24 md:py-32 border-t border-white/10 text-center">
+        <p className="text-[15px] font-light tracking-[0.14em] uppercase text-white/40 mb-10">My story</p>
+        <ScrollTextReveal paragraphs={storyText} />
+      </section>
+
       {/* ── Work Experience ──────────────────────────── */}
       <section className="max-w-[1200px] mx-auto px-6 lg:px-12 py-16 border-t border-white/10">
-        <Reveal>
-          <h2 className="text-[28px] md:text-[34px] font-medium tracking-[-0.02em] text-white mb-14">
-            Work Experience
-          </h2>
-        </Reveal>
+        <TextReveal as="h2" text="Work Experience" className="text-[28px] md:text-[34px] font-medium tracking-[-0.02em] text-white mb-14" />
 
         <div className="flex flex-col divide-y divide-white/[0.07]">
           {experience.map((item, i) => (
@@ -325,7 +347,7 @@ const About = () => {
                   {item.bullets.map((b, j) => (
                     <li key={j} className="flex gap-2.5 text-[14px] leading-[1.65] font-light text-white/45">
                       <span className="mt-[6px] w-1 h-1 rounded-full bg-white/25 flex-shrink-0" />
-                      {b}
+                      <span>{highlightMetrics(b)}</span>
                     </li>
                   ))}
                 </ul>
@@ -337,11 +359,7 @@ const About = () => {
 
       {/* ── Education ────────────────────────────────── */}
       <section className="max-w-[1200px] mx-auto px-6 lg:px-12 py-16 border-t border-white/10">
-        <Reveal>
-          <h2 className="text-[28px] md:text-[34px] font-medium tracking-[-0.02em] text-white mb-14">
-            Education
-          </h2>
-        </Reveal>
+        <TextReveal as="h2" text="Education" className="text-[28px] md:text-[34px] font-medium tracking-[-0.02em] text-white mb-14" />
 
         <div className="flex flex-col gap-4">
           {education.map((item, i) => (
@@ -371,11 +389,7 @@ const About = () => {
 
       {/* ── Skills ───────────────────────────────────── */}
       <section className="max-w-[1200px] mx-auto px-6 lg:px-12 py-16 border-t border-white/10">
-        <Reveal>
-          <h2 className="text-[28px] md:text-[34px] font-medium tracking-[-0.02em] text-white mb-10">
-            Skills
-          </h2>
-        </Reveal>
+        <TextReveal as="h2" text="Skills" className="text-[28px] md:text-[34px] font-medium tracking-[-0.02em] text-white mb-10" />
         <Reveal delay={80}>
           <div className="flex flex-wrap gap-2.5">
             {skills.map((skill) => (
@@ -393,11 +407,7 @@ const About = () => {
 
       {/* ── Toolkit ──────────────────────────────────── */}
       <section className="max-w-[1200px] mx-auto px-6 lg:px-12 py-16 border-t border-white/10">
-        <Reveal>
-          <h2 className="text-[28px] md:text-[34px] font-medium tracking-[-0.02em] text-white mb-10">
-            Toolkit
-          </h2>
-        </Reveal>
+        <TextReveal as="h2" text="Toolkit" className="text-[28px] md:text-[34px] font-medium tracking-[-0.02em] text-white mb-10" />
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {tools.map((tool, i) => (
@@ -432,13 +442,9 @@ const About = () => {
       {/* ── Footer CTA ───────────────────────────────── */}
       <footer className="relative min-h-[80vh] flex flex-col overflow-hidden border-t border-white/10">
 
-        {/* Spline background */}
+        {/* Background glow */}
         <div className="cinematic-bg absolute inset-0 z-0 pointer-events-none">
-          {/* @ts-ignore */}
-          <spline-viewer
-            url="https://prod.spline.design/Ewb8vIqWFjVZn1-c/scene.splinecode"
-            style={{ width: "100%", height: "100%", display: "block" }}
-          />
+          <div className="absolute inset-0" style={{ background: "radial-gradient(60% 55% at 50% 45%, hsl(var(--primary) / 0.10) 0%, transparent 70%)" }} />
           <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
         </div>
 
