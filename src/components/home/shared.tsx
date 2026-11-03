@@ -123,18 +123,30 @@ const MAGNET_RADIUS = 300;
 const MAGNET_PULL = 16;
 
 /* Hover (or tap) lifts the chip, lights its border in the tool's colour and reveals the note. */
-const ChipBody = ({ chip, compact = false }: { chip: FloatingChip; compact?: boolean }) => {
-  const [open, setOpen] = useState(false);
+const ChipBody = ({
+  chip,
+  compact = false,
+  open: controlledOpen,
+  onOpenChange,
+}: {
+  chip: FloatingChip;
+  compact?: boolean;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}) => {
+  const [localOpen, setLocalOpen] = useState(false);
+  const open = controlledOpen ?? localOpen;
+  const setOpen = onOpenChange ?? setLocalOpen;
   return (
     <button
       type="button"
       aria-expanded={open}
       onPointerEnter={(e) => e.pointerType === "mouse" && setOpen(true)}
       onPointerLeave={(e) => e.pointerType === "mouse" && setOpen(false)}
-      onClick={() => setOpen((o) => !o)}
+      onClick={() => setOpen(!open)}
       onBlur={() => setOpen(false)}
       data-open={open || undefined}
-      className="tool-chip pointer-events-auto block cursor-pointer text-left outline-none"
+      className={`tool-chip pointer-events-auto relative block cursor-pointer text-left outline-none ${open ? "z-20" : ""}`}
       style={{ "--chip-accent": chip.accent } as React.CSSProperties}
     >
       <div
@@ -147,12 +159,20 @@ const ChipBody = ({ chip, compact = false }: { chip: FloatingChip; compact?: boo
           <span className={compact ? "origin-left scale-[0.85]" : ""}>{chip.icon}</span>
           <span className={`font-medium text-white/80 ${compact ? "-ml-1 text-[13px]" : "text-[15px]"}`}>{chip.label}</span>
         </div>
-        <div className="tool-chip__note grid">
-          <span className={`overflow-hidden whitespace-nowrap font-light text-white/55 ${compact ? "text-[11px]" : "text-[13px]"}`}>
-            <span className="block pt-1.5">{chip.note}</span>
-          </span>
-        </div>
+        {!compact && (
+          <div className="tool-chip__note grid">
+            <span className="overflow-hidden whitespace-nowrap text-[13px] font-light text-white/55">
+              <span className="block pt-1.5">{chip.note}</span>
+            </span>
+          </div>
+        )}
       </div>
+      {/* Mobile: the note pops out under the chip so the rows never reflow. */}
+      {compact && (
+        <span className="tool-chip__pop keep-color pointer-events-none absolute left-1/2 top-full z-30 mt-2 whitespace-nowrap rounded-lg px-2.5 py-1.5 text-[12px] font-light text-white">
+          {chip.note}
+        </span>
+      )}
     </button>
   );
 };
@@ -200,16 +220,96 @@ const Chip = ({ chip }: { chip: FloatingChip }) => {
   );
 };
 
-/* Mobile: the same chips in a staggered, wrapping row; tap to reveal the note. */
-export const FloatingChipRow = ({ chips, className = "" }: { chips: FloatingChip[]; className?: string }) => (
-  <div className={`flex flex-wrap items-start justify-center gap-x-3 gap-y-4 px-6 md:hidden ${className}`}>
-    {chips.map((chip, i) => (
-      <div key={chip.label} className={i % 2 ? "translate-y-2" : "-translate-y-1"}>
-        <ChipBody chip={chip} compact />
-      </div>
-    ))}
-  </div>
-);
+const AUTO_CLOSE_MS = 4000;
+const PEEK_MS = 2600;
+
+/* Mobile: chips in staggered rows above and below the content. Tap a chip to reveal its note.
+   One chip is open at a time; it closes on a tap elsewhere or after a few seconds. The first
+   chip opens briefly when the section first scrolls into view, to show the chips respond. */
+export const MobileChipFrame = ({
+  chips,
+  split,
+  children,
+}: {
+  chips: FloatingChip[];
+  split: number; // chips before the content; the rest go after it
+  children: React.ReactNode;
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
+  const touched = useRef(false);
+  const reduced = useReducedMotion();
+  const mobile = useMediaQuery("(max-width: 767px)");
+
+  // Tap anywhere outside the open chip closes it (focus/blur is unreliable on iOS).
+  useEffect(() => {
+    if (openIdx === null) return;
+    const onDown = (e: PointerEvent) => {
+      const target = e.target as Element | null;
+      if (!target?.closest(`[data-chip-index="${openIdx}"]`)) setOpenIdx(null);
+    };
+    const timer = window.setTimeout(() => setOpenIdx(null), AUTO_CLOSE_MS);
+    document.addEventListener("pointerdown", onDown);
+    return () => {
+      document.removeEventListener("pointerdown", onDown);
+      window.clearTimeout(timer);
+    };
+  }, [openIdx]);
+
+  // One-time peek at the first chip.
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || reduced || !mobile) return;
+    let timer = 0;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        io.disconnect();
+        timer = window.setTimeout(() => {
+          if (touched.current) return;
+          setOpenIdx(0);
+          window.setTimeout(() => !touched.current && setOpenIdx((cur) => (cur === 0 ? null : cur)), PEEK_MS);
+        }, 600);
+      },
+      { threshold: 0.5 }
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      window.clearTimeout(timer);
+    };
+  }, [reduced, mobile]);
+
+  const row = (items: FloatingChip[], offset: number, className: string) => (
+    <div className={`flex flex-wrap items-start justify-center gap-x-3 gap-y-4 px-6 md:hidden ${className}`}>
+      {items.map((chip, j) => {
+        const i = offset + j;
+        return (
+          <div key={chip.label} data-chip-index={i} className={j % 2 ? "translate-y-2" : "-translate-y-1"}>
+            <ChipBody
+              chip={chip}
+              compact
+              open={openIdx === i}
+              onOpenChange={(next) => {
+                touched.current = true;
+                setOpenIdx((cur) => (next ? i : cur === i ? null : cur));
+              }}
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  return (
+    <div ref={ref}>
+      <p className="mb-6 text-center text-[12px] font-light tracking-[0.08em] text-white/35 md:hidden">Tap a tool to see how I use it</p>
+      {row(chips.slice(0, split), 0, "mb-16")}
+      {children}
+      {row(chips.slice(split), split, "mt-10")}
+    </div>
+  );
+};
 
 export const FloatingChips = ({ chips }: { chips: FloatingChip[] }) => (
   <>

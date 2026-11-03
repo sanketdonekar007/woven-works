@@ -9,7 +9,7 @@ import { ProcessStrip } from "@/components/home/ProcessStrip";
 import { ExpertiseBento } from "@/components/home/ExpertiseBento";
 import { AIPlayground } from "@/components/home/AIPlayground";
 import { ExplorationsRow } from "@/components/home/ExplorationsRow";
-import { FloatingChipRow, FloatingChips, RowLabel, type FloatingChip } from "@/components/home/shared";
+import { FloatingChips, MobileChipFrame, RowLabel, type FloatingChip } from "@/components/home/shared";
 
 /* ─── Data ───────────────────────────────────────────── */
 
@@ -415,30 +415,33 @@ const Index = () => {
       </section>
 
       {/* ── Playground: AI experiments ───────────────── */}
-      <section id="ai-experiments" className="theme-section relative overflow-hidden py-24">
-        <div className="max-w-[1100px] mx-auto px-6 lg:px-10 text-center">
-          <p className="text-base font-light tracking-[0.14em] uppercase text-white/40">Built with AI</p>
-          <TextReveal
-            as="h2"
-            text="Playground."
-            className="mt-3 text-[40px] md:text-[64px] lg:text-[80px] font-medium leading-none tracking-[-0.03em] text-white"
-          />
-          <p className="mt-5 mx-auto max-w-[680px] text-[17px] leading-[1.6] font-light text-white/50">
-            Experiments with Claude Code and other AI tools: prototypes, motion and ideas I build to explore what these tools can do.
-          </p>
-        </div>
-        <RowLabel className="mt-12 px-6">AI experiments</RowLabel>
-        <AIPlayground />
-      </section>
+      {/* Work in progress: shown in local dev only, hidden from the production build. */}
+      {import.meta.env.DEV && (
+        <section id="ai-experiments" className="theme-section relative overflow-hidden py-24">
+          <div className="max-w-[1100px] mx-auto px-6 lg:px-10 text-center">
+            <p className="text-base font-light tracking-[0.14em] uppercase text-white/40">Built with AI</p>
+            <TextReveal
+              as="h2"
+              text="Playground."
+              className="mt-3 text-[40px] md:text-[64px] lg:text-[80px] font-medium leading-none tracking-[-0.03em] text-white"
+            />
+            <p className="mt-5 mx-auto max-w-[680px] text-[17px] leading-[1.6] font-light text-white/50">
+              Experiments with Claude Code and other AI tools: prototypes, motion and ideas I build to explore what these tools can do.
+            </p>
+          </div>
+          <RowLabel className="mt-12 px-6">AI experiments</RowLabel>
+          <AIPlayground />
+        </section>
+      )}
 
       {/* ── How I think: floating tools + process strip ── */}
       <section className="theme-section relative overflow-hidden py-14 md:py-44 border-t border-white/10">
         <FloatingChips chips={toolChips} />
-        <FloatingChipRow chips={toolChips.slice(0, 4)} className="mb-10" />
-        <div className="relative px-6 lg:px-10">
-          <ProcessStrip />
-        </div>
-        <FloatingChipRow chips={toolChips.slice(4)} className="mt-10" />
+        <MobileChipFrame chips={toolChips} split={4}>
+          <div className="relative px-6 lg:px-10">
+            <ProcessStrip />
+          </div>
+        </MobileChipFrame>
       </section>
 
       {/* ── Expertise ────────────────────────────────── */}

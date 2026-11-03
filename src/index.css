@@ -1379,8 +1379,18 @@ html:not(.dark) .theme-section .rv-card:hover .rv-card__quote { color: hsl(var(-
 }
 .tool-chip__note > * { min-width: 0; min-height: 0; }
 .tool-chip[data-open] .tool-chip__note { grid-template-rows: 1fr; grid-template-columns: 1fr; opacity: 1; }
+.tool-chip__pop {
+  background: #141414;
+  border: 1px solid var(--chip-accent);
+  box-shadow: 0 12px 28px -6px color-mix(in srgb, var(--chip-accent) 40%, transparent);
+  opacity: 0;
+  transform: translate(-50%, -4px);
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.tool-chip[data-open] .tool-chip__pop { opacity: 1; transform: translate(-50%, 0); }
+html:not(.dark) .tool-chip__pop { background: #1a1a1a; }
 @media (prefers-reduced-motion: reduce) {
-  .tool-chip, .tool-chip__note { transition: none; }
+  .tool-chip, .tool-chip__note, .tool-chip__pop { transition: none; }
 }
 
 /* "How I think" process strip */
