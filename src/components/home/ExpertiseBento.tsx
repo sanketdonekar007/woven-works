@@ -166,44 +166,59 @@ const DevMock = () => {
   );
 };
 
-const ResearchMock = () => {
-  const tasks = [
-    { task: "Scan a product", time: "0:14" },
-    { task: "Read the verdict", time: "0:09" },
-    { task: "Compare alternative", time: "0:21" },
-    { task: "Save to list", time: "0:31", fail: true },
+const QAMock = () => {
+  const checks = [
+    { item: "Tokens & colour", ok: true },
+    { item: "Spacing", ok: false },
+    { item: "States & errors", ok: true },
+    { item: "Contrast (WCAG)", ok: true },
   ];
   return (
     <>
-      <Panel className="left-0 top-0 w-[142px] p-2.5" style={order(0)}>
-        <div className="mb-2 flex items-center justify-between">
-          <span className="text-[8px] font-bold text-[#0B1220]">Usability test</span>
-          <span className="text-[6.5px] font-extrabold tracking-[0.08em] text-[#db2777]">n = 6</span>
+      {/* Design vs build, with a redline on the mismatched gap */}
+      <Panel className="left-0 top-0 w-[128px] p-2.5" style={order(0)}>
+        <div className="mb-1.5 flex items-center justify-between">
+          <span className="text-[6.5px] font-extrabold tracking-[0.08em] text-[#0B1220]/45">DESIGN</span>
+          <span className="text-[6.5px] font-extrabold tracking-[0.08em] text-[#db2777]">BUILD</span>
         </div>
-        {tasks.map((t) => (
-          <div key={t.task} className="mb-1.5 flex items-center gap-1.5 last:mb-0">
+        <div className="flex gap-2">
+          <div className="flex flex-1 flex-col gap-[6px] rounded border border-black/10 p-1.5">
+            <Bar w="70%" h={4} color="rgba(11,18,32,0.35)" />
+            <div className="h-[10px] rounded border border-black/10" />
+            <div className="h-[10px] rounded-full bg-[#db2777]" />
+          </div>
+          <div className="relative flex flex-1 flex-col gap-[6px] rounded border border-[#db2777]/50 p-1.5">
+            <Bar w="70%" h={4} color="rgba(11,18,32,0.35)" />
+            <div className="h-[10px] rounded border border-black/10" />
+            <div className="mt-[4px] h-[10px] rounded-full bg-[#db2777]" />
+            <span className="absolute right-[3px] bottom-[16px] h-[8px] border-r border-dashed border-[#e11d48]" />
+            <span className="absolute right-[1px] bottom-[26px] rounded bg-[#e11d48] px-[3px] text-[5.5px] font-extrabold text-white">+4</span>
+          </div>
+        </div>
+      </Panel>
+      {/* QA checklist */}
+      <Panel className="left-[138px] top-0 w-[102px] p-2.5" style={order(2)}>
+        <span className="mb-1.5 block text-[7px] font-extrabold tracking-[0.06em] text-[#0B1220]/45">QA CHECKLIST</span>
+        {checks.map((c) => (
+          <div key={c.item} className="mb-1 flex items-center gap-1.5 last:mb-0">
             <span
               className="grid h-[10px] w-[10px] place-items-center rounded text-[7px] font-extrabold"
-              style={{ background: t.fail ? "rgba(225,29,72,0.15)" : "rgba(16,185,129,0.15)", color: t.fail ? "#e11d48" : "#059669" }}
+              style={{ background: c.ok ? "rgba(16,185,129,0.15)" : "rgba(225,29,72,0.15)", color: c.ok ? "#059669" : "#e11d48" }}
             >
-              {t.fail ? "!" : "✓"}
+              {c.ok ? "✓" : "!"}
             </span>
-            <span className="flex-1 text-[6.5px] font-semibold text-[#0B1220]/65">{t.task}</span>
-            <span className="font-mono text-[6.5px] font-bold text-[#0B1220]/45">{t.time}</span>
+            <span className="text-[6.5px] font-semibold text-[#0B1220]/65">{c.item}</span>
           </div>
         ))}
       </Panel>
-      <Panel className="left-[152px] top-[6px] w-[88px] p-2.5" style={order(2)}>
-        <span className="block text-[6.5px] font-bold tracking-[0.06em] text-[#0B1220]/45">SCAN → DECISION</span>
-        <span className="mt-1 block text-[16px] font-extrabold leading-none text-[#db2777]">−33%</span>
-        <div className="mt-2 flex flex-col gap-1">
-          <Bar w="100%" h={4} color="rgba(11,18,32,0.15)" />
-          <Bar w="67%" h={4} color="#db2777" />
-        </div>
+      {/* Release sign-off */}
+      <Panel className="left-[138px] top-[92px] flex w-[102px] items-center gap-1.5 px-2.5 py-2" style={order(4)}>
+        <span className="grid h-[12px] w-[12px] place-items-center rounded-full bg-emerald-500 text-[7px] font-extrabold text-white">✓</span>
+        <span className="text-[7px] font-bold text-[#0B1220]">v2.4 approved</span>
       </Panel>
-      <Panel className="left-[152px] top-[90px] flex w-[88px] items-center gap-1.5 px-2.5 py-2" style={order(4)}>
-        <span className="h-[7px] w-[7px] rounded-full bg-[#db2777]" />
-        <span className="text-[7px] font-bold text-[#0B1220]">1 fix → next sprint</span>
+      <Panel className="left-[10px] top-[98px] flex w-[108px] items-center gap-1.5 px-2.5 py-1.5" style={order(5)}>
+        <span className="h-[6px] w-[6px] rounded-full bg-[#e11d48]" />
+        <span className="text-[6.5px] font-bold text-[#0B1220]/70">Gap 12 → 16px · fixed</span>
       </Panel>
     </>
   );
@@ -248,12 +263,12 @@ const cards = [
   },
   {
     number: "05",
-    title: "Research & Usability Testing",
-    metric: "Scan-to-decision time −33%",
+    title: "Design QA & Delivery",
+    metric: "On-brand on every release",
     accent: "#db2777",
     tint: "rgba(219, 39, 119, 0.14)",
     span: "md:col-span-2",
-    Mock: ResearchMock,
+    Mock: QAMock,
   },
 ];
 

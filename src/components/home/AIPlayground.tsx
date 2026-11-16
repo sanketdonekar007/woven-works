@@ -1,30 +1,47 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Volume2, VolumeX } from "lucide-react";
 import { aiExperiments, type AIExperiment } from "@/data/aiExperiments";
-import { useReducedMotion } from "./shared";
+import { useMediaQuery, useReducedMotion } from "./shared";
 
-const MEDIA_H = 300; // px
+const MEDIA_H = 440; // px, tablet and up
+const MEDIA_H_PHONE = 300; // px, below 768px wide
 const SPEED = 40; // px per second
 const RESUME_AFTER = 1400; // ms after a drag or wheel before auto-scroll resumes
 const DRAG_THRESHOLD = 5;
 
-const ExperimentCard = ({ item }: { item: AIExperiment }) => {
+type CardProps = {
+  item: AIExperiment;
+  mediaH: number;
+  soundOn: boolean;
+  onToggleSound: () => void;
+};
+
+const ExperimentCard = ({ item, mediaH, soundOn, onToggleSound }: CardProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const navigate = useNavigate();
+  const narrow = item.ratio < 1;
+  const withSound = !!item.hasAudio && soundOn;
+
+  // React does not keep the `muted` attribute in sync, so set the property directly.
+  useEffect(() => {
+    if (videoRef.current) videoRef.current.muted = !withSound;
+  }, [withSound]);
 
   const play = () => videoRef.current?.play().catch(() => {});
   const stop = () => {
     const v = videoRef.current;
     if (v) {
       v.pause();
-      v.currentTime = 0;
+      // Cards without a poster keep showing the video, so rest on the same frame as before.
+      v.currentTime = item.image ? 0 : 1;
     }
   };
 
   return (
     <article
       className="ai-card group relative flex-none overflow-hidden rounded-[18px] border border-white/10 bg-[#0d0d0d] transition-[border-color,box-shadow] duration-300 hover:border-primary/60 hover:shadow-[0_0_0_1px_hsl(var(--primary)/0.25)]"
-      style={{ width: MEDIA_H * item.ratio }}
+      style={{ width: mediaH * item.ratio }}
       onMouseEnter={play}
       onMouseLeave={stop}
       onClick={() => item.href && navigate(item.href)}
@@ -32,17 +49,21 @@ const ExperimentCard = ({ item }: { item: AIExperiment }) => {
       tabIndex={item.href ? 0 : undefined}
       onKeyDown={(e) => e.key === "Enter" && item.href && navigate(item.href)}
     >
-      <div className="relative overflow-hidden bg-black" style={{ height: MEDIA_H }}>
-        <img src={item.image} alt={item.title} loading="lazy" draggable={false} className="h-full w-full object-cover object-top" />
+      <div className="relative overflow-hidden bg-black" style={{ height: mediaH }}>
+        {item.image && (
+          <img src={item.image} alt={item.title} loading="lazy" draggable={false} className={`h-full w-full object-cover ${narrow ? "object-center" : "object-top"}`} />
+        )}
         {item.video && (
           <video
             ref={videoRef}
-            src={item.video}
-            muted
+            // With no poster image, load just enough to show a frame 1s in.
+            src={item.image ? item.video : `${item.video}#t=1`}
+            muted={!withSound}
             loop
             playsInline
-            preload="none"
-            className="ai-card-video absolute inset-0 h-full w-full object-cover"
+            preload={item.image ? "none" : "metadata"}
+            aria-label={item.image ? undefined : item.title}
+            className={`absolute inset-0 h-full w-full object-cover ${item.image ? "ai-card-video" : ""}`}
           />
         )}
         <span className="pill-dark keep-color absolute left-3 top-3 rounded-full bg-black/65 px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-white backdrop-blur-md">
@@ -50,13 +71,26 @@ const ExperimentCard = ({ item }: { item: AIExperiment }) => {
         </span>
         {item.video && (
           <span className="pill-dark keep-color absolute right-3 top-3 rounded-full bg-black/65 px-2.5 py-1 text-[11px] text-white/80 backdrop-blur-md transition-opacity group-hover:opacity-0">
-            ▶ Hover to play
+            {narrow ? "▶" : "▶ Hover to play"}
           </span>
         )}
-      </div>
-      <div className="border-t border-white/10 px-4 py-3.5">
-        <p className="text-[15px] font-medium leading-snug text-white/90">{item.title}</p>
-        {item.tool && <p className="keep-color mt-1 text-[13px] font-medium text-primary">{item.tool}</p>}
+        {item.video && item.hasAudio && (
+          <button
+            type="button"
+            data-no-drag
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleSound();
+            }}
+            onKeyDown={(e) => e.stopPropagation()}
+            aria-pressed={soundOn}
+            aria-label={soundOn ? "Turn sound off" : "Turn sound on"}
+            title={soundOn ? "Sound on" : "Sound off"}
+            className="pill-dark keep-color absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-black/65 text-white/85 backdrop-blur-md transition-colors hover:bg-black/80 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          >
+            {soundOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+          </button>
+        )}
       </div>
     </article>
   );
@@ -66,7 +100,12 @@ const ExperimentCard = ({ item }: { item: AIExperiment }) => {
 const Belt = ({ items }: { items: AIExperiment[] }) => {
   const beltRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
-  const COPIES = 3;
+  const mediaH = useMediaQuery("(min-width: 768px)") ? MEDIA_H : MEDIA_H_PHONE;
+  // Enough copies that a short list still fills wide screens without a gap.
+  const COPIES = items.length < 4 ? 4 : 3;
+  // One preference for every card. Starts muted: browsers only allow sound after a click.
+  const [soundOn, setSoundOn] = useState(false);
+  const toggleSound = () => setSoundOn((on) => !on);
 
   useEffect(() => {
     const belt = beltRef.current;
@@ -102,6 +141,8 @@ const Belt = ({ items }: { items: AIExperiment[] }) => {
     const onLeave = () => (hovering = false);
     const onDown = (e: PointerEvent) => {
       if (e.button !== 0) return;
+      // Buttons inside a card (e.g. the sound toggle) should click, not start a drag.
+      if ((e.target as Element).closest("[data-no-drag]")) return;
       dragging = true;
       moved = 0;
       startX = e.clientX;
@@ -160,7 +201,13 @@ const Belt = ({ items }: { items: AIExperiment[] }) => {
         {Array.from({ length: COPIES }, (_, copy) => (
           <div key={copy} className="flex flex-none gap-5" aria-hidden={copy > 0 || undefined}>
             {items.map((item) => (
-              <ExperimentCard key={`${copy}-${item.title}`} item={item} />
+              <ExperimentCard
+                key={`${copy}-${item.title}`}
+                item={item}
+                mediaH={mediaH}
+                soundOn={soundOn}
+                onToggleSound={toggleSound}
+              />
             ))}
           </div>
         ))}

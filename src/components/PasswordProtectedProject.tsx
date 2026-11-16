@@ -18,7 +18,8 @@ export const PasswordProtectedProject = ({
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (password.toLowerCase() === 'saycheez') {
+        // Live site: no password opens these. The check only exists in local dev builds.
+        if (import.meta.env.DEV && password.toLowerCase() === 'saycheez') {
             const projectSlug = to.split('/').pop();
             if (projectSlug) {
                 sessionStorage.setItem(`unlocked_${projectSlug}`, 'true');

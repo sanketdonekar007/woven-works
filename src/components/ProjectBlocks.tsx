@@ -26,8 +26,7 @@ import {
 } from "./CricMetrix";
 import { CricMetrixIA } from "./CricMetrixIA";
 import { RedBerylBeforeAfter, RedBerylDesignDev, RedBerylIA } from "./RedBerylWebsite";
-import { CheckAltContext, CheckAltDesignSystem, CheckAltPlatform, CheckAltPrototypeAudit, CheckAltScorecardEvolution } from "./CheckAltCaseStudy";
-import { AccuRestDesignSystem, AccuRestFlows, AccuRestHandoff, AccuRestNavigation, AccuRestPlatform, AccuRestSystemAudit } from "./AccuRestCaseStudy";
+import { PrivateCustomBlock } from "@/private/blocks";
 import { VStatePrototype } from "./VStatePrototype";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { LazyVideo } from "./LazyVideo";
@@ -495,89 +494,18 @@ export const BlockRenderer = ({ block, accentColor, projectId }: { block: Projec
                     </RevealOnScroll>
                 );
             }
-            if (block.componentName === "CheckAltContext") {
-                return (
-                    <RevealOnScroll className="w-full my-8">
-                        <CheckAltContext accentColor={accentColor} />
-                    </RevealOnScroll>
-                );
-            }
-            if (block.componentName === "CheckAltPrototypeAudit") {
-                return (
-                    <RevealOnScroll className="w-full my-8">
-                        <CheckAltPrototypeAudit />
-                    </RevealOnScroll>
-                );
-            }
-            if (block.componentName === "CheckAltDesignSystem") {
-                return (
-                    <RevealOnScroll className="w-full my-8">
-                        <CheckAltDesignSystem accentColor={accentColor} />
-                    </RevealOnScroll>
-                );
-            }
-            if (block.componentName === "CheckAltScorecardEvolution") {
-                return (
-                    <RevealOnScroll className="w-full my-8">
-                        <CheckAltScorecardEvolution accentColor={accentColor} />
-                    </RevealOnScroll>
-                );
-            }
-            if (block.componentName === "CheckAltPlatform") {
-                return (
-                    <RevealOnScroll className="w-full my-8">
-                        <CheckAltPlatform accentColor={accentColor} />
-                    </RevealOnScroll>
-                );
-            }
-            if (block.componentName === "AccuRestPlatform") {
-                return (
-                    <RevealOnScroll className="w-full my-8">
-                        <AccuRestPlatform accentColor={accentColor} />
-                    </RevealOnScroll>
-                );
-            }
-            if (block.componentName === "AccuRestNavigation") {
-                return (
-                    <RevealOnScroll className="w-full my-8">
-                        <AccuRestNavigation accentColor={accentColor} />
-                    </RevealOnScroll>
-                );
-            }
-            if (block.componentName === "AccuRestFlows") {
-                return (
-                    <RevealOnScroll className="w-full my-8">
-                        <AccuRestFlows />
-                    </RevealOnScroll>
-                );
-            }
-            if (block.componentName === "AccuRestDesignSystem") {
-                return (
-                    <RevealOnScroll className="w-full my-8">
-                        <AccuRestDesignSystem accentColor={accentColor} />
-                    </RevealOnScroll>
-                );
-            }
-            if (block.componentName === "AccuRestSystemAudit") {
-                return (
-                    <RevealOnScroll className="w-full my-8">
-                        <AccuRestSystemAudit accentColor={accentColor} />
-                    </RevealOnScroll>
-                );
-            }
-            if (block.componentName === "AccuRestHandoff") {
-                return (
-                    <RevealOnScroll className="w-full my-8">
-                        <AccuRestHandoff accentColor={accentColor} />
-                    </RevealOnScroll>
-                );
-            }
             if (block.componentName === "RedBerylDesignDev") {
                 return (
                     <RevealOnScroll className="w-full my-8">
                         <RedBerylDesignDev />
                     </RevealOnScroll>
                 );
+            }
+            {
+                const privateBlock = PrivateCustomBlock({ componentName: block.componentName, accentColor });
+                if (privateBlock) {
+                    return <RevealOnScroll className="w-full my-8">{privateBlock}</RevealOnScroll>;
+                }
             }
             return null;
 

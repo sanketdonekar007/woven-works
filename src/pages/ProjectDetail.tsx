@@ -24,7 +24,7 @@ const ProjectDetail = () => {
 
   const handlePasswordSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    if (password.toLowerCase() === 'saycheez' && project) {
+    if (import.meta.env.DEV && password.toLowerCase() === 'saycheez' && project) {
       sessionStorage.setItem(`unlocked_${project.id}`, 'true');
       setIsUnlocked(true);
       setPasswordError(false);

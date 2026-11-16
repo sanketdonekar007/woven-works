@@ -28,3 +28,11 @@ dist-ssr
 
 # Private interview prep notes — never commit (public repo)
 notes/
+
+# Confidential case studies (CheckAlt, AccuRest): local only, never pushed to this public repo.
+# Production builds use the tracked *.stub.* files instead (see vite.config.ts).
+src/private/*
+!src/private/*.stub.ts
+!src/private/*.stub.tsx
+public/checkalt/
+public/accurest/

@@ -69,7 +69,7 @@ const projects = [
     title: "CheckAlt, Operations Platform",
     description:
       "I turned an AI-generated prototype into a governed operations platform for a US payments processor—building the design system first, then designing Nexus and ObservabilityOS on top of it.",
-    image: "/checkalt/checkalt-home-mockup.webp",
+    image: "/covers/checkalt.webp",
     alt: "CheckAlt Nexus and ObservabilityOS",
     category: "FinTech · Enterprise SaaS · Design System",
     featured: true,
@@ -81,7 +81,7 @@ const projects = [
     title: "AccuRest, Supply Chain Platform",
     description:
       "I designed the operational nerve centre of an enterprise supply chain platform, reducing shipment creation from 45 to 8 minutes in usability testing (n=6) across five stakeholder groups.",
-    image: "/lovable-uploads/accurest-hero-optimized.jpg",
+    image: "/covers/accurest.jpg",
     alt: "AccuRest Supply Chain Platform",
     category: "Enterprise SaaS · Supply Chain",
     featured: true,
@@ -415,24 +415,21 @@ const Index = () => {
       </section>
 
       {/* ── Playground: AI experiments ───────────────── */}
-      {/* Work in progress: shown in local dev only, hidden from the production build. */}
-      {import.meta.env.DEV && (
-        <section id="ai-experiments" className="theme-section relative overflow-hidden py-24">
-          <div className="max-w-[1100px] mx-auto px-6 lg:px-10 text-center">
-            <p className="text-base font-light tracking-[0.14em] uppercase text-white/40">Built with AI</p>
-            <TextReveal
-              as="h2"
-              text="Playground."
-              className="mt-3 text-[40px] md:text-[64px] lg:text-[80px] font-medium leading-none tracking-[-0.03em] text-white"
-            />
-            <p className="mt-5 mx-auto max-w-[680px] text-[17px] leading-[1.6] font-light text-white/50">
-              Experiments with Claude Code and other AI tools: prototypes, motion and ideas I build to explore what these tools can do.
-            </p>
-          </div>
-          <RowLabel className="mt-12 px-6">AI experiments</RowLabel>
-          <AIPlayground />
-        </section>
-      )}
+      <section id="ai-experiments" className="theme-section relative overflow-hidden py-24">
+        <div className="max-w-[1100px] mx-auto px-6 lg:px-10 text-center">
+          <p className="text-base font-light tracking-[0.14em] uppercase text-white/40">Built with AI</p>
+          <TextReveal
+            as="h2"
+            text="Playground."
+            className="mt-3 text-[40px] md:text-[64px] lg:text-[80px] font-medium leading-none tracking-[-0.03em] text-white"
+          />
+          <p className="mt-5 mx-auto max-w-[680px] text-[17px] leading-[1.6] font-light text-white/50">
+            Experiments with Claude Code and other AI tools: prototypes, motion and ideas I build to explore what these tools can do.
+          </p>
+        </div>
+        <RowLabel className="mt-12 px-6">AI experiments</RowLabel>
+        <AIPlayground />
+      </section>
 
       {/* ── How I think: floating tools + process strip ── */}
       <section className="theme-section relative overflow-hidden py-14 md:py-44 border-t border-white/10">

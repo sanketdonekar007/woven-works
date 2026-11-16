@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { PasswordProtectedProject } from "@/components/PasswordProtectedProject";
 import { projects as projectData } from "@/data/projects";
+import { lockedProjects } from "@/data/lockedProjects";
 import { useMediaQuery, useReducedMotion } from "./shared";
 
 export type ShelfProject = {
@@ -17,8 +18,9 @@ export type ShelfProject = {
 
 const ShelfCard = ({ project, index, pinned }: { project: ShelfProject; index: number; pinned: boolean }) => {
   const data = projectData[project.slug];
-  const isLocked = data?.isProtected ?? false;
-  const accent = data?.accentColor ?? "hsl(var(--primary))";
+  const locked = lockedProjects[project.slug];
+  const isLocked = (data?.isProtected ?? false) || !!locked;
+  const accent = data?.accentColor ?? locked?.accentColor ?? "hsl(var(--primary))";
   const tags = project.category.split(" · ");
 
   const card = (

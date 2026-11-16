@@ -4,43 +4,48 @@ export type AIExperiment = {
   title: string;
   kind: string;
   tool?: string;
-  image: string;
+  image?: string; // poster; when omitted the card shows an early frame of `video`
   video?: string;
   href?: string;
   ratio: number; // media width / height
+  hasAudio?: boolean; // shows a sound on/off toggle on the card
 };
 
 export const aiExperiments: AIExperiment[] = [
   {
-    title: "vState — working client & provider prototype",
-    kind: "Interactive prototype",
-    tool: "Built with Claude Code",
-    image: "/vstate/client-dashboard.webp",
-    href: "/projects/vstatecompliance",
-    ratio: 1.6,
+    title: "The Story of the Golden Deer",
+    kind: "AI short film",
+    image: "/playground/golden-deer-poster.webp",
+    video: "/playground/golden-deer.mp4",
+    ratio: (9 / 16) * 1.5, // shown 50% wider than the source; the top and bottom crop slightly
+    hasAudio: true,
   },
   {
-    title: "RedBeryl — mega-menu navigation prototype",
-    kind: "Coded prototype",
-    image: "/redberyl/navigation-prototype-final-poster.png",
-    video: "/redberyl/navigation-prototype-final.webm",
-    href: "/projects/redberylwebsite",
-    ratio: 1.6,
+    title: "RedBeryl HRMS — product promo",
+    kind: "Promo film",
+    video: "/playground/redberyl-hrms-promo.mp4",
+    ratio: 16 / 9,
+    hasAudio: true,
   },
   {
-    title: "This portfolio — designed and built in code",
-    kind: "Website",
-    tool: "Built with Claude Code + React",
-    image: "/playground/portfolio-hero.png",
-    href: "/",
-    ratio: 1.6,
+    title: "Learning Body Parts",
+    kind: "AI animation",
+    video: "/playground/learning-body-parts.mp4",
+    ratio: 16 / 9,
+    hasAudio: true,
   },
   {
-    title: "RedBeryl — website walkthrough",
-    kind: "Walkthrough film",
-    image: "/redberyl/website-walkthrough-final-poster.png",
-    video: "/redberyl/website-walkthrough-final.webm",
-    href: "/projects/redberylwebsite",
-    ratio: 1.6,
+    title: "RedBeryl — introductory video",
+    kind: "Intro film",
+    video: "/playground/redberyl-intro.mp4",
+    ratio: 16 / 9,
+    hasAudio: true,
+  },
+  {
+    title: "Yellow Duck Waving",
+    kind: "AI animation",
+    video: "/playground/yellow-duck-waving.mp4",
+    ratio: 16 / 9,
+    hasAudio: true,
   },
 ];
