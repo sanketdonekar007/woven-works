@@ -1104,6 +1104,25 @@ export const projects: Record<string, ProjectData> = {
             }
         ]
     },
+    // Rendered by src/components/TalentAxisCaseStudy.tsx (custom chapter layout), not by blocks.
+    talentaxis: {
+        id: "talentaxis",
+        title: "TalentAxis. Recruiter App",
+        navTitle: "TalentAxis · Recruiter App",
+        subtitle: "A mobile hiring app that sorts a recruiter's day by what can't wait.",
+        headerImage: "/covers/talentaxis.webp",
+        intro: "The mobile apps for RedBeryl's hiring platform: Candidate, Recruiter and Super Admin apps, with the recruiter app as the deep dive.",
+        role: "Led design, with a PM and the dev team",
+        industry: "HR Tech · Hiring",
+        timeline: "2026",
+        platforms: "iOS | Android",
+        type: "Product Design · Mobile App",
+        accentColor: "#1A8CFF",
+        links: [
+            { text: "Figma prototype", url: "https://www.figma.com/proto/DUA2LDGEHCEuzafxOObmk0/Talentaxis-New?node-id=18057-289&starting-point-node-id=18057-289" },
+            { text: "", url: "" },
+        ],
+    },
     vstatecompliance: {
         id: "vstatecompliance",
         title: "vState. Compliance Workflow Platform",

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Crosshair, FlaskConical, Map as MapIcon, PenTool, Rocket, Search } from "lucide-react";
 import { useReducedMotion } from "./shared";
+import { TextReveal } from "@/components/TextReveal";
 
 const steps = [
   { n: "01", verb: "Dig in", note: "Users, data,\ndomain rules", Icon: Search },
@@ -40,7 +41,14 @@ export const ProcessStrip = () => {
 
   return (
     <div ref={ref} className="process-strip mx-auto max-w-[1200px]" data-run={run || undefined}>
-      <p className="process-fade mb-6 text-center text-[13px] font-medium uppercase tracking-[0.2em] text-white/40">How I think</p>
+      <div className="mb-12 text-center md:mb-16">
+        <p className="text-base font-light tracking-[0.14em] uppercase text-white/40">How I think</p>
+        <TextReveal
+          as="h2"
+          text="My process."
+          className="mt-3 text-[40px] md:text-[64px] lg:text-[80px] font-medium leading-none tracking-[-0.03em] text-white"
+        />
+      </div>
 
       <div className="process-panel relative overflow-hidden rounded-[22px]">
         <span aria-hidden className="edge-light edge-light--on" style={{ animationDuration: "5s" }} />

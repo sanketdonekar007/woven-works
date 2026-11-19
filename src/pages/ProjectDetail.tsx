@@ -6,6 +6,7 @@ import { projects } from "@/data/projects";
 import { BlockRenderer } from "@/components/ProjectBlocks";
 import { ExternalLink, ChevronLeft } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { TalentAxisCaseStudy, TalentAxisSidebar } from "@/components/TalentAxisCaseStudy";
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -124,6 +125,7 @@ const ProjectDetail = () => {
     );
   }
 
+  const isTalentAxis = project.id === 'talentaxis';
   const isSnackHack = project.id === 'snackhack';
   const isTutorOnboarding = project.id === 'tutoronboarding';
   const problemBlock = project.blocks?.find((block) => block.type === 'problem-statement');
@@ -216,6 +218,8 @@ const ProjectDetail = () => {
               {/* pt spacer to roughly align with hero title */}
               <div className="h-14" />
 
+              {isTalentAxis ? <TalentAxisSidebar /> : <>
+
               {/* Overview — active during hero */}
               <div
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -255,11 +259,13 @@ const ProjectDetail = () => {
                   );
                 });
               })()}
+              </>}
             </div>
           </aside>
 
           {/* MAIN CONTENT */}
           <div className="flex-1 min-w-0">
+            {isTalentAxis ? <TalentAxisCaseStudy /> : <>
 
             {/* Project Hero */}
             <div className="mb-10 md:mb-12 pt-16">
@@ -449,6 +455,7 @@ const ProjectDetail = () => {
                 ))}
               </div>
             )}
+            </>}
 
           </div>
         </div>

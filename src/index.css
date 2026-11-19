@@ -1057,6 +1057,7 @@ html:not(.dark) [data-cs="true"] .text-white\/35,
 html:not(.dark) [data-cs="true"] .text-white\/40,
 html:not(.dark) [data-cs="true"] .text-white\/45,
 html:not(.dark) [data-cs="true"] .text-white\/50,
+html:not(.dark) [data-cs="true"] .text-white\/55,
 html:not(.dark) [data-cs="true"] .text-white\/60,
 html:not(.dark) [data-cs="true"] .text-white\/65,
 html:not(.dark) [data-cs="true"] .text-white\/70 {
@@ -1542,3 +1543,326 @@ html:not(.dark) .theme-page .bio-strong,
 html:not(.dark) .theme-page h2 span { color: hsl(var(--foreground)); }
 html:not(.dark) .theme-page [data-word-wrap],
 html:not(.dark) .theme-section [data-word-wrap] { color: inherit; }
+
+/* ── What I bring: four cards, each with a small drawn scene ───────────── */
+.wib-grid {
+  --wib-ink: #161a22;
+  --wib-ink-2: #66615d;
+  --wib-ink-3: #8e8883;
+  --wib-line: #e6e2dc;
+  --wib-line-2: #d8d3cc;
+  --wib-paper: #ffffff;
+  --wib-accent: hsl(var(--primary));
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 640px) { .wib-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .wib-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.wib-item {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 24px 0;
+  border-radius: 14px;
+  background: var(--wib-paper);
+  color: var(--wib-ink);
+  text-align: left;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 24px 48px -24px rgba(5, 10, 25, 0.6);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.1, 1);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+.wib-item.is-in { opacity: 1; transform: none; }
+html:not(.dark) .wib-item {
+  box-shadow: 0 0 0 1px var(--wib-line-2), 0 1px 2px rgba(24, 24, 27, 0.06), 0 8px 24px -16px rgba(24, 24, 27, 0.18);
+}
+.wib-item dt {
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--wib-ink);
+}
+.wib-item dd {
+  margin-top: 8px;
+  min-height: 72px;
+  font-size: 15px;
+  line-height: 1.55;
+  font-weight: 400;
+  color: var(--wib-ink-2);
+}
+
+/* Scene: dotted paper strip at the bottom of the card */
+.wib-sc {
+  position: relative;
+  flex: 1;
+  min-height: 184px;
+  margin: 24px -24px 0;
+  border-top: 1px solid var(--wib-line);
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--wib-paper) radial-gradient(var(--wib-line-2) 1px, transparent 1.2px) 0 0 / 16px 16px;
+}
+.wib-card {
+  position: absolute;
+  background: var(--wib-paper);
+  border: 1.5px solid var(--wib-ink);
+  border-radius: 6px;
+  box-shadow: 4px 4px 0 var(--wib-ink);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.1, 1);
+}
+.wib-sc b { font-size: 15px; line-height: 1.25; font-weight: 600; color: var(--wib-ink); }
+.wib-dot {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--wib-accent);
+  border: 1.5px solid var(--wib-ink);
+}
+.wib-tip { display: grid; gap: 4px; padding: 12px 16px; }
+.wib-tip span { font-size: 13px; line-height: 1.3; font-weight: 500; color: var(--wib-ink-2); }
+.wib-chip {
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--wib-line-2);
+  color: var(--wib-ink-2);
+}
+.wib-chip.is-on { background: var(--wib-accent); border: 1.5px solid var(--wib-ink); color: #fff; }
+
+/* 1. Blueprint */
+.wib-blue__board { left: 20px; right: 28px; top: 44px; height: 168px; padding: 6px 10px; transform: rotate(-2deg); }
+.wib-blue__lane { height: 36px; display: flex; align-items: center; border-bottom: 1px dashed var(--wib-line-2); }
+.wib-blue__lane span { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--wib-ink-3); }
+.wib-blue__plot { position: absolute; left: 64px; right: 14px; top: 6px; height: 108px; }
+.wib-blue__plot svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.wib-blue__plot polyline { fill: none; stroke: var(--wib-ink); stroke-width: 1.5; stroke-dasharray: 4 4; vector-effect: non-scaling-stroke; }
+.wib-blue__dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: var(--wib-paper);
+  border: 1.5px solid var(--wib-ink);
+}
+.wib-blue__dot.is-pain { width: 14px; height: 14px; margin: -7px 0 0 -7px; background: var(--wib-accent); }
+.wib-blue__tip { right: 14px; top: 14px; transform: rotate(3deg); }
+
+/* 2. Outcome */
+.wib-sc-out svg { position: absolute; inset: auto 0 0; width: 100%; height: 120px; }
+.wib-sc-out path { fill: none; stroke: var(--wib-ink); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.wib-out__tip { left: 20px; right: 32px; top: 20px; }
+.wib-out__dot { right: 20%; bottom: 14px; }
+
+/* 3. AI */
+.wib-ai__prompt {
+  left: 20px; right: 20px; top: 20px;
+  display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  padding: 8px 8px 8px 12px;
+}
+.wib-ai__prompt span { font-size: 13px; line-height: 1.3; font-weight: 500; color: var(--wib-ink); }
+.wib-ai__prompt i {
+  font-style: normal; flex: none; display: grid; place-items: center;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--wib-accent); color: #fff; border: 1.5px solid var(--wib-ink);
+}
+.wib-ai__answer {
+  left: 40px; right: 12px; top: 100px; height: 160px; padding: 16px;
+  display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start;
+  transform: rotate(-2deg);
+}
+.wib-ai__answer em { flex-basis: 100%; height: 8px; border-radius: 999px; background: var(--wib-line); }
+.wib-ai__answer em:last-child { flex-basis: 60%; }
+
+/* 4. Ships as designed */
+.wib-ship__back { left: 40px; right: 8px; top: 32px; height: 200px; transform: rotate(4deg); background: var(--wib-line); }
+.wib-ship__front { left: 20px; right: 32px; top: 20px; padding: 16px; transform: rotate(-3deg); }
+.wib-ship__row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.wib-ship__btn {
+  font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 999px;
+  background: var(--wib-ink); color: #fff;
+}
+.wib-ship__tokens { list-style: none; display: flex; flex-wrap: wrap; gap: 4px; margin-top: 12px; }
+.wib-ship__tokens li {
+  font-size: 12px; line-height: 1.3; font-weight: 500;
+  padding: 4px 8px; border-radius: 999px; border: 1px solid var(--wib-line-2); color: var(--wib-ink-3);
+}
+.wib-ship__tokens li.is-on { background: var(--wib-accent); border: 1.5px solid var(--wib-ink); color: #fff; }
+
+/* Hover: the scene straightens up a little */
+.wib-item:hover .wib-blue__board,
+.wib-item:hover .wib-ai__answer,
+.wib-item:hover .wib-ship__front { transform: rotate(0deg) translateY(-4px); }
+.wib-item:hover .wib-blue__tip,
+.wib-item:hover .wib-out__tip { transform: translateY(-4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .wib-item { opacity: 1; transform: none; transition: none; }
+  .wib-card { transition: none; }
+}
+
+/* ── Case studies: 3D card ring (always dark, in both themes) ───────────── */
+.ring-stage {
+  position: relative;
+  height: clamp(320px, 44vw, 560px);
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.ring-stage.is-drag { cursor: grabbing; }
+.ring-persp { position: absolute; inset: 0; }
+.ring-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+}
+.ring-card {
+  position: absolute;
+  left: calc(var(--ring-w) / -2);
+  top: calc(var(--ring-h) / -2);
+  width: var(--ring-w);
+  height: var(--ring-h);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.ring-link {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform-style: preserve-3d;
+  text-decoration: none;
+  outline: none;
+  -webkit-user-drag: none;
+}
+.ring-face,
+.ring-back {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto;
+  align-content: start;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 16px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.ring-face {
+  background: #141414;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 20px 40px -24px rgba(0, 0, 0, 0.8);
+  transition: box-shadow 0.25s ease;
+}
+.ring-back {
+  transform: rotateY(180deg);
+  background: rgba(20, 20, 20, 0.55);
+}
+.ring-back img { transform: scaleX(-1); opacity: 0.6; }
+.ring-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 8px;
+  pointer-events: none;
+}
+.ring-card:hover .ring-face { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18), 0 24px 48px -20px rgba(0, 0, 0, 0.9); }
+.ring-link:focus-visible .ring-face { box-shadow: 0 0 0 3px hsl(var(--primary)); }
+
+/* Touch screens: the name sits under the image; hover overlay is off */
+.ring-tag {
+  display: none;
+  align-items: center;
+  height: 24px;
+  padding-inline: 4px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #fff;
+}
+
+/* Hover overlay: accent wash with the project name */
+.ring-over {
+  position: absolute;
+  inset: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 20px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--ring-accent) 90%, transparent);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.22s ease-out;
+  pointer-events: none;
+}
+.ring-over > * {
+  transform: translateY(8px);
+  transition: transform 0.26s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.ring-over b { font-size: 26px; line-height: 1.1; font-weight: 600; letter-spacing: -0.01em; color: #fff; }
+.ring-over i { font-style: normal; font-size: 15px; line-height: 1.3; color: rgba(255, 255, 255, 0.85); transition-delay: 20ms; }
+.ring-over em {
+  margin-top: 6px;
+  width: fit-content;
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  transition-delay: 30ms;
+}
+.ring-over strong { margin-top: 10px; font-size: 14px; font-weight: 500; color: #fff; transition-delay: 40ms; }
+.ring-over u { text-decoration: none; display: inline-block; transition: transform 0.2s ease; }
+.ring-card:hover .ring-over,
+.ring-link:focus-visible .ring-over { opacity: 1; }
+.ring-card:hover .ring-over > *,
+.ring-link:focus-visible .ring-over > * { transform: none; }
+.ring-card:hover .ring-over u { transform: translateX(3px); }
+
+@media (hover: none), (pointer: coarse) {
+  .ring-tag { display: flex; }
+  .ring-over { display: none; }
+}
+
+.ring-hint {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.4);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.ring-stage[data-phase="done"] + .ring-hint { opacity: 1; }
+
+/* ── TalentAxis case study ─────────────────────────────────────────────── */
+.ta-hero-stage {
+  background:
+    radial-gradient(60% 90% at 50% 100%, rgba(26, 140, 255, 0.35) 0%, rgba(26, 140, 255, 0.08) 45%, transparent 75%),
+    #06080d;
+}
+.ta-phone-scroll { scrollbar-width: none; }
+.ta-phone-scroll::-webkit-scrollbar { display: none; }
+.ta-more > summary::-webkit-details-marker { display: none; }
+
+/* Accent labels (status, flow counts, decision pills): light blue on dark, deeper blue on light. */
+.ta-accent-text { color: #8cc4ff; }
+html:not(.dark) [data-cs="true"] .ta-accent-text { color: #0b63c4 !important; }

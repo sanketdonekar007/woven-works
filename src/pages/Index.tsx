@@ -6,7 +6,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { TextReveal } from "@/components/TextReveal";
 import { ProjectShelf } from "@/components/home/ProjectShelf";
 import { ProcessStrip } from "@/components/home/ProcessStrip";
-import { ExpertiseBento } from "@/components/home/ExpertiseBento";
+import { WhatIBring } from "@/components/home/WhatIBring";
 import { AIPlayground } from "@/components/home/AIPlayground";
 import { ExplorationsRow } from "@/components/home/ExplorationsRow";
 import { FloatingChips, MobileChipFrame, RowLabel, type FloatingChip } from "@/components/home/shared";
@@ -14,6 +14,18 @@ import { FloatingChips, MobileChipFrame, RowLabel, type FloatingChip } from "@/c
 /* ─── Data ───────────────────────────────────────────── */
 
 const projects = [
+  {
+    slug: "talentaxis",
+    year: "2026",
+    metric: "3 apps · ~750 screens · In development",
+    title: "TalentAxis, Recruiter App",
+    description:
+      "I led design for the TalentAxis mobile apps: a recruiter app that sorts the day by what can't wait, AI matching you can question, and interviews candidates book themselves.",
+    image: "/covers/talentaxis.webp",
+    alt: "TalentAxis recruiter app screens",
+    category: "HR Tech · AI · Mobile",
+    featured: true,
+  },
   {
     slug: "tutoronboarding",
     year: "2025",
@@ -329,25 +341,28 @@ const Index = () => {
 
         <div className="hero-content relative z-10 max-w-[1200px] mx-auto w-full flex flex-col items-center text-center">
 
-          {/* Intro text */}
-          <div className="flex flex-col gap-1 mb-10">
-            <p className="text-[26px] sm:text-[36px] md:text-[52px] lg:text-[60px] font-light leading-[1.2] tracking-[-0.01em] text-white/65">
-              Hey, I'm{" "}
+          {/* Intro text: small intro pill → one display headline → lede → meta */}
+          <div className="flex flex-col items-center gap-4 sm:gap-5 mb-10">
+            <p className="inline-flex max-w-full items-center gap-2 whitespace-nowrap rounded-full bg-white/[0.06] py-1 pl-1 pr-4 sm:pr-5 text-[13px] sm:text-[14px] font-medium leading-none text-white/65 shadow-[0_0_0_1px_rgba(255,255,255,0.12),0_6px_16px_-10px_rgba(0,0,0,0.6)] backdrop-blur">
               <img
                 src="/lovable-uploads/me.png"
-                className="inline-block w-9 h-9 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full object-cover align-middle mx-1"
+                className="h-8 w-8 sm:h-9 sm:w-9 rounded-full object-cover"
                 alt="Sanket Donekar"
-              />{" "}
-              Sanket,
+              />
+              <span>
+                Hi, I'm Sanket<span className="hidden sm:inline">, a senior product designer</span>
+              </span>
+              <span aria-hidden className="mx-0.5 inline-block h-3.5 w-px bg-white/20" />
+              <span className="font-semibold text-white/90">5+ years</span>
             </p>
-            <h1 className="text-[26px] sm:text-[36px] md:text-[52px] lg:text-[60px] font-medium leading-[1.2] tracking-[-0.01em] text-white">
-              Senior Product Designer simplifying complex systems.
+            <h1 className="max-w-[1040px] text-[clamp(2.5rem,1.4rem+4.6vw,4.75rem)] font-semibold leading-[1] tracking-[-0.015em] text-white">
+              Senior Product Designer simplifying <span className="text-primary">complex systems.</span>
             </h1>
-            <h2 className="text-[26px] sm:text-[36px] md:text-[52px] lg:text-[60px] font-medium leading-[1.2] tracking-[-0.01em] text-white/50">
+            <p className="max-w-[620px] text-[clamp(1.0625rem,1rem+0.3vw,1.1875rem)] leading-[1.55] font-light text-white/60">
               B2B SaaS, service design, and scalable product experiences.
-            </h2>
-            <p className="mt-5 text-sm sm:text-base font-light text-white/45 tracking-[0.02em]">
-              5+ years · Pune, India · Enterprise SaaS, compliance, supply chain and HealthTech
+            </p>
+            <p className="text-[13px] font-medium leading-[1.3] tracking-[0.02em] text-white/40">
+              Pune, India · Enterprise SaaS, compliance, supply chain and HealthTech
             </p>
           </div>
 
@@ -386,7 +401,7 @@ const Index = () => {
 
           {/* Scroll indicator */}
           <div className="flex items-center gap-3 opacity-65">
-            <span className="text-[16px] font-light tracking-[0.12em] uppercase text-white">Scroll down</span>
+            <span className="text-[13px] font-medium tracking-[0.12em] uppercase text-white">Scroll down</span>
             <div className="flex items-center gap-1">
               <span className="block w-8 h-px bg-white/60" />
               <svg className="w-4 h-5 text-white animate-bounce" viewBox="0 0 16 20" fill="none" stroke="currentColor" strokeWidth={1.2}>
@@ -395,7 +410,7 @@ const Index = () => {
               </svg>
               <span className="block w-8 h-px bg-white/60" />
             </div>
-            <span className="text-[16px] font-light tracking-[0.12em] uppercase text-white">to see projects</span>
+            <span className="text-[13px] font-medium tracking-[0.12em] uppercase text-white">to see projects</span>
           </div>
 
         </div>
@@ -445,16 +460,16 @@ const Index = () => {
       <section className="theme-section max-w-[1200px] mx-auto px-6 lg:px-10 py-20 border-t border-white/10">
 
         <div className="mb-12 md:mb-16 text-center">
-          <p className="text-[16px] font-light tracking-[0.14em] uppercase text-white/35 mb-3">What I bring</p>
+          <p className="text-[16px] font-light tracking-[0.14em] uppercase text-white/35 mb-3">Expertise</p>
           <TextReveal
             as="h2"
-            text="Expertise."
+            text="What I bring."
             className="text-[40px] md:text-[64px] lg:text-[80px] font-medium leading-none tracking-[-0.03em] text-white"
           />
         </div>
 
         <div className="mb-12">
-          <ExpertiseBento />
+          <WhatIBring />
         </div>
 
         {/* Skill chips — two-row horizontal carousel */}
