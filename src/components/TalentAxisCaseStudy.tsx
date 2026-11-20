@@ -412,24 +412,30 @@ export const TalentAxisCaseStudy = () => (
                     <Screen src={proto(6)} alt="Matching weights" label="Matching weights" note="Tune what matters for this job. Re-ranks instantly." />
                 </div>
 
-                <MoreDetail summary="Where the AI's claims come from, and writing a job with AI">
-                    <div className="grid gap-10 md:grid-cols-[1fr_260px_260px] md:items-start">
-                        <div className="max-w-md space-y-4 text-[15px] leading-7 text-white/60">
-                            <p>
-                                On a candidate's profile, AI insights has three tabs: Summary, Evaluation, Evidence. Evidence lists
-                                where each claim came from: a line in the résumé, something said in interview round 1, a portfolio
-                                link. If the AI says someone built a design system, you can see who said so.
-                            </p>
-                            <p>
-                                Writing a job description works the same way. The AI asks before it writes: which client, what
-                                budget, which must-haves. The recruiter answers in a chat, then edits a real draft. It never posts
-                                anything on its own.
-                            </p>
-                        </div>
+                <div className="mt-20 grid gap-10 md:grid-cols-[1fr_260px] md:items-start">
+                    <Lead title="Every claim shows where it came from">
+                        <p>
+                            On a candidate's profile, AI insights has three tabs: Summary, Evaluation, Evidence. Evidence lists
+                            where each claim came from: a line in the résumé, something said in interview round 1, a portfolio
+                            link. If the AI says someone built a design system, you can see who said so.
+                        </p>
+                    </Lead>
+                    <div className="mx-auto w-full max-w-[260px]">
                         <Screen src={img("ai-evidence")} alt="AI insights evidence tab" label="AI insights · Evidence" />
-                        <Screen src={img("ai-jd-chat")} alt="Writing a job description with AI" label="Write with AI" />
                     </div>
-                </MoreDetail>
+                </div>
+
+                <div className="mt-20 grid gap-10 md:grid-cols-[1fr_260px_260px] md:items-start">
+                    <Lead title="The AI asks before it writes">
+                        <p>
+                            Writing a job description works the same way. The AI asks first: which client, what budget, which
+                            must-haves. The recruiter answers in a chat, then edits a real draft, step by step, before reviewing
+                            and publishing. It never posts anything on its own.
+                        </p>
+                    </Lead>
+                    <Screen src={img("ai-jd-chat")} alt="Writing a job description with AI" label="Write with AI" note="The assistant asks follow-ups before drafting." />
+                    <Screen src={proto(34)} alt="AI-drafted job description, ready to edit" label="Edit the AI draft" note="Change the tone or regenerate. Nothing is posted yet." />
+                </div>
             </Step>
         </div>
 
@@ -554,16 +560,16 @@ export const TalentAxisCaseStudy = () => (
                     Admin. All three share one component set and the same habit: lead with what needs attention.
                 </p>
             </RevealOnScroll>
-            <div className="mt-12 grid gap-8 md:grid-cols-3">
+            <div className="mt-12 grid gap-12 sm:grid-cols-3 sm:gap-8">
                 {[
                     { src: img("cand-home"), app: "Candidate", flows: "11 flows · ~230 screens", body: "Find and apply for jobs, track applications, book interviews straight from email links, compare and accept offers." },
                     { src: proto(0), app: "Recruiter", flows: "25 flows · ~390 screens", body: "Jobs and the AI job builder, candidates and résumé parsing, AI matching, pipeline, interviews, offers, onboarding, reports." },
                     { src: img("admin-overview"), app: "Super Admin", flows: "15 flows · ~130 screens", body: "Tenants and employer verification, plans and credits, moderation, templates, audit logs, system health." },
                 ].map((a) => (
                     <RevealOnScroll key={a.app}>
-                        <div className="flex h-full flex-col">
-                            <div className="overflow-hidden rounded-[22px] border border-white/10 bg-white">
-                                <img src={a.src} alt={`${a.app} app home screen`} loading="lazy" className="block aspect-[390/600] w-full object-cover object-top" />
+                        <div className="mx-auto flex h-full w-full max-w-[280px] flex-col">
+                            <div className="overflow-hidden rounded-[22px] border border-white/10 bg-white shadow-[0_24px_48px_-28px_rgba(0,0,0,0.9)]">
+                                <img src={a.src} alt={`${a.app} app home screen`} loading="lazy" className="block aspect-[390/844] w-full object-cover object-top" />
                             </div>
                             <p className="mt-5 text-[20px] font-medium text-white">{a.app}</p>
                             <p className="ta-accent-text mt-1 text-[13px] uppercase tracking-[0.14em]">

@@ -10,6 +10,9 @@ const chapters = [
     { label: "Pipeline", frame: 8 },
     { label: "Schedule an interview", frame: 15 },
     { label: "Write feedback", frame: 22 },
+    { label: "Post a job with AI", frame: 28 },
+    { label: "Add candidates", frame: 40 },
+    { label: "Make an offer", frame: 47 },
 ];
 
 const FIGMA_PROTO =
@@ -86,7 +89,8 @@ export const TalentAxisPrototype = ({ accentColor = "#1A8CFF" }: { accentColor?:
                     </h2>
                     <p className="mt-4 text-[15px] leading-7 text-white/55 md:text-[17px]">
                         Start on the dashboard, open a job's AI matches and ask why someone ranked 92, then move a candidate
-                        along and send them a booking link. These are the real screens, linked the way the Figma prototype links
+                        along and send them a booking link. Or go end to end: post a job with AI, bulk-upload résumés, and
+                        build, send and close an offer. These are the real screens, linked the way the Figma prototype links
                         them. Tap anywhere to see what's tappable.
                     </p>
 
