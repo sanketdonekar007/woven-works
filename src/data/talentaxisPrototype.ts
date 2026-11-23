@@ -1,7 +1,9 @@
 // Clickable prototype of the TalentAxis recruiter app (mobile V2), generated from
 // the Figma prototype's own links. Hotspots are in frame pixels (390 wide);
 // `to` is a frame index, or -1 for "back". `auto` advances after a delay.
-// Only links between these 55 screens are kept; the full prototype is in Figma.
+// Only links between these 70 screens are kept; the full prototype is in Figma.
+// Starts on Sign in (R-01). Dropped from R-01: pickers/toasts/system overlays and
+// links to team-member screens (R-04) that aren't in this set.
 // Site-only wiring fixes (Figma links point outside this set): Offer approval → Approve
 // opens Preview & send; Import summary → View candidates opens a candidate profile;
 // "Close" on builder steps returns to Create job instead of the leave-confirm sheet.
@@ -9,6 +11,9 @@
 import type { ProtoFrame } from "./vstatePrototype";
 
 export const TALENTAXIS_PROTO_WIDTH = 390;
+
+// The product in production (web; the iOS and Android apps share the design).
+export const TALENTAXIS_LIVE_URL = "https://talentaxis.thesourcecode.in/";
 
 export const talentaxisPrototype: ProtoFrame[] = [
     { title: "Dashboard", src: "/talentaxis/proto/00.webp", h: 1781, hotspots: [{ x: 16, y: 1352, w: 358, h: 146, to: 3 }, { x: 16, y: 1514, w: 358, h: 146, to: 3 }, { x: 16, y: 808, w: 358, h: 144, to: 26 }, { x: 16, y: 968, w: 358, h: 144, to: 22 }, { x: 16, y: 1128, w: 358, h: 144, to: 14 }, { x: 33, y: 1215, w: 324, h: 40, to: 14 }, { x: 33, y: 895, w: 157, h: 40, to: 26 }, { x: 200, y: 1055, w: 157, h: 40, to: 22 }, { x: 89, y: 1697, w: 70, h: 52, to: 2 }, { x: 230, y: 1697, w: 70, h: 52, to: 13 }, { x: 97, y: 672, w: 94, h: 38, to: 14 }, { x: 34, y: 673, w: 55, h: 36, to: 14 }, { x: 330, y: 125, w: 44, h: 44, to: 25 }, { x: 324, y: 1313, w: 50, h: 20, to: 2 }, { x: 329, y: 769, w: 45, h: 20, to: 1 }] },
@@ -72,6 +77,24 @@ export const talentaxisPrototype: ProtoFrame[] = [
     { title: "Offer tracking", src: "/talentaxis/proto/52.webp", h: 844, hotspots: [{ x: 16, y: 51, w: 38, h: 38, to: 47 }, { x: 336, y: 51, w: 38, h: 38, to: 53 }] },
     { title: "Record response", src: "/talentaxis/proto/53.webp", h: 844, hotspots: [{ x: 0, y: 0, w: 390, h: 844, to: 52 }, { x: 330, y: 189, w: 40, h: 40, to: 52 }, { x: 20, y: 763, w: 350, h: 44, to: 54 }] },
     { title: "Offer accepted", src: "/talentaxis/proto/54.webp", h: 840, hotspots: [{ x: 16, y: 51, w: 38, h: 38, to: 47 }] },
+
+    // ── Sign in & workspace setup (R-01) — prototype starts here ──
+    { title: "Sign in", src: "/talentaxis/proto/55.webp", h: 844, hotspots: [{ x: 24, y: 524, w: 107, h: 20, to: 56 }, { x: 244, y: 524, w: 122, h: 20, to: 57 }, { x: 24, y: 562, w: 342, h: 52, to: 68 }, { x: 24, y: 666, w: 165, h: 50, to: 0 }, { x: 201, y: 666, w: 165, h: 50, to: 59 }, { x: 193, y: 783, w: 135, h: 20, to: 61 }] },
+    { title: "Sign in · mobile OTP", src: "/talentaxis/proto/56.webp", h: 844, hotspots: [{ x: 24, y: 428, w: 149, h: 20, to: 55 }, { x: 24, y: 466, w: 342, h: 52, to: 67 }, { x: 24, y: 570, w: 165, h: 50, to: 0 }, { x: 201, y: 570, w: 165, h: 50, to: 59 }, { x: 193, y: 783, w: 135, h: 20, to: 61 }] },
+    { title: "Forgot password", src: "/talentaxis/proto/57.webp", h: 839, hotspots: [{ x: 16, y: 51, w: 38, h: 38, to: 55 }, { x: 20, y: 764, w: 350, h: 44, to: 58 }] },
+    { title: "Reset link sent", src: "/talentaxis/proto/58.webp", h: 844, hotspots: [{ x: 16, y: 51, w: 38, h: 38, to: 55 }, { x: 146, y: 417, w: 99, h: 20, to: 55 }] },
+    { title: "Sign in with SSO", src: "/talentaxis/proto/59.webp", h: 839, hotspots: [{ x: 16, y: 51, w: 38, h: 38, to: 55 }, { x: 32, y: 326, w: 326, h: 62, to: 0 }, { x: 32, y: 388, w: 326, h: 61, to: 0 }, { x: 32, y: 449, w: 326, h: 61, to: 0 }, { x: 20, y: 764, w: 350, h: 44, to: 60 }] },
+    { title: "Two-factor verification", src: "/talentaxis/proto/60.webp", h: 839, hotspots: [{ x: 16, y: 51, w: 38, h: 38, to: 55 }, { x: 20, y: 764, w: 350, h: 44, to: 0 }] },
+    { title: "Create workspace · company", src: "/talentaxis/proto/61.webp", h: 839, hotspots: [{ x: 16, y: 51, w: 38, h: 38, to: 55 }, { x: 20, y: 764, w: 350, h: 44, to: 62 }] },
+    { title: "Create workspace · your hiring", src: "/talentaxis/proto/62.webp", h: 839, hotspots: [{ x: 16, y: 51, w: 38, h: 38, to: 61 }, { x: 20, y: 764, w: 350, h: 44, to: 63 }] },
+    { title: "Create workspace · invite team", src: "/talentaxis/proto/63.webp", h: 835, hotspots: [{ x: 16, y: 51, w: 38, h: 38, to: 62 }, { x: 20, y: 706, w: 350, h: 44, to: 69 }, { x: 20, y: 760, w: 350, h: 44, to: 69 }] },
+    { title: "Sign up", src: "/talentaxis/proto/64.webp", h: 849, hotspots: [{ x: 16, y: 51, w: 38, h: 38, to: 55 }, { x: 260, y: 726, w: 46, h: 20, to: 55 }, { x: 20, y: 774, w: 350, h: 44, to: 65 }] },
+    { title: "Choose a plan", src: "/talentaxis/proto/65.webp", h: 839, hotspots: [{ x: 16, y: 51, w: 38, h: 38, to: 64 }, { x: 20, y: 764, w: 350, h: 44, to: 66 }] },
+    { title: "Verify email", src: "/talentaxis/proto/66.webp", h: 839, hotspots: [{ x: 16, y: 51, w: 38, h: 38, to: 65 }, { x: 16, y: 324, w: 358, h: 20, to: 64 }, { x: 20, y: 764, w: 350, h: 44, to: 67 }] },
+    { title: "Verify mobile · OTP", src: "/talentaxis/proto/67.webp", h: 839, hotspots: [{ x: 16, y: 51, w: 38, h: 38, to: 66 }, { x: 20, y: 764, w: 350, h: 44, to: 61 }] },
+    { title: "Dashboard · loading", src: "/talentaxis/proto/68.webp", h: 808, hotspots: [{ x: 330, y: 125, w: 44, h: 44, to: 25 }, { x: 19, y: 724, w: 70, h: 52, to: 0 }, { x: 89, y: 724, w: 70, h: 52, to: 2 }, { x: 230, y: 724, w: 70, h: 52, to: 13 }], auto: { after: 1600, to: 0 } },
+    { title: "Dashboard · new workspace", src: "/talentaxis/proto/69.webp", h: 840, hotspots: [{ x: 32, y: 310, w: 326, h: 80, to: 28 }, { x: 32, y: 390, w: 326, h: 63, to: 28 }, { x: 32, y: 453, w: 326, h: 63, to: 40 }, { x: 19, y: 756, w: 70, h: 52, to: 0 }, { x: 89, y: 756, w: 70, h: 52, to: 2 }, { x: 230, y: 756, w: 70, h: 52, to: 13 }] },
 ];
 
-export const TALENTAXIS_PROTO_START = 0;
+// Starts on R-01.01 Sign in (Figma node 18442:5953).
+export const TALENTAXIS_PROTO_START = 55;

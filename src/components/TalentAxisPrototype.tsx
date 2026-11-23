@@ -1,9 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowLeft, ExternalLink, MousePointerClick, RotateCcw } from "lucide-react";
-import { talentaxisPrototype, TALENTAXIS_PROTO_START, TALENTAXIS_PROTO_WIDTH } from "@/data/talentaxisPrototype";
+import { talentaxisPrototype, TALENTAXIS_LIVE_URL, TALENTAXIS_PROTO_START, TALENTAXIS_PROTO_WIDTH } from "@/data/talentaxisPrototype";
+
+const FIGMA_PROTO =
+    "https://www.figma.com/proto/DUA2LDGEHCEuzafxOObmk0/Talentaxis-New?node-id=18442-5953&starting-point-node-id=18442-5953";
 
 // Shortcuts into the journey, for people who'd rather jump than tap through.
 const chapters = [
+    { label: "Sign in", frame: 55 },
     { label: "Dashboard", frame: 0 },
     { label: "AI matches", frame: 4 },
     { label: "Why ranked 92", frame: 5 },
@@ -14,9 +18,6 @@ const chapters = [
     { label: "Add candidates", frame: 40 },
     { label: "Make an offer", frame: 47 },
 ];
-
-const FIGMA_PROTO =
-    "https://www.figma.com/proto/DUA2LDGEHCEuzafxOObmk0/Talentaxis-New?node-id=18057-289&starting-point-node-id=18057-289";
 
 export const TalentAxisPrototype = ({ accentColor = "#1A8CFF" }: { accentColor?: string }) => {
     const [current, setCurrent] = useState(TALENTAXIS_PROTO_START);
@@ -88,10 +89,10 @@ export const TalentAxisPrototype = ({ accentColor = "#1A8CFF" }: { accentColor?:
                         Tap through a recruiter's morning.
                     </h2>
                     <p className="mt-4 text-[15px] leading-7 text-white/55 md:text-[17px]">
-                        Start on the dashboard, open a job's AI matches and ask why someone ranked 92, then move a candidate
-                        along and send them a booking link. Or go end to end: post a job with AI, bulk-upload résumés, and
-                        build, send and close an offer. These are the real screens, linked the way the Figma prototype links
-                        them. Tap anywhere to see what's tappable.
+                        Sign in (or set up a new workspace), land on the dashboard, open a job's AI matches and ask why
+                        someone ranked 92, then move a candidate along and send them a booking link. Or go end to end: post
+                        a job with AI, bulk-upload résumés, and build, send and close an offer. These are the real screens,
+                        linked the way the Figma prototype links them. Tap anywhere to see what's tappable.
                     </p>
 
                     <div className="mt-8 flex flex-wrap gap-2">
@@ -113,8 +114,16 @@ export const TalentAxisPrototype = ({ accentColor = "#1A8CFF" }: { accentColor?:
 
                     <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[13px] text-white/45">
                         <span>
-                            {talentaxisPrototype.length} of the recruiter app's screens. The full prototype covers all 25 flows.
+                            {talentaxisPrototype.length} of the recruiter app's screens, from a design that covers 25 flows.
                         </span>
+                        <a
+                            href={TALENTAXIS_LIVE_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-white/70 underline-offset-4 hover:text-white hover:underline"
+                        >
+                            See it live <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
                         <a
                             href={FIGMA_PROTO}
                             target="_blank"

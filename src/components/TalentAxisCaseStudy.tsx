@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown } from "lucide-react";
 import { RevealOnScroll } from "./RevealOnScroll";
 import { TalentAxisPrototype } from "./TalentAxisPrototype";
+import { TALENTAXIS_LIVE_URL } from "@/data/talentaxisPrototype";
 
 /* TalentAxis · Recruiter app (mobile).
    Chapter structure: the problem → the decisions → what we built, with a fold-out for detail.
@@ -114,7 +115,7 @@ const MoreDetail = ({ summary, children }: { summary: string; children: React.Re
 const ProblemRow = ({ screen, children }: { screen: React.ReactNode; children: React.ReactNode }) => (
     <div className="grid gap-10 md:grid-cols-[1fr_280px] md:items-start md:gap-14">
         <div className="space-y-10">{children}</div>
-        <div className="mx-auto w-full max-w-[280px]">{screen}</div>
+        <div className="mx-auto w-full max-w-[260px] md:max-w-[280px]">{screen}</div>
     </div>
 );
 
@@ -128,9 +129,9 @@ const chapters = [
 
 const facts = [
     ["My role", "Led design, with a PM and the dev team"],
-    ["Scope", "Candidate, Recruiter and Super Admin mobile apps"],
+    ["Scope", "Candidate, Recruiter and Super Admin apps"],
     ["Timeline", "2026"],
-    ["Platform", "iOS and Android"],
+    ["Platform", "Web, iOS and Android"],
 ];
 
 const scale = [
@@ -155,6 +156,14 @@ export const TalentAxisCaseStudy = () => (
                     whole hiring process. On a phone, between two interviews, a recruiter needs to know one thing: what needs me right
                     now?
                 </p>
+                <a
+                    href={TALENTAXIS_LIVE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-7 inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-[14px] font-medium text-white transition-colors hover:border-white/40"
+                >
+                    Visit the live product <ArrowUpRight className="h-4 w-4" style={{ color: ACCENT }} />
+                </a>
             </RevealOnScroll>
 
             <RevealOnScroll delay={80}>
@@ -163,6 +172,16 @@ export const TalentAxisCaseStudy = () => (
                         <div key={k} className="border-b border-r border-white/10 px-5 py-5 last:border-r-0 md:px-6 lg:border-b-0">
                             <dt className="mb-1.5 text-[12px] uppercase tracking-[0.2em] text-white/30">{k}</dt>
                             <dd className="text-[15px] font-medium leading-snug text-white">{v}</dd>
+                            {k === "Platform" && (
+                                <a
+                                    href={TALENTAXIS_LIVE_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mt-1.5 inline-flex items-center gap-1 text-[13px] text-white/55 underline-offset-4 hover:text-white hover:underline"
+                                >
+                                    talentaxis.thesourcecode.in <ArrowUpRight className="h-3.5 w-3.5" />
+                                </a>
+                            )}
                         </div>
                     ))}
                 </dl>
@@ -292,7 +311,7 @@ export const TalentAxisCaseStudy = () => (
                             urgent part of the day without scrolling past the second card.
                         </p>
                     </Lead>
-                    <div className="mx-auto w-full max-w-[300px]">
+                    <div className="mx-auto w-full max-w-[260px] md:max-w-[300px]">
                         <Screen src={proto(0)} alt="The recruiter dashboard" label="Dashboard" />
                     </div>
                 </div>
@@ -328,7 +347,9 @@ export const TalentAxisCaseStudy = () => (
                                 sits in the same place on every screen.
                             </p>
                         </div>
-                        <Screen src={proto(25)} alt="Create sheet with quick actions" label="Create" />
+                        <div className="mx-auto w-full max-w-[260px]">
+                            <Screen src={proto(25)} alt="Create sheet with quick actions" label="Create" />
+                        </div>
                     </div>
                 </MoreDetail>
             </Step>
@@ -394,12 +415,13 @@ export const TalentAxisCaseStudy = () => (
                             “Scores are suggestions. Final decisions are made by your team.”
                         </p>
                     </Lead>
-                    <div className="mx-auto w-full max-w-[300px]">
+                    <div className="mx-auto w-full max-w-[260px] md:max-w-[300px]">
                         <Screen src={proto(5)} alt="Match breakdown for a score of 92" label="Match breakdown" />
                     </div>
                 </div>
 
-                <div className="mt-20 grid gap-10 md:grid-cols-[1fr_260px_260px] md:items-start">
+                <div className="mt-20 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-[1fr_260px_260px] md:items-start md:gap-10">
+                    <div className="col-span-2 md:col-span-1">
                     <Lead title="Matches you can act on from the list">
                         <p>
                             The matches list splits into Strong, Good, and Already in pipeline, so nobody gets suggested twice.
@@ -408,6 +430,7 @@ export const TalentAxisCaseStudy = () => (
                             odd for everyone.
                         </p>
                     </Lead>
+                    </div>
                     <Screen src={proto(4)} alt="AI matches for a job" label="AI matches" note="38 strong matches across the database and two talent pools." />
                     <Screen src={proto(6)} alt="Matching weights" label="Matching weights" note="Tune what matters for this job. Re-ranks instantly." />
                 </div>
@@ -425,7 +448,8 @@ export const TalentAxisCaseStudy = () => (
                     </div>
                 </div>
 
-                <div className="mt-20 grid gap-10 md:grid-cols-[1fr_260px_260px] md:items-start">
+                <div className="mt-20 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-[1fr_260px_260px] md:items-start md:gap-10">
+                    <div className="col-span-2 md:col-span-1">
                     <Lead title="The AI asks before it writes">
                         <p>
                             Writing a job description works the same way. The AI asks first: which client, what budget, which
@@ -433,6 +457,7 @@ export const TalentAxisCaseStudy = () => (
                             and publishing. It never posts anything on its own.
                         </p>
                     </Lead>
+                    </div>
                     <Screen src={img("ai-jd-chat")} alt="Writing a job description with AI" label="Write with AI" note="The assistant asks follow-ups before drafting." />
                     <Screen src={proto(34)} alt="AI-drafted job description, ready to edit" label="Edit the AI draft" note="Change the tone or regenerate. Nothing is posted yet." />
                 </div>
@@ -503,7 +528,7 @@ export const TalentAxisCaseStudy = () => (
                             three dots move a candidate to another stage in one step.
                         </p>
                     </Lead>
-                    <div className="mx-auto w-full max-w-[300px]">
+                    <div className="mx-auto w-full max-w-[260px] md:max-w-[300px]">
                         <Screen src={proto(8)} alt="The pipeline, by stage" label="Pipeline · Interview stage" />
                     </div>
                 </div>
@@ -525,7 +550,8 @@ export const TalentAxisCaseStudy = () => (
                     </div>
                 </div>
 
-                <div className="mt-20 grid gap-10 md:grid-cols-[1fr_260px_260px] md:items-start">
+                <div className="mt-20 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-[1fr_260px_260px] md:items-start md:gap-10">
+                    <div className="col-span-2 md:col-span-1">
                     <Lead title="The other end of the link">
                         <p>
                             The booking link opens in the Candidate app. The candidate sees the company, the round, who they'll
@@ -533,12 +559,13 @@ export const TalentAxisCaseStudy = () => (
                             pipeline card shows “Booked by candidate”. Nobody sent a message.
                         </p>
                     </Lead>
+                    </div>
                     <Screen src={img("cand-booking")} alt="Candidate app: book your interview" label="Candidate app · Book" />
                     <Screen src={img("cand-booked")} alt="Candidate app: interview booked" label="Candidate app · Booked" />
                 </div>
 
                 <MoreDetail summary="The calendar, picking a time, and feedback">
-                    <div className="grid gap-8 sm:grid-cols-3">
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-8">
                         <Screen src={img("calendar-week")} alt="Interviews calendar, week view" label="Interviews · week" note="Every panel, every round, by day." />
                         <Screen src={proto(18)} alt="Pick a time from common free slots" label="Pick a time" note="Common free slots; busy ones crossed out." />
                         <Screen src={proto(22)} alt="Feedback scorecard" label="Feedback scorecard" note="It stays on the dashboard as “Feedback due” until it's written." />
@@ -567,7 +594,7 @@ export const TalentAxisCaseStudy = () => (
                     { src: img("admin-overview"), app: "Super Admin", flows: "15 flows · ~130 screens", body: "Tenants and employer verification, plans and credits, moderation, templates, audit logs, system health." },
                 ].map((a) => (
                     <RevealOnScroll key={a.app}>
-                        <div className="mx-auto flex h-full w-full max-w-[280px] flex-col">
+                        <div className="mx-auto flex h-full w-full max-w-[260px] sm:max-w-[280px] flex-col">
                             <div className="overflow-hidden rounded-[22px] border border-white/10 bg-white shadow-[0_24px_48px_-28px_rgba(0,0,0,0.9)]">
                                 <img src={a.src} alt={`${a.app} app home screen`} loading="lazy" className="block aspect-[390/844] w-full object-cover object-top" />
                             </div>
